@@ -4,10 +4,10 @@ import FormAccount from "../../components/FormAccount/FormAccount";
 import Button from "../../components/Button/Button";
 import { config } from "../../config";
 import { useCallback, useEffect, useState } from "react";
-import type { CustomerType } from "../../services/data/customer";
 import type { InputLoginType } from "../Login/Login";
 import { callApi, changeApi } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import type { CustomerType } from "../../types/customer";
 const cx = classNames.bind(styles);
 interface InputRegisterType extends InputLoginType {
   confirmPassword: string;

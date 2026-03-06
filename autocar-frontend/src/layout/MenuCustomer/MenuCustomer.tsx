@@ -7,7 +7,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import {
   MenuCustomerData,
   type MenuCustomerType,
-} from "../Component/Header/HeaderData";
+} from "../../services/data/HeaderData";
 import Header from "../Component/Header/Header";
 
 const cx = classNames.bind(styles);

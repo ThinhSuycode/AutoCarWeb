@@ -2,12 +2,12 @@ import classNames from "classnames/bind";
 import styles from "./ProductSold.module.scss";
 import ListProduct from "../../components/ListProduct/ListProduct";
 import { useEffect, useState } from "react";
-import type { Car } from "../../services/data/carsData";
 import { callApi } from "../../services/api";
+import type { CarType } from "../../types/car";
 
 const cx = classNames.bind(styles);
 const ProductSold = () => {
-  const [carDataSold, setCarDataSold] = useState<Car[]>([]);
+  const [carDataSold, setCarDataSold] = useState<CarType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

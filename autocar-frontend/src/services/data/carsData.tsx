@@ -1,193 +1,76 @@
 // cd autocar-frontend/src/services/data/
 // json-server --watch data.json --port 5000
+import type {
+  BrandsType,
+  CarType,
+  ModePropsType,
+  PriceRangeType,
+} from "../../types/car";
 
-import type { ReactNode } from "react";
-
-export type Car = {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  year: number;
-  mileage: number;
-  transmission: "Số tự động" | "Số sàn";
-  image: string;
-  hasWarranty?: boolean;
-  isInspected?: boolean;
-  bodyType?: string;
-  fuelType?: string;
-  engineSize?: string;
-  color: string;
-  seats?: number;
-  features?: string[];
-};
-export type Brands = {
-  id: string;
-  title: string;
-  value: string;
-};
-export type FilterOptions = {
-  brands: Brands[];
-  priceRanges: PriceRange[];
-  years: string[];
-  bodyTypes: string[];
-  transmissions: string[];
-};
-export interface ServiceItem {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-  cta: string;
-}
-export interface ArticlesItem {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  image: string;
-  date: string;
-  readTime: string;
-}
-export interface SocialItem {
-  icon: ReactNode;
-  title: string;
-}
-
-export const socialData: SocialItem[] = [
+export const brands: string[] = [
+  "Tất cả",
+  "Toyota",
+  "Honda",
+  "Mazda",
+  "Hyundai",
+  "Ford",
+  "Mercedes",
+  "BMW",
+];
+export const priceRanges: PriceRangeType[] = [
   {
-    icon: "fa-facebook",
-    title: "Facebook",
+    value: "",
+    label: "Tất cả giá",
   },
   {
-    icon: "fa-twitter",
-    title: "Twitter",
+    value: "0-500",
+    label: "Dưới 500 triệu",
   },
   {
-    icon: "fa-linkedin-in",
-    title: "LinkedLink",
+    value: "500-800",
+    label: "500 - 800 triệu",
+  },
+  {
+    value: "800-1200",
+    label: "800 triệu - 1.2 tỷ",
+  },
+  {
+    value: "1200+",
+    label: "Trên 1.2 tỷ",
   },
 ];
-export type Showroom = {
-  id: string;
-  name: string;
-  city: string;
-  address: string;
-  phone: string;
-  hours: {
-    weekday: string;
-    saturday: string;
-    sunday: string;
-  };
-  image: string;
-  features: string[];
-  mapUrl: string;
-};
-export const showrooms: Showroom[] = [
-  {
-    id: "hcm",
-    name: "AutoViet Sài Gòn",
-    city: "TP. Hồ Chí Minh",
-    address: "123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh",
-    phone: "0901 234 567",
-    hours: {
-      weekday: "8:00 - 18:00",
-      saturday: "8:00 - 17:00",
-      sunday: "9:00 - 15:00",
-    },
-    image:
-      "https://images.unsplash.com/photo-1562519819-016930ada31b?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "200+ xe trưng bày",
-      "Khu vực lái thử",
-      "Phòng tư vấn riêng",
-      "Bãi đỗ xe rộng rãi",
-    ],
-    mapUrl: "#",
-  },
-  {
-    id: "hn",
-    name: "AutoViet Hà Nội",
-    city: "Hà Nội",
-    address: "456 Phạm Hùng, Quận Cầu Giấy, Hà Nội",
-    phone: "0902 345 678",
-    hours: {
-      weekday: "8:00 - 18:00",
-      saturday: "8:00 - 17:00",
-      sunday: "9:00 - 15:00",
-    },
-    image:
-      "https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "150+ xe trưng bày",
-      "Khu vực lái thử",
-      "Xưởng bảo dưỡng",
-      "Cafe thư giãn",
-    ],
-    mapUrl: "#",
-  },
-  {
-    id: "dn",
-    name: "AutoViet Đà Nẵng",
-    city: "Đà Nẵng",
-    address: "789 Nguyễn Văn Linh, Quận Hải Châu, Đà Nẵng",
-    phone: "0903 456 789",
-    hours: {
-      weekday: "8:00 - 18:00",
-      saturday: "8:00 - 17:00",
-      sunday: "9:00 - 15:00",
-    },
-    image:
-      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
-    features: [
-      "100+ xe trưng bày",
-      "Khu vực lái thử",
-      "Dịch vụ tận tâm",
-      "View biển đẹp",
-    ],
-    mapUrl: "#",
-  },
-];
-export const galleryImages = [
-  "https://images.unsplash.com/photo-1562519819-016930ada31b?w=800&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=800&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80",
-];
-export const whyVisitData = [
-  {
-    id: 1,
-    icon: "fa-car-side",
-    title: "Lái Thử Miễn Phí",
-    description:
-      "Trải nghiệm thực tế với xe bạn quan tâm trước khi quyết định mua",
-  },
-  {
-    id: 2,
-    icon: " fa-user-group",
-    title: "Tư Vấn Chuyên Nghiệp",
-    description:
-      "Đội ngũ tư vấn giàu kinh nghiệm, nhiệt tình hỗ trợ bạn chọn xe phù hợp",
-  },
-  {
-    id: 3,
-    icon: "fa-medal",
-    title: "Ưu Đãi Đặc Biệt",
-    description:
-      "Nhiều chương trình khuyến mãi hấp dẫn dành riêng cho khách đến showroom",
-  },
-];
-export interface WhyVisitType {
-  id: number;
-  icon: string;
-  title: string;
-  description: string;
-}
 
-export const carsDatabase: Car[] = [
+export const years: string[] = [
+  "Tất cả",
+  "2024",
+  "2023",
+  "2022",
+  "2021",
+  "2020",
+  "Trước 2020",
+];
+
+export const BodyTypeCar: string[] = [
+  "Tất cả loại",
+  "Bán tải",
+  "Hatchback",
+  "MPV",
+  "SUV",
+  "Sedan",
+];
+export const transmissions: string[] = ["Tất cả", "Số tự động", "Số sàn"];
+
+export const modeData: ModePropsType[] = [
+  {
+    icon: <i className="fa-solid fa-grip"></i>,
+    value: "grid",
+  },
+  {
+    icon: <i className="fa-solid fa-list"></i>,
+    value: "list",
+  },
+];
+export const carsDatabase: CarType[] = [
   // SEDAN CATEGORY
   {
     id: "sedan-001",
@@ -850,137 +733,11 @@ export const carsDatabase: Car[] = [
     ],
   },
 ];
-export interface CarDetails {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  year: number;
-  mileage: number;
-  transmission: string;
-  location: string;
-  description?: string;
-  images: string[];
-  features?: string[];
-  specs?: CarSpecGroup[];
-}
 
-export interface CarSpecGroup {
-  title: string;
-  items: infoSpecs[];
-}
-export interface infoSpecs {
-  label: string;
-  value: string;
-}
-export interface ArticleSection {
-  type: string;
-  content: string | string[];
-  imageUrl?: string;
-  caption?: string;
-}
-
-export interface ArticleDetail {
-  id: string;
-  sections: ArticleSection[];
-  tags: string[];
-  relatedArticles: string[];
-}
-export const brands = [
-  "Tất cả",
-  "Toyota",
-  "Honda",
-  "Mazda",
-  "Hyundai",
-  "Ford",
-  "Mercedes",
-  "BMW",
-];
-export const priceRanges: PriceRange[] = [
-  {
-    value: "",
-    label: "Tất cả giá",
-  },
-  {
-    value: "0-500",
-    label: "Dưới 500 triệu",
-  },
-  {
-    value: "500-800",
-    label: "500 - 800 triệu",
-  },
-  {
-    value: "800-1200",
-    label: "800 triệu - 1.2 tỷ",
-  },
-  {
-    value: "1200+",
-    label: "Trên 1.2 tỷ",
-  },
-];
-export type PriceRange = {
-  value: string;
-  label: string;
-};
-
-export const years = [
-  "Tất cả",
-  "2024",
-  "2023",
-  "2022",
-  "2021",
-  "2020",
-  "Trước 2020",
-];
-export interface BodyTypeCar {
-  typeTitle: string;
-}
-export const BodyTypeCar = [
-  "Tất cả loại",
-  "Bán tải",
-  "Hatchback",
-  "MPV",
-  "SUV",
-  "Sedan",
-];
-export const transmissions = ["Tất cả", "Số tự động", "Số sàn"];
-
-export const carsBrand: Brands[] = Array.from(
-  new Set(carsDatabase.map((item: Car) => item.brand)),
+export const carsBrand: BrandsType[] = Array.from(
+  new Set(carsDatabase.map((item: CarType) => item.brand)),
 ).map((brand, idx) => ({
   id: (idx + 1).toString(),
   title: brand,
   value: brand.toLowerCase(),
 }));
-
-// Helper functions to filter cars
-export const getCarsByBodyType = (bodyType: string): Car[] => {
-  return carsDatabase.filter((car) => car.bodyType === bodyType);
-};
-
-export const getCarsByBrand = (brand: string): Car[] => {
-  return carsDatabase.filter((car) => car.brand === brand);
-};
-
-export const getCarsByPriceRange = (min: number, max: number): Car[] => {
-  return carsDatabase.filter((car) => car.price >= min && car.price <= max);
-};
-
-export const getCarsByYear = (year: number): Car[] => {
-  return carsDatabase.filter((car) => car.year === year);
-};
-
-// Get unique values for filters
-export const getAllBrands = (): string[] => {
-  return [...new Set(carsDatabase.map((car) => car.brand))].sort();
-};
-
-// export const getAllBodyTypes = (): string[] => {
-//   return [...new Set(carsDatabase.map((car) => car.bodyType))].sort();
-// };
-
-export const getAllYears = (): number[] => {
-  return [...new Set(carsDatabase.map((car) => car.year))].sort(
-    (a, b) => b - a,
-  );
-};

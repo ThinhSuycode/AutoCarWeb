@@ -1,15 +1,11 @@
 import Button from "../../components/Button/Button";
-import {
-  galleryImages,
-  showrooms,
-  whyVisitData,
-  type Showroom,
-  type WhyVisitType,
-} from "../../services/data/carsData";
 import styles from "./ShowRoom.module.scss";
 import classNames from "classnames/bind";
 import imgBanner from "../../assets/img/showroom1.jpg";
 import { useCallback, useEffect, useState } from "react";
+import type { ShowroomType, WhyVisitType } from "../../types/showroom";
+import { showrooms, whyVisitData } from "../../services/data/ShowRoom";
+import { galleryImages } from "../../services/data/social";
 const cx = classNames.bind(styles);
 
 const generateDateOptions = () => {
@@ -267,7 +263,7 @@ const ShowRoom = () => {
         </div>
         <div className={cx("content")}>
           <div className={cx("list-address")}>
-            {showrooms.map((item: Showroom) => (
+            {showrooms.map((item: ShowroomType) => (
               <div
                 key={item.name}
                 className={cx("address-item", {

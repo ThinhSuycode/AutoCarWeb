@@ -1,17 +1,13 @@
 import classNames from "classnames/bind";
 import styles from "./NewsDetails.module.scss";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
-import { useCallback, useEffect, useState } from "react";
-import {
-  socialData,
-  type ArticleDetail,
-  type ArticlesItem,
-  type SocialItem,
-} from "../../services/data/carsData";
+import { useEffect, useState } from "react";
 import { callApi } from "../../services/api";
 import EmptyData from "../../components/EmtyData/EmptyData";
-import { createSlug } from "../../hooks/createSlug";
 import { onHandleReadArticle } from "../../hooks/HandleArticles";
+import type { ArticleDetail, ArticlesItem } from "../../types/articles";
+import type { SocialItem } from "../../types/social";
+import { socialData } from "../../services/data/social";
 
 const cx = classNames.bind(styles);
 

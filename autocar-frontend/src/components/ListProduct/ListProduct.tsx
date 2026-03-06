@@ -1,46 +1,27 @@
 import type React from "react";
-import {
-  BodyTypeCar,
-  carsBrand,
-  transmissions,
-  type Brands,
-  type Car,
-} from "../../services/data/carsData";
 import Button from "../Button/Button";
 import classNames from "classnames/bind";
 import styles from "./ListProduct.module.scss";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { config } from "../../config";
 import { createSlug } from "../../hooks/createSlug";
-import EmptyData from "../EmtyData/EmptyData";
+
+import type {
+  BrandsType,
+  CarType,
+  ListCarType,
+  ModePropsType,
+} from "../../types/car";
+import {
+  BodyTypeCar,
+  carsBrand,
+  modeData,
+  transmissions,
+} from "../../services/data/carsData";
 
 const cx = classNames.bind(styles);
-interface PropsType {
-  productsData: Car[] | [];
-  hiddenBtn?: boolean;
-  heading: string;
-  className?: string;
-  desc?: string;
-  filterCar?: boolean;
-}
 
-interface ModeProps {
-  icon: ReactNode;
-  value: string;
-}
-
-const modeData: ModeProps[] = [
-  {
-    icon: <i className="fa-solid fa-grip"></i>,
-    value: "grid",
-  },
-  {
-    icon: <i className="fa-solid fa-list"></i>,
-    value: "list",
-  },
-];
-
-const ListProduct: React.FC<PropsType> = ({
+const ListProduct: React.FC<ListCarType> = ({
   productsData,
   hiddenBtn = false,
   heading,
@@ -52,7 +33,7 @@ const ListProduct: React.FC<PropsType> = ({
   const [brandValue, setBrandValue] = useState<string>("");
   const [typeCarValue, setTypeCarValue] = useState<string>("");
   const [transmissCarValue, setTransmissCarValue] = useState<string>("");
-  const [filterData, setFilterData] = useState<Car[]>(productsData);
+  const [filterData, setFilterData] = useState<CarType[]>(productsData);
   const [priceMin, setPriceMin] = useState<string>("");
   const [priceMax, setPriceMax] = useState<string>("");
   const [yearMin, setYearMin] = useState<string>("");
@@ -64,18 +45,20 @@ const ListProduct: React.FC<PropsType> = ({
 
     // Lọc theo hãng xe (chỉ lọc nếu có giá trị hợp lệ)
     if (brandValue && brandValue !== "Hãng xe") {
-      filterCar = filterCar.filter((car: Car) => car.brand === brandValue);
+      filterCar = filterCar.filter((car: CarType) => car.brand === brandValue);
     }
 
     // Lọc theo loại xe (chỉ lọc nếu có giá trị hợp lệ)
     if (typeCarValue && typeCarValue !== "Tất cả loại") {
-      filterCar = filterCar.filter((car: Car) => car.bodyType === typeCarValue);
+      filterCar = filterCar.filter(
+        (car: CarType) => car.bodyType === typeCarValue,
+      );
     }
 
     // Lọc theo hộp số (chỉ lọc nếu có giá trị hợp lệ)
     if (transmissCarValue && transmissCarValue !== "Tất cả") {
       filterCar = filterCar.filter(
-        (car: Car) => car.transmission === transmissCarValue,
+        (car: CarType) => car.transmission === transmissCarValue,
       );
     }
 
@@ -84,37 +67,45 @@ const ListProduct: React.FC<PropsType> = ({
       const min = priceMin ? Number(priceMin) : 0;
       const max = priceMax ? Number(priceMax) : Infinity;
       filterCar = filterCar.filter(
-        (car: Car) => car.price >= min && car.price <= max,
+        (car: CarType) => car.price >= min && car.price <= max,
       );
     }
     if (yearMin || yearMax) {
       const min = yearMin ? Number(yearMin) : 0;
       const max = yearMax ? Number(yearMax) : Infinity;
       filterCar = filterCar.filter(
-        (car: Car) => car.year >= min && car.year <= max,
+        (car: CarType) => car.year >= min && car.year <= max,
       );
     }
     if (filterOption) {
       if (filterOption === "year-min") {
-        filterCar = filterCar.sort((t1: Car, t2: Car) => t1.year - t2.year);
+        filterCar = filterCar.sort(
+          (t1: CarType, t2: CarType) => t1.year - t2.year,
+        );
       }
       if (filterOption === "year-max") {
-        filterCar = filterCar.sort((t1: Car, t2: Car) => t2.year - t1.year);
+        filterCar = filterCar.sort(
+          (t1: CarType, t2: CarType) => t2.year - t1.year,
+        );
       }
       if (filterOption === "price-desc") {
-        filterCar = filterCar.sort((t1: Car, t2: Car) => t2.price - t1.price);
+        filterCar = filterCar.sort(
+          (t1: CarType, t2: CarType) => t2.price - t1.price,
+        );
       }
       if (filterOption === "price-asc") {
-        filterCar = filterCar.sort((t1: Car, t2: Car) => t1.price - t2.price);
+        filterCar = filterCar.sort(
+          (t1: CarType, t2: CarType) => t1.price - t2.price,
+        );
       }
       if (filterOption === "km-desc") {
         filterCar = filterCar.sort(
-          (t1: Car, t2: Car) => t2.mileage - t1.mileage,
+          (t1: CarType, t2: CarType) => t2.mileage - t1.mileage,
         );
       }
       if (filterOption === "km-asc") {
         filterCar = filterCar.sort(
-          (t1: Car, t2: Car) => t1.mileage - t2.mileage,
+          (t1: CarType, t2: CarType) => t1.mileage - t2.mileage,
         );
       }
     }
@@ -134,7 +125,7 @@ const ListProduct: React.FC<PropsType> = ({
   const onHandleAllProduct = useCallback(() => {
     window.location.href = config.Routes.ProductSold;
   }, []);
-  const onHandleCheckDetail = useCallback((car: Car) => {
+  const onHandleCheckDetail = useCallback((car: CarType) => {
     if (!car) return;
     localStorage.setItem("carActive", JSON.stringify(car));
   }, []);
@@ -209,7 +200,7 @@ const ListProduct: React.FC<PropsType> = ({
                     value={brandValue || "Hãng xe"}
                   >
                     <option value="Hãng xe">Hãng xe</option>
-                    {carsBrand.map((brand: Brands, idx: number) => (
+                    {carsBrand.map((brand: BrandsType, idx: number) => (
                       <option value={brand.title} key={idx}>
                         {brand.title}
                       </option>
@@ -303,7 +294,7 @@ const ListProduct: React.FC<PropsType> = ({
                       <option value="km-asc">Ít Km nhất</option>
                     </select>
                     <div className={cx("mode-show")}>
-                      {modeData.map((item: ModeProps, idx: number) => (
+                      {modeData.map((item: ModePropsType, idx: number) => (
                         <span
                           key={idx}
                           onClick={() => onHandleChangeShowItem(item.value)}
@@ -350,7 +341,7 @@ const ListProduct: React.FC<PropsType> = ({
               </div>
             )}
             {filterData.length > 0 ? (
-              filterData.map((car: Car, idx: number) => (
+              filterData.map((car: CarType, idx: number) => (
                 <div
                   className={cx(
                     "product-item",

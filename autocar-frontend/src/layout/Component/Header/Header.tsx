@@ -5,13 +5,13 @@ import Button from "../../../components/Button/Button";
 import {
   dataHeaderNav,
   MenuCustomerData,
-  type HeaderNavType,
-} from "./HeaderData";
+} from "../../../services/data/HeaderData";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { config } from "../../../config";
 import { callApi } from "../../../services/api";
-import type { CustomerType } from "../../../services/data/customer";
 import Menu from "../../../components/Menu/Menu";
+import type { CustomerType } from "../../../types/customer";
+import type { HeaderNavType } from "../../../types/menu";
 const cx = classNames.bind(styles);
 
 const Header = () => {

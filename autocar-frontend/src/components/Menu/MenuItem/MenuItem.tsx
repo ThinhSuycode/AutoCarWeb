@@ -1,7 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./MenuItem.module.scss";
 import type React from "react";
-import type { LanguageType } from "../../../layout/Component/Header/HeaderData";
+import type { LanguageType } from "../../../types/menu";
+
 const cx = classNames.bind(styles);
 interface MenuItemType {
   icon?: string;

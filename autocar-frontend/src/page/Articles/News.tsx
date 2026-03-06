@@ -2,10 +2,11 @@ import classNames from "classnames/bind";
 import styles from "./News.module.scss";
 import Button from "../../components/Button/Button";
 import { useCallback, useEffect, useState } from "react";
-import type { ArticlesItem } from "../../services/data/carsData";
+
 import { callApi } from "../../services/api";
 import { useDebounce } from "../../hooks/useDebounce";
 import { onHandleReadArticle } from "../../hooks/HandleArticles";
+import type { ArticlesItem } from "../../types/articles";
 
 const cx = classNames.bind(styles);
 const filterArticle: string[] = [

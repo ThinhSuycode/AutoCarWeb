@@ -2,13 +2,13 @@ import classNames from "classnames/bind";
 import styles from "./FavouriteCar.module.scss";
 import ListProduct from "../../components/ListProduct/ListProduct";
 import { useEffect, useState } from "react";
-import type { Car } from "../../services/data/carsData";
-import type { CustomerType } from "../../services/data/customer";
 import { callApi } from "../../services/api";
+import type { CarType } from "../../types/car";
+import type { CustomerType } from "../../types/customer";
 
 const cx = classNames.bind(styles);
 const FavouriteCar = () => {
-  const [favouriteCar, setFavouriteCar] = useState<Car[]>([]);
+  const [favouriteCar, setFavouriteCar] = useState<CarType[]>([]);
   const [customerEmail] = useState<string>(() => {
     const cus = localStorage.getItem("accountActive");
     return cus ? JSON.parse(cus) : "";
@@ -32,7 +32,7 @@ const FavouriteCar = () => {
           );
 
           if (customerActive && carData && Array.isArray(carData)) {
-            const favourite = carData.filter((car: Car) =>
+            const favourite = carData.filter((car: CarType) =>
               customerActive.favouriteCar?.includes(car.id),
             );
             setFavouriteCar(favourite);

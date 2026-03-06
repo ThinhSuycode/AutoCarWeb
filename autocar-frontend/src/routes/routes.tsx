@@ -8,7 +8,7 @@ import CarDetails from "../page/CarDetails/CarDetails";
 import Login from "../page/Login/Login";
 import Register from "../page/Register/Register";
 import Services from "../page/Services/Services";
-import News from "../page/News/News";
+import News from "../page/Articles/News";
 import NewsDetails from "../page/NewsDetails/NewsDetails";
 import ShowRoom from "../page/ShowRoom/ShowRoom";
 import MenuCustomer from "../layout/MenuCustomer/MenuCustomer";

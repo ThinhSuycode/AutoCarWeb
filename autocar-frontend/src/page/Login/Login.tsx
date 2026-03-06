@@ -5,8 +5,9 @@ import Button from "../../components/Button/Button";
 import gg from "../../assets/img/gg.png";
 import { useCallback, useEffect, useState } from "react";
 import { callApi } from "../../services/api";
-import type { CustomerType } from "../../services/data/customer";
+
 import { useNavigate } from "react-router-dom";
+import type { CustomerType } from "../../types/customer";
 
 const cx = classNames.bind(styles);
 

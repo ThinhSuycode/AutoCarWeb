@@ -2,9 +2,9 @@ import classNames from "classnames/bind";
 import styles from "./Services.module.scss";
 import img from "../../assets/img/car-service.jpg";
 import { useEffect, useState } from "react";
-import type { ServiceItem } from "../../services/data/carsData";
 import { callApi } from "../../services/api";
 import Button from "../../components/Button/Button";
+import type { ServiceItem } from "../../types/services";
 const cx = classNames.bind(styles);
 const Services = () => {
   const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
@@ -44,7 +44,7 @@ const Services = () => {
               <div className={cx("desc")}>
                 <p>{item.description}</p>
                 <div className={cx("list-desc")}>
-                  {item.features.map((feat) => (
+                  {item.features.map((feat: string) => (
                     <div className={cx("desc-item")}>
                       <span>
                         <i className="fa-regular fa-circle-check"></i>

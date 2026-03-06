@@ -1,7 +1,6 @@
 .news-page {
   p {
     font-size: 19px;
-    // color: #cbd5e1;
   }
   .form-search {
     display: flex;
@@ -190,7 +189,7 @@
           }
           &:hover {
             transform: translateY(-15px);
-           
+
             box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.35);
           }
           &:hover .content .article-info h4 {

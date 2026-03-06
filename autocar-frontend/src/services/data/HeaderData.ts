@@ -1,23 +1,7 @@
-import { onHandleLogout } from "../../../components/Logout/Logout";
-import { config } from "../../../config";
+import { onHandleLogout } from "../../components/Logout/Logout";
+import { config } from "../../config";
+import type { HeaderNavType, MenuCustomerType } from "../../types/menu";
 
-export interface HeaderNavType {
-  title: string;
-  href: string;
-}
-export interface MenuCustomerType {
-  id: string;
-  icon: string;
-  title: string;
-  href?: string;
-  children?: LanguageType[];
-  onClick?: () => void;
-}
-export interface LanguageType {
-  key: string;
-  title: string;
-  href: string;
-}
 export const dataHeaderNav: HeaderNavType[] = [
   {
     title: "TRANG CHỦ",

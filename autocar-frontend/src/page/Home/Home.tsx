@@ -2,19 +2,10 @@ import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import bannerFooter from "../../assets/img/bannerbottom.png";
 import Button from "../../components/Button/Button";
-import {
-  // carsBrand,
-  // priceRanges,
-  // transmissions,
-  // years,
-  type Brands,
-  type Car,
-  type FilterOptions,
-} from "../../services/data/carsData";
 import ListProduct from "../../components/ListProduct/ListProduct";
 import { useEffect, useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../../services/api";
+import type { BrandsType, CarType, FilterOptionsType } from "../../types/car";
 
 const cx = classNames.bind(styles);
 
@@ -23,10 +14,9 @@ const Home = () => {
   const [price, setprice] = useState<string>("");
   const [year, setyear] = useState<string>("");
   const [transmiss, settransmiss] = useState<string>("");
-  const [dataCarDefault, setDataCarDefault] = useState<Car[]>([]);
-  const [dataCarShow, setDataCarShow] = useState<Car[]>([]);
-  const [dataFilter, setDataFilter] = useState<FilterOptions>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [dataCarDefault, setDataCarDefault] = useState<CarType[]>([]);
+  const [dataCarShow, setDataCarShow] = useState<CarType[]>([]);
+  const [dataFilter, setDataFilter] = useState<FilterOptionsType>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,8 +30,6 @@ const Home = () => {
         setDataFilter(filterOptions);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(true);
       }
     };
     fetchData();
@@ -159,7 +147,7 @@ const Home = () => {
               data-aos="zoom-in"
               onChange={(e) => setBrand(e.target.value)}
             >
-              {dataFilter?.brands.map((brand: Brands, idx: number) => (
+              {dataFilter?.brands.map((brand: BrandsType, idx: number) => (
                 <option value={brand.value} key={idx}>
                   {brand.title}
                 </option>

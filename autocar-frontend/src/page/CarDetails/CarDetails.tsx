@@ -4,10 +4,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { callApi, changeApi } from "../../services/api";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
 import Button from "../../components/Button/Button";
-import type { Car, CarDetails, infoSpecs } from "../../services/data/carsData";
+
 import EmptyData from "../../components/EmtyData/EmptyData";
 import { useNavigate } from "react-router-dom";
-import type { CustomerType } from "../../services/data/customer";
+import type { CustomerType } from "../../types/customer";
+import type { CarType, CarDetailsType, InfoSpecsType } from "../../types/car";
 
 const cx = classNames.bind(styles);
 
@@ -19,12 +20,12 @@ const CarDetailsComponent = () => {
   });
 
   const [customerData, setCustomerData] = useState<CustomerType | null>(null);
-  const [carDetails, setCarDetails] = useState<CarDetails | null>(null);
+  const [carDetails, setCarDetails] = useState<CarDetailsType | null>(null);
   const [imgCurrent, setImgCurrent] = useState({
     img: "",
     idx: 0,
   });
-  const [carActive] = useState<Car | null>(() => {
+  const [carActive] = useState<CarType | null>(() => {
     const local = localStorage.getItem("carActive");
     return local ? JSON.parse(local) : null;
   });
@@ -46,7 +47,7 @@ const CarDetailsComponent = () => {
         //Car detail
         if (carDetailData && Array.isArray(carDetailData)) {
           const filterData = carDetailData.find(
-            (detail: CarDetails) => detail.id === carActive?.id,
+            (detail: CarDetailsType) => detail.id === carActive?.id,
           );
           if (filterData) {
             setCarDetails(filterData);
@@ -183,12 +184,14 @@ const CarDetailsComponent = () => {
                   <div key={specIndex} className={cx("info-item")}>
                     <h4>{specs.title}</h4>
                     <div className={cx("desc")}>
-                      {specs.items.map((specsInfo: infoSpecs, itemIndex) => (
-                        <div key={itemIndex}>
-                          <p>{specsInfo.label}</p>
-                          <p>{specsInfo.value || "N/A"}</p>
-                        </div>
-                      ))}
+                      {specs.items.map(
+                        (specsInfo: InfoSpecsType, itemIndex) => (
+                          <div key={itemIndex}>
+                            <p>{specsInfo.label}</p>
+                            <p>{specsInfo.value || "N/A"}</p>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 ))}

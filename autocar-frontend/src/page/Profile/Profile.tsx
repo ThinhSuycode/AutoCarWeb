@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./Profile.module.scss";
 import React, { useCallback, useEffect, useState } from "react";
-import type { CustomerType } from "../../services/data/customer";
 import { callApi, changeApi } from "../../services/api";
 import Button from "../../components/Button/Button";
+import type { CustomerType } from "../../types/customer";
 
 const cx = classNames.bind(styles);
 const Profile = () => {

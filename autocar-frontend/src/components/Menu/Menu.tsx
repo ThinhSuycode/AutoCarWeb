@@ -1,18 +1,16 @@
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 import MenuNavigation from "../MenuNavigation/MenuNavigation";
+import MenuItem from "./MenuItem/MenuItem";
+import { useCallback, useState } from "react";
 import type {
   LanguageType,
   MenuCustomerType,
-} from "../../layout/Component/Header/HeaderData";
-import MenuItem from "./MenuItem/MenuItem";
-import { useCallback, useState } from "react";
+  SubMenuType,
+} from "../../types/menu";
 
 const cx = classNames.bind(styles);
-interface SubMenuType {
-  title: string;
-  children: LanguageType[];
-}
+
 const Menu = ({ items }: { items: MenuCustomerType[] }) => {
   const [subMenu, setSubMenu] = useState<SubMenuType | null>(null);
   const onHandleBack = useCallback((e: React.MouseEvent) => {
