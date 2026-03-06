@@ -1,0 +1,113 @@
+.footer-inner {
+  min-height: 300px;
+  .footer-content {
+    padding: 45px 25px;
+    background-color: var(--bg-footer);
+    display: flex;
+    gap: 45px;
+
+    .footer-left {
+      .heading {
+        display: flex;
+        gap: 7px;
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--primary-red);
+          width: 45px;
+          border-radius: 7px;
+          height: 45px;
+          i {
+            color: white;
+            font-size: 17px;
+          }
+        }
+        p {
+          color: white;
+          font-weight: bold;
+          &:last-child {
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+      }
+      .desc {
+        font-size: 14px;
+        margin-top: 15px;
+        color: #94a3b8;
+        max-width: 250px;
+      }
+      p {
+        font-size: 14px;
+      }
+      .social {
+        margin-top: 20px;
+        span {
+          margin-right: 10px;
+          cursor: pointer;
+          i {
+            color: white;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .footer-mid {
+      display: flex;
+      width: 70%;
+      .col {
+        &:last-child {
+          width: 50%;
+        }
+        &:first-child {
+          width: 30%;
+        }
+        width: 50%;
+        .heading-col {
+          color: white;
+          font-size: 18px;
+          font-weight: 700;
+        }
+        .list-col-info {
+          margin-top: 17px;
+          &:last-child {
+            div {
+              display: flex;
+
+              p {
+                color: #94a3b8;
+                width: 50%;
+              }
+            }
+          }
+          p {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #94a3b8;
+          }
+          div {
+            margin-bottom: 12px;
+
+            span {
+              color: #94a3b8;
+              &:first-child {
+                margin-right: 5px;
+                i {
+                  color: #ef4444;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-coppyright {
+    padding: 15px;
+    text-align: center;
+    background-color: rgb(53 53 54);
+    color: #ffd2d2;
+    font-weight: 700;
+  }
+}

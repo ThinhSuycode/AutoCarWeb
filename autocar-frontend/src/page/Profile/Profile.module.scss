@@ -1,0 +1,59 @@
+.profile-page {
+  background-color: #e2e8f0;
+
+  h2 {
+    background-color: rgb(244 244 244);
+    padding: 15px 20px;
+    border: 1px solid rgb(182 182 182);
+    font-size: 20px;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .form-account {
+    padding: 20px 25px;
+    background-color: white;
+    border: 1px solid rgb(182 182 182);
+    border-radius: 0px 0px 10px 10px;
+
+    .account-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 17px;
+
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgb(221 221 221);
+      .form-input {
+        width: 49%;
+
+        label {
+          display: block;
+          font-size: 18px;
+          margin-bottom: 7px;
+          font-weight: 600;
+          color: #475569;
+        }
+        input {
+          padding: 8px 10px;
+          background-color: #e2e8f000;
+          border-radius: 8px;
+          outline: none;
+          font-size: 17px;
+          border: 1px solid #94a3b8;
+          width: 100%;
+          &:focus {
+            border-color: #b91c1c;
+          }
+        }
+      }
+    }
+    .btn-send {
+      display: flex;
+      justify-content: end;
+      button {
+        font-size: 18px;
+        font-weight: 500;
+        margin-top: 20px;
+      }
+    }
+  }
+}

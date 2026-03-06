@@ -1,0 +1,35 @@
+.navigation-inner {
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid #d9d9d9d9;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: auto;
+    div {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      // color: dimgray;
+      transition: 0.25s ease-in-out;
+      &:first-child {
+        &:hover {
+          color: var(--primary-red);
+        }
+      }
+    }
+    &:last-child {
+      div {
+        color: var(--primary-red);
+        font-weight: bold;
+      }
+    }
+  }
+  // border-bottom: 1px solid #999999;
+}

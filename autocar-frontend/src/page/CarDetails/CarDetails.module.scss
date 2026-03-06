@@ -1,0 +1,428 @@
+.empty-data {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  gap: 15px;
+  color: #555;
+
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+    url("https://img.freepik.com/free-vector/no-data-concept-illustration_114360-616.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  span {
+    &:first-child i {
+      display: inline-block;
+      animation: rotate 0.8s linear infinite;
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.carDetails-inner {
+  .content {
+    width: 100%;
+    padding: 35px 25px;
+    background-color: #e2e8f000;
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-family: initial;
+      color: #475569;
+    }
+    .left {
+      width: 65%;
+      .car-image-inner {
+        .image__large {
+          width: 100%;
+          height: 450px;
+          border-radius: 20px;
+          overflow: hidden;
+          margin-bottom: 15px;
+          position: relative;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition:
+              opacity 0.3s ease-in-out,
+              transform 0.3s ease-in-out;
+
+            &.transitioning {
+              opacity: 0;
+              transform: scale(1.1);
+            }
+          }
+
+          .count-current {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #0f172a;
+            padding: 7px 25px;
+            color: white;
+            border-radius: 10px;
+            font-size: 18px;
+            box-shadow: 0px 0px 20px rgba(183, 183, 183, 0.752);
+            transition: all 0.3s ease;
+          }
+        }
+
+        .list-image__small {
+          width: 100%;
+          height: 95px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          .img-item {
+            width: 20%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+
+            &:hover {
+              transform: translateY(-3px);
+            }
+
+            &.active {
+              img {
+                filter: none;
+                padding: 2px;
+                border-color: #dc2626;
+                box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.3);
+              }
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: all 0.3s ease-in-out;
+              border: 3px solid currentColor;
+              filter: opacity(0.7) brightness(0.9);
+              border-radius: 10px;
+
+              &:hover {
+                filter: none;
+                border-color: #a1a1a1;
+              }
+            }
+          }
+        }
+      }
+
+      .car-description {
+        padding: 25px 20px;
+        background-color: white;
+        border-radius: 15px;
+        margin-top: 15px;
+        box-shadow: 0px 0px 20px rgb(0 0 0 / 18%);
+        h3 {
+          margin-bottom: 15px;
+        }
+        p {
+          font-size: 17px;
+        }
+      }
+
+      .car-information {
+        margin-top: 50px;
+
+        .features {
+          .heading {
+            font-size: 24px;
+            padding-left: 15px;
+            border-left: 5px solid #dc2626;
+            margin-bottom: 30px;
+          }
+          p {
+            margin-bottom: 0px;
+          }
+
+          .main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            .info-item {
+              width: 32%;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              border: 2px solid #a5989863;
+              padding: 10px 15px;
+              background-color: white;
+              border-radius: 10px;
+              .icon {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #dcfce7;
+                color: #16a34a;
+                border-radius: 50%;
+                font-size: 19px;
+              }
+              p {
+                font-size: 17px;
+                text-align: start;
+              }
+            }
+          }
+        }
+
+        .specifications {
+          .heading {
+            font-size: 24px;
+            padding-left: 15px;
+            border-left: 5px solid #dc2626;
+            margin-bottom: 20px;
+          }
+          .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 30px;
+
+            .info-item {
+              width: 45%;
+              border-radius: 15px;
+              background-color: white;
+              overflow: hidden;
+
+              p {
+                margin-bottom: 0px;
+                padding: 0px 25px;
+              }
+
+              h4 {
+                padding: 5px 25px;
+                background-color: white;
+                font-size: 20px;
+              }
+              p {
+                padding: 5px 25px;
+                width: 50%;
+                background-color: white;
+
+                &:last-child {
+                  color: black;
+                  text-align: end;
+                }
+              }
+              .desc {
+                div {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  border-top: 1px solid #a5989863;
+
+                  p {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      .content-top {
+        padding: 15px 25px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0px 0px 20px rgb(0 0 0 / 18%);
+        .heading {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .action {
+            display: flex;
+            gap: 15px;
+            color: #94a3b8;
+            font-size: 22px;
+            span {
+              width: 40px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 40px;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: 0.25s ease-in-out;
+
+              &:first-child {
+                &:hover {
+                  color: #dc2626;
+                  background-color: #fbcaca;
+                }
+              }
+              &:last-child {
+                &:hover {
+                  color: #3b58ff;
+                  background-color: #cbdffc;
+                }
+              }
+            }
+            .favourite-btn {
+              &.activeHeart {
+                color: #dc2626;
+                background-color: #fbcaca;
+              }
+            }
+            .share-btn {
+              &.activeShare {
+                color: #3b58ff;
+                background-color: #cbdffc;
+              }
+            }
+          }
+          .brand {
+            padding: 5px 20px;
+            border-radius: 7px;
+            background-color: #0f172a;
+            color: white;
+          }
+        }
+        .title {
+          font-size: 30px;
+          font-weight: bold;
+          padding: 10px 0px;
+        }
+        .price {
+          padding: 5px 0px;
+          p {
+            font-size: 15px;
+            &:first-child {
+              color: #dc2626;
+              font-size: 32px;
+              font-weight: bold;
+              letter-spacing: 1.3px;
+            }
+          }
+        }
+        .specs {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 22px;
+          padding: 10px 0px 20px;
+          div {
+            width: 47%;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #ebf4fe;
+            border-radius: 12px;
+            span {
+              font-size: 16px;
+            }
+          }
+        }
+        .commitments {
+          padding: 10px 0px;
+          div {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            span {
+              font-size: 19px;
+
+              &:first-child {
+                color: #16a34a;
+              }
+            }
+          }
+        }
+      }
+      .content-bottom {
+        margin-top: 30px;
+        padding: 15px 25px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0px 0px 20px rgb(0 0 0 / 18%);
+        .heading {
+          font-size: 30px;
+          font-weight: bold;
+        }
+        .desc {
+          font-size: 16px;
+          color: #64748b;
+        }
+        .form-request {
+          padding: 15px 0px;
+          .form-input {
+            padding: 10px 0px;
+            input {
+              background-color: #f8fafc;
+              width: 100%;
+              padding: 10px;
+              margin-top: 5px;
+              border: none;
+              border-radius: 7px;
+              outline: none;
+              border: 1px solid #a1a1a1;
+            }
+            textarea {
+              background-color: #f8fafc;
+              width: 100%;
+              border-radius: 7px;
+              outline: none;
+              padding: 10px;
+              margin-top: 10px;
+              border: 1px solid #a1a1a1;
+              min-height: 100px;
+            }
+          }
+        }
+        button {
+          width: 100%;
+          font-size: 18px;
+        }
+        .hotline {
+          padding: 20px 0px;
+          margin: 0 auto;
+          user-select: none;
+          text-align: center;
+          .phone-info {
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 12px;
+            padding: 5px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            background-color: #c3bfbf;
+            color: rgb(0, 0, 0);
+            transition: 0.25s ease-in-out;
+            &:hover {
+              background-color: #dc2626;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

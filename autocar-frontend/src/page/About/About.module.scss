@@ -1,0 +1,192 @@
+.about-inner {
+  .banner-about {
+    position: relative;
+    height: 90vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(
+        to right,
+        rgba(5, 10, 20, 0.95),
+        rgba(5, 10, 20, 0.6),
+        rgba(5, 10, 20, 0.95)
+      ),
+      url("https://media.vneconomy.vn/images/upload/2021/05/08/honda-civic-2022-3.jpg")
+        center/cover no-repeat;
+  }
+  .info-banner {
+    // transform: translateY(-50px);
+    .heading {
+      text-align: center;
+      margin-bottom: 20px;
+      h2 {
+        font-size: 52px;
+        span {
+          color: #dc2626;
+        }
+      }
+      p {
+        max-width: 700px;
+        font-size: 22px;
+      }
+    }
+    .btn-act {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      a {
+        padding: 10px 30px;
+        font-size: 18px;
+        &:last-child {
+          background-color: rgb(52 58 70 / 48%);
+        }
+      }
+    }
+  }
+  .info-history {
+    padding: 40px 25px;
+    display: flex;
+    justify-content: space-between;
+    .left {
+      width: 50%;
+      h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 18px;
+        color: #444444;
+      }
+      .role {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        margin: 25px 0px;
+        div {
+          display: flex;
+          width: 40%;
+          align-items: center;
+          gap: 5px;
+          span {
+            font-size: 18px;
+            &:first-child {
+              color: #dc2626;
+            }
+          }
+        }
+      }
+    }
+    .right {
+      position: relative;
+      //   width: 50%;
+      img {
+        height: 350px;
+        border-radius: 20px;
+      }
+      .img-info {
+        position: absolute;
+        left: 21%;
+        text-align: center;
+        bottom: 0px;
+        background-color: #8b8b8b;
+        padding: 10px 20px;
+        color: floralwhite;
+        box-shadow: 5px 10px 10px rgba(5, 10, 20, 0.35);
+        border-radius: 15px;
+
+        p {
+          font-size: 16px;
+          font-weight: 500;
+          &:first-child {
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  .info-cost {
+    padding: 40px 25px;
+    background-color: #f8fafc;
+    .heading {
+      text-align: center;
+      padding: 0px 0px 25px;
+      h3 {
+        font-size: 35px;
+      }
+      p {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #475569;
+      }
+    }
+    .list-info {
+      display: flex;
+      justify-content: space-between;
+      .info-item {
+        width: 22%;
+        padding: 25px 30px;
+        background-color: white;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        min-height: 285px;
+        div {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #fee2e2;
+          margin-bottom: 10px;
+          border-radius: 7px;
+          i {
+            font-size: 22px;
+            color: #dc2626;
+          }
+        }
+        p {
+          margin-top: 10px;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+  .info-statistical {
+    padding: 40px 25px;
+    background-color: #0f172a;
+    border-bottom: 4px solid #dc2626;
+    border-top: 4px solid #dc2626;
+    .list-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .info-item {
+        width: 22%;
+        text-align: center;
+        .heading {
+          font-size: 40px;
+          font-weight: 700;
+          color: #dc2626;
+
+          span {
+            font-family: fantasy;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            &:last-child {
+              font-size: 36px;
+              margin-left: 5px;
+            }
+          }
+        }
+        p {
+          color: #94a3b8;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}

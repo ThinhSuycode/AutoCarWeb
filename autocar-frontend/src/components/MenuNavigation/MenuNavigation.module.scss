@@ -1,0 +1,21 @@
+.menu-navigation {
+  display: flex;
+  font-size: 18px;
+  font-weight: 600;
+  gap: 15px;
+  padding: 0px 0px 7px;
+  padding-left: 10px;
+
+  align-items: center;
+  border-bottom: 2px solid #00000047;
+  .left {
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: var(--primary-red);
+    }
+  }
+  .right {
+    text-align: center;
+  }
+}

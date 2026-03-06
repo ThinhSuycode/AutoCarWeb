@@ -1,0 +1,15 @@
+export const Routes = {
+  Home: "/",
+  Profile: "/ca-nhan/thong-tin",
+  Favourite: "/ca-nhan/xe-yeu-thich",
+  DateRegister: "/ca-nhan/thoi-gian-hen",
+  ProductSold: "/san-pham",
+  About: "/gioi-thieu",
+  CarDetails: "/chi-tiet-san-pham/:slug",
+  Login: "/dang-nhap",
+  Register: "/dang-ky",
+  Services: "/dich-vu-cham-soc-xe",
+  News: "/tin-tuc",
+  NewsDetails: "/chi-tiet-bai-viet/:slug",
+  ShowRoom: "/showroom",
+};

@@ -1,0 +1,176 @@
+.home-inner {
+  position: relative;
+  margin-bottom: 20px;
+  .home-banner {
+    position: relative;
+    width: 100%;
+    height: 756px;
+    display: flex;
+    padding-top: 70px;
+    justify-content: center;
+    background-color: var(--bg-footer);
+    .banner-content {
+      width: 70%;
+      .banner-content-top {
+        text-align: center;
+        div {
+          &:first-child {
+            background-color: #6a0f0f;
+            padding: 7px 12px;
+            display: inline-block;
+            border-radius: 21px;
+            span {
+              color: white;
+              &:first-child {
+                margin-right: 5px;
+              }
+            }
+          }
+          &:last-child {
+            font-size: 17px;
+            max-width: 500px;
+            margin: 10px auto;
+            color: white;
+          }
+        }
+        .title {
+          p {
+            font-size: 52px;
+            font-weight: bold;
+            font-family: "Roboto Slab", serif;
+            color: white;
+            &:last-child {
+              color: #ef4444;
+            }
+          }
+        }
+      }
+      .form-input {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        input {
+          font-size: medium;
+          width: 70%;
+          font-size: 18px;
+          padding: 15px 137px 15px 25px;
+          border: 3px solid crimson;
+          border-radius: 10px;
+        }
+        button {
+          position: absolute;
+          right: 165px;
+          font-size: 18px;
+          top: 7px;
+          padding: 10px 25px;
+        }
+      }
+    }
+    .banner-footer {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .banner-content-bottom {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 33px;
+      margin-top: 60px;
+      border: 1px solid;
+      .info-item {
+        border-radius: 10px;
+        width: 24%;
+        background-color: #212739;
+        padding: 20px 10px;
+        text-align: center;
+        .icon {
+          i {
+            font-size: 20px;
+            color: #ef4444;
+          }
+        }
+        .heading {
+          color: white;
+          font-size: 18px;
+          font-weight: bold;
+          padding: 6px 0px;
+        }
+        .desc {
+          color: #94a3b8;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  .home-products {
+    .product-filter-inner {
+      padding: 16px 25px;
+      border-bottom: 1px solid #969696;
+      .filter-list-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        select {
+          width: 27%;
+          padding: 10px;
+          font-size: 17px;
+          font-weight: 600;
+          background-color: #fdfdfd;
+          border: 2px solid currentColor;
+          outline: none;
+          border-radius: 10px;
+          &:focus {
+            border-color: #dc2626;
+          }
+        }
+      }
+    }
+    .information-inner {
+      .content {
+        padding: 16px 25px;
+        // background-color: #94a3b8;
+        .heading {
+          text-align: center;
+          h3 {
+            font-size: 30px;
+          }
+        }
+        .list-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 20px;
+          .item {
+            width: 23%;
+            // height: 300px;
+            // background-color: #94a3b8;
+            text-align: center;
+            padding: 10px 15px;
+            div {
+              width: 64px;
+              height: 64px;
+              background-color: #fee2e2;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 16px;
+              margin: 10px auto;
+              i {
+                color: #dc2626;
+                font-size: 32px;
+              }
+            }
+            h4 {
+              margin-bottom: 5px;
+            }
+            p {
+              color: #475569;
+            }
+          }
+        }
+      }
+    }
+  }
+}
