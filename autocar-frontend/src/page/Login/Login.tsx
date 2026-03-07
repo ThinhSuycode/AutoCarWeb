@@ -50,6 +50,7 @@ const Login = () => {
     if (existAccount) {
       alert("Đăng nhập thành công !!");
       localStorage.setItem("accountActive", JSON.stringify(inputLogin.email));
+      window.dispatchEvent(new Event("accountChanged"));
       navigate("/");
     } else {
       alert("Tài khoản hoặc mật khẩu không hợp lệ. Vui lòng thử lại !!");

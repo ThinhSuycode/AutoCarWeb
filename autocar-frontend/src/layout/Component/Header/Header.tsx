@@ -15,7 +15,7 @@ import type { HeaderNavType } from "../../../types/menu";
 const cx = classNames.bind(styles);
 
 const Header = () => {
-  const [customerActive] = useState<string>(() => {
+  const [customerActive, setCustomerActive] = useState<string>(() => {
     try {
       const data = localStorage.getItem("accountActive");
       return data ? JSON.parse(data) : "";
@@ -23,12 +23,22 @@ const Header = () => {
       return "";
     }
   });
+  console.log(customerActive);
   const [infoCustomer, setInfoCustomer] = useState<CustomerType>();
   const [menuActive, setMenuActive] = useState<boolean>(false);
   const refOutside = useRef<HTMLDivElement | null>(null);
 
   const isLogin = customerActive.length > 0;
 
+  useEffect(() => {
+    const handleAccountChange = () => {
+      const data = localStorage.getItem("accountActive");
+      setCustomerActive(data ? JSON.parse(data) : "");
+    };
+    window.addEventListener("accountChanged", handleAccountChange);
+    return () =>
+      window.removeEventListener("accountChanged", handleAccountChange);
+  }, []);
   const onHandleAccount = useCallback(() => {
     window.location.href = config.Routes.Login;
   }, []);
