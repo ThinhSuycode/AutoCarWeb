@@ -11,4 +11,5 @@ uploads/           # ảnh người dùng upload lên server
 
 
 //Ẩn dữ liệu tạo staff
-src/scripts/createStaff.ts
+src/scripts/createStaff.ts".env" 
+"src/scripts/" 
