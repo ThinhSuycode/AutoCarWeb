@@ -1,26 +1,31 @@
+import type { MenuItemType } from "../../../types/menu";
 import classNames from "classnames/bind";
 import styles from "./MenuItem.module.scss";
-import type React from "react";
-import type { LanguageType } from "../../../types/menu";
-
 const cx = classNames.bind(styles);
-interface MenuItemType {
-  icon?: string;
-  title: string;
-  href?: string;
-  children?: LanguageType[];
-  onClick?: () => void;
-  onShowChildren?: () => void;
-}
-const MenuItem: React.FC<MenuItemType> = ({
+
+export const MenuItem: React.FC<
+  MenuItemType & { currentUserRole?: string }
+> = ({
+  id,
   icon,
   title,
   href,
   onClick,
   children,
   onShowChildren,
+  role,
+  currentUserRole,
+  hrefByRole,
 }) => {
+  if (role) {
+    const allowedRoles = Array.isArray(role) ? role : [role];
+    if (!allowedRoles.includes(currentUserRole as any)) {
+      return null;
+    }
+  }
+
   const hasChildren = children && children.length > 0;
+
   const handleClick = (e: React.MouseEvent) => {
     if (hasChildren) {
       e.stopPropagation();
@@ -29,10 +34,12 @@ const MenuItem: React.FC<MenuItemType> = ({
       onClick?.();
     }
   };
+
   return (
     <a
       href={hasChildren ? undefined : href}
       className={cx("menuItem-inner")}
+      key={id}
       onClick={handleClick}
     >
       <div className={cx("icon")}>
@@ -42,5 +49,3 @@ const MenuItem: React.FC<MenuItemType> = ({
     </a>
   );
 };
-
-export default MenuItem;

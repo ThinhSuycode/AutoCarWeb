@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./About.module.scss";
-import Button from "../../components/Button/Button";
 import { config } from "../../config";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import { Button } from "../../components/Button/Button";
 const cx = classNames.bind(styles);
 
 const About = () => {
@@ -12,7 +12,7 @@ const About = () => {
     triggerOnce: true,
   });
   return (
-    <div className={cx("about-inner")}>
+    <div className={cx("about-page")}>
       <div className={cx("banner-about")} data-aos="fade-right">
         <div className={cx("info-banner")}>
           <div className={cx("heading")}>
@@ -26,7 +26,7 @@ const About = () => {
             </p>
           </div>
           <div className={cx("btn-act")}>
-            <Button href="">LIÊN HỆ NGAY</Button>
+            <Button href={config.Routes.Contact}>LIÊN HỆ NGAY</Button>
             <Button href={config.Routes.ShowRoom}>XEM SHOWROOM</Button>
           </div>
         </div>

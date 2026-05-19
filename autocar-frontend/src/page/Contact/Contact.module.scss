@@ -1,0 +1,370 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+// ─── Tokens ───────────────────────────────────────────────────────────────────
+$navy: #0f172a;
+$navy-mid: #1e293b;
+$slate: #64748b;
+$slate-light: #f1f5f9;
+$border: #e9ecef;
+$red: #dc2626;
+$red-soft: #fef2f2;
+$white: #ffffff;
+$bg: #f8fafc;
+
+.contact-page {
+  background: $bg;
+
+  // ─── Banner ────────────────────────────────────────────────────────────────
+  .contact-banner {
+    // Top hero
+    .banner-top {
+      background: linear-gradient(135deg, $navy 0%, $navy-mid 100%);
+      padding: 56px 28px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+      // Decorative circles
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba($white, 0.03);
+        pointer-events: none;
+      }
+      &::before {
+        width: 320px;
+        height: 320px;
+        top: -80px;
+        right: -60px;
+      }
+      &::after {
+        width: 200px;
+        height: 200px;
+        bottom: -60px;
+        left: -40px;
+      }
+
+      h2 {
+        font-size: 40px;
+        font-weight: 900;
+        color: $white;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+        position: relative;
+        z-index: 2;
+
+        @include md {
+          font-size: 30px;
+        }
+        @include sm {
+          font-size: 24px;
+        }
+      }
+
+      p {
+        font-size: 15px;
+        color: #94a3b8;
+        max-width: 560px;
+        margin: 0 auto;
+        line-height: 1.7;
+        position: relative;
+        z-index: 2;
+
+        @include sm {
+          font-size: 14px;
+        }
+      }
+    }
+
+    // Info cards row
+    .banner-bottom {
+      padding: 0 28px;
+      margin-top: -32px;
+      position: relative;
+      z-index: 10;
+
+      @include sm {
+        padding: 0 16px;
+      }
+
+      .list-item {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        @include md {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include sm {
+          grid-template-columns: 1fr;
+        }
+
+        .item {
+          background: $white;
+          border: 1px solid $border;
+          border-radius: 14px;
+          padding: 22px 18px;
+          text-align: center;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+          transition: all 0.22s ease;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, $red, #f87171);
+            opacity: 0;
+            transition: opacity 0.22s;
+          }
+
+          &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            border-color: rgba($red, 0.15);
+
+            &::before {
+              opacity: 1;
+            }
+          }
+
+          .icon {
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            background: $red-soft;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: $red;
+            transition: background 0.22s;
+          }
+
+          h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: $navy;
+            margin-bottom: 6px;
+          }
+
+          p {
+            font-size: 12.5px;
+            color: $slate;
+            line-height: 1.5;
+
+            &:last-child {
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ─── Form + Map ────────────────────────────────────────────────────────────
+  .contact-wrapper {
+    display: flex;
+    gap: 32px;
+    padding: 56px 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+
+    @include md {
+      flex-direction: column;
+      padding: 40px 16px;
+    }
+
+    .form-content {
+      width: 44%;
+      flex-shrink: 0;
+
+      @include md {
+        width: 100%;
+      }
+
+      .form-heading {
+        margin-bottom: 22px;
+
+        h3 {
+          font-size: 22px;
+          font-weight: 800;
+          color: $navy;
+          padding-bottom: 8px;
+          border-bottom: 3px solid $red;
+          display: inline-block;
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 13.5px;
+          color: $slate;
+          line-height: 1.6;
+        }
+      }
+    }
+
+    .google-map {
+      flex: 1;
+      min-height: 440px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid $border;
+
+      @include md {
+        width: 100%;
+        min-height: 320px;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 440px;
+
+        @include md {
+          min-height: 320px;
+        }
+      }
+    }
+  }
+
+  // ─── FAQ ───────────────────────────────────────────────────────────────────
+  .contact-question {
+    background: $white;
+    padding: 56px 28px;
+    border-top: 1px solid $border;
+
+    @include sm {
+      padding: 40px 16px;
+    }
+
+    .question-heading {
+      text-align: center;
+      margin-bottom: 36px;
+
+      h3 {
+        font-size: 26px;
+        font-weight: 800;
+        color: $navy;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: $slate;
+        max-width: 480px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+    }
+
+    .list-question {
+      width: 68%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @include md {
+        width: 90%;
+      }
+      @include sm {
+        width: 100%;
+      }
+
+      .question-wrapper {
+        background: $bg;
+        border: 1.5px solid $border;
+        border-radius: 10px;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+
+        &:hover {
+          border-color: rgba($red, 0.2);
+        }
+
+        &.showContent {
+          border-color: rgba($red, 0.25);
+          box-shadow: 0 2px 12px rgba($red, 0.06);
+
+          .title {
+            background: $red-soft;
+            color: $red;
+
+            i {
+              transform: rotate(180deg);
+            }
+          }
+
+          .content {
+            max-height: 300px;
+            opacity: 1;
+            padding: 14px 18px 18px;
+          }
+        }
+
+        .title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 18px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          color: $navy;
+          background: $bg;
+          transition:
+            background 0.2s,
+            color 0.2s;
+          user-select: none;
+
+          span {
+            flex: 1;
+            padding-right: 12px;
+            line-height: 1.4;
+          }
+
+          i {
+            font-size: 13px;
+            color: $slate;
+            transition:
+              transform 0.3s ease,
+              color 0.2s;
+            flex-shrink: 0;
+          }
+        }
+
+        .content {
+          font-size: 14px;
+          color: $slate;
+          line-height: 1.7;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          padding: 0 18px;
+          transition:
+            max-height 0.35s ease,
+            opacity 0.3s ease,
+            padding 0.3s ease;
+        }
+      }
+    }
+  }
+}

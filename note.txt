@@ -1,0 +1,4 @@
+KeyboardEvent → dùng với window / document / addEventListener
+React.KeyboardEvent → dùng với onKeyDown trong JSX
+Muốn transition cho thẻ thì phải trỏ đúng vào thuộc tính đang sài ví dụ transform, opacity xem chi tiết tại phần contact scss
+Lưu ý display không transition đc

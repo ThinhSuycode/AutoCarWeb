@@ -1,23 +1,24 @@
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 import MenuNavigation from "../MenuNavigation/MenuNavigation";
-import MenuItem from "./MenuItem/MenuItem";
 import { useCallback, useState } from "react";
 import type {
   LanguageType,
-  MenuCustomerType,
+  MenuItemType,
+  Role,
   SubMenuType,
 } from "../../types/menu";
+import { MenuItem } from "./MenuItem/MenuItem";
 
 const cx = classNames.bind(styles);
 
-const Menu = ({ items }: { items: MenuCustomerType[] }) => {
+const Menu = ({ items, role }: { items: MenuItemType[]; role: string }) => {
   const [subMenu, setSubMenu] = useState<SubMenuType | null>(null);
   const onHandleBack = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setSubMenu(null);
   }, []);
-  const handleShowChildren = useCallback((menu: MenuCustomerType) => {
+  const handleShowChildren = useCallback((menu: MenuItemType) => {
     if (menu.children) {
       setSubMenu({
         title: menu.title,
@@ -30,17 +31,27 @@ const Menu = ({ items }: { items: MenuCustomerType[] }) => {
     <div className={cx("menu-inner")}>
       {!subMenu?.children ? (
         <div onClick={(e) => e.stopPropagation()}>
-          {items.map((menu: MenuCustomerType) => (
-            <MenuItem
-              href={menu?.href}
-              icon={menu.icon}
-              title={menu.title}
-              key={menu.id}
-              onClick={menu.onClick}
-              children={menu.children}
-              onShowChildren={() => handleShowChildren(menu)}
-            ></MenuItem>
-          ))}
+          {items.map((menu: MenuItemType) => {
+            const resolvedHref =
+              (menu.hrefByRole && role
+                ? menu.hrefByRole[role as Role]
+                : undefined) ??
+              menu.href ??
+              "/";
+            return (
+              <MenuItem
+                key={menu.title}
+                href={resolvedHref}
+                icon={menu.icon}
+                title={menu.title}
+                onClick={menu.onClick}
+                children={menu.children}
+                role={menu.role}
+                currentUserRole={role}
+                onShowChildren={() => handleShowChildren(menu)}
+              />
+            );
+          })}
         </div>
       ) : (
         <>

@@ -3,23 +3,20 @@ import styles from "./CarDetails.module.scss";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { callApi, changeApi } from "../../services/api";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
-import Button from "../../components/Button/Button";
-
 import EmptyData from "../../components/EmtyData/EmptyData";
 import { useNavigate } from "react-router-dom";
-import type { CustomerType } from "../../types/customer";
+import type { UserType } from "../../types/users";
 import type { CarType, CarDetailsType, InfoSpecsType } from "../../types/car";
+import { getMeApi } from "../../services/auth.service";
+import toast from "react-hot-toast";
+import LoadingData from "../../components/LoadingData/LoadingData";
+import FormContact from "../../components/FormContact/FormContact";
 
 const cx = classNames.bind(styles);
 
 const CarDetailsComponent = () => {
   const navigate = useNavigate();
-  const [customerEmail] = useState<string>(() => {
-    const cus = localStorage.getItem("accountActive");
-    return cus ? JSON.parse(cus) : "";
-  });
-
-  const [customerData, setCustomerData] = useState<CustomerType | null>(null);
+  const [userInfo, setUserInfo] = useState<UserType | null>(null);
   const [carDetails, setCarDetails] = useState<CarDetailsType | null>(null);
   const [imgCurrent, setImgCurrent] = useState({
     img: "",
@@ -30,20 +27,21 @@ const CarDetailsComponent = () => {
     return local ? JSON.parse(local) : null;
   });
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const isLogin = !!localStorage.getItem("token");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!customerEmail) return;
-        const fetchCarDetail = callApi.getData("carDetails");
-        const fetchCustomer = customerEmail
-          ? callApi.getData("customer")
-          : Promise.resolve(null);
-
-        const [carDetailData, customerData] = await Promise.all([
+        const fetchCarDetail = callApi.getData<CarDetailsType>("carDetail");
+        const fetchUser = getMeApi();
+        const [carDetailData, userData] = await Promise.all([
           fetchCarDetail,
-          fetchCustomer,
+          fetchUser,
         ]);
+        setUserInfo(userData);
+
         //Car detail
         if (carDetailData && Array.isArray(carDetailData)) {
           const filterData = carDetailData.find(
@@ -60,54 +58,64 @@ const CarDetailsComponent = () => {
             }
           }
         }
-        //Customer account
-        if (customerData && Array.isArray(customerData)) {
-          const data = customerData.find(
-            (cus: CustomerType) => cus.email === customerEmail,
-          );
-          setCustomerData(data);
-        }
       } catch (error) {
         console.error("Error fetching car details:", error);
+        toast.error("Không thể tải thông tin xe!");
+      } finally {
+        setIsLoading(false);
       }
     };
-
     if (carActive?.id) {
       fetchData();
+    } else {
+      setIsLoading(false);
     }
-  }, [carActive?.id, customerEmail]);
+  }, [carActive?.id, isLogin]);
 
   const onHandleFavourite = useCallback(
     async (id: string) => {
-      if (!customerEmail) {
-        alert("Vui lòng thực hiện đăng nhập để thêm sản phẩm!!");
-        navigate("/");
+      if (!userInfo) {
+        toast.error("Vui lòng đăng nhập để thêm sản phẩm yêu thích!");
+        setTimeout(() => navigate("/dang-nhap"), 1500);
         return;
       }
-      if (!id || !customerData) return;
-      const currentFavourite = [...(customerData.favouriteCar ?? [])];
+      if (!id) return;
+
+      const currentFavourite = [...(userInfo.favouriteCar ?? [])];
       const isAlreadyFavourite = currentFavourite.includes(id);
       const updateFavouriteData = isAlreadyFavourite
         ? currentFavourite.filter((fav: string) => fav !== id)
         : [...currentFavourite, id];
-      const dataNew: CustomerType = {
-        ...customerData,
+
+      const dataNew: UserType = {
+        ...userInfo,
         favouriteCar: updateFavouriteData,
       };
 
-      const result = await changeApi.getData(
-        `customer/${customerData.id}`,
-        "patch",
-        dataNew,
-      );
-      if (result) {
-        setCustomerData(dataNew);
-      } else {
-        alert("Sản phẩm lỗi !!");
-        return;
+      try {
+        const result = await changeApi.request<UserType>(
+          `users`,
+          "patch",
+          dataNew,
+          userInfo._id,
+        );
+
+        if (result) {
+          setUserInfo(dataNew);
+          if (isAlreadyFavourite) {
+            toast.success("Đã xóa khỏi danh sách yêu thích!");
+          } else {
+            toast.success("Đã thêm vào danh sách yêu thích!");
+          }
+        } else {
+          toast.error("Có lỗi xảy ra, vui lòng thử lại!");
+        }
+      } catch (error) {
+        console.error("Favourite error:", error);
+        toast.error("Không thể cập nhật yêu thích!");
       }
     },
-    [customerData, navigate],
+    [userInfo, navigate],
   );
 
   const onChangeImg = (img: string, idx: number) => {
@@ -120,17 +128,48 @@ const CarDetailsComponent = () => {
       setIsTransitioning(false);
     }, 300);
   };
+
+  //  Handle share
+  const onHandleShare = useCallback(() => {
+    const url = window.location.href;
+
+    if (navigator.share) {
+      navigator
+        .share({
+          title: carDetails?.name || "Chi tiết xe",
+          text: `Xem chi tiết ${carDetails?.name} - Giá: ${carDetails?.price?.toLocaleString("vi-VN")}₫`,
+          url: url,
+        })
+        .then(() => toast.success("Chia sẻ thành công!"))
+        .catch((error) => {
+          if (error.name !== "AbortError") {
+            console.error("Share error:", error);
+          }
+        });
+    } else {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => toast.success("Đã sao chép link vào clipboard!"))
+        .catch(() => toast.error("Không thể sao chép link!"));
+    }
+  }, [carDetails]);
+
   const isFavourite = useMemo(() => {
-    if (!customerData?.favouriteCar || !carDetails?.id) return false;
-    return customerData.favouriteCar.includes(carDetails.id);
-  }, [customerData?.favouriteCar, carDetails?.id]);
+    if (!userInfo?.favouriteCar || !carDetails?.id) return false;
+    return userInfo.favouriteCar.includes(carDetails.id);
+  }, [userInfo?.favouriteCar, carDetails?.id]);
+
+  if (isLoading) {
+    return <LoadingData></LoadingData>;
+  }
+
   if (!carDetails) {
-    return <EmptyData></EmptyData>;
+    return <EmptyData />;
   }
 
   return (
-    <div className={cx("carDetails-inner")}>
-      <NavigationPage pageActive="Xe đang bán" title={carDetails.name} />
+    <div className={cx("carDetails-page")}>
+      <NavigationPage pageActive="Xe đang bán" title={carDetails?.name || ""} />
       <div className={cx("content")}>
         <div className={cx("left")}>
           <div className={cx("car-image-inner")}>
@@ -148,10 +187,12 @@ const CarDetailsComponent = () => {
               </div>
             </div>
             <div className={cx("list-image__small")}>
-              {carDetails.images?.map((img, idx: number) => (
+              {carDetails.images.map((img: string, idx: number) => (
                 <div
                   key={idx}
-                  className={cx("img-item", { active: idx === imgCurrent.idx })}
+                  className={cx("img-item", {
+                    active: idx === imgCurrent.idx,
+                  })}
                   onClick={() => onChangeImg(img, idx)}
                 >
                   <img
@@ -166,6 +207,61 @@ const CarDetailsComponent = () => {
             </div>
           </div>
 
+          <div className={cx("mobile-heading")}>
+            <div className={cx("heading")}>
+              <div className={cx("brand")}>{carDetails.brand || "Toyota"}</div>
+              <div className={cx("action")}>
+                <span
+                  onClick={() => onHandleFavourite(carDetails.id)}
+                  className={cx("favourite-btn", {
+                    activeHeart: isFavourite,
+                  })}
+                >
+                  <i className="fa-regular fa-heart"></i>
+                </span>
+                <span className={cx("share-btn")} onClick={onHandleShare}>
+                  <i className="fa-solid fa-share-nodes"></i>
+                </span>
+              </div>
+            </div>
+            <div className={cx("title")}>
+              {carDetails.name || "Toyota Camry 2.5Q 2023"}
+            </div>
+            <div className={cx("price")}>
+              <p>
+                {carDetails.price?.toLocaleString("vi-VN") || "1.250.000.000"}₫
+              </p>
+              <p>Giá đã bao gồm VAT</p>
+            </div>
+            <div className={cx("specs")}>
+              <div>
+                <span>
+                  <i className="fa-regular fa-calendar"></i>
+                </span>
+                <span>{carDetails.year || "2023"}</span>
+              </div>
+              <div>
+                <span>
+                  <i className="fa-solid fa-gauge-high"></i>
+                </span>
+                <span>
+                  {carDetails.mileage?.toLocaleString("vi-VN") || "0"} km
+                </span>
+              </div>
+              <div>
+                <span>
+                  <i className="fa-solid fa-gears"></i>
+                </span>
+                <span>{carDetails.transmission || "Số tự động"}</span>
+              </div>
+              <div>
+                <span>
+                  <i className="fa-solid fa-location-dot"></i>
+                </span>
+                <span>{carDetails.location || "TP.HCM"}</span>
+              </div>
+            </div>
+          </div>
           <div className={cx("car-description")}>
             <h3>Mô tả chi tiết</h3>
             <p>
@@ -232,11 +328,13 @@ const CarDetailsComponent = () => {
               <div className={cx("action")}>
                 <span
                   onClick={() => onHandleFavourite(carDetails.id)}
-                  className={cx("favourite-btn", { activeHeart: isFavourite })}
+                  className={cx("favourite-btn", {
+                    activeHeart: isFavourite,
+                  })}
                 >
                   <i className="fa-regular fa-heart"></i>
                 </span>
-                <span className={cx("share-btn", { activeShare: false })}>
+                <span className={cx("share-btn")} onClick={onHandleShare}>
                   <i className="fa-solid fa-share-nodes"></i>
                 </span>
               </div>
@@ -262,7 +360,7 @@ const CarDetailsComponent = () => {
                   <i className="fa-solid fa-gauge-high"></i>
                 </span>
                 <span>
-                  {carDetails.mileage.toLocaleString("vi-VN") || ""} km
+                  {carDetails.mileage?.toLocaleString("vi-VN") || "0"} km
                 </span>
               </div>
               <div>
@@ -301,43 +399,10 @@ const CarDetailsComponent = () => {
           </div>
 
           <div className={cx("content-bottom")}>
-            <div className={cx("heading")}>Liên Hệ Người Bán</div>
-            <div className={cx("desc")}>
-              Để lại thông tin để được tư vấn chi tiết và đặt lịch xem xe.
-            </div>
-            <div className={cx("form-request")}>
-              <div className={cx("form-input")}>
-                <p>Họ và tên</p>
-                <input type="text" placeholder="Nhập họ và tên" />
-              </div>
-              <div className={cx("form-input")}>
-                <p>Số điện thoại</p>
-                <input type="text" placeholder="Nhập số điện thoại" />
-              </div>
-              <div className={cx("form-input")}>
-                <p>Lời nhắn</p>
-                <textarea
-                  name="note"
-                  id="note"
-                  placeholder="Nhập lời nhắn của bạn"
-                ></textarea>
-              </div>
-            </div>
-            <Button
-              large
-              iconLeft={<i className="fa-regular fa-paper-plane"></i>}
-            >
-              Gửi yêu cầu
-            </Button>
-            <div className={cx("hotline")}>
-              <p>Hoặc liên hệ trực tiếp qua hotline</p>
-              <div className={cx("phone-info")}>
-                <span>
-                  <i className="fa-solid fa-phone"></i>
-                </span>
-                <span>0869114177</span>
-              </div>
-            </div>
+            <FormContact
+              userInfo={userInfo}
+              carDetail={carDetails}
+            ></FormContact>
           </div>
         </div>
       </div>

@@ -1,0 +1,43 @@
+@use "variables" as *;
+
+// ===========================
+// RESPONSIVE MIXINS
+// max-width: dành cho mobile-first từ lớn → nhỏ
+// ===========================
+
+//mixin cho phép tái sử dụng gọi hàm
+//#{} = “nội suy giá trị vào chuỗi/CSS”
+// - 1px để tránh bị trùng break point khi 2 giá trị gần nhau
+// Dưới 480px - điện thoại nhỏ
+// @mixin xs {
+//   @media (max-width: #{$bp-xs - 1px}) {
+//     @content;
+//   }
+// }
+
+// Dưới 480px - điện thoại
+@mixin xs {
+  @media (max-width: #{$bp-xs - 1px}) {
+    @content;
+  }
+}
+// Dưới 768px - điện thoại
+@mixin sm {
+  @media (max-width: #{$bp-sm - 1px}) {
+    @content;
+  }
+}
+
+// Dưới 1024px - tablet
+@mixin md {
+  @media (max-width: #{$bp-md - 1px}) {
+    @content;
+  }
+}
+
+// Dưới 1280px - laptop nhỏ
+@mixin lg {
+  @media (max-width: #{$bp-lg - 1px}) {
+    @content;
+  }
+}

@@ -1,27 +1,46 @@
+import axios from "axios";
+
 const API_KEYS = import.meta.env.VITE_APP_API_KEYS;
 
+// Tạo axios instance riêng
+const axiosInstance = axios.create({
+  baseURL: API_KEYS,
+});
+
+// Interceptor — tự động gắn token vào mọi request
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Interceptor — tự động xử lý token hết hạn
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("token");
+      // window.location.href = "/dang-nhap";
+    }
+    return Promise.reject(error);
+  },
+);
+
 export const callApi = {
-  getData: async (endpoint: string) => {
+  getData: async <T = unknown>(endpoint: string): Promise<T> => {
     try {
-      const res = await fetch(`${API_KEYS}/${endpoint}`);
-
-      if (!res.ok) {
-        throw new Error(
-          `Failed to fetch ${endpoint}: ${res.status} ${res.statusText}`,
-        );
-      }
-
-      return await res.json();
+      const res = await axiosInstance<T>(endpoint);
+      return res.data;
     } catch (error) {
-      console.error(`API Error (${endpoint}):`, error);
+      console.error(`API GET Error (${endpoint}):`, error);
       throw error;
     }
   },
 };
 
-//Thay đổi dữ liệu api
 type HttpMethod = "POST" | "PUT" | "PATCH" | "DELETE";
-
 type ChangeMessage = "add" | "update" | "patch" | "delete";
 
 const METHOD_MAP: Record<ChangeMessage, HttpMethod> = {
@@ -32,35 +51,23 @@ const METHOD_MAP: Record<ChangeMessage, HttpMethod> = {
 };
 
 export const changeApi = {
-  getData: async <T = unknown>(
-    endPoint: string,
+  request: async <T = unknown, B = unknown>(
+    endpoint: string,
     message: ChangeMessage,
-    dataNew?: T,
-  ): Promise<Response | null> => {
+    body?: B,
+    id?: string,
+  ): Promise<T> => {
     const method = METHOD_MAP[message];
 
-    if (!method) {
-      console.warn(`Unknown message type: "${message}"`);
-      return null;
-    }
+    // Nếu có id thì gắn vào URL
+    const url = id ? `${endpoint}/${id}` : endpoint;
 
     try {
-      const response = await fetch(`${API_KEYS}/${endPoint}`, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: dataNew !== undefined ? JSON.stringify(dataNew) : undefined,
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      return response;
+      const res = await axiosInstance<T>({ url, method, data: body });
+      return res.data;
     } catch (error) {
-      console.error(`API ${message} failed for "${endPoint}":`, error);
-      return null;
+      console.error(`API ${method} failed (${endpoint}):`, error);
+      throw error;
     }
   },
 };

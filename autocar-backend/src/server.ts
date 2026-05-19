@@ -1,17 +1,44 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+import { connectDB } from "./config/db";
+import { carRouter } from "./routes/car.routes";
+import { userRouter } from "./routes/users.routes";
+import { carDetailRouter } from "./routes/carDetail.routes";
+import { articleRouter } from "./routes/articles.routes";
+import { articleDetailRouter } from "./routes/articleDetails.routes";
+import authRouter from "./routes/auth.routes";
+import { contactRouter } from "./routes/contact.routes";
+import appoinmentRouter from "./routes/appointment.routes";
+import uploadRouter from "./routes/upload.route";
+import dashboardRouter from "./routes/dashboard.route";
+
+dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5175", "http://localhost:5173"],
+  }),
+);
+
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("AutoCar API running");
-});
+app.use("/api", carRouter);
+app.use("/api", userRouter);
+app.use("/api", carDetailRouter);
+app.use("/api", articleRouter);
+app.use("/api", articleDetailRouter);
+app.use("/api/auth", authRouter);
+app.use("/api", contactRouter);
+app.use("/api/upload", uploadRouter);
+app.use("/api", appoinmentRouter);
+app.use("/api/dashboard", dashboardRouter);
+const PORT = process.env.PORT || 5001;
 
-const PORT = 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 });

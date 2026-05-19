@@ -1,11 +1,21 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
 .formAccount-inner {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #e2e8f082;
+  height: 100%;
   .form-general {
     width: 38%;
-    padding: 50px 0px;
+    padding: 25px 0px;
+    @include md {
+      width: 50%;
+    }
+    @include sm {
+      width: 85%;
+    }
     .heading {
       text-align: center;
       div {
@@ -20,6 +30,10 @@
       .desc {
         font-size: 18px;
         color: #475569;
+        span {
+          color: var(--primary-red);
+          font-weight: 600;
+        }
       }
     }
   }
@@ -29,7 +43,10 @@
     margin: 10px auto;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.35);
+    @include md {
+      width: 80%;
+    }
   }
   .no-account {
     text-align: center;

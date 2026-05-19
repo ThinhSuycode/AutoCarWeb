@@ -1,0 +1,101 @@
+import classNames from "classnames/bind";
+import styles from "./ListArticle.module.scss";
+import type { Articles } from "../../types/articles";
+import { getColorCategory } from "../../hooks/getCategoryColor";
+import { config } from "../../config";
+import { useNavigate } from "react-router-dom";
+import { createHandleReadArticle } from "../../hooks/HandleArticles";
+
+const cx = classNames.bind(styles);
+
+interface ListArticleType {
+  data: Articles[] | null;
+  heading?: string;
+  hiddenBtn?: boolean;
+  emptyDesc?: string;
+}
+
+const ListArticle: React.FC<ListArticleType> = ({
+  data,
+  heading,
+  hiddenBtn,
+  emptyDesc,
+}) => {
+  const navigate = useNavigate();
+  const handleReadArticle = createHandleReadArticle(navigate);
+  if (!data) return <div className={cx("empty-data")}></div>;
+  return (
+    <div className={cx("articles-form")}>
+      {heading && (
+        <div className={cx("form-heading")}>
+          <h3>{heading}</h3>
+          {!hiddenBtn && (
+            <a href={config.Routes.Articles}>
+              Xem tất cả
+              <i className="fa-solid fa-angle-right"></i>
+            </a>
+          )}
+        </div>
+      )}
+      <div className={cx("list-articles", { fixForm: !!heading })}>
+        {data.length > 0 ? (
+          data.map((article: Articles) => (
+            <div
+              className={cx("articles-item")}
+              key={article.id}
+              onClick={() => handleReadArticle(article)}
+              data-aos="flip-right"
+            >
+              <div className={cx("img")}>
+                <img src={article.image} alt={article.title} />
+                <div
+                  className={cx(
+                    "category-img",
+                    getColorCategory(article.category),
+                  )}
+                >
+                  {article.category}
+                </div>
+              </div>
+              <div className={cx("content")}>
+                <div className={cx("post-time")}>
+                  <div>
+                    <span>
+                      <i className="fa-regular fa-calendar"></i>
+                    </span>
+                    <span>{article.date}</span>
+                  </div>
+                  <div>
+                    <span>
+                      <i className="fa-solid fa-clock"></i>
+                    </span>
+                    <span>{article.readTime}</span>
+                  </div>
+                </div>
+                <div className={cx("article-info")}>
+                  <h4>{article.title}</h4>
+                  <p>{article.excerpt}</p>
+                </div>
+                <div className={cx("article-add")}>
+                  <span>Đọc tiếp</span>
+                  <span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className={cx("empty-state")}>
+            {emptyDesc && (
+              <i className="fa-regular fa-face-grin-beam-sweat"></i>
+            )}
+            <h3>{emptyDesc || ""}</h3>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ListArticle;

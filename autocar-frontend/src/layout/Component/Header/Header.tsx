@@ -1,116 +1,193 @@
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import logo from "../../../assets/icon/logoCar.png";
-import Button from "../../../components/Button/Button";
-import {
-  dataHeaderNav,
-  MenuCustomerData,
-} from "../../../services/data/HeaderData";
+import { dataHeaderNav, MenuUserData } from "../../../data/HeaderData";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { config } from "../../../config";
-import { callApi } from "../../../services/api";
 import Menu from "../../../components/Menu/Menu";
-import type { CustomerType } from "../../../types/customer";
+import type { UserType } from "../../../types/users";
 import type { HeaderNavType } from "../../../types/menu";
+import { Button } from "../../../components/Button/Button";
+import { getMeApi } from "../../../services/auth.service";
+
 const cx = classNames.bind(styles);
 
 const Header = () => {
-  const [customerActive, setCustomerActive] = useState<string>(() => {
-    try {
-      const data = localStorage.getItem("accountActive");
-      return data ? JSON.parse(data) : "";
-    } catch {
-      return "";
-    }
-  });
-  console.log(customerActive);
-  const [infoCustomer, setInfoCustomer] = useState<CustomerType>();
   const [menuActive, setMenuActive] = useState<boolean>(false);
+  const [navOpen, setNavOpen] = useState<boolean>(false);
   const refOutside = useRef<HTMLDivElement | null>(null);
+  const refNavOutside = useRef<HTMLDivElement | null>(null);
+  const [infoUser, setInfoUser] = useState<UserType | null>();
 
-  const isLogin = customerActive.length > 0;
+  const isLogin = !!localStorage.getItem("token");
 
   useEffect(() => {
-    const handleAccountChange = () => {
-      const data = localStorage.getItem("accountActive");
-      setCustomerActive(data ? JSON.parse(data) : "");
+    if (!isLogin) return;
+    const fetchMe = async () => {
+      try {
+        const data = await getMeApi();
+        setInfoUser(data);
+      } catch (error) {
+        localStorage.removeItem("token");
+        setInfoUser(null);
+      }
     };
-    window.addEventListener("accountChanged", handleAccountChange);
-    return () =>
-      window.removeEventListener("accountChanged", handleAccountChange);
-  }, []);
+    fetchMe();
+  }, [isLogin]);
+
   const onHandleAccount = useCallback(() => {
     window.location.href = config.Routes.Login;
   }, []);
-  useEffect(() => {
-    const fetchCustomerActive = async () => {
-      const data = await callApi.getData("customer");
-      if (data && Array.isArray(data)) {
-        const findCustomerData = data.find(
-          (cus: CustomerType) => cus.email === customerActive,
-        );
-        setInfoCustomer(findCustomerData);
-      } else {
-        return;
-      }
-    };
-    fetchCustomerActive();
-  }, [customerActive]);
+
   const onHandleMenu = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setMenuActive((prev) => !prev);
   }, []);
+
   const onHandleOverlayMenu = useCallback((e: MouseEvent) => {
     const modals = refOutside.current;
     if (modals && !modals.contains(e.target as Node)) {
       setMenuActive(false);
     }
   }, []);
+
+  // thêm: đóng drawer khi click ngoài
+  const onHandleOverlayNav = useCallback((e: MouseEvent) => {
+    if (
+      refNavOutside.current &&
+      !refNavOutside.current.contains(e.target as Node)
+    ) {
+      setNavOpen(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (!menuActive) return;
     document.addEventListener("click", onHandleOverlayMenu);
-    return () => {
-      document.removeEventListener("click", onHandleOverlayMenu);
-    };
+    return () => document.removeEventListener("click", onHandleOverlayMenu);
   }, [onHandleOverlayMenu, menuActive]);
+
+  useEffect(() => {
+    if (!navOpen) return;
+    document.addEventListener("click", onHandleOverlayNav);
+    return () => document.removeEventListener("click", onHandleOverlayNav);
+  }, [onHandleOverlayNav, navOpen]);
+
+  useEffect(() => {
+    document.body.style.overflow = navOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [navOpen]);
 
   return (
     <div className={cx("header-inner")}>
-      <div className={cx("header-left")}>
-        <img src={logo} alt="nologo" />
-        <div className={cx("info-logo")}>
-          <p className={cx("title")}>AUTOVIET</p>
-          <p className={cx("desc")}>Uy tín - Chất lượng</p>
+      <div className={cx("header-container")}>
+        <a href={config.Routes.Home} className={cx("header-left")}>
+          <img src={logo} alt="nologo" />
+          <div className={cx("info-logo")}>
+            <p className={cx("title")}>AUTOVIET</p>
+            <p className={cx("desc")}>Uy tín - Chất lượng</p>
+          </div>
+        </a>
+
+        <div className={cx("header-mid")}>
+          <div className={cx("list-nav")}>
+            {dataHeaderNav.map((item: HeaderNavType, idx: number) => (
+              <a href={item.href} className={cx("nav-item")} key={idx}>
+                {item.title}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className={cx("header-right")}>
+          <Button
+            outline
+            medium
+            iconLeft={<i className="fa-solid fa-phone"></i>}
+            href={config.Routes.Contact}
+          >
+            0869114177
+          </Button>
+          {isLogin ? (
+            <div className={cx("user-avatar")} onClick={onHandleMenu}>
+              <img src={infoUser?.avatar} alt="" />
+            </div>
+          ) : (
+            <Button medium onClick={onHandleAccount}>
+              Liên hệ ngay
+            </Button>
+          )}
+
+          <button
+            className={cx("toolbar-menu", { active: navOpen })}
+            onClick={(e) => {
+              e.stopPropagation();
+              setNavOpen((prev) => !prev);
+            }}
+            aria-label="Toggle menu"
+          >
+            <i className="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+        <div
+          className={cx("menu-wrapper", { slideDown: menuActive })}
+          ref={refOutside}
+        >
+          <Menu items={MenuUserData} role={infoUser?.role || "user"} />
         </div>
       </div>
-      <div className={cx("header-mid")}>
-        <div className={cx("list-nav")}>
+
+      <div
+        className={cx("mobile-overlay", { open: navOpen })}
+        onClick={() => setNavOpen(false)}
+      />
+
+      <div className={cx("mobile-nav", { open: navOpen })} ref={refNavOutside}>
+        <div className={cx("mobile-nav-header")}>
+          <img src={logo} alt="logo" />
+          <div className={cx("info-logo")}>
+            <p className={cx("title")}>AUTOVIET</p>
+            <p className={cx("desc")}>Uy tín - Chất lượng</p>
+          </div>
+          <button
+            className={cx("mobile-nav-close")}
+            onClick={() => setNavOpen(false)}
+          >
+            <i className="fa-solid fa-xmark" />
+          </button>
+        </div>
+
+        <nav className={cx("mobile-nav-list")}>
           {dataHeaderNav.map((item: HeaderNavType, idx: number) => (
-            <a href={item.href} className={cx("nav-item")} key={idx}>
+            <a
+              href={item.href}
+              className={cx("mobile-nav-item")}
+              key={idx}
+              onClick={() => setNavOpen(false)}
+            >
               {item.title}
             </a>
           ))}
-        </div>
-      </div>
-      <div className={cx("header-right")}>
-        <Button outline medium iconLeft={<i className="fa-solid fa-phone"></i>}>
-          0869114177
-        </Button>
-        {isLogin ? (
-          <div className={cx("customer-avatar")} onClick={onHandleMenu}>
-            <img src={infoCustomer?.avatar} alt="" />
-          </div>
-        ) : (
-          <Button medium onClick={onHandleAccount}>
-            Liên hệ ngay
+        </nav>
+
+        <div className={cx("mobile-nav-footer")}>
+          <Button
+            outline
+            medium
+            iconLeft={<i className="fa-solid fa-phone"></i>}
+            href={config.Routes.Contact}
+          >
+            0869114177
           </Button>
-        )}
-      </div>
-      <div
-        className={cx("menu-wrapper", { slideDown: menuActive })}
-        ref={refOutside}
-      >
-        <Menu items={MenuCustomerData}></Menu>
+          {!isLogin && (
+            <Button medium onClick={onHandleAccount}>
+              Liên hệ ngay
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

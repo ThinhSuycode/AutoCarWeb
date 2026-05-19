@@ -34,7 +34,7 @@ const NavigationPage = ({
           </span>
         </a>
       ) : (
-        <a href={config.Routes.News}>
+        <a href={config.Routes.Articles}>
           <div>
             <span>{pageActive}</span>
           </div>
@@ -47,7 +47,6 @@ const NavigationPage = ({
         <div>
           <span>{title}</span>
         </div>
-        {/* <span><i className="fa-solid fa-angle-right"></i></span> */}
       </a>
     </div>
   );

@@ -13,12 +13,23 @@
   --button-bg-large: #0f172a;
   --button-bg-small: #dc2626;
   --bg-footer: #0f172a;
+  --bg-default: #f7fbff;
+  --input-default: #88888854;
+  --color-icon-eye: #4a90e2;
+  --fs-p: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+
+  --font-main: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Cỡ chữ cho Headings (Mobile -> Desktop) */
+  --fs-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem); /* ~32px -> 56px */
+  --fs-h2: clamp(1.625rem, 1.3rem + 1.5vw, 2.5rem); /* ~26px -> 40px */
+  --fs-h3: clamp(1.375rem, 1.2rem + 1vw, 2rem); /* ~22px -> 32px */
+  --fs-h4: clamp(1.125rem, 1.1rem + 0.5vw, 1.5rem); /* ~18px -> 24px */
 }
 
 /* Cải thiện font & layout */
 html,
 body {
-  height: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -45,6 +56,17 @@ svg {
   display: block;
   max-width: 100%;
 }
+input {
+  &::-ms-reveal,
+  &::-ms-clear {
+    display: none;
+  }
+
+  &::-webkit-contacts-auto-fill-button,
+  &::-webkit-credentials-auto-fill-button {
+    display: none;
+  }
+}
 
 /* Input / button đồng bộ font */
 input,
@@ -54,12 +76,31 @@ select {
   font: inherit;
 }
 
+/* Áp dụng vào các thẻ */
 h1,
 h2,
 h3,
 h4 {
-  font-family: "Roboto Slab", serif;
   font-weight: 700;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+h4 {
+  font-size: var(--fs-h4);
+}
+
+p {
+  font-size: var(--fs-p);
+  color: var(--primary-color);
+  font-weight: 500;
 }
 
 body {

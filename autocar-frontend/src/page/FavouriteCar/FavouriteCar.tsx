@@ -4,53 +4,47 @@ import ListProduct from "../../components/ListProduct/ListProduct";
 import { useEffect, useState } from "react";
 import { callApi } from "../../services/api";
 import type { CarType } from "../../types/car";
-import type { CustomerType } from "../../types/customer";
+import type { UserType } from "../../types/users";
+import { getMeApi } from "../../services/auth.service";
+import type { PaginatedResponse } from "../../types/pagination";
 
 const cx = classNames.bind(styles);
 const FavouriteCar = () => {
   const [favouriteCar, setFavouriteCar] = useState<CarType[]>([]);
-  const [customerEmail] = useState<string>(() => {
-    const cus = localStorage.getItem("accountActive");
-    return cus ? JSON.parse(cus) : "";
-  });
-
+  const isLogin = !!localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const fetchCustomerData = customerEmail
-          ? callApi.getData("customer")
-          : Promise.resolve(null);
-        const fetchCarData = callApi.getData("carData");
-        const [customerData, carData] = await Promise.all([
-          fetchCustomerData,
+        if (!isLogin) return;
+        const fetchUserData = getMeApi() as Promise<UserType>;
+        const fetchCarData =
+          await callApi.getData<PaginatedResponse<CarType>>("cars?all=true");
+        const [userData, carData] = await Promise.all([
+          fetchUserData,
           fetchCarData,
         ]);
 
-        if (customerData && Array.isArray(customerData)) {
-          const customerActive = customerData.find(
-            (cus: CustomerType) => cus.email === customerEmail,
+        if (carData && Array.isArray(carData.data)) {
+          const favouriteList = carData.data.filter((car: CarType) =>
+            userData.favouriteCar?.includes(car.id || ""),
           );
-
-          if (customerActive && carData && Array.isArray(carData)) {
-            const favourite = carData.filter((car: CarType) =>
-              customerActive.favouriteCar?.includes(car.id),
-            );
-            setFavouriteCar(favourite);
-          }
+          setFavouriteCar(favouriteList);
         }
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [customerEmail]);
+  }, [isLogin]);
 
   return (
     <div className={cx("favouriteCar-page")}>
       <ListProduct
         heading={`Xe đã lưu (${favouriteCar.length})`}
-        productsData={favouriteCar}
+        productData={favouriteCar}
         hiddenBtn
+        userLayout
+        emptyTitle="Không có sản phẩm yêu thích nào được lưu"
       ></ListProduct>
     </div>
   );

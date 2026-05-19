@@ -1,0 +1,188 @@
+// ─── Tokens ───────────────────────────────────────────────────────────────────
+$navy: #0f172a;
+$navy-mid: #1e293b;
+$slate: #64748b;
+$slate-light: #f1f5f9;
+$border: #e9ecef;
+$red: #dc2626;
+$blue: #3b82f6;
+$white: #ffffff;
+$bg: #f8fafc;
+
+.charts-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0px;
+
+  // ─── Row layout ──────────────────────────────────────────────────────────
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+
+    @media (max-width: 1100px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ─── Card base ───────────────────────────────────────────────────────────
+  .chart-card {
+    background: $white;
+    border-radius: 14px;
+    border: 1px solid $border;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    &.wide {
+      // chiếm full khi không có sibling
+    }
+  }
+
+  // ─── Card header ─────────────────────────────────────────────────────────
+  .chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: $navy;
+      margin-bottom: 3px;
+    }
+
+    p {
+      font-size: 12px;
+      color: $slate;
+    }
+  }
+
+  // ─── Legend inline ────────────────────────────────────────────────────────
+  .chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: $slate;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.red {
+      background: $red;
+    }
+    &.blue {
+      background: $blue;
+    }
+  }
+
+  // ─── Total badge ─────────────────────────────────────────────────────────
+  .total-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: $blue;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  // ─── Pie chart legend ─────────────────────────────────────────────────────
+  .pie-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid $border;
+  }
+
+  .pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pie-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pie-name {
+    flex: 1;
+    font-size: 12px;
+    color: $slate;
+  }
+
+  .pie-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: $navy;
+  }
+
+  // ─── Tooltip ─────────────────────────────────────────────────────────────
+  .tooltip {
+    background: $white;
+    border: 1px solid $border;
+    border-radius: 10px;
+    padding: 10px 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+  }
+
+  .tooltip-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: $navy;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid $border;
+  }
+
+  .tooltip-value {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    &.red::before {
+      background: $red;
+    }
+    &.blue::before {
+      background: $blue;
+    }
+
+    &.red {
+      color: $red;
+    }
+    &.blue {
+      color: $blue;
+    }
+  }
+}

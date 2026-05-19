@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
 import type { MouseEventHandler, ReactNode } from "react";
-const cx = classNames.bind(styles);
 
 interface PropsTypes {
   to?: string;
@@ -21,12 +20,15 @@ interface PropsTypes {
   onClick?: MouseEventHandler<HTMLElement>;
 }
 
-const Button = ({
+const cx = classNames.bind(styles);
+
+export const Button = ({
   to,
   href,
   primary = false,
   outline = false,
   small = false,
+  medium = false,
   large = false,
   text = false,
   disable = false,
@@ -39,11 +41,13 @@ const Button = ({
   ...passProps
 }: PropsTypes) => {
   let Comp: any = "button";
+
   const classes = cx("wrapper", {
     [className as string]: !!className,
     primary,
     outline,
     small,
+    medium,
     large,
     rounded,
     text,
@@ -51,11 +55,12 @@ const Button = ({
     iconRight,
     disable,
   });
+
   let props: any = {
     onClick,
     ...passProps,
   };
-  // xoá sự kiện nếu disable
+
   if (disable) {
     Object.keys(props).forEach((key: string) => {
       if (key.startsWith("on") && typeof props[key] === "function") {
@@ -63,10 +68,12 @@ const Button = ({
       }
     });
   }
+
   if (to) {
     props.to = to;
     Comp = "Link";
   }
+
   if (href) {
     props.href = href;
     Comp = "a";
@@ -80,5 +87,3 @@ const Button = ({
     </Comp>
   );
 };
-
-export default Button;

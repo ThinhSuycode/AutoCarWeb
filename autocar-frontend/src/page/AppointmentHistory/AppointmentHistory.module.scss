@@ -1,0 +1,211 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.appointmentHistory-page {
+  .appointmentHistory-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      padding-bottom: 4px;
+      border-bottom: 3px solid #dc2626;
+      display: inline-block;
+    }
+
+    .add-calendar {
+      font-size: 32px;
+      font-weight: 600;
+      display: flex;
+      gap: 8px;
+      color: var(--primary-red);
+      cursor: pointer;
+      font-family: initial;
+      transition: 0.25s ease-in-out;
+      user-select: none;
+
+      .icon {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+        background-color: white;
+        display: flex;
+        color: black;
+        align-items: center;
+        transition:
+          background-color 0.25s ease-in-out,
+          transform 0.25s ease-in-out;
+        justify-content: center;
+        border: 1px solid var(--primary-red);
+
+        &:hover {
+          transform: scale(1.02);
+          background-color: var(--primary-red);
+          color: white;
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .list-card {
+    .card {
+      padding: 15px 20px;
+      background-color: white;
+      display: flex;
+      border-radius: 12px;
+      gap: 10px;
+      color: #64748b;
+      margin-bottom: 10px;
+
+      .left {
+        width: 8%;
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+
+        .icon {
+          width: 45px;
+          height: 45px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #6f9cdb78;
+          color: #0018ff;
+          @include sm {
+            width: 40px;
+            height: 40px;
+          }
+          &.test_drive {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+          }
+
+          &.maintenance {
+            background-color: #fef9c3;
+            color: #854d0e;
+            border: 1px solid #fde047;
+          }
+
+          &.consultation {
+            background-color: #faf5ff;
+            color: #9333ea;
+            border: 1px solid #9333ea;
+          }
+
+          &.inspection {
+            background-color: #fef9c3;
+            color: #92400e;
+            border: 1px solid #fde68a;
+          }
+        }
+      }
+
+      .info {
+        flex: 1;
+        font-size: 15px;
+
+        .heading {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 16px;
+          color: black;
+
+          h4 {
+            font-size: 16px;
+          }
+
+          .status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 12px;
+
+            // Chờ xác nhận — vàng
+            &.pending {
+              background-color: #fef9c3;
+              color: #854d0e;
+              border: 1px solid #fde047;
+            }
+
+            // Đã xác nhận — xanh lá
+            &.confirmed {
+              background-color: #dcfce7;
+              color: #166534;
+              border: 1px solid #86efac;
+            }
+
+            // Hoàn thành — xanh dương
+            &.completed {
+              background-color: #dbeafe;
+              color: #1e40af;
+              border: 1px solid #93c5fd;
+            }
+
+            // Đã hủy — xám đỏ
+            &.cancelled {
+              background-color: #fee2e2;
+              color: #991b1b;
+              border: 1px solid #fca5a5;
+            }
+          }
+        }
+        .desc {
+          font-size: 14px;
+        }
+
+        .meta {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          margin-top: 10px;
+
+          div {
+            display: flex;
+            span {
+              &:first-child {
+                margin-right: 7px;
+              }
+            }
+          }
+        }
+
+        .note {
+          padding: 10px;
+          background-color: #f8fafc;
+          margin-top: 10px;
+          color: #475569;
+          border-left: 3px solid #cbd5e1;
+          border-radius: 4px;
+        }
+
+        .cancel {
+          color: #dc2626;
+          font-weight: bold;
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+          width: fit-content;
+          transition: 0.25s ease-in-out;
+
+          &:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

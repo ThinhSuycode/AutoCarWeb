@@ -1,12 +1,21 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
 .footer-inner {
+  position: relative;
+  width: 100%;
   min-height: 300px;
   .footer-content {
     padding: 45px 25px;
     background-color: var(--bg-footer);
     display: flex;
-    gap: 45px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-    .footer-left {
+    .col-1 {
+      @include sm {
+        width: 100%;
+      }
       .heading {
         display: flex;
         gap: 7px;
@@ -53,49 +62,47 @@
         }
       }
     }
-    .footer-mid {
-      display: flex;
-      width: 70%;
-      .col {
-        &:last-child {
-          width: 50%;
-        }
-        &:first-child {
-          width: 30%;
-        }
-        width: 50%;
-        .heading-col {
-          color: white;
-          font-size: 18px;
-          font-weight: 700;
-        }
-        .list-col-info {
-          margin-top: 17px;
-          &:last-child {
-            div {
-              display: flex;
 
-              p {
-                color: #94a3b8;
-                width: 50%;
-              }
+    .col {
+      width: 22%;
+      @include md {
+        width: 45%;
+      }
+      @include sm {
+        width: 100%;
+      }
+
+      .heading-col {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .list-col-info {
+        margin-top: 17px;
+        &:last-child {
+          div {
+            display: flex;
+
+            p {
+              color: #94a3b8;
+              width: 50%;
             }
           }
-          p {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #94a3b8;
-          }
-          div {
-            margin-bottom: 12px;
+        }
+        p {
+          font-size: 16px;
+          margin-bottom: 12px;
+          color: #94a3b8;
+        }
+        div {
+          margin-bottom: 12px;
 
-            span {
-              color: #94a3b8;
-              &:first-child {
-                margin-right: 5px;
-                i {
-                  color: #ef4444;
-                }
+          span {
+            color: #94a3b8;
+            &:first-child {
+              margin-right: 5px;
+              i {
+                color: #ef4444;
               }
             }
           }

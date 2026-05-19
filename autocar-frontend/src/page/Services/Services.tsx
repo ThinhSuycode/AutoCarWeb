@@ -1,30 +1,18 @@
 import classNames from "classnames/bind";
 import styles from "./Services.module.scss";
 import img from "../../assets/img/car-service.jpg";
-import { useEffect, useState } from "react";
-import { callApi } from "../../services/api";
-import Button from "../../components/Button/Button";
 import type { ServiceItem } from "../../types/services";
+import { Button } from "../../components/Button/Button";
+import { ServicesData } from "../../data/servicesData";
+
 const cx = classNames.bind(styles);
 const Services = () => {
-  const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await callApi.getData("ServicesData");
-      if (data && Array.isArray(data)) {
-        setServicesData(data);
-      }
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className={cx("services-page")}>
       <div className={cx("banner-inner")} data-aos="fade-right">
         <img src={img} alt="no img" />
         <div className={cx("info")}>
           <h2>VỀ AUTOVIET</h2>
-
           <p>
             AutoViet cung cấp giải pháp toàn diện cho chiếc xe của bạn. Từ bảo
             dưỡng, sửa chữa đến tư vấn tài chính và bảo hiểm.
@@ -33,7 +21,7 @@ const Services = () => {
       </div>
       <div className={cx("info-services")}>
         <div className={cx("list-info")}>
-          {servicesData.map((item: ServiceItem, idx: number) => (
+          {ServicesData.map((item: ServiceItem, idx: number) => (
             <div className={cx("item")} data-aos="flip-right" key={idx}>
               <div className={cx("heading")}>
                 <div>
@@ -42,10 +30,10 @@ const Services = () => {
                 <h4>{item.title}</h4>
               </div>
               <div className={cx("desc")}>
-                <p>{item.description}</p>
+                <div>{item.description}</div>
                 <div className={cx("list-desc")}>
-                  {item.features.map((feat: string) => (
-                    <div className={cx("desc-item")}>
+                  {item.features.map((feat: string, idx: number) => (
+                    <div className={cx("desc-item")} key={idx}>
                       <span>
                         <i className="fa-regular fa-circle-check"></i>
                       </span>

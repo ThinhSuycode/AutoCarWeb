@@ -1,5 +1,4 @@
 import type React from "react";
-import Button from "../Button/Button";
 import classNames from "classnames/bind";
 import styles from "./ListProduct.module.scss";
 import { useCallback, useEffect, useState } from "react";
@@ -17,111 +16,27 @@ import {
   carsBrand,
   modeData,
   transmissions,
-} from "../../services/data/carsData";
+} from "../../data/carsData";
+import { Button } from "../Button/Button";
+import EmptyData from "../EmtyData/EmptyData";
+import { useCarsFilter } from "../../hooks/useFilterProduct";
 
 const cx = classNames.bind(styles);
 
 const ListProduct: React.FC<ListCarType> = ({
-  productsData,
   hiddenBtn = false,
+  productData,
   heading,
   desc,
   className,
   filterCar,
+  emptyTitle,
+  userLayout,
 }) => {
-  const [modeActive, setModeActive] = useState<string>("grid");
-  const [brandValue, setBrandValue] = useState<string>("");
-  const [typeCarValue, setTypeCarValue] = useState<string>("");
-  const [transmissCarValue, setTransmissCarValue] = useState<string>("");
-  const [filterData, setFilterData] = useState<CarType[]>(productsData);
-  const [priceMin, setPriceMin] = useState<string>("");
-  const [priceMax, setPriceMax] = useState<string>("");
-  const [yearMin, setYearMin] = useState<string>("");
-  const [yearMax, setYearMax] = useState<string>("");
-  const [filterOption, setFilterOption] = useState<string>("year-max");
-
-  useEffect(() => {
-    let filterCar = [...productsData];
-
-    // Lọc theo hãng xe (chỉ lọc nếu có giá trị hợp lệ)
-    if (brandValue && brandValue !== "Hãng xe") {
-      filterCar = filterCar.filter((car: CarType) => car.brand === brandValue);
-    }
-
-    // Lọc theo loại xe (chỉ lọc nếu có giá trị hợp lệ)
-    if (typeCarValue && typeCarValue !== "Tất cả loại") {
-      filterCar = filterCar.filter(
-        (car: CarType) => car.bodyType === typeCarValue,
-      );
-    }
-
-    // Lọc theo hộp số (chỉ lọc nếu có giá trị hợp lệ)
-    if (transmissCarValue && transmissCarValue !== "Tất cả") {
-      filterCar = filterCar.filter(
-        (car: CarType) => car.transmission === transmissCarValue,
-      );
-    }
-
-    // Lọc theo khoảng giá
-    if (priceMin || priceMax) {
-      const min = priceMin ? Number(priceMin) : 0;
-      const max = priceMax ? Number(priceMax) : Infinity;
-      filterCar = filterCar.filter(
-        (car: CarType) => car.price >= min && car.price <= max,
-      );
-    }
-    if (yearMin || yearMax) {
-      const min = yearMin ? Number(yearMin) : 0;
-      const max = yearMax ? Number(yearMax) : Infinity;
-      filterCar = filterCar.filter(
-        (car: CarType) => car.year >= min && car.year <= max,
-      );
-    }
-    if (filterOption) {
-      if (filterOption === "year-min") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t1.year - t2.year,
-        );
-      }
-      if (filterOption === "year-max") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t2.year - t1.year,
-        );
-      }
-      if (filterOption === "price-desc") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t2.price - t1.price,
-        );
-      }
-      if (filterOption === "price-asc") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t1.price - t2.price,
-        );
-      }
-      if (filterOption === "km-desc") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t2.mileage - t1.mileage,
-        );
-      }
-      if (filterOption === "km-asc") {
-        filterCar = filterCar.sort(
-          (t1: CarType, t2: CarType) => t1.mileage - t2.mileage,
-        );
-      }
-    }
-    setFilterData(filterCar);
-  }, [
-    brandValue,
-    typeCarValue,
-    transmissCarValue,
-    productsData,
-    priceMin,
-    priceMax,
-    yearMin,
-    yearMax,
-    filterOption,
-  ]);
-
+  const [openFilterMobile, setOpenFilterMobile] = useState<boolean>(false);
+  const [closeFilterMobile, setCloseFilterMobile] = useState<boolean>(false);
+  const { cars, filter, onFilterChange, onReset } = useCarsFilter();
+  const [carsDisplay, setCarsDisplay] = useState<CarType[]>([]);
   const onHandleAllProduct = useCallback(() => {
     window.location.href = config.Routes.ProductSold;
   }, []);
@@ -130,22 +45,21 @@ const ListProduct: React.FC<ListCarType> = ({
     localStorage.setItem("carActive", JSON.stringify(car));
   }, []);
 
-  const onHandleResetFilter = useCallback(() => {
-    setBrandValue("");
-    setPriceMax("");
-    setPriceMin("");
-    setTypeCarValue("");
-    setTransmissCarValue("");
-    setYearMin("");
-    setYearMax("");
+  const onHandleCloseFilter = useCallback(() => {
+    setCloseFilterMobile(true);
+    setTimeout(() => {
+      setCloseFilterMobile(false);
+      setOpenFilterMobile(false);
+    }, 350);
   }, []);
-  const onHandleChangeShowItem = useCallback((value: string) => {
-    setModeActive(value);
-  }, []);
-  const onHandleResetSelect = useCallback(() => {
-    setFilterOption("year-max");
-    setModeActive("grid");
-  }, []);
+  useEffect(() => {
+    if (productData) {
+      setCarsDisplay(productData);
+    } else {
+      setCarsDisplay(cars);
+    }
+  }, [cars, productData]);
+
   return (
     <div className={cx("products-inner")}>
       <div className={cx("product-content")}>
@@ -170,11 +84,22 @@ const ListProduct: React.FC<ListCarType> = ({
           )}
         </div>
         <div
-          className={cx("product-content-bottom")}
-          style={filterCar ? { display: "flex" } : {}}
+          className={cx("product-content-bottom", { userLayout })}
+          style={filterCar ? { display: "flex", gap: "25px" } : {}}
         >
+          <div
+            className={cx("modal-filter", { openModal: openFilterMobile })}
+            onClick={onHandleCloseFilter}
+          ></div>
           {filterCar && (
-            <div className={cx("filter-inner")}>
+            <div
+              className={cx(
+                "filter-inner",
+                openFilterMobile ? "openFilterMobile" : "",
+                closeFilterMobile ? "closeFilterMobile" : "",
+              )}
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className={cx("heading")}>
                 <div className={cx("left")}>
                   <span>
@@ -182,10 +107,10 @@ const ListProduct: React.FC<ListCarType> = ({
                   </span>
                   <span>Bộ lọc</span>
                 </div>
-                {((brandValue && brandValue !== "Hãng xe") ||
-                  (transmissCarValue && transmissCarValue !== "Tất cả") ||
-                  (typeCarValue && typeCarValue !== "Tất cả loại")) && (
-                  <div className={cx("right")} onClick={onHandleResetFilter}>
+                {((filter.brand && filter.brand !== "Hãng xe") ||
+                  (filter.transmission && filter.brand == "Tất cả") ||
+                  (filter.bodyType && filter.bodyType !== "Tất cả loại")) && (
+                  <div className={cx("right")} onClick={onReset}>
                     Xoá tất cả
                   </div>
                 )}
@@ -196,8 +121,8 @@ const ListProduct: React.FC<ListCarType> = ({
                   <select
                     name="brands"
                     id="brands"
-                    onChange={(e) => setBrandValue(e.target.value)}
-                    value={brandValue || "Hãng xe"}
+                    onChange={(e) => onFilterChange("brand", e.target.value)}
+                    value={filter.brand}
                   >
                     <option value="Hãng xe">Hãng xe</option>
                     {carsBrand.map((brand: BrandsType, idx: number) => (
@@ -210,10 +135,10 @@ const ListProduct: React.FC<ListCarType> = ({
                 <div className={cx("form-filter")}>
                   <p>Loại xe</p>
                   <select
-                    name="brands"
-                    id="brands"
-                    value={typeCarValue || "Tất cả loại"}
-                    onChange={(e) => setTypeCarValue(e.target.value)}
+                    name="type"
+                    id="type"
+                    onChange={(e) => onFilterChange("bodyType", e.target.value)}
+                    value={filter.bodyType}
                   >
                     {BodyTypeCar.map((item, idx: number) => (
                       <option value={item} key={idx}>
@@ -227,14 +152,14 @@ const ListProduct: React.FC<ListCarType> = ({
                   <input
                     type="number"
                     placeholder="Từ"
-                    value={priceMin}
-                    onChange={(e) => setPriceMin(e.target.value)}
+                    onChange={(e) => onFilterChange("priceMin", e.target.value)}
+                    value={filter.priceMin}
                   />
                   <input
                     type="number"
                     placeholder="Đến"
-                    value={priceMax}
-                    onChange={(e) => setPriceMax(e.target.value)}
+                    value={filter.priceMax}
+                    onChange={(e) => onFilterChange("priceMax", e.target.value)}
                   />
                 </div>
                 <div className={cx("form-filter")}>
@@ -242,23 +167,25 @@ const ListProduct: React.FC<ListCarType> = ({
                   <input
                     type="number"
                     placeholder="Từ năm"
-                    onChange={(e) => setYearMin(e.target.value)}
-                    value={yearMin}
+                    onChange={(e) => onFilterChange("yearMin", e.target.value)}
+                    value={filter.yearMin}
                   />
                   <input
                     type="number"
                     placeholder="Đến năm"
-                    onChange={(e) => setYearMax(e.target.value)}
-                    value={yearMax}
+                    onChange={(e) => onFilterChange("yearMax", e.target.value)}
+                    value={filter.yearMax}
                   />
                 </div>
                 <div className={cx("form-filter")}>
                   <p>Hộp số</p>
                   <select
-                    name="brands"
-                    id="brands"
-                    value={transmissCarValue || "Tất cả"}
-                    onChange={(e) => setTransmissCarValue(e.target.value)}
+                    name="transmission"
+                    id="transmission"
+                    onChange={(e) =>
+                      onFilterChange("transmission", e.target.value)
+                    }
+                    value={filter.transmission}
                   >
                     {transmissions.map((transmiss: string, idx: number) => (
                       <option value={transmiss} key={idx}>
@@ -273,18 +200,26 @@ const ListProduct: React.FC<ListCarType> = ({
           <div className={cx("list-product", { filterFix1: filterCar })}>
             {filterCar && (
               <div className={cx("filter-heading")}>
+                <div
+                  className={cx("filter-mobile")}
+                  onClick={() => setOpenFilterMobile((prev) => !prev)}
+                >
+                  <span>
+                    <i className="fa-solid fa-filter"></i>
+                  </span>
+                  <span>Bộ lọc</span>
+                </div>
                 <div className={cx("info-show")}>
-                  <div className={cx("left")}>
-                    {filterData.length} xe tìm thấy
-                  </div>
+                  <div className={cx("left")}>{cars.length} xe tìm thấy</div>
                   <div className={cx("right")}>
-                    <span onClick={onHandleResetSelect}>
+                    <span onClick={onReset}>
                       <i className="fa-solid fa-retweet"></i>
                     </span>
                     <select
                       name="yearSX"
                       id="yearSX"
-                      onChange={(e) => setFilterOption(e.target.value)}
+                      onChange={(e) => onFilterChange("sort", e.target.value)}
+                      value={filter.sort}
                     >
                       <option value="year-max">Năm mới nhất</option>
                       <option value="year-min">Năm cũ nhất</option>
@@ -297,9 +232,9 @@ const ListProduct: React.FC<ListCarType> = ({
                       {modeData.map((item: ModePropsType, idx: number) => (
                         <span
                           key={idx}
-                          onClick={() => onHandleChangeShowItem(item.value)}
+                          onClick={() => onFilterChange("mode", item.value)}
                           className={cx(
-                            `${modeActive === item.value ? "active" : ""}`,
+                            `${filter.mode === item.value ? "active" : ""}`,
                           )}
                         >
                           {item.icon}
@@ -308,53 +243,57 @@ const ListProduct: React.FC<ListCarType> = ({
                     </div>
                   </div>
                 </div>
-                {((brandValue && brandValue !== "Hãng xe") ||
-                  (transmissCarValue && transmissCarValue !== "Tất cả") ||
-                  (typeCarValue && typeCarValue !== "Tất cả loại")) && (
+                {((filter.brand && filter.brand !== "Hãng xe") ||
+                  (filter.transmission && filter.transmission !== "Tất cả") ||
+                  (filter.bodyType && filter.bodyType !== "Tất cả loại")) && (
                   <div className={cx("list-filter")}>
-                    {brandValue && brandValue !== "Hãng xe" && (
+                    {filter.brand && filter.brand !== "Hãng xe" && (
                       <div className={cx("item")}>
-                        <span>Hãng: {brandValue}</span>
-                        <span onClick={() => setBrandValue("")}>
+                        <span>Hãng: {filter.brand}</span>
+                        <div onClick={() => onFilterChange("brand", "")}>
                           <i className="fa-solid fa-xmark"></i>
-                        </span>
+                        </div>
                       </div>
                     )}
-                    {typeCarValue && typeCarValue !== "Tất cả loại" && (
+                    {filter.bodyType && filter.bodyType !== "Tất cả loại" && (
                       <div className={cx("item")}>
-                        <span>Loại: {typeCarValue}</span>
-                        <span onClick={() => setTypeCarValue("")}>
+                        <span>Loại: {filter.bodyType}</span>
+                        <div onClick={() => onFilterChange("bodyType", "")}>
                           <i className="fa-solid fa-xmark"></i>
-                        </span>
+                        </div>
                       </div>
                     )}
-                    {transmissCarValue && transmissCarValue !== "Tất cả" && (
-                      <div className={cx("item")}>
-                        <span>Hộp số: {transmissCarValue}</span>
-                        <span onClick={() => setTransmissCarValue("")}>
-                          <i className="fa-solid fa-xmark"></i>
-                        </span>
-                      </div>
-                    )}
+                    {filter.transmission &&
+                      filter.transmission !== "Tất cả" && (
+                        <div className={cx("item")}>
+                          <span>Hộp số: {filter.transmission}</span>
+                          <div
+                            onClick={() => onFilterChange("transmission", "")}
+                          >
+                            <i className="fa-solid fa-xmark"></i>
+                          </div>
+                        </div>
+                      )}
                   </div>
                 )}
               </div>
             )}
-            {filterData.length > 0 ? (
-              filterData.map((car: CarType, idx: number) => (
+            {carsDisplay.length > 0 ? (
+              carsDisplay.map((car: CarType, idx: number) => (
                 <div
                   className={cx(
                     "product-item",
                     { filterFix2: filterCar },
-                    { changeItem: modeActive === "list" },
+                    { userLayout },
+                    { changeItem: filter.mode === "list" },
                   )}
                   key={idx}
                   data-aos="zoom-in"
                 >
-                  <div className={cx("product-item__img")}>
+                  <div className={cx("product-item__img", { userLayout })}>
                     <img src={car.image} alt={car.name} />
                     <div className={cx("info-img")}>
-                      <div className={cx("left")}>
+                      <div className={cx("left", { userLayout })}>
                         <div>
                           <span>
                             <i className="fa-solid fa-user-shield"></i>
@@ -372,8 +311,8 @@ const ListProduct: React.FC<ListCarType> = ({
                     </div>
                   </div>
                   <div className={cx("product-item__info")}>
-                    <h4 className={cx("title")}>{car.name}</h4>
-                    <p className={cx("price")}>
+                    <h4 className={cx("title", { userLayout })}>{car.name}</h4>
+                    <p className={cx("price", { userLayout })}>
                       {car.price.toLocaleString("vi-VN")} VNĐ
                     </p>
                     <div className={cx("highlight")}>
@@ -402,6 +341,7 @@ const ListProduct: React.FC<ListCarType> = ({
                     <Button
                       href={`/chi-tiet-san-pham/${createSlug(car.name)}`}
                       large
+                      className={cx({ userLayout })}
                       onClick={() => onHandleCheckDetail(car)}
                     >
                       Xem chi tiết
@@ -410,7 +350,9 @@ const ListProduct: React.FC<ListCarType> = ({
                 </div>
               ))
             ) : (
-              <div className={cx("emptyCar")}></div>
+              <div className={cx("emptyCar")}>
+                {emptyTitle?.trim() ? <></> : <EmptyData></EmptyData>}
+              </div>
             )}
           </div>
         </div>

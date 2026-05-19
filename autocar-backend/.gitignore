@@ -1,0 +1,14 @@
+.env
+node_modules/
+logs/
+
+dist/              # build output TypeScript
+uploads/           # ảnh người dùng upload lên server
+.env.*             # tất cả biến thể .env
+!.env.example      # ngoại lệ — file mẫu được push
+.DS_Store
+*.local
+
+
+//Ẩn dữ liệu tạo staff
+src/scripts/createStaff.ts

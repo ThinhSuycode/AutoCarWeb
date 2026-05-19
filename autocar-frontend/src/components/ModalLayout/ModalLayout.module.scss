@@ -1,0 +1,35 @@
+.modal-layout {
+  width: 100%;
+  height: 100%;
+  background-color: #1f1f1fad;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+  z-index: 999;
+  pointer-events: none;
+
+  .form {
+    position: relative;
+    width: fit-content;
+    max-width: 90vw;
+    max-height: 90vh;
+
+    transform: scale(0.85);
+    transition: transform 0.25s ease-in-out;
+
+    overflow: auto;
+  }
+
+  &.activeModal {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.activeModal .form {
+    transform: scale(1);
+  }
+}

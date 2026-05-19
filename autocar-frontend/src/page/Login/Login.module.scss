@@ -1,23 +1,44 @@
 .login-page {
+  position: relative;
+  height: 88vh;
   .input-form {
-    // width: 100%;
     margin-bottom: 10px;
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 2px solid #afafaf;
-      font-weight: 500;
-      font-size: 17px;
-      &:focus {
-        outline: #dc2626;
-        border-color: #dc2626;
-      }
-    }
+
     p {
       font-size: 18px;
       font-weight: bold;
       margin-bottom: 5px;
+    }
+    .form {
+      position: relative;
+      width: 100%;
+
+      input {
+        width: 100%;
+        padding: 10px 20px 10px 40px;
+
+        border-radius: 10px;
+        border: 2px solid #afafaf;
+        font-weight: 500;
+        font-size: 17px;
+        outline: none;
+      }
+
+      .icon-left {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-42%);
+        left: 3%;
+        font-size: 18px;
+      }
+      .icon-right {
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        cursor: pointer;
+        transform: translateY(-42%);
+        color: #afafaf;
+      }
     }
   }
   .form-options {
@@ -28,16 +49,16 @@
       display: flex;
       gap: 5px;
       input {
-        width: 18px;
+        width: 17px;
       }
       label {
         cursor: pointer;
-        font-size: 18px;
+        font-size: 1rem;
       }
     }
     .right {
-      p {
-        font-size: 18px;
+      a {
+        font-size: 1rem;
         transition: 0.25s ease-in-out;
         cursor: pointer;
         &:hover {
@@ -49,7 +70,7 @@
   button {
     width: 100%;
     margin-top: 10px;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: bold;
   }
   .divider {

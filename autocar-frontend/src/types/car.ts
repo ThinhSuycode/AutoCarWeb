@@ -1,6 +1,21 @@
 import type React from "react";
-import type { ReactNode } from "react";
 
+export type BrandsType = {
+  id: string;
+  title: string;
+  value: string;
+};
+export type FilterOptionsType = {
+  brands: BrandsType[];
+  priceRanges: PriceRangeType[];
+  years: string[];
+  bodyTypes: string[];
+  transmissions: string[];
+};
+export type PriceRangeType = {
+  value: string;
+  label: string;
+};
 export type CarType = {
   id: string;
   name: string;
@@ -19,31 +34,22 @@ export type CarType = {
   seats?: number;
   features?: string[];
 };
-export type BrandsType = {
-  id: string;
+export interface ColorType {
+  key: string;
   title: string;
-  value: string;
-};
-export type FilterOptionsType = {
-  brands: BrandsType[];
-  priceRanges: PriceRangeType[];
-  years: string[];
-  bodyTypes: string[];
-  transmissions: string[];
-};
-export type PriceRangeType = {
-  value: string;
-  label: string;
-};
+}
+
 export interface CarDetailsType {
+  _id: string;
   id: string;
   name: string;
   brand: string;
   price: number;
   year: number;
   mileage: number;
-  transmission: string;
+  transmission: "Số tự động" | "Số sàn";
   location: string;
+  managerId: string;
   description?: string;
   images: string[];
   features?: string[];
@@ -59,12 +65,15 @@ export interface InfoSpecsType {
   value: string;
 }
 export interface ListCarType {
-  productsData: CarType[] | [];
   hiddenBtn?: boolean;
+  productData?: CarType[] | null;
   heading: string;
   className?: string;
   desc?: string;
+  carShow?: boolean;
   filterCar?: boolean;
+  emptyTitle?: string;
+  userLayout?: boolean;
 }
 
 export interface ModePropsType {

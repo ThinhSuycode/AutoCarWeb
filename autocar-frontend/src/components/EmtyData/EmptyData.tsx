@@ -4,10 +4,10 @@ const cx = classNames.bind(styles);
 const EmptyData = () => {
   return (
     <div className={cx("empty-data")}>
-      <span>
+      {/* <span>
         <i className="fa-solid fa-spinner"></i>
-      </span>
-      <span>Loading...</span>
+      </span> */}
+      <span>Sản phẩm này hiện không có ở cửa hàng!!</span>
     </div>
   );
 };

@@ -1,0 +1,141 @@
+// ─── Tokens ───────────────────────────────────────────────────────────────────
+$navy: #0f172a;
+$slate: #64748b;
+$border: #e2e8f0;
+$red: #dc2626;
+$bg: #f8fafc;
+$white: #ffffff;
+
+%field-base {
+  width: 100%;
+  padding: 9px 12px;
+  margin-top: 6px;
+  background: $bg;
+  border: 1.5px solid $border;
+  border-radius: 8px;
+  font-size: 14px;
+  color: $navy;
+  outline: none;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s;
+
+  &::placeholder {
+    color: #c0c0c0;
+  }
+
+  &:focus {
+    border-color: $red;
+    background: $white;
+    box-shadow: 0 0 0 3px rgba($red, 0.08);
+  }
+}
+
+.form-contact {
+  margin-top: 24px;
+  padding: 24px;
+  background: $white;
+  border-radius: 14px;
+  border: 1px solid $border;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+
+  .heading {
+    font-size: 18px;
+    font-weight: 800;
+    color: $navy;
+    padding-bottom: 8px;
+    border-bottom: 3px solid $red;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .desc {
+    font-size: 13px;
+    color: $slate;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+
+  .form-request {
+    padding: 16px 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .form-input {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 11px;
+        font-weight: 700;
+        color: $slate;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input {
+        @extend %field-base;
+      }
+      textarea {
+        @extend %field-base;
+        min-height: 110px;
+        resize: vertical;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px;
+    border-radius: 8px;
+  }
+
+  .hotline {
+    text-align: center;
+    padding: 18px 0 4px;
+    border-top: 1px solid $border;
+    margin-top: 14px;
+    user-select: none;
+
+    p {
+      font-size: 12px;
+      color: $slate;
+      margin-bottom: 8px;
+    }
+
+    .phone-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $navy;
+      background: $bg;
+      border: 1.5px solid $border;
+      cursor: pointer;
+      transition: all 0.18s ease;
+
+      i {
+        font-size: 13px;
+        color: $red;
+      }
+
+      &:hover {
+        background: $red;
+        border-color: $red;
+        color: $white;
+        transform: scale(1.02);
+
+        i {
+          color: $white;
+        }
+      }
+    }
+  }
+}

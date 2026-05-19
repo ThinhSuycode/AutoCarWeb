@@ -1,4 +1,4 @@
 export const onHandleLogout = () => {
-  localStorage.setItem("accountActive", JSON.stringify(""));
+  localStorage.removeItem("token");
   window.location.href = "/";
 };

@@ -1,88 +1,23 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import bannerFooter from "../../assets/img/bannerbottom.png";
-import Button from "../../components/Button/Button";
-import ListProduct from "../../components/ListProduct/ListProduct";
 import { useEffect, useState } from "react";
-import { callApi } from "../../services/api";
-import type { BrandsType, CarType, FilterOptionsType } from "../../types/car";
+import type { BrandsType, CarType } from "../../types/car";
+import { Button } from "../../components/Button/Button";
+import FilterOptions from "../../data/FilterOptions";
+import Social from "../../components/Social/Social";
+import { useCarsFilter } from "../../hooks/useFilterProduct";
+import ListProduct from "../../components/ListProduct/ListProduct";
 
 const cx = classNames.bind(styles);
 
 const Home = () => {
-  const [brand, setBrand] = useState<string>("");
-  const [price, setprice] = useState<string>("");
-  const [year, setyear] = useState<string>("");
-  const [transmiss, settransmiss] = useState<string>("");
-  const [dataCarDefault, setDataCarDefault] = useState<CarType[]>([]);
-  const [dataCarShow, setDataCarShow] = useState<CarType[]>([]);
-  const [dataFilter, setDataFilter] = useState<FilterOptionsType>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [carData, filterOptions] = await Promise.all([
-          callApi.getData("carData"),
-          callApi.getData("filterOptions"),
-        ]);
-        setDataCarDefault(carData);
-        setDataCarShow(carData);
-        setDataFilter(filterOptions);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    let dataCarsFilter = [...dataCarDefault];
-    if (brand && brand !== "all") {
-      dataCarsFilter = dataCarsFilter.filter(
-        (car) => car.brand.toLowerCase() === brand.toLowerCase(),
-      );
-    }
-    if (price && price.includes("-")) {
-      const [minPrice, maxPrice] = price
-        .split("-")
-        .map((item) => Number(item.trim()));
-      dataCarsFilter = dataCarsFilter.filter(
-        (car) => car.price >= minPrice && car.price <= maxPrice,
-      );
-    }
-
-    if (year && year !== "Tất cả") {
-      dataCarsFilter = dataCarsFilter.filter(
-        (car) => car.year.toString() === year,
-      );
-    }
-
-    if (transmiss && transmiss !== "Tất cả") {
-      dataCarsFilter = dataCarsFilter.filter(
-        (car) => car.transmission === transmiss,
-      );
-    }
-
-    setDataCarShow(dataCarsFilter);
-  }, [brand, price, year, transmiss]);
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_APP_API_KEYS}/filterOptions`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("API error");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("DATA:", data.brands);
-      })
-      .catch((err) => {
-        console.error("FETCH ERROR:", err);
-      });
-  }, []);
+  const [openFilter, setOpenFilter] = useState<boolean>(false);
+  const { cars, onFilterChange, onReset, filter } = useCarsFilter();
 
   return (
-    <div className={cx("home-inner")}>
+    <div className={cx("home-page")}>
+      <Social></Social>
       <div className={cx("home-banner")}>
         <img src={bannerFooter} alt="" className={cx("banner-footer")} />
         <div className={cx("banner-content")}>
@@ -91,7 +26,7 @@ const Home = () => {
               <span>
                 <i className="fa-solid fa-car-side"></i>
               </span>
-              <span>Hơn 500+ xe đang bán</span>
+              <span>Hơn {cars.length}+ xe đang bán</span>
             </div>
             <div className={cx("title")} data-aos="fade-down">
               <p>Tìm Xe Ô Tô</p>
@@ -125,7 +60,7 @@ const Home = () => {
               <div className={cx("icon")}>
                 <i className="fa-solid fa-check-to-slot"></i>
               </div>
-              <div className={cx("heading")}>500+</div>
+              <div className={cx("heading")}>{cars.length}+</div>
               <div className={cx("desc")}>Xe đã có sẵn</div>
             </div>
             <div className={cx("info-item")} data-aos="flip-left">
@@ -138,64 +73,77 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       <div className={cx("home-products")}>
         <div className={cx("product-filter-inner")}>
-          <div className={cx("filter-list-nav")}>
+          <div
+            className={cx("filter-mobile")}
+            onClick={() => setOpenFilter((prev) => !prev)}
+          >
+            <span>
+              <i className="fa-solid fa-filter"></i>
+            </span>
+            <span>Bộ lọc</span>
+          </div>
+          <div className={cx("filter-list-nav", { openFilter: openFilter })}>
             <select
               name="companyFilter"
-              id="companyFilter"
               data-aos="zoom-in"
-              onChange={(e) => setBrand(e.target.value)}
+              onChange={(e) => onFilterChange("brand", e.target.value)}
+              value={filter.brand}
             >
-              {dataFilter?.brands.map((brand: BrandsType, idx: number) => (
-                <option value={brand.value} key={idx}>
-                  {brand.title}
+              {FilterOptions?.brands.map((b: BrandsType, idx: number) => (
+                <option value={b.value} key={idx}>
+                  {b.title}
                 </option>
               ))}
             </select>
             <select
               name="priceFilter"
-              id="priceFilter"
               data-aos="zoom-in"
-              onChange={(e) => setprice(e.target.value)}
+              onChange={(e) => onFilterChange("priceRanges", e.target.value)}
+              value={filter.priceRanges}
             >
-              {dataFilter?.priceRanges.map((price, idx: number) => (
-                <option value={price.value} key={idx}>
-                  {price.label}
+              {FilterOptions?.priceRanges.map((p, idx: number) => (
+                <option value={p.label} key={idx}>
+                  {p.label}
                 </option>
               ))}
             </select>
             <select
               name="yearFilter"
-              id="yearFilter"
               data-aos="zoom-in"
-              onChange={(e) => setyear(e.target.value)}
+              onChange={(e) => onFilterChange("yearRanges", e.target.value)}
+              value={filter.yearRanges}
             >
-              {dataFilter?.years.map((year, idx: number) => (
-                <option value={year} key={idx}>
-                  {year}
+              {FilterOptions?.years.map((y, idx: number) => (
+                <option value={y} key={idx}>
+                  {y}
                 </option>
               ))}
             </select>
             <select
               name="transmissionFilter"
-              id="transmissionFilter"
               data-aos="zoom-in"
-              onChange={(e) => settransmiss(e.target.value)}
+              onChange={(e) => onFilterChange("transmission", e.target.value)}
             >
-              {dataFilter?.transmissions.map((transmiss, idx: number) => (
-                <option value={transmiss} key={idx}>
-                  {transmiss}
+              {FilterOptions?.transmissions.map((t, idx: number) => (
+                <option value={t} key={idx}>
+                  {t}
                 </option>
               ))}
             </select>
           </div>
         </div>
+
         <ListProduct
-          productsData={dataCarShow.slice(0, 6)}
           heading="Xe đang bán"
-          desc={`${dataCarShow.length} sản phẩm đã có`}
-        ></ListProduct>
+          carShow
+          productData={cars.slice(0, 6)}
+          desc={`${cars.length} sản phẩm`}
+          emptyTitle="Không tìm thấy sản phẩm tại cửa hàng !!"
+        />
+
         <div className={cx("information-inner")}>
           <div className={cx("content")}>
             <div className={cx("heading")} data-aos="fade-left">

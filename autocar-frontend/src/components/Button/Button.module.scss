@@ -1,12 +1,16 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
 .wrapper {
   display: inline-block;
   align-items: center;
-  min-width: 80px;
+  // width: 80px;
   padding: 10px 16px;
   border-radius: 8px;
   background-color: var(--button-bg-medium);
   transition: 0.35s ease-in-out;
   color: white;
+
   .icon + .title {
     margin-left: 10px;
   }
@@ -18,17 +22,12 @@
   }
 }
 
-// .wrapper + .wrapper {
-//   margin-left: 15px;
-// }
-
 .large {
   width: 300px;
   height: 48px;
 }
 .medium {
   height: 44px;
-  width: 100%;
 }
 .outline {
   outline: none;
@@ -39,4 +38,8 @@
   background-color: rgba(41, 41, 41, 0.05);
   color: gray;
   pointer-events: none;
+}
+.small {
+  width: 40px;
+  height: 40px;
 }

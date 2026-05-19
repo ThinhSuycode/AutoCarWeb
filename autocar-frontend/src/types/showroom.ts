@@ -19,3 +19,11 @@ export interface WhyVisitType {
   title: string;
   description: string;
 }
+export interface BannerData {
+  id: string;
+  image: string;
+}
+export interface serviceAppointmentType {
+  id: string;
+  label: string;
+}
