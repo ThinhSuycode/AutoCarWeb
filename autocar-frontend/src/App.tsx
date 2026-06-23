@@ -8,6 +8,9 @@ import useScrollToTop from "./hooks/useScrollToTop";
 import ProtectedRoute from "./services/ProtedRoute";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { useEffect, useState } from "react";
+import GuestRoute from "./services/GuestRoute";
+
+
 const queryClient = new QueryClient();
 
 const renderRoute = (item: RouteItem, wrapProtected = false) => {
@@ -25,6 +28,16 @@ const renderRoute = (item: RouteItem, wrapProtected = false) => {
       <Page />
     </Layout>
   );
+
+  if (item.guestOnly) {
+    return (
+      <Route
+        key={item.path}
+        path={item.path}
+        element={<GuestRoute>{pageElement}</GuestRoute>}
+      ></Route>
+    );
+  }
 
   const element = wrapProtected ? (
     <ProtectedRoute requiredRole={item.requiredRole}>

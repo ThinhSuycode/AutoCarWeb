@@ -8,17 +8,24 @@ import {
   getAllStaff,
   assignManager,
   removeManager,
+  getCarsByManager,
+  updateManagerStatus,
 } from "../controllers/cars.controller";
 import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
 export const carRouter = express.Router();
 const adminGuard = [requireAuth, requireRole("admin")];
+const staffGuard = [requireAuth, requireRole("staff")];
 
 // ✅ Route cụ thể phải đứng TRƯỚC route có :id
 carRouter.get("/cars/admin/all", ...adminGuard, getAllCarsWithManager);
 carRouter.get("/cars/admin/staff", ...adminGuard, getAllStaff);
 carRouter.patch("/cars/:carId/assign", ...adminGuard, assignManager);
 carRouter.patch("/cars/:carId/unassign", ...adminGuard, removeManager);
+
+//staff
+carRouter.get("/cars/staff/my-cars", ...staffGuard, getCarsByManager);
+carRouter.patch("/cars/staff/:id/status", ...staffGuard, updateManagerStatus);
 
 // Route có :id đứng SAU
 carRouter.get("/cars", getAllCar);

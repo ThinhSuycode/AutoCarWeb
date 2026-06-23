@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
 export interface JwtPayload {
-  id: string;
-  username?: string;
-  email?: string;
-  role?: string;
+  _id: string;
+  username: string;
+  email: string;
+  role: string;
 }
 
 //  Tạo token

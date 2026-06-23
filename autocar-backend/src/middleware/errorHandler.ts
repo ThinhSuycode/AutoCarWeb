@@ -12,7 +12,6 @@ export const globalErrorHandler = (
   const statusCode = isAppError ? err.statusCode : 500;
   const message = isAppError ? err.message : "Lỗi server!";
 
-  // Chỉ log lỗi không dự đoán được (bug thật, không phải 400/404)
   if (!isAppError) {
     logger.error("Unexpected error", {
       message: err.message,

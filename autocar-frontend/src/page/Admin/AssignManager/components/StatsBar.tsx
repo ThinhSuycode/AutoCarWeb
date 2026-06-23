@@ -1,10 +1,11 @@
 import classNames from "classnames/bind";
 import styles from "../AssignManager.module.scss";
-import type { Car, Staff } from "../hooks/useAssignManager";
+import type { CarManagerType } from "../../../../types/managerStaff";
+import type { Staff } from "../../../../types/car";
 const cx = classNames.bind(styles);
 
 interface Props {
-  cars: Car[];
+  cars: CarManagerType[];
   staffList: Staff[];
 }
 

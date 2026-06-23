@@ -2,50 +2,35 @@ import mongoose from "mongoose";
 
 const ArticleDetailSchema = new mongoose.Schema(
   {
-    id: {
-      type: String,
+    articleId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Articles",
       required: true,
-      unique: true,
     },
 
     sections: [
       {
-        type: {
-          type: String, // ví dụ: "text", "image"
+        sectionType: {
+          type: String,
           required: true,
         },
 
-        content: {
-          type: mongoose.Schema.Types.Mixed,
-          // cho phép string hoặc array
-        },
+        content: mongoose.Schema.Types.Mixed,
 
-        imageUrl: {
-          type: String,
-        },
+        imageUrl: String,
 
-        caption: {
-          type: String,
-        },
+        caption: String,
       },
     ],
 
     tags: [String],
 
-    relatedArticles: [String],
-
-    manager: {
-      managerId: {
+    relatedArticles: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        default: null,
+        ref: "Articles",
       },
-
-      managerName: {
-        type: String,
-        default: null,
-      },
-    },
+    ],
   },
   {
     timestamps: true,

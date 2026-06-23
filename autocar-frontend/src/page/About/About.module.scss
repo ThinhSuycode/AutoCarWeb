@@ -124,6 +124,9 @@ $bg: #f8fafc;
 
     .left {
       flex: 1;
+      @include md {
+        width: 100%;
+      }
 
       h3 {
         font-size: 25px;
@@ -152,6 +155,9 @@ $bg: #f8fafc;
         grid-template-columns: 1fr 1fr;
         gap: 12px;
         margin: 24px 0;
+        @include md {
+          grid-template-columns: 1fr;
+        }
 
         div {
           display: flex;
@@ -165,6 +171,9 @@ $bg: #f8fafc;
           font-weight: 500;
           color: $navy;
           transition: border-color 0.18s;
+          @include md {
+            width: 100%;
+          }
 
           &:hover {
             border-color: rgba($red, 0.3);

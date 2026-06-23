@@ -38,14 +38,14 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
 
     input.onchange = async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
-      const userId = account?._id; // ← bỏ duplicate account?._id || account?._id
+      const userId = account?._id;
 
       if (!file || !userId) return;
 
       try {
         const updatedUser = await updateAvatarApi(userId, file);
         setAccount(updatedUser);
-        setAvatarKey(Date.now()); // ← chỉ update khi thật sự đổi ảnh
+        setAvatarKey(Date.now());
       } catch (error) {
         console.error("Upload avatar thất bại:", error);
       }
@@ -53,7 +53,6 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     input.click();
   }, [account]);
 
-  // useMemo tránh filter lại mỗi render
   const filteredMenu = useMemo(
     () =>
       MenuUserData.filter((item: MenuItemType) => {
@@ -81,7 +80,6 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
               onClick={onHandleChangeAvatar}
             >
               <img
-                // ← dùng avatarKey state thay vì Date.now() trực tiếp trong render
                 src={
                   account?.avatar
                     ? `${account.avatar}?t=${avatarKey}`

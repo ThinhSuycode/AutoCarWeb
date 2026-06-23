@@ -1,191 +1,299 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
+// ─── Tokens ───────────────────────────────────────────────────────────────────
+$navy: #0b1120;
+$navy-mid: #1e293b;
+$red: #dc2626;
+$red-dark: #b91c1c;
+$slate: #64748b;
+$slate-light: #f1f5f9;
+$border: #e9ecef;
+$white: #ffffff;
+$bg: #f8fafc;
+
 .home-page {
-  position: relative;
   width: 100%;
   margin-bottom: 20px;
+
   p {
     font-size: 1rem;
     color: #475569;
-
     @include sm {
       font-size: 0.875rem;
     }
   }
+
+  // ─── Banner ────────────────────────────────────────────────────────────────
   .home-banner {
     position: relative;
     width: 100%;
-    height: 756px;
+    min-height: 720px;
     display: flex;
-    padding-top: 70px;
     justify-content: center;
-    background-color: var(--bg-footer);
+    overflow: hidden;
+    background: linear-gradient(160deg, #060d1f 0%, #0f172a 45%, #1a0a0a 100%);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba($red, 0.12) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     @include md {
-      height: auto;
       min-height: 600px;
-      padding-top: 60px;
-      padding-bottom: 40px;
+      padding: 60px 0 40px;
     }
 
     @include sm {
       min-height: auto;
-      padding-top: 50px;
-      padding-bottom: 30px;
+      padding: 50px 0 30px;
+    }
+
+    .banner-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      z-index: 2;
     }
 
     .banner-content {
-      width: 85%;
+      position: relative;
+      z-index: 3;
+      width: 82%;
+      padding-top: 80px;
+
       @include md {
-        width: 95%;
+        width: 92%;
+        padding-top: 0;
       }
+
       .banner-content-top {
         text-align: center;
-        div {
-          &:first-child {
-            background-color: #6a0f0f;
-            padding: 7px 12px;
-            display: inline-block;
-            border-radius: 21px;
-            @include md {
-              font-size: 14px;
-              padding: 7px 10px;
-            }
-            span {
-              color: white;
-              &:first-child {
-                margin-right: 10px;
-              }
-            }
+
+        > div:first-child {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba($red, 0.15);
+          border: 1px solid rgba($red, 0.3);
+          padding: 6px 16px;
+          border-radius: 20px;
+          margin-bottom: 20px;
+          backdrop-filter: blur(4px);
+
+          @include md {
+            font-size: 13px;
           }
-          &:last-child {
-            font-size: 20px;
-            width: 65%;
-            margin: 10px auto;
-            color: white;
-            @include md {
-              width: 80%;
-              font-size: 1rem;
-            }
-            @include sm {
-              width: 85%;
+
+          span {
+            color: $white;
+            font-size: 13px;
+            font-weight: 500;
+
+            &:first-child {
+              color: $red;
             }
           }
         }
+
         .title {
+          margin-bottom: 16px;
+
           p {
-            font-size: 52px;
-            font-weight: bold;
+            font-size: 62px;
+            font-weight: 900;
             font-family: "Roboto Slab", serif;
-            color: white;
+            color: $white;
+            line-height: 1.05;
+            letter-spacing: -2px;
+
             &:last-child {
-              color: #ef4444;
+              color: $red;
+              text-shadow: 0 0 40px rgba($red, 0.4);
             }
+
             @include md {
-              font-size: 2rem;
+              font-size: 38px;
+              letter-spacing: -1px;
             }
+            @include sm {
+              font-size: 28px;
+            }
+          }
+        }
+
+        > div:last-child {
+          font-size: 16px;
+          width: 55%;
+          margin: 0 auto;
+          color: #94a3b8;
+          line-height: 1.7;
+
+          @include md {
+            width: 80%;
+            font-size: 14px;
+          }
+          @include sm {
+            width: 90%;
+            font-size: 13px;
           }
         }
       }
+
       .form-input {
         position: relative;
         display: flex;
-        justify-content: center;
-        width: 70%;
-        margin: 20px auto;
+        width: 60%;
+        margin: 28px auto;
+
         @include md {
-          width: 95%;
-          font-size: 1.2rem;
+          width: 90%;
         }
         @include sm {
-          width: 97%;
+          width: 98%;
         }
+
         input {
           width: 100%;
-          padding: 15px 137px 13px 25px;
-          border: 3px solid crimson;
+          padding: 16px 140px 16px 22px;
+          border: 1.5px solid rgba($white, 0.12);
           border-radius: 10px;
-          font-size: 1.2rem;
+          font-size: 15px;
+          background: rgba($white, 0.07);
+          color: $white;
+          backdrop-filter: blur(8px);
+          outline: none;
+          transition:
+            border-color 0.2s,
+            background 0.2s;
+
+          &::placeholder {
+            color: rgba($white, 0.35);
+          }
+
+          &:focus {
+            border-color: rgba($red, 0.5);
+            background: rgba($white, 0.1);
+          }
+
           @include sm {
-            font-size: 1rem;
+            font-size: 14px;
+            padding-right: 110px;
           }
         }
+
         button {
           position: absolute;
-          right: 1%;
-          font-size: 1.2rem;
-          top: 11%;
-          padding: 10px 25px;
+          right: 6px;
+          top: 6px;
+          bottom: 6px;
+          padding: 0 22px;
+          font-size: 14px;
+          font-weight: 600;
+          border-radius: 7px;
+
           @include sm {
-            font-size: 1rem;
+            padding: 0 14px;
+            font-size: 13px;
           }
         }
       }
     }
-    .banner-footer {
-      position: absolute;
-      bottom: 0px;
-      width: 100%;
-      object-fit: cover;
-    }
+
     .banner-content-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
       width: 100%;
-      flex-wrap: wrap;
-      gap: 33px;
-      margin-top: 45px;
-      border: 1px solid;
+      margin-top: 48px;
+      background: rgba($white, 0.06);
+      border-top: 1px solid rgba($white, 0.08);
+
+      @include md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include sm {
+        grid-template-columns: repeat(1, 1fr);
+      }
 
       .info-item {
-        border-radius: 10px;
-        width: 22%;
-        background-color: #212739;
-        padding: 20px 10px;
+        background: rgba($white, 0.03);
+        padding: 24px 20px;
         text-align: center;
-        @include md {
-          width: 47%;
+        transition: background 0.2s;
+        border-right: 1px solid rgba($white, 0.06);
+
+        &:last-child {
+          border-right: none;
         }
-        @include sm {
-          width: 45%;
+
+        &:hover {
+          background: rgba($white, 0.06);
         }
-        @include xs {
-          width: 100%;
-        }
+
         .icon {
+          margin-bottom: 10px;
+
           i {
-            font-size: 25px;
-            color: #ef4444;
-          }
-        }
-        .heading {
-          color: white;
-          font-size: 18px;
-          font-weight: bold;
-          padding: 6px 0px;
-          @include md {
             font-size: 22px;
-          }
-          @include sm {
-            font-size: 19px;
+            color: $red;
+            filter: drop-shadow(0 0 8px rgba($red, 0.4));
           }
         }
+
+        .heading {
+          color: $white;
+          font-size: 17px;
+          font-weight: 700;
+          padding: 4px 0;
+          letter-spacing: -0.3px;
+
+          @include md {
+            font-size: 16px;
+          }
+        }
+
         .desc {
-          color: #94a3b8;
+          color: #64748b;
+          font-size: 12px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
       }
     }
   }
+
+  // ─── Products section ──────────────────────────────────────────────────────
   .home-products {
+    // ── Filter bar ────────────────────────────────────────────────────────
     .product-filter-inner {
       width: 100%;
       padding: 14px 28px;
-      background: #fff;
-      border-bottom: 1px solid #f0f0f0;
+      background: $white;
+      border-bottom: 1px solid $border;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
       position: sticky;
-      top: 0;
+      top: 12%;
       z-index: 100;
 
       .filter-mobile {
@@ -195,20 +303,15 @@
         cursor: pointer;
         user-select: none;
         padding: 8px 14px;
-        background: #0f172a;
-        color: white;
+        background: $navy-mid;
+        color: $white;
         border-radius: 8px;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         transition: background 0.18s;
 
         &:hover {
-          background: #dc2626;
-        }
-
-        span {
-          font-size: 14px;
-          font-weight: 600;
+          background: $red;
         }
 
         @include md {
@@ -217,31 +320,33 @@
       }
 
       .filter-list-nav {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         align-items: center;
-        gap: 12px;
-        margin-top: 0;
+        gap: 15px;
 
         @include md {
           display: none;
           margin-top: 12px;
+          grid-template-columns: repeat(2, 1fr);
 
           &.openFilter {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
             animation: fadeDown 0.25s ease-in-out forwards;
           }
         }
 
+        @include sm {
+          grid-template-columns: 1fr;
+        }
+
         select {
-          flex: 1;
-          max-width: 27%;
-          padding: 9px 32px 9px 12px;
-          font-size: 14px;
+          padding: 9px 12px;
+          font-size: 13px;
           font-weight: 500;
           color: #1f1f1f;
-          background: #f8fafc;
-          border: 1.5px solid #e2e8f0;
+          background: $slate-light;
+          border: 1.5px solid $border;
           border-radius: 8px;
           outline: none;
           cursor: pointer;
@@ -251,19 +356,14 @@
             background 0.18s;
 
           &:focus {
-            border-color: #dc2626;
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08);
+            border-color: $red;
+            background: $white;
+            box-shadow: 0 0 0 3px rgba($red, 0.08);
           }
 
           &:hover:not(:focus) {
             border-color: #cbd5e1;
-            background: #fff;
-          }
-
-          @include md {
-            max-width: 100%;
-            width: 100%;
+            background: $white;
           }
         }
 
@@ -279,61 +379,122 @@
         }
       }
     }
+
+    // ── Why choose us ─────────────────────────────────────────────────────
     .information-inner {
-      width: 100%;
+      background: $white;
+      border-top: 1px solid $border;
+
       .content {
-        padding: 16px 25px;
-        text-align: center;
-        .heading {
-          h3 {
-            font-size: 1.875rem;
-            @include sm {
-              font-size: 1.5rem;
-            }
-          }
-          p {
-            font-size: 1rem;
-          }
+        padding: 56px 28px;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        @include sm {
+          padding: 40px 16px;
         }
-        .list-item {
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          padding-top: 20px;
-          gap: 20px;
-          .item {
-            width: 23%;
-            text-align: center;
-            padding: 10px 15px;
-            @include md {
-              width: 47%;
-              font-size: 20px;
-            }
+
+        .heading {
+          text-align: center;
+          margin-bottom: 40px;
+
+          h3 {
+            font-size: 30px;
+            font-weight: 800;
+            color: $navy-mid;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+
             @include sm {
-              width: 100%;
               font-size: 22px;
             }
+          }
+
+          p {
+            font-size: 14px;
+            color: $slate;
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.6;
+          }
+        }
+
+        .list-item {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 16px;
+
+          @include md {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include sm {
+            grid-template-columns: 1fr;
+          }
+
+          .item {
+            padding: 28px 20px;
+            border-radius: 14px;
+            border: 1.5px solid $border;
+            text-align: center;
+            background: $white;
+            transition: all 0.22s ease;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 3px;
+              background: linear-gradient(90deg, $red, #f87171);
+              opacity: 0;
+              transition: opacity 0.22s;
+            }
+
+            &:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+              border-color: rgba($red, 0.15);
+
+              &::before {
+                opacity: 1;
+              }
+
+              div {
+                background: rgba($red, 0.12);
+              }
+            }
+
             div {
-              width: 64px;
-              height: 64px;
-              background-color: #fee2e2;
+              width: 48px;
+              height: 48px;
+              background: #fef2f2;
               display: flex;
               align-items: center;
               justify-content: center;
-              border-radius: 16px;
-              margin: 10px auto;
+              border-radius: 12px;
+              margin: 0 auto 16px;
+              transition: background 0.22s;
+
               i {
-                color: #dc2626;
-                font-size: 32px;
+                color: $red;
+                font-size: 19px;
               }
             }
+
             h4 {
-              margin-bottom: 5px;
+              font-size: 15px;
+              font-weight: 700;
+              color: $navy-mid;
+              margin-bottom: 8px;
             }
+
             p {
-              font-size: 1rem;
-              color: #475569;
+              font-size: 13px;
+              color: $slate;
+              line-height: 1.6;
             }
           }
         }

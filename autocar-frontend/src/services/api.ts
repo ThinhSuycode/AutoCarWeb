@@ -59,7 +59,6 @@ export const changeApi = {
   ): Promise<T> => {
     const method = METHOD_MAP[message];
 
-    // Nếu có id thì gắn vào URL
     const url = id ? `${endpoint}/${id}` : endpoint;
 
     try {

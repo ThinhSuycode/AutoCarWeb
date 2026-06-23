@@ -312,124 +312,123 @@ $white: #ffffff;
         font-size: 15px;
         font-weight: 500;
       }
+    }
+    // ── Newsletter Subscribe ───────────────────────────────────────────────
+    .register-news {
+      position: relative;
+      padding: 40px 28px;
+      margin-top: 24px;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        #7f1d1d 0%,
+        #991b1b 50%,
+        #7f1d1d 100%
+      );
+      color: $white;
+      text-align: center;
+      overflow: hidden;
 
-      // ── Newsletter Subscribe ───────────────────────────────────────────────
-      .register-news {
+      // Decorative circle
+      &::before {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: rgba($white, 0.04);
+        top: -80px;
+        right: -60px;
+        pointer-events: none;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba($white, 0.04);
+        bottom: -60px;
+        left: -40px;
+        pointer-events: none;
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: 800;
+        margin-bottom: 8px;
         position: relative;
-        padding: 40px 28px;
-        margin-top: 24px;
-        border-radius: 14px;
-        background: linear-gradient(
-          135deg,
-          #7f1d1d 0%,
-          #991b1b 50%,
-          #7f1d1d 100%
-        );
-        color: $white;
-        text-align: center;
-        overflow: hidden;
+        z-index: 2;
+      }
 
-        // Decorative circle
-        &::before {
-          content: "";
-          position: absolute;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: rgba($white, 0.04);
-          top: -80px;
-          right: -60px;
-          pointer-events: none;
+      p {
+        font-size: 13.5px;
+        color: #fecaca;
+        width: 52%;
+        margin: 0 auto 20px;
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
+
+        @include md {
+          width: 100%;
+        }
+      }
+
+      .form-send {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 60%;
+        margin: 0 auto;
+
+        @include md {
+          width: 90%;
+        }
+        @include sm {
+          width: 100%;
         }
 
-        &::after {
-          content: "";
-          position: absolute;
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          background: rgba($white, 0.04);
-          bottom: -60px;
-          left: -40px;
-          pointer-events: none;
-        }
+        input {
+          flex: 1;
+          padding: 11px 14px;
+          border-radius: 8px;
+          border: none;
+          font-size: 13px;
+          outline: none;
+          background: rgba($white, 0.95);
+          color: $navy;
+          transition: background 0.18s;
 
-        h3 {
-          font-size: 20px;
-          font-weight: 800;
-          margin-bottom: 8px;
-          position: relative;
-          z-index: 2;
-        }
-
-        p {
-          font-size: 13.5px;
-          color: #fecaca;
-          width: 52%;
-          margin: 0 auto 20px;
-          line-height: 1.6;
-          position: relative;
-          z-index: 2;
-
-          @include md {
-            width: 100%;
+          &::placeholder {
+            color: #aaa;
+          }
+          &:focus {
+            background: $white;
           }
         }
 
-        .form-send {
-          position: relative;
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          width: 60%;
-          margin: 0 auto;
+        button {
+          flex-shrink: 0;
+          padding: 11px 20px;
+          font-size: 13px;
+          font-weight: 700;
+          background: $navy;
+          color: $white;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition:
+            opacity 0.18s,
+            transform 0.15s;
 
-          @include md {
-            width: 90%;
-          }
-          @include sm {
-            width: 100%;
-          }
-
-          input {
-            flex: 1;
-            padding: 11px 14px;
-            border-radius: 8px;
-            border: none;
-            font-size: 13px;
-            outline: none;
-            background: rgba($white, 0.95);
-            color: $navy;
-            transition: background 0.18s;
-
-            &::placeholder {
-              color: #aaa;
-            }
-            &:focus {
-              background: $white;
-            }
-          }
-
-          button {
-            flex-shrink: 0;
-            padding: 11px 20px;
-            font-size: 13px;
-            font-weight: 700;
-            background: $navy;
-            color: $white;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition:
-              opacity 0.18s,
-              transform 0.15s;
-
-            &:hover {
-              opacity: 0.88;
-              transform: scale(1.02);
-            }
+          &:hover {
+            opacity: 0.88;
+            transform: scale(1.02);
           }
         }
       }

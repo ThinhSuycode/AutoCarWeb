@@ -86,7 +86,7 @@ const AppointmentModal = ({ onClose }: { onClose: () => void }) => {
   const handleCarChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const carId = e.target.value;
-      const selectedCar = optionCar.find((car) => car.id === carId);
+      const selectedCar = optionCar.find((car) => car._id === carId);
       setForm((prev) => ({
         ...prev,
         carId: carId || "",
@@ -239,7 +239,7 @@ const AppointmentModal = ({ onClose }: { onClose: () => void }) => {
           <select name="carId" onChange={handleCarChange} value={form.carId}>
             <option value="">Chọn xe</option>
             {optionCar.map((car: CarType) => (
-              <option value={car.id} key={car.id}>
+              <option value={car._id} key={car._id}>
                 {car.name}
               </option>
             ))}

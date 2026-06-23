@@ -1,37 +1,30 @@
 import classNames from "classnames/bind";
 import styles from "../CarsManager.module.scss";
-import type { CarDetailsType, CarType } from "../../../../types/car";
+import type { CarType } from "../../../../types/car";
 import { useCallback } from "react";
-import { callApi, changeApi } from "../../../../services/api";
 import toast from "react-hot-toast";
 import { useConfirm } from "../../../../hooks/useConfirm";
 import ConfirmDialog from "../../../../components/ConfirmDialog/ConfirmDialog";
+import { useCars } from "../hooks/useForm";
+import type { CarManagerType } from "../../../../types/managerStaff";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  cars: CarType[];
-  getDataDetail?: (res: CarDetailsType) => void;
+  cars: CarManagerType[];
+  carSelected: (data: CarManagerType) => void;
+  carDetailSelected: (data: CarManagerType) => void;
 }
 
-const CarTable = ({ cars, getDataDetail }: Props) => {
+const CarTable = ({ cars, carSelected, carDetailSelected }: Props) => {
   const { confirm, confirmProps } = useConfirm();
-  const onHandleShowDetail = useCallback(
-    async (carId: string) => {
-      if (!carId) return;
-      const resDetailData = await callApi.getData<CarDetailsType>(
-        `carDetail/${carId}`,
-      );
-      getDataDetail?.(resDetailData);
-    },
-    [getDataDetail],
-  );
+  const { deleteCar } = useCars();
 
   const onHandleDeleteCar = useCallback(
     async (id: string, name: string) => {
       const ok = await confirm({
         title: "Xoá xe",
-        message: `Bạn có chắc muốn xoá xe ${name} - (${id}) không? Hành động này không thể hoàn tác.`,
+        message: `Bạn có chắc muốn xoá xe "${name} - ${id}"? Hành động này không thể hoàn tác.`,
         confirmText: "Xoá",
         cancelText: "Huỷ",
       });
@@ -39,17 +32,15 @@ const CarTable = ({ cars, getDataDetail }: Props) => {
       if (!ok) return;
 
       try {
-        await changeApi.request<CarType>("cars", "delete", undefined, id);
-        toast.success("Xoá thành công dữ liệu xe!");
+        deleteCar(id);
       } catch (error: any) {
-        const msg =
-          error?.response?.data?.message || "Xoá xe không thành công!";
-        toast.error(msg);
+        toast.error(
+          error?.response?.data?.message || "Xoá xe không thành công!",
+        );
       }
     },
     [confirm],
   );
-
   return (
     <>
       <ConfirmDialog {...confirmProps} />
@@ -60,6 +51,7 @@ const CarTable = ({ cars, getDataDetail }: Props) => {
               <th>Xe</th>
               <th>Thương hiệu</th>
               <th>Giá</th>
+              <th>Chỉnh sửa</th>
               <th>Chi tiết</th>
               <th></th>
             </tr>
@@ -67,13 +59,13 @@ const CarTable = ({ cars, getDataDetail }: Props) => {
           <tbody>
             {cars.length === 0 ? (
               <tr>
-                <td colSpan={5} className={cx("empty")}>
+                <td colSpan={6} className={cx("empty")}>
                   Không có dữ liệu
                 </td>
               </tr>
             ) : (
               cars.map((car) => (
-                <tr key={car.id} className={cx("row")}>
+                <tr key={car._id} className={cx("row")}>
                   <td>
                     <div className={cx("car-info")}>
                       {car.image && (
@@ -85,7 +77,7 @@ const CarTable = ({ cars, getDataDetail }: Props) => {
                       )}
                       <div>
                         <p className={cx("car-name")}>{car.name}</p>
-                        <span className={cx("car-id")}>#{car.id}</span>
+                        <span className={cx("car-id")}>#{car._id}</span>
                       </div>
                     </div>
                   </td>
@@ -93,16 +85,35 @@ const CarTable = ({ cars, getDataDetail }: Props) => {
                   <td className={cx("price")}>
                     {car.price.toLocaleString("vi-VN")}₫
                   </td>
+
+                  {/* Chỉnh sửa thông tin cơ bản */}
                   <td>
                     <button
-                      className={cx("show-detail")}
-                      onClick={() => onHandleShowDetail(car.id)}
+                      className={cx("show-car")}
+                      onClick={() => carSelected(car)}
+                      title="Chỉnh sửa thông tin"
                     >
-                      <i className="fa-regular fa-eye"></i>
+                      <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                   </td>
+
+                  {/* Xem/sửa chi tiết */}
                   <td>
-                    <button onClick={() => onHandleDeleteCar(car.id, car.name)}>
+                    <button
+                      className={cx("show-carDetail")}
+                      onClick={() => carDetailSelected(car)}
+                      title="Xem chi tiết"
+                    >
+                      <i className="fa-solid fa-align-left"></i>
+                    </button>
+                  </td>
+
+                  {/* Xoá */}
+                  <td>
+                    <button
+                      onClick={() => onHandleDeleteCar(car._id, car.name)}
+                      title="Xoá xe"
+                    >
                       <i className="fa-solid fa-trash"></i>
                     </button>
                   </td>

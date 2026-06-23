@@ -10,6 +10,7 @@ interface PropsTypes {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   rounded?: boolean;
+  type?: string;
   text?: boolean;
   className?: string;
   large?: boolean;
@@ -33,6 +34,7 @@ export const Button = ({
   text = false,
   disable = false,
   rounded = false,
+  type,
   className,
   iconLeft,
   iconRight,
@@ -80,7 +82,7 @@ export const Button = ({
   }
 
   return (
-    <Comp className={classes} {...props}>
+    <Comp type={type} className={classes} {...props}>
       {iconLeft && <span className={cx("icon")}>{iconLeft}</span>}
       <span className={cx("title")}>{children}</span>
       {iconRight && <span className={cx("icon")}>{iconRight}</span>}

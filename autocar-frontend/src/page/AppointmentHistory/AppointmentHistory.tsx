@@ -10,7 +10,7 @@ import type {
 import toast from "react-hot-toast";
 import type { PaginatedResponse } from "../../types/pagination";
 import ModalLayout from "../../components/ModalLayout/ModalLayout";
-import AppointmentModal from "./AppointmentModal/AppointmentModal";
+import AppointmentModal from "./components/AppointmentModal";
 import LoadingData from "../../components/LoadingData/LoadingData";
 
 const cx = classNames.bind(styles);
@@ -75,7 +75,7 @@ const AppointmentHistory = () => {
     }
   }, []);
 
-  if (isLoading) return <LoadingData></LoadingData>;
+  if (isLoading) return <LoadingData message="Đang tải dữ liệu"></LoadingData>;
 
   return (
     <div className={cx("appointmentHistory-page")}>

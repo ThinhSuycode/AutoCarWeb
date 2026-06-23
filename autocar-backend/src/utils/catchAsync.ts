@@ -8,7 +8,14 @@ type AsyncHandler = (
 ) => Promise<any>;
 
 export const catchAsync = (fn: AsyncHandler) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next);
+  return async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await fn(req, res, next);
+    } catch (error) {
+      console.error("❌ BACKEND ERROR:");
+      console.error(error);
+
+      next(error);
+    }
   };
 };

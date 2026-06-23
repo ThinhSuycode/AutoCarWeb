@@ -1,30 +1,45 @@
 import mongoose from "mongoose";
+import { MANAGER_STATUS } from "../schemas/car.schema";
 
-const carSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
+const carSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      minlength: 2,
+    },
+
+    price: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
+
+    brand: {
+      type: String,
+      required: true,
+    },
+
+    year: Number,
+    mileage: Number,
+    transmission: String,
+    color: String,
+    image: String,
+
+    managerId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+    managerStatus: {
+      type: String,
+      enum: MANAGER_STATUS,
+      default: "pending",
+    },
   },
-  name: String,
-  brand: String,
-  price: Number,
-  year: Number,
-  mileage: Number,
-  transmission: String,
-  bodyType: String,
-  fuelType: String,
-  engineSize: String,
-  color: String,
-  seats: Number,
-  image: String,
-  hasWarranty: Boolean,
-  isInspected: Boolean,
-  features: [String],
-  createAt: {
-    type: Date,
-    default: Date.now,
+  {
+    timestamps: true,
   },
-});
+);
 
 export const Car = mongoose.model("Car", carSchema);

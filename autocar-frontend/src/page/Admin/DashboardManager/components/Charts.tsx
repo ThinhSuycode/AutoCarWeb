@@ -48,6 +48,21 @@ const UsersTooltip = ({ active, payload, label }: any) => {
   );
 };
 
+const tranformStatusTitle = (message: string) => {
+  if (!message) return;
+  if (message === "confirm") {
+    return "Xác nhận";
+  }
+  if (message === "cancelled") {
+    return "Huỷ bỏ";
+  }
+  if (message === "pending") {
+    return "Chờ duyệt";
+  }
+  if (message === "completed") {
+    return "Hoàn thành";
+  }
+};
 // ─── Component ────────────────────────────────────────────────────────────────
 const Charts = () => {
   const [chartData, setChartData] = useState<DashboardResponse | null>(null);
@@ -234,7 +249,9 @@ const Charts = () => {
                   className={cx("pie-dot")}
                   style={{ background: item.color }}
                 />
-                <span className={cx("pie-name")}>{item.name}</span>
+                <span className={cx("pie-name")}>
+                  {tranformStatusTitle(item.name)}
+                </span>
                 <span className={cx("pie-value")}>{item.value}</span>
               </div>
             ))}

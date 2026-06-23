@@ -68,5 +68,6 @@ export const useCarsManager = () => {
     pagination,
     onPageChange,
     setSearch,
+    reloadCars: fetchData,
   };
 };

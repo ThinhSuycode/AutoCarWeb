@@ -4,127 +4,121 @@ import bcrypt from "bcrypt";
 import { signToken } from "../utils/jwt";
 import { AuthRequest } from "../middleware/authMiddleware";
 import { OAuth2Client } from "google-auth-library";
-import { isValidEmail, isValidPassword } from "../utils/validate";
+import crypto from "crypto";
+import {
+  changePasswordSchema,
+  forgotPasswordSchema,
+  googleLoginSchema,
+  loginSchema,
+  registerSchema,
+  resetPasswordSchema,
+} from "../schemas/auth.schema";
+import * as authService from "../services/auth.service";
+import { catchAsync } from "../utils/catchAsync";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // REGISTER
-export const register = async (req: Request, res: Response) => {
-  try {
-    const { email, password, username, phone } = req.body;
+export const register = catchAsync(async (req: Request, res: Response) => {
+  const validated = registerSchema.safeParse(req.body);
 
-    if (!email || !password || !username || !phone) {
-      return res
-        .status(400)
-        .json({ message: "Vui lòng nhập đầy đủ thông tin" });
-    }
-
-    if (!isValidEmail(email)) {
-      return res
-        .status(400)
-        .json({ message: "Định dạng Email không hợp lệ!!" });
-    }
-
-    const passwordValidate = isValidPassword(password);
-    if (passwordValidate) {
-      return res.status(400).json({ message: passwordValidate });
-    }
-
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({ message: "Email đã tồn tại!" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({
-      email,
-      password: hashedPassword,
-      username,
-      phone,
+  if (!validated.success) {
+    return res.status(400).json({
+      message: validated.error.issues[0]?.message,
     });
-
-    // Không trả về password
-    const { password: _, ...userWithoutPassword } = user.toObject();
-    return res
-      .status(201)
-      .json({ message: "Đăng ký thành công", user: userWithoutPassword });
-  } catch (error) {
-    console.error("Register error:", error);
-    return res.status(500).json({ message: "Lỗi server" });
   }
-};
 
+  const { email, password, username, phone } = validated.data;
+
+  const existingUser = await User.findOne({ email });
+
+  if (existingUser) {
+    return res.status(409).json({
+      message: "Email đã tồn tại!",
+    });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const user = await User.create({
+    email,
+    password: hashedPassword,
+    username,
+    phone,
+  });
+
+  const { password: _, ...userWithoutPassword } = user.toObject();
+
+  return res.status(201).json({
+    message: "Đăng ký thành công",
+    user: userWithoutPassword,
+  });
+});
 // LOGIN
-export const login = async (req: Request, res: Response) => {
-  try {
-    const { email, password } = req.body;
+export const login = catchAsync(async (req: Request, res: Response) => {
+  const validated = loginSchema.safeParse(req.body);
 
-    if (!email || !password) {
-      return res.status(400).json({ message: "Email và password là bắt buộc" });
-    }
-    if (!isValidEmail(email)) {
-      return res
-        .status(400)
-        .json({ message: "Định dạng email không hợp lệ!!" });
-    }
+  if (!validated.success) {
+    return res.status(400).json({
+      message: validated.error.issues[0]?.message,
+    });
+  }
 
-    const passwordValidate = isValidPassword(password);
-    if (passwordValidate) {
-      return res.status(400).json({ message: passwordValidate });
-    }
+  const { email, password } = validated.data;
 
-    const user = await User.findOne({ email });
+  const user = await User.findOne({ email });
 
-    if (user?.googleId) {
+  if (user?.googleId) {
+    return res.status(400).json({
+      message: "Tài khoản này đăng nhập bằng Google!",
+    });
+  }
+
+  if (!user || !user.password) {
+    return res.status(401).json({
+      message: "Email hoặc mật khẩu không đúng!",
+    });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(401).json({
+      message: "Email hoặc mật khẩu không đúng!",
+    });
+  }
+
+  const token = signToken({
+    _id: user.id,
+    username: user.username ?? "",
+    email: user.email ?? "",
+    role: user.role ?? "user",
+  });
+
+  return res.status(200).json({
+    token,
+    user: {
+      _id: user.id,
+      email: user.email,
+      username: user.username,
+      role: user.role,
+      avatar: user.avatar,
+    },
+  });
+});
+// LOGIN GOOGLE
+export const loginWithGoogle = catchAsync(
+  async (req: Request, res: Response) => {
+    const validated = googleLoginSchema.safeParse(req.body);
+
+    if (!validated.success) {
       return res.status(400).json({
-        message: "Tài khoản này đăng nhập bằng Google!",
+        message: validated.error.issues[0]?.message,
       });
     }
 
-    if (!user || !user.password) {
-      return res
-        .status(401)
-        .json({ message: "Email hoặc mật khẩu không đúng!" });
-    }
+    const { credential } = validated.data;
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res
-        .status(401)
-        .json({ message: "Email hoặc mật khẩu không đúng!" });
-    }
-
-    const token = signToken({
-      id: String(user._id),
-      email: user.email ?? "",
-      role: user.role ?? "user",
-    });
-
-    return res.status(200).json({
-      token,
-      user: {
-        _id: user._id,
-        email: user.email,
-        username: user.username,
-        role: user.role,
-        avatar: user.avatar,
-      },
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-    return res.status(500).json({ message: "Lỗi server" });
-  }
-};
-// LOGIN GOOGLE
-export const loginWithGoogle = async (req: Request, res: Response) => {
-  try {
-    const { credential } = req.body;
-
-    if (!credential) {
-      return res.status(400).json({ message: "Thiếu credential" });
-    }
-
-    // verify token Google
     const ticket = await client.verifyIdToken({
       idToken: credential,
       audience: process.env.GOOGLE_CLIENT_ID,
@@ -133,12 +127,17 @@ export const loginWithGoogle = async (req: Request, res: Response) => {
     const payload = ticket.getPayload();
 
     if (!payload) {
-      return res.status(400).json({ message: "Token không hợp lệ" });
+      return res.status(400).json({
+        message: "Token không hợp lệ",
+      });
     }
 
     const { email, name, picture, sub } = payload;
+
     if (!email) {
-      return res.status(400).json({ message: "Google account không có email" });
+      return res.status(400).json({
+        message: "Google account không có email",
+      });
     }
 
     let user = await User.findOne({ email });
@@ -152,16 +151,14 @@ export const loginWithGoogle = async (req: Request, res: Response) => {
         loginType: "google",
         password: "",
       });
-    } else {
-      if (!user.googleId) {
-        user.googleId = sub;
-        await user.save();
-      }
+    } else if (!user.googleId) {
+      user.googleId = sub;
+      await user.save();
     }
 
-    // tạo token
     const token = signToken({
-      id: String(user._id),
+      _id: user.id,
+      username: user.username ?? "",
       email: user.email ?? "",
       role: user.role ?? "user",
     });
@@ -176,54 +173,105 @@ export const loginWithGoogle = async (req: Request, res: Response) => {
         avatar: user.avatar,
       },
     });
-  } catch (error) {
-    console.error("Google login error:", error);
-    return res.status(500).json({
-      message: "Đăng nhập Google thất bại",
-    });
-  }
-};
-
+  },
+);
 // CHANGE PASSWORD
-export const changePassword = async (req: AuthRequest, res: Response) => {
-  try {
-    const { currentPassword, newPassword } = req.body;
+export const changePasswordAccount = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    const validated = changePasswordSchema.safeParse(req.body);
 
-    if (!currentPassword || !newPassword) {
-      return res
-        .status(400)
-        .json({ message: "Vui lòng nhập đầy đủ thông tin" });
+    if (!validated.success) {
+      return res.status(400).json({
+        message: validated.error.issues[0]?.message,
+      });
     }
 
-    // Validate mật khẩu mới
-    if (newPassword.length < 6) {
-      return res
-        .status(400)
-        .json({ message: "Mật khẩu mới phải có ít nhất 6 ký tự!" });
-    }
+    const { currentPassword, newPassword } = validated.data;
 
     if (currentPassword === newPassword) {
-      return res
-        .status(400)
-        .json({ message: "Mật khẩu mới không được trùng mật khẩu cũ!" });
+      return res.status(400).json({
+        message: "Mật khẩu mới không được trùng mật khẩu cũ!",
+      });
     }
 
-    const user = await User.findById(req.user?.id);
+    const user = await User.findById(req.user?._id);
+
     if (!user?.password) {
-      return res.status(404).json({ message: "User không tồn tại" });
+      return res.status(404).json({
+        message: "User không tồn tại",
+      });
     }
 
     const isMatch = await bcrypt.compare(currentPassword, user.password);
+
     if (!isMatch) {
-      return res.status(400).json({ message: "Mật khẩu hiện tại không đúng" });
+      return res.status(400).json({
+        message: "Mật khẩu hiện tại không đúng",
+      });
     }
 
     user.password = await bcrypt.hash(newPassword, 10);
+
     await user.save();
 
-    return res.status(200).json({ message: "Đổi mật khẩu thành công" });
-  } catch (error) {
-    console.error("Change password error:", error);
-    return res.status(500).json({ message: "Lỗi server" });
+    return res.status(200).json({
+      message: "Đổi mật khẩu thành công",
+    });
+  },
+);
+
+export const forgotPassword = catchAsync(
+  async (req: Request, res: Response) => {
+    const validated = forgotPasswordSchema.safeParse(req.body);
+
+    if (!validated.success) {
+      return res.status(400).json({
+        message: validated.error.issues[0]?.message,
+      });
+    }
+
+    const { email } = validated.data;
+
+    await authService.forgotPassword(email);
+
+    return res.status(200).json({
+      message: "Đã gửi email đặt lại mật khẩu",
+    });
+  },
+);
+
+export const resetPassword = catchAsync(async (req: Request, res: Response) => {
+  const validated = resetPasswordSchema.safeParse(req.body);
+
+  if (!validated.success) {
+    return res.status(400).json({
+      message: validated.error.issues[0]?.message,
+    });
   }
-};
+
+  const { token, password } = validated.data;
+
+  const user = await User.findOne({
+    resetPasswordToken: token,
+    resetPasswordExpires: {
+      $gt: new Date(),
+    },
+  });
+
+  if (!user) {
+    return res.status(400).json({
+      message: "Token không hợp lệ hoặc đã hết hạn",
+    });
+  }
+
+  user.password = await bcrypt.hash(password, 10);
+
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+
+  await user.save();
+
+  return res.status(200).json({
+    message: "Đặt lại mật khẩu thành công",
+  });
+});

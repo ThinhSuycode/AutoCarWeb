@@ -2,8 +2,12 @@ import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../services/api";
 import type { CarType } from "../types/car";
+import {
+  PRICE_RANGES_MAP,
+  YEAR_RANGES_MAP,
+} from "../page/Home/constants/homeData";
 
-interface FilterState {
+export interface FilterState {
   brand: string;
   bodyType: string;
   transmission: string;
@@ -60,87 +64,6 @@ export const useCarsFilter = () => {
       params.set("yearMax", filter.yearMax);
     }
 
-    // MAP PRICE RANGE
-    const priceRangesMap: Record<
-      string,
-      { priceMin: string; priceMax: string }
-    > = {
-      "Dưới 500 triệu": {
-        priceMin: "0",
-        priceMax: "500000000",
-      },
-
-      "500 - 800 triệu": {
-        priceMin: "500000000",
-        priceMax: "800000000",
-      },
-
-      "800 triệu - 1.2 tỷ": {
-        priceMin: "800000000",
-        priceMax: "1200000000",
-      },
-
-      "Trên 1.2 tỷ": {
-        priceMin: "1200000000",
-        priceMax: "",
-      },
-    };
-
-    // HANDLE PRICE RANGE
-    if (filter.priceRanges) {
-      const range = priceRangesMap[filter.priceRanges];
-
-      if (range) {
-        params.set("priceMin", range.priceMin);
-        params.set("priceMax", range.priceMax);
-      }
-    }
-    // MAP YEAR RANGE
-    const yearRangesMap: Record<
-      string,
-      { yearMin?: string; yearMax?: string }
-    > = {
-      "2024": {
-        yearMin: "2024",
-        yearMax: "2024",
-      },
-
-      "2023": {
-        yearMin: "2023",
-        yearMax: "2023",
-      },
-
-      "2022": {
-        yearMin: "2022",
-        yearMax: "2022",
-      },
-
-      "2021": {
-        yearMin: "2021",
-        yearMax: "2021",
-      },
-
-      "2020": {
-        yearMin: "2020",
-        yearMax: "2020",
-      },
-
-      "Trước 2020": {
-        yearMax: "2019",
-      },
-    };
-
-    // Handle Year Ranges
-    if (filter.yearRanges) {
-      const range = yearRangesMap[filter.yearRanges];
-      if (range?.yearMin) {
-        params.set("yearMin", range.yearMin);
-      }
-      if (range?.yearMax) {
-        params.set("yearMax", range.yearMax);
-      }
-    }
-
     // SORT
     const sortMap: Record<string, { sort: string; order: string }> = {
       "year-max": { sort: "year", order: "desc" },
@@ -159,6 +82,21 @@ export const useCarsFilter = () => {
     params.set("sort", sort);
     params.set("order", order);
 
+    // Price range
+    if (filter.priceRanges) {
+      const range = PRICE_RANGES_MAP[filter.priceRanges];
+      if (range) {
+        params.set("priceMin", range.priceMin);
+        params.set("priceMax", range.priceMax);
+      }
+    }
+
+    // Year range
+    if (filter.yearRanges) {
+      const range = YEAR_RANGES_MAP[filter.yearRanges];
+      if (range?.yearMin) params.set("yearMin", range.yearMin);
+      if (range?.yearMax) params.set("yearMax", range.yearMax);
+    }
     return params.toString();
   };
 

@@ -2,34 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import type { PaginationMeta } from "../../../../types/pagination";
+import type { CarManagerType } from "../../../../types/managerStaff";
+import type { Staff } from "../../../../types/car";
 
 const API = import.meta.env.VITE_APP_API_KEYS;
 const getToken = () => localStorage.getItem("token");
 const authHeader = () => ({ Authorization: `Bearer ${getToken()}` });
 
-export interface Staff {
-  _id: string;
-  username: string;
-  email: string;
-  avatar: string;
-  carCount: number;
-  staffInfo?: { department: string; position: string; phone: string };
-}
-
-export interface Car {
-  _id: string;
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image?: string;
-  managerId?: Staff | null;
-}
-
 export type FilterType = "all" | "true" | "false";
 
 export const useAssignManager = () => {
-  const [cars, setCars] = useState<Car[]>([]);
+  const [cars, setCars] = useState<CarManagerType[]>([]);
   const [staffList, setStaffList] = useState<Staff[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [assigningId, setAssigningId] = useState<string | null>(null);

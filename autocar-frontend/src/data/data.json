@@ -1,0 +1,5987 @@
+{
+  "carData": [
+    {
+      "id": "sedan-001",
+      "name": "Toyota Camry 2.5Q",
+      "brand": "Toyota",
+      "price": 1250000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.5L",
+      "color": "Đen",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Camera 360°",
+        "Cảm biến lùi",
+        "Cruise Control",
+        "Ghế da cao cấp",
+        "Màn hình cảm ứng 9 inch"
+      ]
+    },
+    {
+      "id": "sedan-002",
+      "name": "Honda Accord 1.5 Turbo",
+      "brand": "Honda",
+      "price": 1319000000,
+      "year": 2024,
+      "mileage": 3000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L Turbo",
+      "color": "Trắng",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Honda Sensing",
+        "Sunroof",
+        "Ghế chỉnh điện",
+        "Phanh tay điện tử",
+        "Hệ thống âm thanh 8 loa"
+      ]
+    },
+    {
+      "id": "sedan-003",
+      "name": "Mazda 6 2.5L Premium",
+      "brand": "Mazda",
+      "price": 1029000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.5L",
+      "color": "Đỏ",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Màn hình HUD",
+        "Ghế da Nappa",
+        "Hệ thống Bose",
+        "Cửa sổ trời",
+        "Đèn LED thích ứng"
+      ]
+    },
+    {
+      "id": "sedan-004",
+      "name": "Hyundai Elantra 2.0 AT",
+      "brand": "Hyundai",
+      "price": 679000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L",
+      "color": "Xanh",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "SmartSense",
+        "Màn hình 10.25 inch",
+        "Sạc không dây",
+        "Ghế lái chỉnh điện",
+        "Đèn LED"
+      ]
+    },
+    {
+      "id": "sedan-005",
+      "name": "Toyota Vios 1.5G CVT",
+      "brand": "Toyota",
+      "price": 478000000,
+      "year": 2024,
+      "mileage": 5000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L",
+      "color": "Bạc",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Camera lùi",
+        "Cảm biến áp suất lốp",
+        "Màn hình 7 inch",
+        "Bluetooth",
+        "Chìa khóa thông minh"
+      ]
+    },
+    {
+      "id": "suv-001",
+      "name": "Honda CR-V 1.5L Turbo",
+      "brand": "Honda",
+      "price": 998000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L Turbo",
+      "color": "Đen",
+      "seats": 7,
+      "image": "https://cdn.24h.com.vn/upload/4-2018/images/2018-10-13/24h-hondacrv-5-1539411767-437-width1320height910.jpg",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Honda Sensing",
+        "Panoramic Sunroof",
+        "7 chỗ ngồi",
+        "Camera 360°",
+        "Đèn LED toàn bộ"
+      ]
+    },
+    {
+      "id": "suv-002",
+      "name": "Mazda CX-5 2.0 Premium",
+      "brand": "Mazda",
+      "price": 879000000,
+      "year": 2022,
+      "mileage": 35000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L",
+      "color": "Xanh",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "i-Activsense",
+        "Ghế da cao cấp",
+        "Màn hình HUD",
+        "Hệ thống Bose",
+        "Cửa sổ trời"
+      ]
+    },
+    {
+      "id": "suv-003",
+      "name": "Hyundai Tucson 2.0 AT",
+      "brand": "Hyundai",
+      "price": 825000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L",
+      "color": "Trắng",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": false,
+      "features": [
+        "SmartSense",
+        "Màn hình kép 10.25 inch",
+        "Sạc không dây",
+        "Ghế thông gió",
+        "Cửa cốp điện"
+      ]
+    },
+    {
+      "id": "suv-004",
+      "name": "Ford Everest Titanium 2.0L",
+      "brand": "Ford",
+      "price": 1399000000,
+      "year": 2023,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Dầu",
+      "engineSize": "2.0L Bi-Turbo",
+      "color": "Đen",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Dẫn động 4WD",
+        "Camera 360°",
+        "7 chỗ ngồi",
+        "Màn hình 12 inch",
+        "Hệ thống B&O"
+      ]
+    },
+    {
+      "id": "suv-005",
+      "name": "Toyota Fortuner 2.4G 4x2",
+      "brand": "Toyota",
+      "price": 1026000000,
+      "year": 2022,
+      "mileage": 42000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Dầu",
+      "engineSize": "2.4L",
+      "color": "Bạc",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": false,
+      "isInspected": true,
+      "features": [
+        "7 chỗ ngồi",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Màn hình 8 inch",
+        "Cruise Control"
+      ]
+    },
+    {
+      "id": "suv-006",
+      "name": "Mitsubishi Outlander 2.0 CVT",
+      "brand": "Mitsubishi",
+      "price": 825000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "bodyType": "SUV",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L",
+      "color": "Đỏ",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "7 chỗ ngồi",
+        "Cửa sổ trời",
+        "Camera 360°",
+        "Ghế da",
+        "Màn hình 9 inch"
+      ]
+    },
+    {
+      "id": "pickup-001",
+      "name": "Ford Ranger Wildtrak 2.0L",
+      "brand": "Ford",
+      "price": 965000000,
+      "year": 2022,
+      "mileage": 42000,
+      "transmission": "Số tự động",
+      "bodyType": "Bán tải",
+      "fuelType": "Dầu",
+      "engineSize": "2.0L Bi-Turbo",
+      "color": "Cam",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": false,
+      "isInspected": true,
+      "features": [
+        "Dẫn động 4x4",
+        "Camera 360°",
+        "Màn hình 10 inch",
+        "Cruise Control",
+        "Thùng xe có nắp"
+      ]
+    },
+    {
+      "id": "pickup-002",
+      "name": "Toyota Hilux 2.8G 4x4 AT",
+      "brand": "Toyota",
+      "price": 918000000,
+      "year": 2023,
+      "mileage": 25000,
+      "transmission": "Số tự động",
+      "bodyType": "Bán tải",
+      "fuelType": "Dầu",
+      "engineSize": "2.8L",
+      "color": "Trắng",
+      "seats": 5,
+      "image": "https://cdn.gianhangvn.com/image/toyota-hilux-2-8g-4x4-at-adventure-1-o89yl9c.jpg",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Dẫn động 4x4",
+        "Camera lùi",
+        "Màn hình 8 inch",
+        "Cruise Control",
+        "Ghế da"
+      ]
+    },
+    {
+      "id": "pickup-003",
+      "name": "Mitsubishi Triton 4x4 AT",
+      "brand": "Mitsubishi",
+      "price": 795000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "bodyType": "Bán tải",
+      "fuelType": "Dầu",
+      "engineSize": "2.4L",
+      "color": "Đen",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Dẫn động 4x4",
+        "Camera 360°",
+        "Màn hình 7 inch",
+        "Cảm biến lùi",
+        "Nắp thùng cuộn"
+      ]
+    },
+    {
+      "id": "hatchback-001",
+      "name": "Honda City RS",
+      "brand": "Honda",
+      "price": 599000000,
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "Số tự động",
+      "bodyType": "Hatchback",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L",
+      "color": "Đỏ",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Honda Sensing",
+        "Màn hình 8 inch",
+        "Cruise Control",
+        "Ghế da",
+        "Đèn LED"
+      ]
+    },
+    {
+      "id": "hatchback-002",
+      "name": "Mazda 3 1.5L Luxury",
+      "brand": "Mazda",
+      "price": 669000000,
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "bodyType": "Hatchback",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L",
+      "color": "Xanh",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": false,
+      "isInspected": true,
+      "features": [
+        "i-Activsense",
+        "Màn hình HUD",
+        "Ghế da",
+        "Hệ thống Bose",
+        "Đèn LED"
+      ]
+    },
+    {
+      "id": "hatchback-003",
+      "name": "Hyundai i10 1.2 AT",
+      "brand": "Hyundai",
+      "price": 405000000,
+      "year": 2024,
+      "mileage": 3000,
+      "transmission": "Số tự động",
+      "bodyType": "Hatchback",
+      "fuelType": "Xăng",
+      "engineSize": "1.2L",
+      "color": "Trắng",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Màn hình 8 inch",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Bluetooth",
+        "Chìa khóa thông minh"
+      ]
+    },
+    {
+      "id": "hatchback-004",
+      "name": "Hyundai Accent 1.4 AT",
+      "brand": "Hyundai",
+      "price": 426000000,
+      "year": 2023,
+      "mileage": 8000,
+      "transmission": "Số tự động",
+      "bodyType": "Hatchback",
+      "fuelType": "Xăng",
+      "engineSize": "1.4L",
+      "color": "Bạc",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Màn hình 7 inch",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Bluetooth",
+        "USB"
+      ]
+    },
+    {
+      "id": "mpv-001",
+      "name": "Toyota Innova 2.0E",
+      "brand": "Toyota",
+      "price": 750000000,
+      "year": 2023,
+      "mileage": 32000,
+      "transmission": "Số tự động",
+      "bodyType": "MPV",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L",
+      "color": "Bạc",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "7 chỗ ngồi",
+        "Camera lùi",
+        "Màn hình 7 inch",
+        "Cảm biến lùi",
+        "Bluetooth"
+      ]
+    },
+    {
+      "id": "mpv-002",
+      "name": "Mitsubishi Xpander 1.5 AT",
+      "brand": "Mitsubishi",
+      "price": 555000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "bodyType": "MPV",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L",
+      "color": "Trắng",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "7 chỗ ngồi",
+        "Camera 360°",
+        "Màn hình 9 inch",
+        "Cửa sổ trời",
+        "Ghế da"
+      ]
+    },
+    {
+      "id": "mpv-003",
+      "name": "Suzuki Ertiga 1.5 AT",
+      "brand": "Suzuki",
+      "price": 499000000,
+      "year": 2024,
+      "mileage": 5000,
+      "transmission": "Số tự động",
+      "bodyType": "MPV",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L",
+      "color": "Đen",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "7 chỗ ngồi",
+        "Camera lùi",
+        "Màn hình 7 inch",
+        "Bluetooth",
+        "Cảm biến lùi"
+      ]
+    },
+    {
+      "id": "mpv-004",
+      "name": "Kia Carnival 2.2 Luxury",
+      "brand": "Kia",
+      "price": 1399000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "bodyType": "MPV",
+      "fuelType": "Dầu",
+      "engineSize": "2.2L",
+      "color": "Đen",
+      "seats": 7,
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "7 chỗ VIP",
+        "Cửa trượt điện",
+        "Ghế massage",
+        "Màn hình kép",
+        "Camera 360°"
+      ]
+    },
+    {
+      "id": "luxury-001",
+      "name": "Mercedes-Benz C200 Exclusive",
+      "brand": "Mercedes",
+      "price": 1699000000,
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "1.5L Turbo",
+      "color": "Đen",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "MBUX",
+        "Ghế da Nappa",
+        "Cửa sổ trời",
+        "Hệ thống Burmester",
+        "Đèn LED thích ứng"
+      ]
+    },
+    {
+      "id": "luxury-002",
+      "name": "BMW 320i Sport Line",
+      "brand": "BMW",
+      "price": 1799000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L Turbo",
+      "color": "Xanh",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "iDrive 7.0",
+        "Ghế da Dakota",
+        "Cửa sổ trời",
+        "Harman Kardon",
+        "Driving Assistant"
+      ]
+    },
+    {
+      "id": "luxury-003",
+      "name": "Audi A4 40 TFSI",
+      "brand": "Audi",
+      "price": 1699000000,
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.0L Turbo",
+      "color": "Trắng",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "MMI Navigation",
+        "Virtual Cockpit",
+        "Ghế da",
+        "Bang & Olufsen",
+        "Matrix LED"
+      ]
+    },
+    {
+      "id": "luxury-004",
+      "name": "Lexus ES250",
+      "brand": "Lexus",
+      "price": 2599000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "bodyType": "Sedan",
+      "fuelType": "Xăng",
+      "engineSize": "2.5L",
+      "color": "Đen",
+      "seats": 5,
+      "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "features": [
+        "Lexus Safety System+",
+        "Ghế da cao cấp",
+        "Mark Levinson",
+        "Cửa sổ trời",
+        "HUD"
+      ]
+    }
+  ],
+  "filterOptions": {
+    "brands": [
+      {
+        "id": "all",
+        "title": "Hãng xe",
+        "value": ""
+      },
+      {
+        "id": "toyota",
+        "title": "Toyota",
+        "value": "Toyota"
+      },
+      {
+        "id": "honda",
+        "title": "Honda",
+        "value": "Honda"
+      },
+      {
+        "id": "mazda",
+        "title": "Mazda",
+        "value": "Mazda"
+      },
+      {
+        "id": "hyundai",
+        "title": "Hyundai",
+        "value": "Hyundai"
+      },
+      {
+        "id": "ford",
+        "title": "Ford",
+        "value": "Ford"
+      },
+      {
+        "id": "mercedes",
+        "title": "Mercedes",
+        "value": "Mercedes"
+      },
+      {
+        "id": "bmw",
+        "title": "BMW",
+        "value": "BMW"
+      },
+      {
+        "id": "mitsubishi",
+        "title": "Mitsubishi",
+        "value": "Mitsubishi"
+      },
+      {
+        "id": "suzuki",
+        "title": "Suzuki",
+        "value": "Suzuki"
+      },
+      {
+        "id": "kia",
+        "title": "Kia",
+        "value": "Kia"
+      },
+      {
+        "id": "audi",
+        "title": "Audi",
+        "value": "Audi"
+      },
+      {
+        "id": "lexus",
+        "title": "Lexus",
+        "value": "Lexus"
+      }
+    ],
+    "priceRanges": [
+      {
+        "value": "",
+        "label": "Tất cả giá"
+      },
+      {
+        "value": "0-500",
+        "label": "Dưới 500 triệu"
+      },
+      {
+        "value": "500-800",
+        "label": "500 - 800 triệu"
+      },
+      {
+        "value": "800-1200",
+        "label": "800 triệu - 1.2 tỷ"
+      },
+      {
+        "value": "1200+",
+        "label": "Trên 1.2 tỷ"
+      }
+    ],
+    "years": ["Tất cả", "2024", "2023", "2022", "2021", "2020", "Trước 2020"],
+    "bodyTypes": ["Tất cả loại", "Bán tải", "Hatchback", "MPV", "SUV", "Sedan"],
+    "transmissions": ["Tất cả", "Số tự động", "Số sàn"]
+  },
+  "carDetails": [
+    {
+      "id": "sedan-001",
+      "name": "Toyota Camry 2.5Q",
+      "brand": "Toyota",
+      "price": 1250000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "location": "Quận 7, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Xe gia đình sử dụng kỹ, bảo dưỡng định kỳ tại hãng. Cam kết không đâm đụng, không ngập nước. Nội thất da cao cấp còn mới nguyên, đầy đủ tiện nghi hiện đại. Hỗ trợ sang tên nhanh chóng trong ngày.",
+      "images": [
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hệ thống phanh ABS/EBD/BA",
+        "Cân bằng điện tử VSC",
+        "Cảnh báo điểm mù BSM",
+        "Cửa sổ trời toàn cảnh",
+        "Ghế da chỉnh điện 10 hướng",
+        "Màn hình giải trí 9 inch",
+        "Hệ thống âm thanh JBL 9 loa",
+        "Camera 360 độ",
+        "Sạc không dây Qi"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "15,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.5L Dynamic Force"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "207 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "250 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 8 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4885 x 1840 x 1445 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2825 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "60 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Be"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-001",
+      "name": "Honda CR-V 1.5L Turbo",
+      "brand": "Honda",
+      "price": 998000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "location": "Quận 1, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1568844293986-8c1a5f8b3d8e?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Honda CR-V phiên bản cao cấp, động cơ turbo mạnh mẽ. Xe chạy êm ái, tiết kiệm nhiên liệu. Nội thất rộng rãi, phù hợp gia đình. Bảo dưỡng đầy đủ tại hãng, còn bảo hành chính hãng.",
+      "images": [
+        "https://images.unsplash.com/photo-1568844293986-8c1a5f8b3d8e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Honda Sensing - Hệ thống an toàn chủ động",
+        "Phanh tay điện tử Auto Hold",
+        "Cruise Control thích ứng",
+        "Cảnh báo lệch làn đường",
+        "Ghế lái chỉnh điện 8 hướng",
+        "Màn hình cảm ứng 7 inch",
+        "Kết nối Apple CarPlay/Android Auto",
+        "Camera lùi đa góc",
+        "Cửa cốp điện thông minh"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "22,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L VTEC Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "188 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "240 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4600 x 1855 x 1679 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2660 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "198 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "57 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng ngọc trai"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-002",
+      "name": "Mazda CX-5 2.0 Premium",
+      "brand": "Mazda",
+      "price": 879000000,
+      "year": 2022,
+      "mileage": 35000,
+      "transmission": "Số tự động",
+      "location": "Quận Bình Thạnh, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Mazda CX-5 thiết kế KODO đẳng cấp, công nghệ SkyActiv tiết kiệm nhiên liệu. Xe được chăm sóc định kỳ, nội thất sạch sẽ. Phù hợp cho người yêu thích lái xe thể thao nhưng vẫn tiện nghi.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Công nghệ SkyActiv tiết kiệm nhiên liệu",
+        "Hệ thống i-Activsense",
+        "Màn hình HUD hiển thị kính lái",
+        "Hệ thống âm thanh Bose 10 loa",
+        "Ghế da Nappa cao cấp",
+        "Điều hòa tự động 2 vùng",
+        "Chìa khóa thông minh",
+        "Cửa sổ trời điện",
+        "Đèn LED toàn bộ"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Nhật Bản"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "35,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L SkyActiv-G"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "165 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "213 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4575 x 1842 x 1685 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2700 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "210 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "56 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đỏ Soul"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Nâu"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da Nappa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-003",
+      "name": "Hyundai Tucson 2.0 AT",
+      "brand": "Hyundai",
+      "price": 825000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "location": "Quận Thủ Đức, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": false,
+      "description": "Hyundai Tucson thế hệ mới với thiết kế hiện đại, công nghệ SmartSense. Xe ít sử dụng, chủ yêu quý. Nội thất sang trọng, trang bị đầy đủ tiện nghi. Giá tốt cho người mua nhanh.",
+      "images": [
+        "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617654112368-307921291f42?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606220838315-056192d5e927?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hyundai SmartSense - An toàn chủ động",
+        "Màn hình kép 10.25 inch",
+        "Sạc điện thoại không dây",
+        "Ghế lái nhớ vị trí",
+        "Cửa cốp chân cảm ứng",
+        "Điều hòa tự động 2 vùng độc lập",
+        "Đèn LED Parametric",
+        "Chìa khóa thẻ thông minh",
+        "Phanh tay điện tử Auto Hold"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "18,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L MPI"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "156 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "192 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4630 x 1865 x 1665 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2755 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "180 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "54 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh dương"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pickup-001",
+      "name": "Ford Ranger Wildtrak",
+      "brand": "Ford",
+      "price": 965000000,
+      "year": 2022,
+      "mileage": 42000,
+      "transmission": "Số tự động",
+      "location": "Quận 9, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": false,
+      "isInspected": true,
+      "description": "Ford Ranger Wildtrak bản cao cấp nhất, động cơ diesel mạnh mẽ. Xe dùng chạy công việc, bảo dưỡng tốt. Thùng xe còn mới, không trầy xước. Phù hợp kinh doanh hoặc gia đình thích off-road.",
+      "images": [
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hệ thống dẫn động 4 bánh điện tử",
+        "Hệ thống kiểm soát địa hình TMS",
+        "Camera 360 độ",
+        "Cảm biến đỗ xe trước/sau",
+        "Màn hình SYNC 3 cảm ứng 8 inch",
+        "Ghế da chỉnh điện",
+        "Điều hòa tự động 2 vùng",
+        "Đèn LED chiếu xa/gần",
+        "Thùng xe có nắp cuộn"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "42,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L Bi-Turbo Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "213 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "500 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 10 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "4 bánh (4WD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "5362 x 1860 x 1848 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "3220 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "237 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "80 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Cam"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sedan-005",
+      "name": "Toyota Vios 1.5G CVT",
+      "brand": "Toyota",
+      "price": 478000000,
+      "year": 2024,
+      "mileage": 5000,
+      "transmission": "Số tự động",
+      "location": "Quận 10, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Toyota Vios mới 99%, chạy rodai 5000km. Xe như mới, còn nguyên mùi xe mới. Chủ nhà mua nhầm nên bán lại. Giá tốt hơn mua mới, còn bảo hành chính hãng dài hạn.",
+      "images": [
+        "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí kép",
+        "Cân bằng điện tử VSC",
+        "Hỗ trợ khởi hành ngang dốc HAC",
+        "Màn hình DVD 7 inch",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Chìa khóa thông minh",
+        "Khởi động bằng nút bấm"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2024"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Như mới"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "5,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L Dual VVT-i"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "107 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "140 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4425 x 1730 x 1475 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2550 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "133 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "42 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Be"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Nỉ"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-001",
+      "name": "Honda City RS",
+      "brand": "Honda",
+      "price": 599000000,
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "Số tự động",
+      "location": "Quận 3, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Honda City RS phiên bản thể thao, thiết kế trẻ trung năng động. Xe chạy ít, bảo dưỡng định kỳ. Nội thất đen thể thao, trang bị Honda Sensing đầy đủ. Phù hợp người trẻ yêu công nghệ.",
+      "images": [
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1568844293986-8c1a5f8b3d8e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Honda Sensing - An toàn chủ động",
+        "Cruise Control thích ứng ACC",
+        "Cảnh báo va chạm phía trước FCW",
+        "Phanh giảm thiểu va chạm CMBS",
+        "Màn hình cảm ứng 8 inch",
+        "Kết nối Apple CarPlay/Android Auto",
+        "Điều hòa tự động",
+        "Đèn LED toàn bộ",
+        "Mâm hợp kim 16 inch"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "12,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L i-VTEC"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "121 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "145 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4580 x 1748 x 1467 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2600 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "134 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "40 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đỏ"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Nỉ cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-002",
+      "name": "Mazda 3 1.5L Luxury",
+      "brand": "Mazda",
+      "price": 669000000,
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "location": "Quận 2, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": false,
+      "isInspected": true,
+      "description": "Mazda 3 sedan thiết kế KODO sang trọng, lái thể thao. Xe chạy êm, cách âm tốt. Nội thất đẹp, ghế da cao cấp. Phù hợp người trẻ thành đạt, yêu thích lái xe năng động.",
+      "images": [
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Công nghệ SkyActiv-G",
+        "Hệ thống i-Activsense",
+        "Màn hình HUD",
+        "Màn hình trung tâm 8 inch",
+        "Hệ thống âm thanh Bose 12 loa",
+        "Ghế da cao cấp",
+        "Điều hòa tự động",
+        "Cửa sổ trời",
+        "Đèn LED thích ứng ALH"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "28,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L SkyActiv-G"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "110 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "144 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4662 x 1797 x 1445 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2726 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "51 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh dương"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-004",
+      "name": "Hyundai Accent 1.4 AT",
+      "brand": "Hyundai",
+      "price": 426000000,
+      "year": 2023,
+      "mileage": 8000,
+      "transmission": "Số tự động",
+      "location": "Quận Tân Bình, TP. Hồ Chí Minh",
+      "image": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&auto=format&fit=crop&q=80",
+      "hasWarranty": true,
+      "isInspected": true,
+      "description": "Hyundai Accent sedan hạng B tiết kiệm, phù hợp gia đình trẻ. Xe mới chạy 8000km, còn rất mới. Nội thất sạch sẽ, trang bị đầy đủ tiện nghi cơ bản. Giá tốt, hỗ trợ trả góp.",
+      "images": [
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí kép",
+        "Cân bằng điện tử ESC",
+        "Hỗ trợ khởi hành ngang dốc HAC",
+        "Màn hình cảm ứng 8 inch",
+        "Kết nối Apple CarPlay/Android Auto",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Điều hòa tự động"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "8,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.4L MPI"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "100 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "132 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4495 x 1729 x 1475 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2670 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "152 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "45 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Bạc"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Nỉ"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ServicesData": [
+    {
+      "id": "maintenance-repair",
+      "title": "Bảo Dưỡng & Sửa Chữa",
+      "description": "Dịch vụ bảo dưỡng định kỳ và sửa chữa chuyên sâu với trang thiết bị hiện đại.",
+      "icon": "wrench",
+      "features": [
+        "Bảo dưỡng định kỳ các cấp",
+        "Sửa chữa động cơ, hộp số",
+        "Thay thế phụ tùng chính hãng"
+      ],
+      "cta": "Tìm hiểu thêm"
+    },
+    {
+      "id": "used-car-purchase",
+      "title": "Thu Mua Xe Cũ",
+      "description": "Thu mua xe ô tô đã qua sử dụng với giá cao nhất thị trường, thủ tục nhanh gọn.",
+      "icon": "car",
+      "features": [
+        "Định giá miễn phí tận nơi",
+        "Thu mua nhanh trong 24h",
+        "Thanh toán 100% tiền mặt"
+      ],
+      "cta": "Tìm hiểu thêm"
+    },
+    {
+      "id": "installment-consulting",
+      "title": "Tư Vấn Trả Góp",
+      "description": "Hỗ trợ vay mua xe trả góp với lãi suất ưu đãi từ các ngân hàng uy tín.",
+      "icon": "credit-card",
+      "features": [
+        "Lãi suất ưu đãi cạnh tranh",
+        "Duyệt hồ sơ nhanh trong 2h",
+        "Hỗ trợ vay lên đến 80%"
+      ],
+      "cta": "Tìm hiểu thêm"
+    },
+    {
+      "id": "vehicle-inspection",
+      "title": "Kiểm Định Xe",
+      "description": "Dịch vụ kiểm tra chất lượng xe cũ chuyên nghiệp, minh bạch và chi tiết.",
+      "icon": "clipboard-check",
+      "features": [
+        "Kiểm tra 150 điểm kỹ thuật",
+        "Báo cáo tình trạng chi tiết",
+        "Cam kết chất lượng bằng văn bản"
+      ],
+      "cta": "Tìm hiểu thêm"
+    },
+    {
+      "id": "car-insurance",
+      "title": "Bảo Hiểm Xe",
+      "description": "Cung cấp các gói bảo hiểm vật chất, trách nhiệm dân sự với quyền lợi tốt nhất.",
+      "icon": "shield",
+      "features": [
+        "Đa dạng gói bảo hiểm",
+        "Chi phí hợp lý, ưu đãi",
+        "Hỗ trợ bồi thường nhanh chóng"
+      ],
+      "cta": "Tìm hiểu thêm"
+    },
+    {
+      "id": "genuine-parts",
+      "title": "Phụ Tùng Chính Hãng",
+      "description": "Cung cấp phụ tùng, phụ kiện ô tô chính hãng cho các dòng xe phổ biến.",
+      "icon": "gear",
+      "features": [
+        "100% phụ tùng chính hãng",
+        "Bảo hành dài hạn",
+        "Giao hàng và lắp đặt tận nơi"
+      ],
+      "cta": "Tìm hiểu thêm"
+    }
+  ],
+  "articles": [
+    {
+      "id": "article-1",
+      "title": "Hướng Dẫn Kiểm Tra Xe Cũ Trước Khi Mua: 10 Điểm Cần Lưu Ý",
+      "excerpt": "Mua xe cũ giúp tiết kiệm chi phí nhưng cũng tiềm ẩn rủi ro. Hãy nắm vững 10 điểm kiểm tra quan trọng này để tránh mua phải xe kém chất lượng. Từ kiểm tra ngoại thất, nội thất đến động cơ và hộp số.",
+      "category": "Tư Vấn Mua Xe",
+      "image": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&auto=format&fit=crop&q=80",
+      "date": "12 Th12, 2024",
+      "readTime": "6 phút đọc"
+    },
+    {
+      "id": "article-2",
+      "title": "Khuyến Mãi Cuối Năm: Giảm Đến 100 Triệu Cho Dòng Xe Mazda",
+      "excerpt": "Cơ hội sở hữu xe Mazda với mức giá hấp dẫn nhất trong năm. Chương trình áp dụng cho Mazda 3, CX-5 và CX-8 cùng nhiều quà tặng giá trị. Thời gian có hạn, nhanh tay đăng ký ngay hôm nay.",
+      "category": "Khuyến Mãi",
+      "image": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&auto=format&fit=crop&q=80",
+      "date": "10 Th12, 2024",
+      "readTime": "3 phút đọc"
+    },
+    {
+      "id": "article-3",
+      "title": "Bí Quyết Bảo Dưỡng Xe Ô Tô Tiết Kiệm Chi Phí & Hiệu Quả",
+      "excerpt": "Bảo dưỡng định kỳ là chìa khóa để xe luôn bền bỉ. Chia sẻ những mẹo nhỏ giúp bạn chăm sóc xế yêu đúng cách mà không tốn kém. Từ việc thay dầu đến kiểm tra lốp xe.",
+      "category": "Bảo Dưỡng",
+      "image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop&q=80",
+      "date": "08 Th12, 2024",
+      "readTime": "5 phút đọc"
+    },
+    {
+      "id": "article-4",
+      "title": "Toyota Ra Mắt Vios 2024: Thay Đổi Thiết Kế, Thêm Công Nghệ",
+      "excerpt": "Mẫu sedan quốc dân Toyota Vios phiên bản 2024 chính thức ra mắt với diện mạo trẻ trung hơn cùng gói an toàn Toyota Safety Sense. Giá bán dự kiến từ 478 triệu đồng.",
+      "category": "Tin Tức Xe",
+      "image": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=800&auto=format&fit=crop&q=80",
+      "date": "05 Th12, 2024",
+      "readTime": "4 phút đọc"
+    },
+    {
+      "id": "article-5",
+      "title": "So Sánh Honda City và Hyundai Accent: Chọn Xe Nào Trong Tầm Giá 500 Triệu?",
+      "excerpt": "Cuộc đối đầu không hồi kết giữa hai mẫu sedan hạng B bán chạy nhất. Đâu là lựa chọn phù hợp với nhu cầu gia đình bạn? Phân tích chi tiết về thiết kế, tính năng và giá cả.",
+      "category": "Tư Vấn Mua Xe",
+      "image": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&auto=format&fit=crop&q=80",
+      "date": "01 Th12, 2024",
+      "readTime": "7 phút đọc"
+    },
+    {
+      "id": "article-6",
+      "title": "Lịch Bảo Dưỡng Định Kỳ: Những Mốc Km Quan Trọng Cần Nhớ",
+      "excerpt": "Đừng bỏ qua các mốc bảo dưỡng 5.000km, 10.000km, 40.000km. Chi tiết các hạng mục cần kiểm tra và thay thế để đảm bảo an toàn. Bảng chi phí tham khảo cho từng mốc.",
+      "category": "Bảo Dưỡng",
+      "image": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=800&auto=format&fit=crop&q=80",
+      "date": "28 Th11, 2024",
+      "readTime": "5 phút đọc"
+    },
+    {
+      "id": "article-7",
+      "title": "VinFast VF 6 Chính Thức Nhận Cọc: Giá Từ 675 Triệu Đồng",
+      "excerpt": "Mẫu SUV điện hạng B của VinFast gây ấn tượng với thiết kế hiện đại, tầm hoạt động lên đến 399km và chính sách thuê pin linh hoạt. Dự kiến giao xe quý 1/2025.",
+      "category": "Tin Tức Xe",
+      "image": "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&auto=format&fit=crop&q=80",
+      "date": "25 Th11, 2024",
+      "readTime": "4 phút đọc"
+    },
+    {
+      "id": "article-8",
+      "title": "Ưu Đãi Lãi Suất Vay Mua Xe Chỉ 6.9%/Năm Tại AutoViet",
+      "excerpt": "Hợp tác cùng các ngân hàng lớn, AutoViet mang đến gói vay mua xe với lãi suất ưu đãi cố định 12 tháng đầu. Thủ tục nhanh gọn, duyệt trong 24h. Vay lên đến 80% giá trị xe.",
+      "category": "Khuyến Mãi",
+      "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop&q=80",
+      "date": "20 Th11, 2024",
+      "readTime": "3 phút đọc"
+    },
+    {
+      "id": "article-9",
+      "title": "Đánh Giá Ford Ranger Raptor 2024: Bán Tải Thể Thao Đỉnh Cao",
+      "excerpt": "Ford Ranger Raptor 2024 với động cơ V6 3.0L twin-turbo mạnh mẽ, hệ thống treo FOX Racing và thiết kế hầm hố. Trải nghiệm off-road đỉnh cao với giá 1.4 tỷ đồng.",
+      "category": "Tin Tức Xe",
+      "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&auto=format&fit=crop&q=80",
+      "date": "18 Th11, 2024",
+      "readTime": "6 phút đọc"
+    },
+    {
+      "id": "article-10",
+      "title": "5 Lỗi Thường Gặp Khi Lái Xe Số Tự Động & Cách Khắc Phục",
+      "excerpt": "Nhiều tài xế mắc phải những sai lầm cơ bản khi sử dụng hộp số tự động, gây hao mòn và giảm tuổi thọ xe. Tìm hiểu cách lái đúng để bảo vệ hộp số của bạn.",
+      "category": "Tư Vấn Mua Xe",
+      "image": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&auto=format&fit=crop&q=80",
+      "date": "15 Th11, 2024",
+      "readTime": "5 phút đọc"
+    },
+    {
+      "id": "article-11",
+      "title": "Cách Nhận Biết Xe Ngập Nước: Dấu Hiệu Không Thể Bỏ Qua",
+      "excerpt": "Xe ngập nước là nỗi lo của nhiều người mua xe cũ. Học cách phát hiện các dấu hiệu như mùi ẩm mốc, vết nước trong đèn, rỉ sét dưới gầm để tránh mua nhầm.",
+      "category": "Tư Vấn Mua Xe",
+      "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80",
+      "date": "12 Th11, 2024",
+      "readTime": "6 phút đọc"
+    },
+    {
+      "id": "article-12",
+      "title": "Thay Lốp Xe Đúng Cách: Khi Nào Cần Thay & Chọn Lốp Như Thế Nào?",
+      "excerpt": "Lốp xe là bộ phận quan trọng ảnh hưởng đến an toàn. Hướng dẫn kiểm tra độ mòn, thời điểm cần thay và cách chọn lốp phù hợp với từng loại xe và điều kiện đường.",
+      "category": "Bảo Dưỡng",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80",
+      "date": "10 Th11, 2024",
+      "readTime": "5 phút đọc"
+    },
+    {
+      "id": "article-13",
+      "title": "Hyundai Tucson 2024: Nâng Cấp Công Nghệ, Giữ Nguyên Giá Bán",
+      "excerpt": "Hyundai Tucson 2024 bổ sung thêm tính năng an toàn, màn hình giải trí lớn hơn nhưng vẫn giữ mức giá cạnh tranh từ 799 triệu đồng. Đánh giá chi tiết các thay đổi.",
+      "category": "Tin Tức Xe",
+      "image": "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&auto=format&fit=crop&q=80",
+      "date": "08 Th11, 2024",
+      "readTime": "4 phút đọc"
+    },
+    {
+      "id": "article-14",
+      "title": "Mua Xe Trả Góp: Những Điều Cần Biết Để Không Mắc Bẫy",
+      "excerpt": "Vay mua xe giúp sở hữu xe sớm nhưng cần hiểu rõ lãi suất, phí ẩn và điều khoản hợp đồng. Hướng dẫn chi tiết để bạn có được gói vay tốt nhất.",
+      "category": "Tư Vấn Mua Xe",
+      "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=80",
+      "date": "05 Th11, 2024",
+      "readTime": "7 phút đọc"
+    },
+    {
+      "id": "article-15",
+      "title": "Chương Trình Đổi Xe Cũ Lấy Xe Mới: Nhận Thêm 50 Triệu",
+      "excerpt": "AutoViet triển khai chương trình thu cũ đổi mới với giá thu cao hơn thị trường 50 triệu đồng. Áp dụng cho tất cả các dòng xe, thủ tục đơn giản, thanh toán nhanh.",
+      "category": "Khuyến Mãi",
+      "image": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&auto=format&fit=crop&q=80",
+      "date": "01 Th11, 2024",
+      "readTime": "3 phút đọc"
+    }
+  ],
+  "articlesDetail": [
+    {
+      "id": "article-1",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Mua xe cũ là lựa chọn thông minh để tiết kiệm chi phí, nhưng đòi hỏi bạn phải có kiến thức để tránh rủi ro. Dưới đây là 10 điểm kiểm tra quan trọng nhất mà bất kỳ ai cũng nên biết trước khi quyết định mua xe đã qua sử dụng."
+        },
+        {
+          "type": "heading",
+          "content": "1. Kiểm Tra Ngoại Thất & Sơn Xe"
+        },
+        {
+          "type": "paragraph",
+          "content": "Quan sát kỹ bề mặt sơn dưới ánh sáng tự nhiên. Sơn không đều màu, có vết sóng hoặc bụi là dấu hiệu xe đã qua sửa chữa. Dùng nam châm kiểm tra bề mặt - nếu không dính là đã bị đắp bồi."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Kiểm tra độ đồng đều của màu sơn",
+            "Tìm vết lõm, trầy xước trên thân xe",
+            "Kiểm tra khe hở giữa các chi tiết",
+            "Quan sát gioăng cửa, nắp capo, cốp sau",
+            "Dùng nam châm test bề mặt kim loại"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "2. Kiểm Tra Khung Gầm & Chassis"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đây là phần quan trọng nhất. Nâng xe lên hoặc dùng hố sửa chữa để quan sát gầm xe. Tìm dấu hiệu hàn, uốn cong, rỉ sét bất thường. Xe tai nạn nặng thường có vết hàn ở khung gầm."
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Kiểm tra kỹ khung gầm để phát hiện xe tai nạn"
+        },
+        {
+          "type": "heading",
+          "content": "3. Động Cơ & Hộp Số"
+        },
+        {
+          "type": "paragraph",
+          "content": "Khởi động xe khi lạnh để nghe tiếng động cơ. Động cơ tốt sẽ nổ êm, không rung giật. Kiểm tra dầu động cơ - màu đen sệt là dấu hiệu không bảo dưỡng đúng hạn. Thử chuyển số để cảm nhận độ mượt của hộp số."
+        },
+        {
+          "type": "quote",
+          "content": "Một động cơ được bảo dưỡng tốt là yếu tố quan trọng nhất quyết định tuổi thọ của xe."
+        },
+        {
+          "type": "heading",
+          "content": "4. Hệ Thống Treo & Giảm Xóc"
+        },
+        {
+          "type": "paragraph",
+          "content": "Lắc xe mạnh ở 4 góc. Nếu xe tiếp tục dao động sau 2-3 lần là giảm xóc đã yếu. Lái thử qua gờ giảm tốc để cảm nhận độ cứng của hệ thống treo."
+        },
+        {
+          "type": "heading",
+          "content": "5. Nội Thất & Điện Tử"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Kiểm tra ghế ngồi, vô lăng có mòn bất thường",
+            "Test tất cả nút bấm, công tắc",
+            "Thử điều hòa, hệ thống âm thanh",
+            "Kiểm tra đèn báo trên táp-lô",
+            "Test cửa sổ điện, gương chiếu hậu"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "6. Số Km Thực Tế"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đối chiếu số km với tình trạng xe. Xe chạy 50,000km nhưng ghế lái mòn nhiều, vô lăng bóng loáng là dấu hiệu đáng ngờ. Kiểm tra lịch sử bảo dưỡng để xác nhận số km."
+        },
+        {
+          "type": "heading",
+          "content": "7. Hệ Thống Phanh"
+        },
+        {
+          "type": "paragraph",
+          "content": "Lái thử và thử phanh gấp ở tốc độ an toàn. Xe không được lệch hướng, rung giật. Kiểm tra độ dày má phanh - nếu dưới 3mm cần thay ngay."
+        },
+        {
+          "type": "heading",
+          "content": "8. Lốp Xe & Mâm"
+        },
+        {
+          "type": "paragraph",
+          "content": "Kiểm tra độ mòn đều của 4 lốp. Lốp mòn không đều là dấu hiệu cân chỉnh góc đặt bánh xe sai. Kiểm tra năm sản xuất lốp - lốp quá 5 năm nên thay mới."
+        },
+        {
+          "type": "heading",
+          "content": "9. Giấy Tờ & Pháp Lý"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Đăng ký xe (cavet) gốc, không sao chụp",
+            "Giấy chứng nhận bảo hiểm còn hạn",
+            "Hợp đồng mua bán rõ ràng",
+            "Kiểm tra phạt nguội qua app",
+            "Xác minh chủ xe qua CMND/CCCD"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "10. Lái Thử & Cảm Nhận"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đây là bước quan trọng nhất. Lái thử ít nhất 15-20 phút trên nhiều loại đường. Chú ý tiếng động bất thường, độ ổn định của xe, cảm giác vô lăng và khả năng tăng tốc."
+        },
+        {
+          "type": "quote",
+          "content": "Đừng vội vàng quyết định. Hãy dành thời gian kiểm tra kỹ càng hoặc nhờ thợ chuyên nghiệp đồng hành."
+        },
+        {
+          "type": "paragraph",
+          "content": "Tại AutoViet, tất cả xe đều qua kiểm định 150 điểm và có báo cáo chi tiết. Chúng tôi cam kết minh bạch về tình trạng xe và hỗ trợ khách hàng trong suốt quá trình mua xe. Liên hệ ngay để được tư vấn!"
+        }
+      ],
+      "tags": ["Mua xe cũ", "Kiểm tra xe", "Tư vấn", "Hướng dẫn"],
+      "relatedArticles": ["article-11", "article-14", "article-10"]
+    },
+    {
+      "id": "article-2",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Chương trình khuyến mãi cuối năm lớn nhất từ AutoViet dành cho dòng xe Mazda! Đây là cơ hội vàng để sở hữu những mẫu xe Mazda chất lượng với mức giá ưu đãi chưa từng có."
+        },
+        {
+          "type": "heading",
+          "content": "Ưu Đãi Áp Dụng Cho Các Dòng Xe"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Mazda 3: Giảm 80 triệu đồng",
+            "Mazda CX-5: Giảm 100 triệu đồng",
+            "Mazda CX-8: Giảm 100 triệu đồng",
+            "Mazda 6: Giảm 70 triệu đồng",
+            "Mazda 2: Giảm 50 triệu đồng"
+          ]
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Mazda CX-5 - Giảm giá lên đến 100 triệu đồng"
+        },
+        {
+          "type": "heading",
+          "content": "Quà Tặng Kèm Theo"
+        },
+        {
+          "type": "paragraph",
+          "content": "Ngoài ưu đãi giảm giá trực tiếp, khách hàng còn nhận được gói quà tặng giá trị bao gồm:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Bảo hiểm vật chất 1 năm (trị giá 15 triệu)",
+            "Phim cách nhiệt 3M chính hãng",
+            "Thảm lót sàn cao cấp",
+            "Camera hành trình",
+            "Gói bảo dưỡng miễn phí 10,000km đầu tiên"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Hỗ Trợ Vay Vốn Ưu Đãi"
+        },
+        {
+          "type": "paragraph",
+          "content": "AutoViet hợp tác với các ngân hàng lớn mang đến gói vay với lãi suất chỉ 6.9%/năm cố định 12 tháng đầu. Vay lên đến 80% giá trị xe, thời gian vay linh hoạt đến 7 năm."
+        },
+        {
+          "type": "quote",
+          "content": "Chỉ cần trả trước 20%, bạn đã có thể lái xe Mazda về nhà ngay hôm nay!"
+        },
+        {
+          "type": "heading",
+          "content": "Điều Kiện & Thời Gian Áp Dụng"
+        },
+        {
+          "type": "paragraph",
+          "content": "Chương trình áp dụng từ ngày 10/12/2024 đến hết 31/12/2024 hoặc cho đến khi hết xe. Số lượng xe khuyến mãi có hạn, ưu tiên khách hàng đặt cọc trước."
+        },
+        {
+          "type": "paragraph",
+          "content": "Liên hệ ngay hotline 0901 234 567 hoặc đến trực tiếp showroom AutoViet để được tư vấn chi tiết và đặt xe. Đừng bỏ lỡ cơ hội sở hữu xe Mazda với giá tốt nhất năm!"
+        }
+      ],
+      "tags": ["Khuyến mãi", "Mazda", "Giảm giá", "Ưu đãi"],
+      "relatedArticles": ["article-8", "article-15", "article-3"]
+    },
+    {
+      "id": "article-3",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Bảo dưỡng xe định kỳ không chỉ giúp xe hoạt động tốt mà còn tiết kiệm chi phí sửa chữa lớn trong tương lai. Dưới đây là những bí quyết giúp bạn chăm sóc xe hiệu quả mà không tốn kém."
+        },
+        {
+          "type": "heading",
+          "content": "1. Thay Dầu Động Cơ Đúng Hạn"
+        },
+        {
+          "type": "paragraph",
+          "content": "Dầu động cơ là \"máu\" của xe. Thay dầu đúng chu kỳ 5,000-10,000km tùy loại dầu. Sử dụng dầu tổng hợp chất lượng cao sẽ bền hơn và bảo vệ động cơ tốt hơn, dù giá cao hơn nhưng lâu hơn mới phải thay."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Dầu khoáng: Thay mỗi 5,000km",
+            "Dầu bán tổng hợp: Thay mỗi 7,500km",
+            "Dầu tổng hợp: Thay mỗi 10,000km",
+            "Luôn thay lọc dầu cùng lúc"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "2. Kiểm Tra Áp Suất Lốp Thường Xuyên"
+        },
+        {
+          "type": "paragraph",
+          "content": "Lốp non hoặc căng quá đều ảnh hưởng đến mức tiêu hao nhiên liệu và độ bền lốp. Kiểm tra áp suất lốp mỗi tuần, đặc biệt trước khi đi đường dài. Áp suất chuẩn ghi trên cột B hoặc nắp bình xăng."
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Bảo dưỡng định kỳ giúp xe luôn hoạt động tốt"
+        },
+        {
+          "type": "heading",
+          "content": "3. Vệ Sinh Lọc Gió Động Cơ"
+        },
+        {
+          "type": "paragraph",
+          "content": "Lọc gió bẩn làm giảm công suất và tăng tiêu hao nhiên liệu. Vệ sinh lọc gió mỗi 5,000km, thay mới mỗi 20,000km. Bạn có thể tự làm bằng cách dùng máy thổi hoặc gõ nhẹ để bụi rơi ra."
+        },
+        {
+          "type": "heading",
+          "content": "4. Kiểm Tra Hệ Thống Làm Mát"
+        },
+        {
+          "type": "paragraph",
+          "content": "Nước làm mát động cơ cần được thay mỗi 2 năm hoặc 40,000km. Kiểm tra mức nước thường xuyên, đặc biệt mùa hè. Sử dụng nước làm mát chuyên dụng, không dùng nước lã vì gây ăn mòn."
+        },
+        {
+          "type": "heading",
+          "content": "5. Chăm Sóc Ắc Quy"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Vệ sinh cực ắc quy định kỳ",
+            "Kiểm tra mức nước cất (ắc quy khô)",
+            "Sạc ắc quy nếu để xe lâu không chạy",
+            "Thay ắc quy sau 3-4 năm sử dụng"
+          ]
+        },
+        {
+          "type": "quote",
+          "content": "Bảo dưỡng định kỳ tốn một chút tiền nhưng sẽ giúp bạn tránh được những chi phí sửa chữa lớn không đáng có."
+        },
+        {
+          "type": "heading",
+          "content": "6. Bảo Quản Xe Đúng Cách"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đỗ xe trong nhà hoặc dưới mái che để tránh nắng mưa. Nếu phải đỗ ngoài trời, dùng bạt phủ xe. Rửa xe định kỳ để loại bỏ bụi bẩn, nhựa đường có thể ăn mòn sơn."
+        },
+        {
+          "type": "heading",
+          "content": "7. Lái Xe Nhẹ Nhàng"
+        },
+        {
+          "type": "paragraph",
+          "content": "Cách lái xe ảnh hưởng lớn đến tuổi thọ xe. Tránh tăng tốc, phanh gấp không cần thiết. Khởi động xe 30 giây trước khi chạy để dầu bôi trơn đầy đủ. Không để xe chạy ở vòng tua cao khi chưa đạt nhiệt độ làm việc."
+        },
+        {
+          "type": "paragraph",
+          "content": "Tại AutoViet, chúng tôi cung cấp dịch vụ bảo dưỡng chuyên nghiệp với giá cả hợp lý. Đặt lịch ngay để được tư vấn và chăm sóc xe tận tình!"
+        }
+      ],
+      "tags": ["Bảo dưỡng", "Chăm sóc xe", "Tiết kiệm", "Hướng dẫn"],
+      "relatedArticles": ["article-6", "article-12", "article-10"]
+    },
+    {
+      "id": "article-4",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Toyota Vios 2024 chính thức ra mắt thị trường Việt Nam với những thay đổi đáng kể về thiết kế và công nghệ. Mẫu sedan quốc dân này tiếp tục khẳng định vị thế trong phân khúc B với những nâng cấp toàn diện."
+        },
+        {
+          "type": "heading",
+          "content": "Thiết Kế Ngoại Thất Trẻ Trung Hơn"
+        },
+        {
+          "type": "paragraph",
+          "content": "Vios 2024 sở hữu diện mạo mới mẻ với lưới tản nhiệt hình thang lớn hơn, đèn LED chiếu sáng ban ngày hình chữ L đặc trưng và cản trước thể thao. Tổng thể xe trông năng động và hiện đại hơn so với thế hệ trước."
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Toyota Vios 2024 với thiết kế ngoại thất trẻ trung"
+        },
+        {
+          "type": "heading",
+          "content": "Nội Thất Nâng Cấp Công Nghệ"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Màn hình cảm ứng 9 inch hỗ trợ Apple CarPlay & Android Auto",
+            "Vô lăng 3 chấu bọc da mới",
+            "Ghế da cao cấp với chỉnh điện cho ghế lái",
+            "Điều hòa tự động 1 vùng",
+            "Cụm đồng hồ kỹ thuật số 4.2 inch"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "An Toàn Toyota Safety Sense"
+        },
+        {
+          "type": "paragraph",
+          "content": "Điểm nhấn lớn nhất của Vios 2024 là trang bị gói công nghệ an toàn Toyota Safety Sense (TSS) trên phiên bản cao cấp nhất, bao gồm:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Hệ thống cảnh báo tiền va chạm (PCS)",
+            "Hỗ trợ giữ làn đường (LDA)",
+            "Điều khiển hành trình chủ động (ACC)",
+            "Cảnh báo chệch làn đường (LDW)",
+            "7 túi khí an toàn"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Động Cơ & Vận Hành"
+        },
+        {
+          "type": "paragraph",
+          "content": "Vios 2024 vẫn sử dụng động cơ 1.5L Dual VVT-i quen thuộc, sản sinh công suất 107 mã lực và mô-men xoắn 140 Nm. Đi kèm là hộp số vô cấp CVT hoặc số sàn 5 cấp tùy phiên bản."
+        },
+        {
+          "type": "quote",
+          "content": "Với mức giá từ 478 triệu đồng, Toyota Vios 2024 là lựa chọn đáng cân nhắc cho khách hàng tìm kiếm sedan tin cậy, tiết kiệm nhiên liệu."
+        },
+        {
+          "type": "heading",
+          "content": "Giá Bán & Phiên Bản"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Vios 1.5E MT: 478 triệu đồng",
+            "Vios 1.5E CVT: 518 triệu đồng",
+            "Vios 1.5G CVT: 568 triệu đồng",
+            "Vios 1.5GR-S: 638 triệu đồng"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "Liên hệ AutoViet để được tư vấn chi tiết và trải nghiệm lái thử Toyota Vios 2024. Chúng tôi có sẵn xe giao ngay với nhiều ưu đãi hấp dẫn!"
+        }
+      ],
+      "tags": ["Toyota Vios", "Sedan", "Xe mới 2024", "Toyota"],
+      "relatedArticles": ["article-5", "article-1", "article-14"]
+    },
+    {
+      "id": "article-5",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Honda City và Hyundai Accent là hai cái tên được nhắc đến nhiều nhất trong phân khúc sedan hạng B. Cùng phân tích chi tiết để tìm ra lựa chọn phù hợp với nhu cầu của bạn."
+        },
+        {
+          "type": "heading",
+          "content": "Thiết Kế Ngoại Thất"
+        },
+        {
+          "type": "paragraph",
+          "content": "Honda City nổi bật với thiết kế thể thao, trẻ trung hơn. Đèn LED sắc sảo, lưới tản nhiệt chrome bóng bẩy tạo ấn tượng mạnh mẽ. Trong khi đó, Hyundai Accent theo phong cách thanh lịch, sang trọng hơn với ngôn ngữ thiết kế Sensuous Sportiness."
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Honda City - Thiết kế thể thao, năng động"
+        },
+        {
+          "type": "heading",
+          "content": "So Sánh Kích Thước"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Honda City: 4,553 x 1,748 x 1,467 mm (DxRxC)",
+            "Hyundai Accent: 4,440 x 1,729 x 1,470 mm",
+            "Chiều dài cơ sở City: 2,600 mm",
+            "Chiều dài cơ sở Accent: 2,670 mm",
+            "Khoảng sáng gầm City: 134 mm, Accent: 141 mm"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Nội Thất & Tiện Nghi"
+        },
+        {
+          "type": "paragraph",
+          "content": "Honda City có lợi thế về không gian cabin rộng rãi hơn nhờ chiều dài tổng thể lớn. Màn hình 8 inch, điều hòa tự động, ghế da và cửa sổ trời là điểm cộng. Accent tuy nhỏ hơn nhưng bù lại bằng trang bị phong phú: màn hình 10.25 inch, sạc không dây, ghế lái chỉnh điện."
+        },
+        {
+          "type": "heading",
+          "content": "Động Cơ & Hiệu Suất"
+        },
+        {
+          "type": "paragraph",
+          "content": "Honda City trang bị động cơ 1.5L i-VTEC, công suất 119 mã lực, mô-men xoắn 145 Nm. Hyundai Accent dùng động cơ Smartstream 1.5L, 115 mã lực và 144 Nm. Cả hai đều đi kèm hộp số CVT."
+        },
+        {
+          "type": "quote",
+          "content": "City mạnh hơn một chút và có cảm giác lái thể thao. Accent êm ái, thoải mái hơn cho di chuyển đường dài."
+        },
+        {
+          "type": "heading",
+          "content": "An Toàn"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Honda City: 6 túi khí, VSA, HSA, phanh ABS, EBD",
+            "Hyundai Accent: 6 túi khí, ESC, HAC, phanh ABS",
+            "Cả hai đều có camera lùi, cảm biến lùi",
+            "City có thêm Honda Sensing trên bản RS",
+            "Accent có thêm Smartsense trên bản cao cấp"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Giá Bán & Kết Luận"
+        },
+        {
+          "type": "paragraph",
+          "content": "Honda City có giá từ 559-609 triệu đồng. Hyundai Accent từ 439-569 triệu đồng. Accent rẻ hơn và trang bị phong phú. City đắt hơn nhưng có thương hiệu mạnh, không gian rộng và giữ giá tốt hơn."
+        },
+        {
+          "type": "paragraph",
+          "content": "Chọn City nếu bạn ưu tiên không gian, cảm giác lái và giá trị bán lại. Chọn Accent nếu ngân sách hạn chế và muốn nhiều trang bị công nghệ. Đến AutoViet để lái thử cả hai và đưa ra quyết định đúng đân!"
+        }
+      ],
+      "tags": ["So sánh xe", "Honda City", "Hyundai Accent", "Sedan hạng B"],
+      "relatedArticles": ["article-4", "article-1", "article-14"]
+    },
+    {
+      "id": "article-6",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "Bảo dưỡng định kỳ theo đúng lịch là yếu tố quan trọng nhất quyết định tuổi thọ xe. Nhiều chủ xe bỏ qua hoặc không biết chính xác cần làm gì ở từng mốc km. Hãy cùng tìm hiểu chi tiết."
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 5,000 km - Bảo Dưỡng Cơ Bản"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đây là mốc bảo dưỡng thường xuyên nhất, thường mất 30-45 phút. Chi phí khoảng 500,000 - 800,000đ tùy loại xe."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Thay dầu động cơ và lọc dầu",
+            "Kiểm tra mức nước làm mát",
+            "Kiểm tra áp suất lốp, độ mòn lốp",
+            "Vệ sinh lọc gió động cơ",
+            "Kiểm tra phanh, đèn, còi",
+            "Bôi trơn các khớp nối, bản lề"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 10,000 km - Kiểm Tra Toàn Diện"
+        },
+        {
+          "type": "paragraph",
+          "content": "Ngoài các hạng mục cơ bản, cần kiểm tra kỹ hơn. Chi phí khoảng 1,000,000 - 1,500,000đ."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Thay dầu động cơ cao cấp hơn (nếu dùng tổng hợp)",
+            "Kiểm tra hệ thống treo, giảm xóc",
+            "Kiểm tra đĩa phanh, má phanh",
+            "Vệ sinh buồng đốt (nếu cần)",
+            "Kiểm tra ắc quy",
+            "Cân bằng, chỉnh góc đặt bánh xe"
+          ]
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Bảo dưỡng định kỳ giúp xe hoạt động ổn định"
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 20,000 km - Thay Thế Linh Kiện"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Thay lọc gió động cơ",
+            "Thay lọc gió điều hòa",
+            "Kiểm tra bugi (thay nếu cần)",
+            "Vệ sinh kim phun nhiên liệu",
+            "Kiểm tra dây curoa",
+            "Chi phí: 1,500,000 - 2,500,000đ"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 40,000 km - Bảo Dưỡng Lớn"
+        },
+        {
+          "type": "paragraph",
+          "content": "Đây là mốc bảo dưỡng lớn đầu tiên, cần thay nhiều linh kiện quan trọng. Chi phí 3,000,000 - 5,000,000đ."
+        },
+        {
+          "type": "list",
+          "content": [
+            "Thay dầu hộp số (nếu là số tự động)",
+            "Thay nước làm mát động cơ",
+            "Thay dầu phanh",
+            "Thay bugi",
+            "Thay lọc nhiên liệu",
+            "Kiểm tra toàn bộ hệ thống điện"
+          ]
+        },
+        {
+          "type": "quote",
+          "content": "Đừng bỏ qua mốc 40,000km. Đây là lúc nhiều linh kiện bắt đầu xuống cấp và cần được thay thế để tránh hỏng hóc lớn."
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 60,000 - 80,000 km"
+        },
+        {
+          "type": "paragraph",
+          "content": "Tiếp tục chu kỳ bảo dưỡng như trên. Đặc biệt chú ý thay dây curoa cam, kiểm tra hệ thống treo, giảm xóc có thể cần thay."
+        },
+        {
+          "type": "heading",
+          "content": "Mốc 100,000 km - Đại Tu"
+        },
+        {
+          "type": "paragraph",
+          "content": "Xe chạy 100,000km cần kiểm tra tổng thể, có thể cần đại tu động cơ nếu có dấu hiệu bất thường. Chi phí có thể lên đến 10,000,000đ tùy tình trạng xe."
+        },
+        {
+          "type": "paragraph",
+          "content": "Tại AutoViet, chúng tôi cung cấp dịch vụ bảo dưỡng chuyên nghiệp với giá cả minh bạch. Đặt lịch ngay để được chăm sóc xe tận tình!"
+        }
+      ],
+      "tags": ["Bảo dưỡng", "Lịch bảo dưỡng", "Chăm sóc xe", "Hướng dẫn"],
+      "relatedArticles": ["article-3", "article-12", "article-10"]
+    },
+    {
+      "id": "article-7",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "VinFast VF 6 chính thức mở bán với mức giá từ 675 triệu đồng, tạo nên làn sóng mới trong phân khúc SUV điện hạng B tại Việt Nam. Đây là mẫu xe điện giá rẻ nhất của VinFast hiện nay."
+        },
+        {
+          "type": "heading",
+          "content": "Thiết Kế Hiện Đại, Trẻ Trung"
+        },
+        {
+          "type": "paragraph",
+          "content": "VF 6 sở hữu thiết kế năng động với đèn LED dạng chữ V đặc trưng, lưới tản nhiệt đóng kín và đường nét sắc sảo. Kích thước tổng thể 4,238 x 1,820 x 1,594 mm, chiều dài cơ sở 2,730 mm mang lại không gian cabin rộng rãi."
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1200&auto=format&fit=crop&q=80",
+          "caption": "VinFast VF 6 - SUV điện giá rẻ nhất của VinFast"
+        },
+        {
+          "type": "heading",
+          "content": "Hai Phiên Bản Pin"
+        },
+        {
+          "type": "list",
+          "content": [
+            "VF 6 Eco: Pin 59.6 kWh, tầm hoạt động 399 km",
+            "VF 6 Plus: Pin 59.6 kWh, tầm hoạt động 399 km",
+            "Công suất 174 mã lực, mô-men xoắn 250 Nm",
+            "Tăng tốc 0-100 km/h trong 9.3 giây",
+            "Sạc nhanh DC 70 kW: 70% trong 36 phút"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Nội Thất & Công Nghệ"
+        },
+        {
+          "type": "paragraph",
+          "content": "Cabin VF 6 được trang bị màn hình cảm ứng 12.9 inch, vô lăng 2 chấu thể thao, ghế da cao cấp. Hệ thống thông minh VinFast Connect tích hợp điều khiển bằng giọng nói tiếng Việt, cập nhật OTA."
+        },
+        {
+          "type": "heading",
+          "content": "An Toàn ADAS Cấp 2"
+        },
+        {
+          "type": "list",
+          "content": [
+            "6 túi khí an toàn",
+            "Hỗ trợ giữ làn đường (LKA)",
+            "Cảnh báo va chạm phía trước (FCW)",
+            "Phanh khẩn cấp tự động (AEB)",
+            "Hỗ trợ đỗ xe tự động",
+            "Camera 360 độ"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Chính Sách Thuê Pin Linh Hoạt"
+        },
+        {
+          "type": "paragraph",
+          "content": "VinFast cung cấp 2 phương thức sở hữu: mua kèm pin hoặc thuê pin. Với phương thức thuê pin, giá xe chỉ từ 450 triệu đồng, phí thuê pin 1,450,000đ/tháng cho gói 1,500 km."
+        },
+        {
+          "type": "quote",
+          "content": "VF 6 là lựa chọn lý tưởng cho khách hàng muốn trải nghiệm xe điện với chi phí hợp lý, phù hợp cho gia đình trẻ ở thành phố."
+        },
+        {
+          "type": "heading",
+          "content": "Giá Bán & Ưu Đãi"
+        },
+        {
+          "type": "list",
+          "content": [
+            "VF 6 Eco (mua kèm pin): 675 triệu đồng",
+            "VF 6 Plus (mua kèm pin): 765 triệu đồng",
+            "VF 6 Eco (thuê pin): 450 triệu đồng",
+            "VF 6 Plus (thuê pin): 540 triệu đồng",
+            "Ưu đãi: Miễn phí sạc 2 năm tại trạm VinFast"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "Đặt cọc ngay tại AutoViet để được ưu tiên giao xe sớm nhất. Chúng tôi hỗ trợ tư vấn chi tiết về chính sách thuê pin và vay vốn ưu đãi!"
+        }
+      ],
+      "tags": ["VinFast", "Xe điện", "VF 6", "SUV điện"],
+      "relatedArticles": ["article-4", "article-13", "article-9"]
+    },
+    {
+      "id": "article-8",
+      "sections": [
+        {
+          "type": "paragraph",
+          "content": "AutoViet hợp tác cùng các ngân hàng hàng đầu mang đến gói vay mua xe với lãi suất ưu đãi chỉ 6.9%/năm - mức thấp nhất thị trường hiện nay. Đây là cơ hội tuyệt vời để sở hữu xe mơ ước."
+        },
+        {
+          "type": "heading",
+          "content": "Lãi Suất Cực Ưu Đãi"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Lãi suất cố định 6.9%/năm trong 12 tháng đầu",
+            "Từ tháng 13 trở đi: Lãi suất thả nổi theo quy định ngân hàng",
+            "Vay lên đến 80% giá trị xe",
+            "Thời gian vay linh hoạt: 3-7 năm",
+            "Không yêu cầu tài sản thế chấp (xe là tài sản đảm bảo)"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Hồ Sơ Vay Đơn Giản"
+        },
+        {
+          "type": "paragraph",
+          "content": "Chỉ cần chuẩn bị hồ sơ cơ bản, thủ tục nhanh gọn, duyệt trong 24 giờ:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "CMND/CCCD (bản gốc)",
+            "Hộ khẩu (bản sao công chứng)",
+            "Giấy xác nhận thu nhập hoặc sao kê ngân hàng 6 tháng",
+            "Hợp đồng lao động (nếu là nhân viên)",
+            "Giấy phép kinh doanh (nếu là chủ doanh nghiệp)"
+          ]
+        },
+        {
+          "type": "image",
+          "content": "",
+          "imageUrl": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&auto=format&fit=crop&q=80",
+          "caption": "Vay mua xe với lãi suất ưu đãi chỉ 6.9%/năm"
+        },
+        {
+          "type": "heading",
+          "content": "Ví Dụ Tính Toán"
+        },
+        {
+          "type": "paragraph",
+          "content": "Giả sử bạn mua xe giá 800 triệu đồng, vay 80% (640 triệu), thời gian 5 năm:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Trả trước: 160 triệu đồng (20%)",
+            "Số tiền vay: 640 triệu đồng",
+            "Lãi suất năm đầu: 6.9%/năm",
+            "Trả góp hàng tháng: Khoảng 12.5 triệu đồng",
+            "Tổng lãi phải trả: Khoảng 110 triệu đồng (5 năm)"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Ngân Hàng Liên Kết"
+        },
+        {
+          "type": "paragraph",
+          "content": "AutoViet hợp tác với các ngân hàng uy tín:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "VPBank - Duyệt nhanh trong 2 giờ",
+            "Techcombank - Lãi suất ưu đãi nhất",
+            "VIB - Thủ tục đơn giản nhất",
+            "Sacombank - Vay lên đến 90% cho khách hàng VIP",
+            "MB Bank - Ưu đãi cho khách hàng trẻ"
+          ]
+        },
+        {
+          "type": "quote",
+          "content": "Với lãi suất 6.9%/năm, bạn chỉ cần trả trước 20% là có thể lái xe về nhà ngay hôm nay!"
+        },
+        {
+          "type": "heading",
+          "content": "Quy Trình Vay Nhanh Chóng"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Bước 1: Chọn xe và đăng ký vay tại AutoViet",
+            "Bước 2: Nộp hồ sơ và chờ ngân hàng thẩm định (24h)",
+            "Bước 3: Ký hợp đồng vay và hợp đồng mua xe",
+            "Bước 4: Ngân hàng giải ngân, nhận xe ngay",
+            "Bước 5: Trả góp hàng tháng qua tài khoản"
+          ]
+        },
+        {
+          "type": "heading",
+          "content": "Ưu Đãi Đặc Biệt"
+        },
+        {
+          "type": "paragraph",
+          "content": "Khách hàng vay mua xe tại AutoViet còn được hưởng thêm:"
+        },
+        {
+          "type": "list",
+          "content": [
+            "Miễn phí bảo hiểm vật chất năm đầu",
+            "Tặng phụ kiện xe trị giá 10 triệu đồng",
+            "Miễn phí bảo dưỡng 10,000 km đầu tiên",
+            "Hỗ trợ làm thủ tục sang tên, đăng ký xe"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "Liên hệ ngay hotline 0901 234 567 hoặc đến showroom AutoViet để được tư vấn chi tiết và đăng ký vay. Đừng bỏ lỡ cơ hội sở hữu xe với lãi suất tốt nhất!"
+        }
+      ],
+      "tags": ["Vay mua xe", "Lãi suất ưu đãi", "Trả góp", "Tài chính"],
+      "relatedArticles": ["article-2", "article-14", "article-15"]
+    }
+  ],
+  "customer": [
+    {
+      "id": "1",
+      "email": "thinhtran1@gmail.com",
+      "password": "11111111",
+      "address": "Qui Nhơn",
+      "phone": "0869114177",
+      "username": "Trần Thịnh",
+      "avatar": "https://www.pngall.com/wp-content/uploads/15/User-PNG-Photos.png",
+      "favouriteCar": ["sedan-005"]
+    },
+    {
+      "id": "2",
+      "email": "thinhcound232@gmail.com",
+      "password": "1111111",
+      "phone": "0869114177",
+      "username": "Quý Thịnh",
+      "avatar": "https://www.pngall.com/wp-content/uploads/15/User-PNG-Photos.png",
+      "address": ""
+    },
+    {
+      "id": "3",
+      "email": "noname1@gmail.com",
+      "password": "11111111",
+      "phone": "0357892571",
+      "username": "Hoang anh nam",
+      "avatar": "https://www.pngall.com/wp-content/uploads/15/User-PNG-Photos.png",
+      "address": "Qui Nhon",
+      "favouriteCar": ["sedan-005"]
+    }
+  ],
+  "test": [
+    {
+      "id": "sedan-001",
+      "name": "Toyota Camry 2.5Q",
+      "brand": "Toyota",
+      "price": 1250000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "location": "Quận 7, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Xe gia đình sử dụng kỹ, bảo dưỡng định kỳ tại hãng. Cam kết không đâm đụng, không ngập nước. Nội thất da cao cấp còn mới nguyên, đầy đủ tiện nghi hiện đại. Hỗ trợ sang tên nhanh chóng trong ngày.",
+      "images": [
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hệ thống phanh ABS/EBD/BA",
+        "Cân bằng điện tử VSC",
+        "Cảnh báo điểm mù BSM",
+        "Cửa sổ trời toàn cảnh",
+        "Ghế da chỉnh điện 10 hướng",
+        "Màn hình giải trí 9 inch",
+        "Hệ thống âm thanh JBL 9 loa",
+        "Camera 360 độ",
+        "Sạc không dây Qi"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "15,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.5L Dynamic Force"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "207 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "250 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 8 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4885 x 1840 x 1445 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2825 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "60 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Be"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sedan-002",
+      "name": "Honda Accord 1.5 Turbo",
+      "brand": "Honda",
+      "price": 1319000000,
+      "year": 2024,
+      "mileage": 3000,
+      "transmission": "Số tự động",
+      "location": "Quận 1, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Xe mới về đại lý, chạy rất ít, còn bảo hành chính hãng dài hạn. Trang bị Honda Sensing đầy đủ, an toàn hàng đầu phân khúc. Nội thất rộng rãi, hệ thống âm thanh 8 loa cao cấp. Phù hợp cho gia đình và doanh nhân.",
+      "images": [
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Honda Sensing (CMBS, ACC, LKAS)",
+        "Sunroof toàn cảnh",
+        "Ghế lái chỉnh điện 12 hướng",
+        "Phanh tay điện tử",
+        "Hệ thống âm thanh 8 loa",
+        "Màn hình cảm ứng 12.3 inch",
+        "Sạc không dây",
+        "Apple CarPlay / Android Auto",
+        "Camera lùi & cảm biến hỗ trợ đỗ xe"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2024"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "3,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L VTEC Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "192 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "260 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4893 x 1862 x 1450 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2830 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "135 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "56 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sedan-003",
+      "name": "Mazda 6 2.5L Premium",
+      "brand": "Mazda",
+      "price": 1029000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "location": "Bình Thạnh, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Xe được bảo dưỡng đúng định kỳ, nội ngoại thất còn rất đẹp. Động cơ 2.5L mạnh mẽ, hộp số 6 cấp mượt mà. Trang bị màn hình HUD, ghế da Nappa sang trọng, âm thanh Bose đẳng cấp. Cam kết không tai nạn.",
+      "images": [
+        "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Màn hình HUD hiển thị thông tin lái",
+        "Ghế da Nappa chỉnh điện",
+        "Hệ thống âm thanh Bose 12 loa",
+        "Cửa sổ trời toàn cảnh",
+        "Đèn pha LED thích ứng",
+        "i-Activsense (cảnh báo va chạm, giữ làn)",
+        "Camera lùi & cảm biến lùi",
+        "Điều hòa 2 vùng độc lập",
+        "Apple CarPlay / Android Auto"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Nhật Bản"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "18,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.5L SKYACTIV-G"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "192 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "252 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4865 x 1840 x 1450 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2830 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "135 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "62 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đỏ"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da Nappa cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sedan-004",
+      "name": "Hyundai Elantra 2.0 AT",
+      "brand": "Hyundai",
+      "price": 679000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "location": "Gò Vấp, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Xe thiết kế hiện đại, thể thao, tiết kiệm nhiên liệu. Được trang bị đầy đủ công nghệ an toàn Hyundai SmartSense. Màn hình 10.25 inch lớn, hỗ trợ sạc không dây tiện lợi. Xe chạy ít, còn bảo hành chính hãng.",
+      "images": [
+        "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hyundai SmartSense (cảnh báo va chạm, giữ làn)",
+        "Màn hình cảm ứng 10.25 inch",
+        "Sạc không dây",
+        "Ghế lái chỉnh điện 8 hướng",
+        "Đèn LED toàn bộ",
+        "Camera lùi & cảm biến hỗ trợ đỗ xe",
+        "Apple CarPlay / Android Auto",
+        "Điều hòa tự động 2 vùng",
+        "Phanh tay điện tử + Auto Hold"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Hàn Quốc"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "22,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L Smartstream"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "149 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "179 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4675 x 1825 x 1415 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2720 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "53 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sedan-005",
+      "name": "Toyota Vios 1.5G CVT",
+      "brand": "Toyota",
+      "price": 478000000,
+      "year": 2024,
+      "mileage": 5000,
+      "transmission": "Số tự động",
+      "location": "Tân Bình, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Xe mua mới chạy được 5,000 km, còn bảo hành chính hãng Toyota. Tiết kiệm nhiên liệu, dễ lái, phù hợp cho người mới. Chìa khóa thông minh, camera lùi, màn hình giải trí. Giấy tờ hợp lệ, hỗ trợ vay ngân hàng đến 70%.",
+      "images": [
+        "https://images.unsplash.com/photo-1590362891991-f776e747a588?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Camera lùi",
+        "Cảm biến áp suất lốp TPMS",
+        "Màn hình giải trí 7 inch",
+        "Bluetooth & USB",
+        "Chìa khóa thông minh",
+        "Cửa sổ chỉnh điện toàn bộ",
+        "Điều hòa tự động",
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí 7 chiếc"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2024"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "5,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L Dual VVT-i"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "107 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "140 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động vô cấp CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4425 x 1730 x 1477 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2550 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "132 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "42 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Bạc"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Vải cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-001",
+      "name": "Honda CR-V 1.5L Turbo",
+      "brand": "Honda",
+      "price": 998000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "location": "Quận 2, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Honda CR-V 7 chỗ, gia đình sử dụng kỹ lưỡng, bảo dưỡng đúng định kỳ tại đại lý Honda. Trang bị Honda Sensing đầy đủ, panoramic sunroof, camera 360 độ. Nội thất rộng rãi 3 hàng ghế, phù hợp gia đình đông người.",
+      "images": [
+        "https://cdn.24h.com.vn/upload/4-2018/images/2018-10-13/24h-hondacrv-5-1539411767-437-width1320height910.jpg",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Honda Sensing (CMBS, ACC, LKAS)",
+        "Panoramic Sunroof",
+        "7 chỗ ngồi đầy đủ",
+        "Camera 360 độ",
+        "Đèn LED toàn bộ",
+        "Ghế lái chỉnh điện 8 hướng",
+        "Sạc không dây",
+        "Apple CarPlay / Android Auto",
+        "Cửa cốp điện tự động"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "22,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L VTEC Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "190 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "240 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4694 x 1866 x 1679 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2660 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "185 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "57 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Be"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-002",
+      "name": "Mazda CX-5 2.0 Premium",
+      "brand": "Mazda",
+      "price": 879000000,
+      "year": 2022,
+      "mileage": 35000,
+      "transmission": "Số tự động",
+      "location": "Phú Nhuận, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Mazda CX-5 thiết kế Kodo sang trọng, vận hành mượt mà. Bảo dưỡng định kỳ tại đại lý Mazda, xe không tai nạn ngập nước. Trang bị hệ thống i-Activsense an toàn, màn hình HUD, âm thanh Bose 10 loa. Phù hợp cả gia đình và công tác.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "i-Activsense (cảnh báo va chạm, giữ làn, điểm mù)",
+        "Ghế da cao cấp chỉnh điện",
+        "Màn hình HUD",
+        "Hệ thống âm thanh Bose 10 loa",
+        "Cửa sổ trời toàn cảnh",
+        "Đèn pha LED thích ứng",
+        "Camera lùi & cảm biến lùi",
+        "Điều hòa 2 vùng độc lập",
+        "Kết nối Apple CarPlay / Android Auto"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "35,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L SKYACTIV-G"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "165 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "213 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4550 x 1840 x 1680 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2700 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "193 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "58 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-003",
+      "name": "Hyundai Tucson 2.0 AT",
+      "brand": "Hyundai",
+      "price": 825000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "location": "Quận 10, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Hyundai Tucson 2023 thiết kế mạnh mẽ, hiện đại. Trang bị SmartSense an toàn, màn hình kép 10.25 inch ấn tượng, ghế thông gió và sưởi tiện nghi. Xe chạy ít, còn bảo hành chính hãng. Giá cạnh tranh, hỗ trợ vay vốn ngân hàng.",
+      "images": [
+        "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Hyundai SmartSense đầy đủ",
+        "Màn hình kép 10.25 inch",
+        "Sạc không dây",
+        "Ghế thông gió & sưởi",
+        "Cửa cốp điện tự động",
+        "Camera 360 độ",
+        "Đèn LED toàn bộ",
+        "Apple CarPlay / Android Auto",
+        "Điều hòa 2 vùng tự động"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Hàn Quốc"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "18,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L Smartstream"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "156 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "192 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4630 x 1865 x 1665 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2755 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "172 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "54 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-004",
+      "name": "Ford Everest Titanium 2.0L",
+      "brand": "Ford",
+      "price": 1399000000,
+      "year": 2023,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "location": "Quận 9, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Ford Everest Titanium đỉnh cao dòng SUV 7 chỗ địa hình. Dẫn động 4WD với nhiều chế độ địa hình, động cơ Bi-Turbo diesel mạnh mẽ. Trang bị màn hình 12 inch, hệ thống âm thanh B&O đẳng cấp, camera 360 độ. Xe bảo dưỡng đầy đủ.",
+      "images": [
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Dẫn động 4WD với 5 chế độ địa hình",
+        "Camera 360 độ",
+        "7 chỗ ngồi thoải mái",
+        "Màn hình cảm ứng 12 inch",
+        "Hệ thống âm thanh B&O 10 loa",
+        "Ghế da chỉnh điện & nhớ vị trí",
+        "Đèn LED Matrix",
+        "Cửa cốp điện tự động",
+        "Hỗ trợ đỗ xe tự động"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "28,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L EcoBlue Bi-Turbo Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "210 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "500 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 10 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "4WD (4x4)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4892 x 1923 x 1837 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2900 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "225 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "80 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-005",
+      "name": "Toyota Fortuner 2.4G 4x2",
+      "brand": "Toyota",
+      "price": 1026000000,
+      "year": 2022,
+      "mileage": 42000,
+      "transmission": "Số tự động",
+      "location": "Bình Dương",
+      "managerId": null,
+      "description": "Toyota Fortuner bền bỉ, đáng tin cậy. Xe gia đình sử dụng, bảo dưỡng đúng định kỳ tại Toyota. Máy dầu 2.4L tiết kiệm, khỏe mạnh, phù hợp cả đường trường lẫn thành phố. 7 chỗ rộng rãi, thích hợp gia đình đông người.",
+      "images": [
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ ngồi rộng rãi",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Màn hình giải trí 8 inch",
+        "Cruise Control",
+        "Ghế da chỉnh tay",
+        "Điều hòa 2 hàng ghế",
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí an toàn"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Indonesia"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "42,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.4L 2GD-FTV Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "150 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "400 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu sau (4x2)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4795 x 1855 x 1835 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2745 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "221 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "80 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Bạc"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Nâu"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suv-006",
+      "name": "Mitsubishi Outlander 2.0 CVT",
+      "brand": "Mitsubishi",
+      "price": 825000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "location": "Đồng Nai",
+      "managerId": null,
+      "description": "Mitsubishi Outlander 7 chỗ, thiết kế hiện đại, vận hành êm ái. Bảo dưỡng định kỳ tại đại lý Mitsubishi, còn bảo hành chính hãng. Trang bị cửa sổ trời, camera 360 độ, ghế da tiện nghi. Xe không tai nạn ngập nước.",
+      "images": [
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ ngồi rộng rãi",
+        "Cửa sổ trời toàn cảnh",
+        "Camera 360 độ",
+        "Ghế da chỉnh tay",
+        "Màn hình cảm ứng 9 inch",
+        "Apple CarPlay / Android Auto",
+        "Đèn LED toàn bộ",
+        "Cửa cốp điện",
+        "Cảnh báo điểm mù"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "15,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L MIVEC"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "150 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "195 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động vô cấp CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4710 x 1862 x 1745 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2807 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "190 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "60 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đỏ"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pickup-001",
+      "name": "Ford Ranger Wildtrak 2.0L",
+      "brand": "Ford",
+      "price": 965000000,
+      "year": 2022,
+      "mileage": 42000,
+      "transmission": "Số tự động",
+      "location": "Bình Dương",
+      "managerId": null,
+      "description": "Ford Ranger Wildtrak phiên bản mạnh nhất dòng bán tải Ranger. Dẫn động 4x4, camera 360 độ, màn hình 10 inch. Xe chủ yếu chạy đường trường, bảo dưỡng đúng định kỳ. Thùng xe có nắp đậy cao cấp. Phù hợp kinh doanh và gia đình.",
+      "images": [
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Dẫn động 4x4 điện tử",
+        "Camera 360 độ",
+        "Màn hình cảm ứng 10 inch",
+        "Cruise Control",
+        "Thùng xe có nắp đậy cuộn",
+        "Ghế da chỉnh điện",
+        "Đèn LED toàn bộ",
+        "Hỗ trợ xuống dốc HDC",
+        "Apple CarPlay / Android Auto"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "42,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L EcoBlue Bi-Turbo Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "213 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "500 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 10 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "4x4 (4WD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "5362 x 1860 x 1815 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "3270 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "232 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "80 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Cam"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pickup-002",
+      "name": "Toyota Hilux 2.8G 4x4 AT",
+      "brand": "Toyota",
+      "price": 918000000,
+      "year": 2023,
+      "mileage": 25000,
+      "transmission": "Số tự động",
+      "location": "Long An",
+      "managerId": null,
+      "description": "Toyota Hilux bền bỉ đã được kiểm chứng qua nhiều thế hệ. Động cơ 2.8L diesel mạnh mẽ, tiết kiệm. Dẫn động 4x4 phù hợp mọi địa hình. Bảo dưỡng đúng định kỳ tại Toyota, còn bảo hành chính hãng. Xe phù hợp cả kinh doanh vận tải và gia đình.",
+      "images": [
+        "https://cdn.gianhangvn.com/image/toyota-hilux-2-8g-4x4-at-adventure-1-o89yl9c.jpg",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Dẫn động 4x4 cơ học",
+        "Camera lùi",
+        "Màn hình giải trí 8 inch",
+        "Cruise Control",
+        "Ghế da chỉnh tay",
+        "Đèn LED toàn bộ",
+        "Cảm biến lùi",
+        "Hỗ trợ xuống dốc DAC",
+        "Bluetooth & USB"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "25,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.8L 1GD-FTV Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "204 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "500 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "4x4 (4WD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "5330 x 1855 x 1800 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "3085 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "225 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "80 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pickup-003",
+      "name": "Mitsubishi Triton 4x4 AT",
+      "brand": "Mitsubishi",
+      "price": 795000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "location": "Đồng Nai",
+      "managerId": null,
+      "description": "Mitsubishi Triton 4x4 mạnh mẽ, thiết kế hiện đại với Super Select 4WD-II linh hoạt. Bảo dưỡng định kỳ tại đại lý Mitsubishi, còn bảo hành chính hãng. Camera 360 độ, nắp thùng cuộn cao cấp. Xe không tai nạn, cam kết chất lượng.",
+      "images": [
+        "https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Dẫn động Super Select 4WD-II",
+        "Camera 360 độ",
+        "Màn hình cảm ứng 7 inch",
+        "Cảm biến lùi",
+        "Nắp thùng cuộn cao cấp",
+        "Đèn LED toàn bộ",
+        "Bluetooth & Apple CarPlay",
+        "Hỗ trợ xuống dốc HDC",
+        "Cân bằng điện tử ASC"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Thái Lan"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "18,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.4L 4N16 Diesel Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "181 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "430 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "4x4 SS4-II"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "5295 x 1815 x 1780 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "3000 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "205 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "75 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-001",
+      "name": "Honda City RS",
+      "brand": "Honda",
+      "price": 599000000,
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "Số tự động",
+      "location": "Quận 3, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Honda City RS phiên bản thể thao cao cấp nhất dòng City Hatchback. Trang bị Honda Sensing, thiết kế sportback cá tính. Xe còn bảo hành chính hãng, bảo dưỡng định kỳ đầy đủ. Màu đỏ nổi bật, phù hợp giới trẻ năng động.",
+      "images": [
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Honda Sensing (CMBS, ACC, LKAS)",
+        "Màn hình cảm ứng 8 inch",
+        "Cruise Control",
+        "Ghế da thể thao",
+        "Đèn LED toàn bộ",
+        "Camera lùi & cảm biến lùi",
+        "Apple CarPlay / Android Auto",
+        "Sạc không dây",
+        "Phanh tay điện tử"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "12,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L VTEC"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "121 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "145 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động CVT"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4553 x 1748 x 1488 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2600 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "132 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "40 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đỏ"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-002",
+      "name": "Mazda 3 1.5L Luxury",
+      "brand": "Mazda",
+      "price": 669000000,
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "location": "Quận 5, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Mazda 3 Hatchback thiết kế Kodo tinh tế, sang trọng trong phân khúc. Trang bị i-Activsense an toàn, màn hình HUD, hệ thống Bose. Bảo dưỡng đúng định kỳ tại Mazda. Xe không tai nạn, cam kết chất lượng tuyệt đối.",
+      "images": [
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "i-Activsense (cảnh báo va chạm, giữ làn)",
+        "Màn hình HUD",
+        "Ghế da chỉnh điện",
+        "Hệ thống âm thanh Bose 8 loa",
+        "Đèn LED toàn bộ",
+        "Camera lùi & cảm biến lùi",
+        "Apple CarPlay / Android Auto",
+        "Điều hòa tự động 2 vùng",
+        "Cửa sổ trời"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "28,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L SKYACTIV-G"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "120 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "150 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4460 x 1797 x 1440 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2726 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "51 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-003",
+      "name": "Hyundai i10 1.2 AT",
+      "brand": "Hyundai",
+      "price": 405000000,
+      "year": 2024,
+      "mileage": 3000,
+      "transmission": "Số tự động",
+      "location": "Quận 12, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Hyundai i10 2024 mới nhất, chạy ít 3,000 km còn bảo hành chính hãng dài hạn. Thiết kế nhỏ gọn, linh hoạt trong đô thị, tiết kiệm nhiên liệu vượt trội. Phù hợp người mới lái và di chuyển trong thành phố. Hỗ trợ vay ngân hàng đến 80%.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Màn hình cảm ứng 8 inch",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Bluetooth & USB",
+        "Chìa khóa thông minh",
+        "Điều hòa tự động",
+        "Đèn LED toàn bộ",
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí an toàn"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2024"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Ấn Độ"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "3,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.2L Kappa"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "87 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "115 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 4 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "3675 x 1680 x 1500 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2425 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "155 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "35 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Vải"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hatchback-004",
+      "name": "Hyundai Accent 1.4 AT",
+      "brand": "Hyundai",
+      "price": 426000000,
+      "year": 2023,
+      "mileage": 8000,
+      "transmission": "Số tự động",
+      "location": "Thủ Đức, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Hyundai Accent 2023 chạy ít, còn bảo hành chính hãng. Thiết kế trẻ trung, năng động, phù hợp đi lại hàng ngày. Tiết kiệm nhiên liệu, bảo dưỡng rẻ. Xe gia đình sử dụng, không tai nạn. Hỗ trợ sang tên nhanh, vay ngân hàng.",
+      "images": [
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Màn hình giải trí 7 inch",
+        "Camera lùi",
+        "Cảm biến lùi",
+        "Bluetooth & USB",
+        "Đèn LED toàn bộ",
+        "Điều hòa tự động",
+        "Chìa khóa thông minh",
+        "Hệ thống phanh ABS/EBD",
+        "Túi khí an toàn"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Ấn Độ"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "8,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.4L Gamma"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "100 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "132 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4440 x 1729 x 1460 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2600 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "155 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "45 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Bạc"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Vải"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mpv-001",
+      "name": "Toyota Innova 2.0E",
+      "brand": "Toyota",
+      "price": 750000000,
+      "year": 2023,
+      "mileage": 32000,
+      "transmission": "Số tự động",
+      "location": "Bình Thạnh, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Toyota Innova 7 chỗ, dòng xe MPV bán chạy nhất Việt Nam. Bảo dưỡng đúng định kỳ tại Toyota, xe gia đình sử dụng kỹ. Rộng rãi, bền bỉ, phù hợp gia đình đông người và kinh doanh dịch vụ. Hỗ trợ vay ngân hàng đến 70%.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ ngồi rộng rãi",
+        "Camera lùi",
+        "Màn hình giải trí 7 inch",
+        "Cảm biến lùi",
+        "Bluetooth & USB",
+        "Điều hòa tự động hàng trước",
+        "Điều hòa tay hàng sau",
+        "Hệ thống phanh ABS/EBD",
+        "Cruise Control"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Lắp ráp trong nước"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "32,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L Dual VVT-i"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "139 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "183 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 6 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu sau (RWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4735 x 1830 x 1795 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2750 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "178 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "55 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Bạc"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Vải cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mpv-002",
+      "name": "Mitsubishi Xpander 1.5 AT",
+      "brand": "Mitsubishi",
+      "price": 555000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "location": "Tân Phú, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Mitsubishi Xpander 7 chỗ thiết kế Dynamic Shield mạnh mẽ, ấn tượng. Còn bảo hành chính hãng, bảo dưỡng đúng định kỳ. Trang bị camera 360 độ, màn hình 9 inch, cửa sổ trời. Xe phù hợp gia đình đông thành viên và kinh doanh dịch vụ du lịch.",
+      "images": [
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ ngồi rộng rãi",
+        "Camera 360 độ",
+        "Màn hình cảm ứng 9 inch",
+        "Cửa sổ trời",
+        "Ghế da chỉnh tay",
+        "Apple CarPlay / Android Auto",
+        "Đèn LED toàn bộ",
+        "Điều hòa 2 hàng ghế",
+        "Cảm biến lùi"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Indonesia"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "15,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L MIVEC"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "105 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "141 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 4 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4595 x 1750 x 1730 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2775 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "205 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "45 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da tổng hợp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mpv-003",
+      "name": "Suzuki Ertiga 1.5 AT",
+      "brand": "Suzuki",
+      "price": 499000000,
+      "year": 2024,
+      "mileage": 5000,
+      "transmission": "Số tự động",
+      "location": "Quận 6, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Suzuki Ertiga 7 chỗ 2024 mới nhất, chạy rất ít, còn bảo hành chính hãng đầy đủ. Tiết kiệm nhiên liệu nhất phân khúc MPV 7 chỗ. Nhỏ gọn, linh hoạt trong đô thị, chi phí bảo dưỡng thấp. Phù hợp gia đình và kinh doanh taxi.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ ngồi gọn nhẹ",
+        "Camera lùi",
+        "Màn hình giải trí 7 inch",
+        "Bluetooth & USB",
+        "Cảm biến lùi",
+        "Điều hòa tự động",
+        "Đèn LED toàn bộ",
+        "Hệ thống phanh ABS/EBD",
+        "Chìa khóa thông minh"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2024"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Indonesia"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "5,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L K15B"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "104 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "138 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 4 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4395 x 1735 x 1690 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2740 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "180 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "42 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Vải cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mpv-004",
+      "name": "Kia Carnival 2.2 Luxury",
+      "brand": "Kia",
+      "price": 1399000000,
+      "year": 2023,
+      "mileage": 22000,
+      "transmission": "Số tự động",
+      "location": "Quận 7, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Kia Carnival - MPV hạng sang đẳng cấp nhất phân khúc. Phiên bản Luxury 7 chỗ VIP với ghế massage, cửa trượt điện, màn hình giải trí kép. Xe doanh nhân sử dụng, bảo dưỡng đúng định kỳ tại Kia. Cam kết không tai nạn ngập nước.",
+      "images": [
+        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "7 chỗ VIP hàng ghế thương gia",
+        "Cửa trượt điện 2 bên",
+        "Ghế massage hàng 2",
+        "Màn hình giải trí kép 7 inch",
+        "Camera 360 độ",
+        "Hệ thống âm thanh Bose 12 loa",
+        "Màn hình HUD",
+        "Ghế da Nappa chỉnh điện",
+        "Cửa sổ trời toàn cảnh"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Hàn Quốc"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "22,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.2L CRDi Diesel"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "202 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "440 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 8 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "5115 x 1995 x 1775 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "3090 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "175 mm"
+            },
+            {
+              "label": "Dung tích bình dầu",
+              "value": "72 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Nâu"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "7 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da Nappa cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luxury-001",
+      "name": "Mercedes-Benz C200 Exclusive",
+      "brand": "Mercedes",
+      "price": 1699000000,
+      "year": 2022,
+      "mileage": 28000,
+      "transmission": "Số tự động",
+      "location": "Quận 1, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Mercedes-Benz C200 Exclusive thế hệ W206 hoàn toàn mới. Xe doanh nhân sử dụng, bảo dưỡng đúng định kỳ tại Mercedes-Benz chính hãng. Hệ thống MBUX thế hệ mới, ghế da Nappa, âm thanh Burmester đẳng cấp. Cam kết không tai nạn ngập nước.",
+      "images": [
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "MBUX với màn hình 11.9 inch dọc",
+        "Ghế da Nappa chỉnh điện & nhớ vị trí",
+        "Cửa sổ trời toàn cảnh",
+        "Hệ thống âm thanh Burmester",
+        "Đèn LED thích ứng",
+        "Hệ thống treo thích ứng AGILITY",
+        "Camera 360 độ",
+        "Apple CarPlay / Android Auto",
+        "Sạc không dây"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2022"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Đức"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "28,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "1.5L Turbo + 48V EQ Boost"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "204 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "300 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 9G-Tronic"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu sau (RWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4751 x 1820 x 1438 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2865 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "134 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "66 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Kem"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da Nappa cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luxury-002",
+      "name": "BMW 320i Sport Line",
+      "brand": "BMW",
+      "price": 1799000000,
+      "year": 2023,
+      "mileage": 18000,
+      "transmission": "Số tự động",
+      "location": "Quận 2, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "BMW 320i Sport Line thế hệ G20 sang trọng đỉnh cao. Bảo dưỡng định kỳ tại BMW chính hãng, còn bảo hành. iDrive 7.0 hiện đại, ghế da Dakota cao cấp, hệ thống âm thanh Harman Kardon. Driving Assistant hỗ trợ lái thông minh. Phù hợp doanh nhân đẳng cấp.",
+      "images": [
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "iDrive 7.0 với màn hình 10.25 inch",
+        "Ghế da Dakota chỉnh điện & nhớ vị trí",
+        "Cửa sổ trời toàn cảnh",
+        "Hệ thống âm thanh Harman Kardon",
+        "BMW Driving Assistant",
+        "Đèn LED thích ứng",
+        "Camera 360 độ",
+        "Apple CarPlay",
+        "Sạc không dây"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Đức"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "18,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L TwinPower Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "184 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "300 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 8 cấp Steptronic"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu sau (RWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4709 x 1827 x 1435 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2851 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "59 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Xanh"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da Dakota cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luxury-003",
+      "name": "Audi A4 40 TFSI",
+      "brand": "Audi",
+      "price": 1699000000,
+      "year": 2023,
+      "mileage": 12000,
+      "transmission": "Số tự động",
+      "location": "Quận 3, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Audi A4 40 TFSI phiên bản cao cấp với Virtual Cockpit ấn tượng. Xe doanh nhân sử dụng, bảo dưỡng tại Audi chính hãng, còn bảo hành. Hệ thống MMI Navigation, âm thanh Bang & Olufsen, đèn Matrix LED. Thiết kế Audi sang trọng, tinh tế khác biệt.",
+      "images": [
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "MMI Navigation Plus 10.1 inch",
+        "Audi Virtual Cockpit Plus 12.3 inch",
+        "Ghế da chỉnh điện & sưởi",
+        "Hệ thống âm thanh Bang & Olufsen",
+        "Đèn Matrix LED thích ứng",
+        "Audi Pre Sense (an toàn chủ động)",
+        "Camera 360 độ",
+        "Apple CarPlay / Android Auto",
+        "Sạc không dây"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Đức"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "12,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.0L TFSI Turbo"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "190 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "320 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 7 cấp S tronic"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4762 x 1847 x 1428 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2820 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "134 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "54 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Trắng"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "luxury-004",
+      "name": "Lexus ES250",
+      "brand": "Lexus",
+      "price": 2599000000,
+      "year": 2023,
+      "mileage": 15000,
+      "transmission": "Số tự động",
+      "location": "Quận 1, TP. Hồ Chí Minh",
+      "managerId": null,
+      "description": "Lexus ES250 - Đỉnh cao sang trọng và tin cậy của thương hiệu Nhật Bản. Xe VIP sử dụng, bảo dưỡng tại Lexus chính hãng, còn bảo hành dài hạn. Trang bị Lexus Safety System+, âm thanh Mark Levinson 17 loa, cửa sổ trời toàn cảnh, HUD. Xứng tầm đẳng cấp.",
+      "images": [
+        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&auto=format&fit=crop&q=80"
+      ],
+      "features": [
+        "Lexus Safety System+ (LSS+) đầy đủ",
+        "Ghế da cao cấp chỉnh điện & nhớ vị trí",
+        "Hệ thống âm thanh Mark Levinson 17 loa",
+        "Cửa sổ trời toàn cảnh",
+        "Màn hình HUD",
+        "Màn hình trung tâm 12.3 inch",
+        "Camera 360 độ",
+        "Đèn LED thích ứng",
+        "Sạc không dây & Apple CarPlay"
+      ],
+      "specs": [
+        {
+          "title": "Thông Tin Chung",
+          "items": [
+            {
+              "label": "Năm sản xuất",
+              "value": "2023"
+            },
+            {
+              "label": "Xuất xứ",
+              "value": "Nhập khẩu Nhật Bản"
+            },
+            {
+              "label": "Tình trạng",
+              "value": "Đã qua sử dụng"
+            },
+            {
+              "label": "Số km đã đi",
+              "value": "15,000 km"
+            }
+          ]
+        },
+        {
+          "title": "Động Cơ & Vận Hành",
+          "items": [
+            {
+              "label": "Động cơ",
+              "value": "2.5L 6AR-FSE"
+            },
+            {
+              "label": "Công suất cực đại",
+              "value": "207 mã lực"
+            },
+            {
+              "label": "Mô-men xoắn",
+              "value": "243 Nm"
+            },
+            {
+              "label": "Hộp số",
+              "value": "Tự động 8 cấp"
+            },
+            {
+              "label": "Dẫn động",
+              "value": "Cầu trước (FWD)"
+            }
+          ]
+        },
+        {
+          "title": "Kích Thước & Trọng Lượng",
+          "items": [
+            {
+              "label": "Dài x Rộng x Cao",
+              "value": "4975 x 1865 x 1445 mm"
+            },
+            {
+              "label": "Chiều dài cơ sở",
+              "value": "2870 mm"
+            },
+            {
+              "label": "Khoảng sáng gầm",
+              "value": "140 mm"
+            },
+            {
+              "label": "Dung tích bình xăng",
+              "value": "60 L"
+            }
+          ]
+        },
+        {
+          "title": "Ngoại Thất & Nội Thất",
+          "items": [
+            {
+              "label": "Màu ngoại thất",
+              "value": "Đen"
+            },
+            {
+              "label": "Màu nội thất",
+              "value": "Kem"
+            },
+            {
+              "label": "Số chỗ ngồi",
+              "value": "5 chỗ"
+            },
+            {
+              "label": "Chất liệu ghế",
+              "value": "Da cao cấp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { User } from "../models/user.model";
-import { verifyToken, extractToken } from "../utils/jwt"; // dùng utils
+import { verifyToken, extractToken } from "../utils/jwt";
+import { AuthRequest } from "../middleware/authMiddleware";
 
-export const getMe = async (req: Request, res: Response) => {
+export const getMe = async (req: AuthRequest, res: Response) => {
   try {
     const token = extractToken(req.headers.authorization);
     if (!token) {
@@ -12,7 +13,7 @@ export const getMe = async (req: Request, res: Response) => {
     // verifyToken thay thế jwt.verify + cast
     const decoded = verifyToken(token);
 
-    const user = await User.findById(decoded.id).select("-password");
+    const user = await User.findById(decoded._id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User không tồn tại" });
     }

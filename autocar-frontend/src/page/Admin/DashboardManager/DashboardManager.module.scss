@@ -21,12 +21,12 @@ $bg: #f8fafc;
     justify-content: center;
     gap: 12px;
     height: 60vh;
-    color: $slate;
+    color: #64748b;
     font-size: 14px;
 
     i {
       font-size: 28px;
-      color: $red;
+      color: #dc2626;
       animation: spin 0.8s linear infinite;
     }
 

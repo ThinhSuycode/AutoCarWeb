@@ -93,7 +93,7 @@ export const getAppointments = catchAsync(
       all,
     } = req.query as Record<string, string>;
 
-    const { id: userId, role } = req.user;
+    const { _id: userId, role } = req.user;
     const sortOrder = order === "asc" ? 1 : -1;
     const pageNum = Math.max(1, Number(page));
     const limitNum = Math.min(100, Math.max(1, Number(limit)));
@@ -160,7 +160,7 @@ export const getAppointmentById = catchAsync(
     if (!req.user) throw new AppError("Unauthorized!", 401);
 
     const { id } = req.params;
-    const { id: userId, role } = req.user;
+    const { _id: userId, role } = req.user;
 
     const appointment = await Appointment.findById(id)
       .populate("userId", "username email phone")
@@ -187,7 +187,7 @@ export const updateAppointmentStatus = catchAsync(
 
     const { id } = req.params;
     const { status, note } = req.body;
-    const { id: userId, role } = req.user;
+    const { _id: userId, role } = req.user;
 
     if (!status || !VALID_STATUSES.includes(status)) {
       throw new AppError("Trạng thái không hợp lệ!", 400);
@@ -227,7 +227,7 @@ export const cancelAppointment = catchAsync(
     if (!req.user) throw new AppError("Unauthorized!", 401);
 
     const { id } = req.params;
-    const { id: userId } = req.user;
+    const { _id: userId } = req.user;
 
     const appointment = await Appointment.findById(id);
     if (!appointment) throw new AppError("Không tìm thấy lịch hẹn!", 404);
@@ -263,7 +263,7 @@ export const deleteAppointment = catchAsync(
 
     logger.info("Appointment deleted", {
       appointmentId: id,
-      by: req.user?.id,
+      by: req.user?._id,
     });
 
     res.status(200).json({ success: true, message: "Xóa thành công!" });

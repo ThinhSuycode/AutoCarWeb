@@ -1,11 +1,17 @@
 import type { Request, Response } from "express";
-import { Car } from "../models/car.model";
 import type { AuthRequest } from "../middleware/authMiddleware";
 import { User } from "../models/user.model";
 import { CarDetail } from "../models/carDetail.model";
 import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
+import mongoose from "mongoose";
+import { Car } from "../models/car.model";
+import {
+  validateCreateCarData,
+  validateUpdateCarData,
+} from "../utils/vaildateCar";
+import { updateManagerStatusSchema } from "../schemas/car.schema";
 
 // ─── GET ALL ──────────────────────────────────────────────────────────────────
 export const getAllCar = catchAsync(async (req: Request, res: Response) => {
@@ -93,59 +99,70 @@ export const getAllCar = catchAsync(async (req: Request, res: Response) => {
 });
 
 // ─── CREATE ───────────────────────────────────────────────────────────────────
-export const createCar = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.body;
-
-  const existingCar = await Car.findOne({ id });
-  if (existingCar) throw new AppError("Mã xe đã tồn tại!", 400);
-
-  const car = new Car(req.body);
-  const newCar = await car.save();
-
-  await CarDetail.create({
-    id: newCar.id,
-    name: newCar.name ?? "",
-    brand: newCar.brand ?? "",
-    price: newCar.price ?? 0,
-    year: newCar.year ?? 0,
-    mileage: newCar.mileage ?? 0,
-    transmission: newCar.transmission ?? "",
-    description: "",
-    location: "",
-    features: [],
-    images: [],
-    specs: [],
+export const createCar = catchAsync(async (req: AuthRequest, res: Response) => {
+  if (!req.user) {
+    throw new AppError("Unauthorized!", 401);
+  }
+  const validatedData = validateCreateCarData(req.body);
+  const car = await Car.create({
+    ...validatedData,
     managerId: null,
   });
-
-  logger.info("Car created", { carId: newCar.id });
-  res.status(201).json(newCar);
+  res.status(201).json(car);
 });
 
 // ─── UPDATE ───────────────────────────────────────────────────────────────────
-export const updateCar = catchAsync(async (req: Request, res: Response) => {
+export const updateCar = catchAsync(async (req: AuthRequest, res: Response) => {
   const { id } = req.params;
 
-  const updatedCar = await Car.findOneAndUpdate({ id }, req.body, {
+  if (typeof id !== "string") {
+    throw new AppError("ID không hợp lệ!!", 400);
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new AppError("ID không hợp lệ!", 400);
+  }
+  const validatedData = validateUpdateCarData(req.body);
+
+  const updatedCar = await Car.findByIdAndUpdate(id, validatedData, {
     new: true,
     runValidators: true,
-  });
+  }).select("-__v");
 
-  if (!updatedCar) throw new AppError("Không tìm thấy xe!", 404);
+  if (!updatedCar) {
+    throw new AppError("Không tìm thấy xe!", 404);
+  }
+
+  // ───────────────── SYNC DETAIL ─────────────────
+  await CarDetail.findOneAndUpdate(
+    { carId: id },
+    {
+      name: updatedCar.name,
+      brand: updatedCar.brand,
+      price: updatedCar.price,
+      year: updatedCar.year,
+    },
+    { new: true },
+  );
 
   logger.info("Car updated", { carId: id });
+
   res.status(200).json(updatedCar);
 });
 
 // ─── DELETE ───────────────────────────────────────────────────────────────────
-export const deleteCar = catchAsync(async (req: Request, res: Response) => {
+export const deleteCar = catchAsync(async (req: AuthRequest, res: Response) => {
   const { id } = req.params;
+  if (typeof id !== "string") {
+    throw new AppError("ID không hợp lệ!!", 400);
+  }
 
-  const deletedCar = await Car.findOneAndDelete({ id });
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new AppError("ID không hợp lệ!", 400);
+  }
+  const deletedCar = await Car.findByIdAndDelete(id);
+
   if (!deletedCar) throw new AppError("Không tìm thấy xe!", 404);
-
-  // Xoá luôn CarDetail liên quan
-  await CarDetail.findOneAndDelete({ id });
 
   logger.info("Car deleted", { carId: id });
   res.status(200).json({ message: "Xoá thành công!" });
@@ -161,7 +178,7 @@ export const assignManager = catchAsync(
 
     const [staff, car] = await Promise.all([
       User.findById(managerId),
-      CarDetail.findById(carId),
+      Car.findById(carId),
     ]);
 
     if (!staff) throw new AppError("Không tìm thấy nhân viên!", 404);
@@ -169,13 +186,13 @@ export const assignManager = catchAsync(
       throw new AppError("User này không phải nhân viên!", 400);
     if (!car) throw new AppError("Không tìm thấy xe!", 404);
 
-    const updatedCar = await CarDetail.findByIdAndUpdate(
+    const updatedCar = await Car.findByIdAndUpdate(
       carId,
-      { managerId },
+      { managerId, managerStatus: "pending" },
       { new: true },
     ).populate("managerId", "username email staffInfo");
 
-    logger.info("Manager assigned", { carId, managerId, by: req.user?.id });
+    logger.info("Manager assigned", { carId, managerId, by: req.user?._id });
 
     res.status(200).json({
       success: true,
@@ -201,13 +218,13 @@ export const getAllCarsWithManager = catchAsync(
     if (hasManager === "true") query.managerId = { $ne: null };
 
     const [cars, total] = await Promise.all([
-      CarDetail.find(query)
+      Car.find(query)
         .populate("managerId", "username email staffInfo avatar")
         .sort({ createdAt: -1 })
         .skip((Number(page) - 1) * limit)
         .limit(limit)
         .select("-__v"),
-      CarDetail.countDocuments(query),
+      Car.countDocuments(query),
     ]);
 
     res.status(200).json({
@@ -231,7 +248,7 @@ export const getAllStaff = catchAsync(
       .sort({ createdAt: -1 });
 
     const staffIds = staffList.map((s) => s._id);
-    const carCounts = await CarDetail.aggregate([
+    const carCounts = await Car.aggregate([
       { $match: { managerId: { $in: staffIds } } },
       { $group: { _id: "$managerId", count: { $sum: 1 } } },
     ]);
@@ -254,7 +271,7 @@ export const removeManager = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { carId } = req.params;
 
-    const updatedCar = await CarDetail.findByIdAndUpdate(
+    const updatedCar = await Car.findByIdAndUpdate(
       carId,
       { managerId: null },
       { new: true },
@@ -262,12 +279,94 @@ export const removeManager = catchAsync(
 
     if (!updatedCar) throw new AppError("Không tìm thấy xe!", 404);
 
-    logger.info("Manager removed", { carId, by: req.user?.id });
+    logger.info("Manager removed", { carId, by: req.user?._id });
 
     res.status(200).json({
       success: true,
       message: "Đã hủy phân bổ nhân viên!",
       data: updatedCar,
+    });
+  },
+);
+
+export const getCarsByManager = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    if (!req.user) {
+      throw new AppError("Unauthorized!", 401);
+    }
+
+    const {
+      page = "1",
+      limit = "10",
+      search,
+    } = req.query as Record<string, string>;
+
+    const query: Record<string, any> = {
+      managerId: req.user._id,
+    };
+
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { brand: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    const pageNum = Number(page);
+    const limitNum = Number(limit);
+
+    const [cars, total] = await Promise.all([
+      Car.find(query)
+        .sort({ createdAt: -1 })
+        .skip((pageNum - 1) * limitNum)
+        .limit(limitNum)
+        .populate("managerId", "username email")
+        .select("-__v"),
+
+      Car.countDocuments(query),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      data: cars,
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPages: Math.ceil(total / limitNum),
+      },
+    });
+  },
+);
+
+export const updateManagerStatus = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    const { id } = req.params;
+
+    if (!req.user) {
+      throw new AppError("Unauthorized!", 401);
+    }
+
+    const { managerStatus } = updateManagerStatusSchema.parse(req.body);
+
+    const car = await Car.findById(id);
+
+    if (!car) {
+      throw new AppError("Không tìm thấy xe!", 404);
+    }
+
+    if (car.managerId?.toString() !== req.user._id.toString()) {
+      throw new AppError("Bạn không được quản lý xe này!", 403);
+    }
+
+    car.managerStatus = managerStatus;
+
+    await car.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Cập nhật trạng thái thành công!",
+      data: car,
     });
   },
 );

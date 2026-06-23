@@ -4,6 +4,7 @@ import { config } from "../../../config";
 import { useDashboardManager } from "./useDashboardManager";
 import Charts from "./components/Charts";
 import QuickAction from "./components/QuickAction";
+import LoadingData from "../../../components/LoadingData/LoadingData";
 
 const cx = classNames.bind(styles);
 
@@ -21,10 +22,7 @@ const DashboardManager = () => {
   if (isLoading) {
     return (
       <div className={cx("dashboardManager-page")}>
-        <div className={cx("loading")}>
-          <i className="fa-solid fa-spinner"></i>
-          <span>Đang tải dữ liệu...</span>
-        </div>
+        <LoadingData message="Đang tải dữ liệu"></LoadingData>
       </div>
     );
   }

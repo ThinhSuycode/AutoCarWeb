@@ -5,6 +5,7 @@ import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
 import type { AuthRequest } from "../middleware/authMiddleware";
+import mongoose from "mongoose";
 
 const SALT_ROUNDS = 10;
 
@@ -79,7 +80,7 @@ export const createUser = catchAsync(
 
     const { password: _pw, ...userWithoutPassword } = newUser.toObject();
 
-    logger.info("User created", { userId: newUser._id, by: req.user?.id });
+    logger.info("User created", { userId: newUser._id, by: req.user?._id });
     res.status(201).json(userWithoutPassword);
   },
 );
@@ -110,7 +111,7 @@ export const updateUser = catchAsync(
 
     if (!updatedUser) throw new AppError("Không tìm thấy người dùng!", 404);
 
-    logger.info("User updated", { userId: id, by: req.user?.id });
+    logger.info("User updated", { userId: id, by: req.user?._id });
     res.status(200).json(updatedUser);
   },
 );
@@ -120,15 +121,22 @@ export const deleteUser = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
 
+    if (typeof id !== "string") {
+      throw new AppError("ID không hợp lệ!!", 400);
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new AppError("ID không hợp lệ!", 400);
+    }
     // Không cho phép tự xoá chính mình
-    if (req.user?.id === id) {
+    if (req.user?._id === id) {
       throw new AppError("Không thể xoá tài khoản của chính mình!", 403);
     }
 
     const deletedUser = await User.findByIdAndDelete(id);
     if (!deletedUser) throw new AppError("Không tìm thấy người dùng!", 404);
 
-    logger.info("User deleted", { userId: id, by: req.user?.id });
+    logger.info("User deleted", { userId: id, by: req.user?._id });
     res.status(200).json({ message: "Xoá dữ liệu thành công!" });
   },
 );
@@ -150,7 +158,7 @@ export const updateAvatar = catchAsync(
 
     if (!updatedUser) throw new AppError("Không tìm thấy người dùng!", 404);
 
-    logger.info("Avatar updated", { userId: id, by: req.user?.id });
+    logger.info("Avatar updated", { userId: id, by: req.user?._id });
     res.status(200).json(updatedUser);
   },
 );

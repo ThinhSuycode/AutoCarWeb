@@ -5,6 +5,7 @@ import { getColorCategory } from "../../hooks/getCategoryColor";
 import { config } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { createHandleReadArticle } from "../../hooks/HandleArticles";
+import { formatDateToString } from "../../hooks/formatDate";
 
 const cx = classNames.bind(styles);
 
@@ -28,7 +29,10 @@ const ListArticle: React.FC<ListArticleType> = ({
     <div className={cx("articles-form")}>
       {heading && (
         <div className={cx("form-heading")}>
-          <h3>{heading}</h3>
+        <div className={cx("left")}>
+            <h2>{heading}</h2>
+            <p>Theo dõi bài viết bạn đã lưu</p>
+        </div>
           {!hiddenBtn && (
             <a href={config.Routes.Articles}>
               Xem tất cả
@@ -42,7 +46,7 @@ const ListArticle: React.FC<ListArticleType> = ({
           data.map((article: Articles) => (
             <div
               className={cx("articles-item")}
-              key={article.id}
+              key={article._id}
               onClick={() => handleReadArticle(article)}
               data-aos="flip-right"
             >
@@ -63,7 +67,7 @@ const ListArticle: React.FC<ListArticleType> = ({
                     <span>
                       <i className="fa-regular fa-calendar"></i>
                     </span>
-                    <span>{article.date}</span>
+                    <span>{formatDateToString(article.createdAt || "")}</span>
                   </div>
                   <div>
                     <span>

@@ -9,9 +9,7 @@ export const createHandleReadArticle = (
 
     const slug = createSlug(article.title);
 
-    localStorage.setItem("articleActive", JSON.stringify(article));
-
-    navigate(`/chi-tiet-bai-viet/${slug}`, {
+    navigate(`/chi-tiet-bai-viet/${article._id}/${slug}`, {
       state: { article },
     });
   };

@@ -1,8 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { config } from "../config";
-import { getMeApi } from "./auth.service";
-import { useEffect, useState } from "react";
-import type { UserType } from "../types/users";
+import { useCurrentUser } from "../queries/useCurrentUser";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -10,39 +8,12 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
-  const [account, setAccount] = useState<UserType | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const isLoggedIn = !!localStorage.getItem("token");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+  const { data: account, isLoading } = useCurrentUser(isLoggedIn);
 
-    // Không có token → không cần gọi API
-    if (!token) {
-      setIsLoading(false);
-      return;
-    }
+  if (isLoading) return null;
 
-    const getMe = async () => {
-      try {
-        const data = await getMeApi();
-        setAccount(data ?? null);
-      } catch {
-        // Token hết hạn hoặc lỗi → xóa token
-        localStorage.removeItem("token");
-        setAccount(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getMe();
-  }, []);
-
-  if (isLoading) {
-    return null;
-  }
-
-  // Chưa đăng nhập → về trang Login
   if (!account) {
     return <Navigate to={config.Routes.Login} replace />;
   }

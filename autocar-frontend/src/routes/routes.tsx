@@ -23,12 +23,20 @@ import ArticleSave from "../page/ArticleSave/ArticleSave";
 import ArticleManager from "../page/Staff/ArticleManager/ArticleManager";
 import CarManager from "../page/Staff/CarManager/CarManager";
 import DashboardManager from "../page/Admin/DashboardManager/DashboardManager";
+import ArticlesManager from "../page/Admin/ArticlesManager/ArticlesManager";
+import DashBoard from "../page/Staff/DashBoard/DashBoard";
+import ContactAssign from "../page/Admin/ContactAssign/ContactAssign";
+import MyContact from "../page/Staff/MyContact/MyContact";
+import ContactHistory from "../page/ContactHistory/ContactHistory";
+import ForgotPassword from "../page/ForgotPassword/ForgotPassword";
+import ResetPassword from "../page/ResetPassword/ResetPassword";
 
 export interface RouteItem {
   path: string;
   Component: React.ComponentType;
   Layout?: React.ComponentType<{ children: React.ReactNode }>;
   requiredRole?: "admin" | "user" | "staff";
+  guestOnly?: boolean;
 }
 
 const publicRoutes: RouteItem[] = [
@@ -36,13 +44,15 @@ const publicRoutes: RouteItem[] = [
   { path: config.Routes.ProductSold, Component: ProductSold },
   { path: config.Routes.About, Component: About },
   { path: config.Routes.CarDetails, Component: CarDetails },
-  { path: config.Routes.Login, Component: Login },
-  { path: config.Routes.Register, Component: Register },
+  { path: config.Routes.Login, Component: Login, guestOnly: true },
+  { path: config.Routes.Register, Component: Register, guestOnly: true },
   { path: config.Routes.Services, Component: Services },
   { path: config.Routes.Articles, Component: Article },
   { path: config.Routes.NewsDetails, Component: NewsDetails },
   { path: config.Routes.ShowRoom, Component: ShowRoom },
   { path: config.Routes.Contact, Component: Contact },
+  { path: config.Routes.ForgotPassword, Component: ForgotPassword },
+  { path: config.Routes.ResetPassword, Component: ResetPassword },
 ];
 
 const privateRoutes: RouteItem[] = [
@@ -60,6 +70,11 @@ const privateRoutes: RouteItem[] = [
   {
     path: config.Routes.ArticleSave,
     Component: ArticleSave,
+    Layout: MenuCustomer,
+  },
+  {
+    path: config.Routes.ContactHistory,
+    Component: ContactHistory,
     Layout: MenuCustomer,
   },
 
@@ -88,6 +103,18 @@ const privateRoutes: RouteItem[] = [
     Layout: MenuCustomer,
     requiredRole: "admin",
   },
+  {
+    path: config.Routes.ContactAssign,
+    Component: ContactAssign,
+    Layout: MenuCustomer,
+    requiredRole: "admin",
+  },
+  {
+    path: config.Routes.ArtilcesManager,
+    Component: ArticlesManager,
+    Layout: MenuCustomer,
+    requiredRole: "admin",
+  },
   // Phải đăng nhập + role staff
   {
     path: config.Routes.ArticleStaff,
@@ -102,8 +129,14 @@ const privateRoutes: RouteItem[] = [
     requiredRole: "staff",
   },
   {
+    path: config.Routes.MyContact,
+    Component: MyContact,
+    Layout: MenuCustomer,
+    requiredRole: "staff",
+  },
+  {
     path: config.Routes.DashBoardStaff,
-    Component: UsersManager,
+    Component: DashBoard,
     Layout: MenuCustomer,
     requiredRole: "staff",
   },

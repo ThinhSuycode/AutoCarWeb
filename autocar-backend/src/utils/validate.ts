@@ -9,3 +9,8 @@ export const isValidPassword = (password: string): string | null => {
 
   return null;
 };
+
+const phoneRegex = /^(0|\+84)[0-9]{9}$/;
+export const validatePhone = (phone: string) => {
+  return phoneRegex.test(phone.replace(/\s/g, ""));
+};

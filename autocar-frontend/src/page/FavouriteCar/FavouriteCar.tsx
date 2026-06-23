@@ -11,11 +11,13 @@ import type { PaginatedResponse } from "../../types/pagination";
 const cx = classNames.bind(styles);
 const FavouriteCar = () => {
   const [favouriteCar, setFavouriteCar] = useState<CarType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const isLogin = !!localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
+      if (!isLogin) return;
       try {
-        if (!isLogin) return;
         const fetchUserData = getMeApi() as Promise<UserType>;
         const fetchCarData =
           await callApi.getData<PaginatedResponse<CarType>>("cars?all=true");
@@ -26,12 +28,14 @@ const FavouriteCar = () => {
 
         if (carData && Array.isArray(carData.data)) {
           const favouriteList = carData.data.filter((car: CarType) =>
-            userData.favouriteCar?.includes(car.id || ""),
+            userData.favouriteCar?.includes(car._id || ""),
           );
           setFavouriteCar(favouriteList);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
@@ -42,8 +46,10 @@ const FavouriteCar = () => {
       <ListProduct
         heading={`Xe đã lưu (${favouriteCar.length})`}
         productData={favouriteCar}
+        desc="Theo dõi xe bạn đã lưu lại"
         hiddenBtn
         userLayout
+        isLoading={isLoading}
         emptyTitle="Không có sản phẩm yêu thích nào được lưu"
       ></ListProduct>
     </div>

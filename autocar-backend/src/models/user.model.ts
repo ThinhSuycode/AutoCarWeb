@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
     favouriteCar: [String],
     appointmentSchedule: [],
     articleSave: [String],
+
+    resetPasswordToken: String,
+
+    resetPasswordExpires: Date,
   },
   {
     timestamps: true,

@@ -30,9 +30,10 @@ const specSchema = new mongoose.Schema(
 
 const carDetailSchema = new mongoose.Schema(
   {
-    id: {
-      type: String,
+    carId: {
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "Car",
       unique: true,
       trim: true,
     },
@@ -75,19 +76,11 @@ const carDetailSchema = new mongoose.Schema(
       trim: true,
     },
 
-    image: String,
-
     images: {
       type: [String],
       default: [],
     },
 
-    managerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: false,
-      default: null,
-    },
     color: {
       type: [String],
       default: null,
@@ -122,8 +115,5 @@ const carDetailSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
-
-carDetailSchema.index({ brand: 1 });
-carDetailSchema.index({ price: 1 });
 
 export const CarDetail = mongoose.model("CarDetail", carDetailSchema);

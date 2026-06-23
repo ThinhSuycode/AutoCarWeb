@@ -1,151 +1,306 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/variables" as *;
 
+// ─── Design Tokens ────────────────────────────────────────────────────────────
+$surface-bg: #f0f4f8;
+$surface-card: #ffffff;
+$surface-hover: #f8fafc;
+$surface-active: #fff1f2;
+
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$text-muted: #94a3b8;
+
+$accent-blue: #2c56bb;
+$accent-red: #b91c1c;
+$accent-red-soft: #fef2f2;
+
+$border-default: #e2e8f0;
+$border-focus: #cbd5e1;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+$shadow-sm:
+  0 1px 3px rgba(0, 0, 0, 0.06),
+  0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-md:
+  0 4px 12px rgba(0, 0, 0, 0.08),
+  0 2px 4px rgba(0, 0, 0, 0.04);
+$shadow-card:
+  0 0 0 1px $border-default,
+  $shadow-sm;
+
+$transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
 .menuUser-page {
-  background-color: #e2e8f0;
+  background-color: $surface-bg;
   padding-top: 90px;
+  min-height: 100vh;
+
   .menuUser-inner {
     padding: 40px 25px;
     display: flex;
-    gap: 30px;
+    gap: 40px;
+    // background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+
     @include md {
       flex-direction: column;
     }
-    .menuUser-left {
-      width: 20%;
-      @include md {
-        width: 100%;
-      }
-      .account-info {
-        padding: 30px 10px;
-        text-align: center;
-        background-color: white;
-        border-radius: 12px;
-        @include md {
-          width: 56%;
-          margin: 10px auto;
-          border: 2px solid mediumvioletred;
-        }
-        @include sm {
-          width: 100%;
-        }
-        .avatar-account {
-          width: 79px;
-          height: 79px;
-          margin: 0 auto;
-          position: relative;
-          border-radius: 50%;
-          overflow: hidden;
-          margin-bottom: 15px;
-          border: 3px solid #2c56bb;
-          cursor: pointer;
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-          }
-          .icon-camera {
-            position: absolute;
-            bottom: 0px;
-            right: 22px;
-            width: 30px;
-            height: 30px;
+  }
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            border-radius: 50%;
-          }
-        }
-        .fullname {
-          font-size: 19px;
-        }
-        .desc {
-          color: #64748b;
-        }
-        .level {
-          background-color: #000000;
-          color: #c2c2c2;
-          border-radius: 12px;
-          display: inline-block;
-          margin: 0 auto;
-          padding: 5px 10px;
-          margin-top: 15px;
-          font-weight: 600;
-          font-size: 16px;
-        }
-      }
-      .tab-navigation {
-        background-color: white;
-        border-radius: 8px;
-        padding: 10px;
-        margin-top: 30px;
-        .tab-wrapper {
-          &:last-child {
-            margin-top: 30px;
-          }
-          .tab-item {
-            font-size: 16px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            border-radius: 8px;
-            padding: 10px 15px;
-            color: #475569;
-            cursor: pointer;
-            flex-wrap: wrap;
-            // &:last-child {
-            //   margin-top: 30px;
-            // }
-            span {
-              &:first-child {
-                font-size: 17px;
-              }
-            }
-            &.active-item {
-              background-color: #fef2f2;
-              color: #b91c1c;
-              font-weight: 600;
-            }
-            &:hover span:last-child {
-              color: black;
-            }
-            &:hover {
-              background-color: #f6f6f6;
-            }
-          }
-        }
-        .list-manager {
-          padding: 10px 0px;
-          width: 80%;
-          margin: 0 auto;
-          .manager-item {
-            padding: 7px 25px 7px 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: start;
-            font-weight: 500;
-            color: #64748b;
-            font-size: 14px;
-            margin-bottom: 10px;
-            // border-bottom: 2px solid currentColor;
-            &.active {
-              color: var(--primary-red);
-              // border-color: var(--primary-red);
-            }
-          }
-        }
-      }
+// ─── Left Sidebar ─────────────────────────────────────────────────────────────
+.menuUser-left {
+  width: 22%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include md {
+    width: 100%;
+  }
+
+  // ── Account Card ──────────────────────────────────────────────────────────
+  .account-info {
+    background-color: $surface-card;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-card;
+    padding: 32px 20px 24px;
+    text-align: center;
+    transition: $transition-base;
+
+    @include md {
+      width: 56%;
+      margin: 0 auto;
     }
-    .menuUser-content {
-      width: 80%;
+
+    @include sm {
+      width: 100%;
+    }
+
+    // Avatar
+    .avatar-account {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 16px;
+      position: relative;
+      border-radius: 50%;
       overflow: hidden;
-      @include md {
+      border: 3px solid $accent-blue;
+      box-shadow: 0 0 0 4px rgba($accent-blue, 0.12);
+      cursor: pointer;
+      transition: $transition-base;
+
+      &:hover {
+        box-shadow: 0 0 0 6px rgba($accent-blue, 0.18);
+        transform: scale(1.03);
+      }
+
+      img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .icon-camera {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.42);
+        color: #fff;
+        opacity: 0;
+        transition: $transition-base;
+        font-size: 18px;
+
+        .avatar-account:hover & {
+          opacity: 1;
+        }
       }
     }
+
+    // User info
+    .fullname {
+      font-size: 17px;
+      font-weight: 700;
+      color: $text-primary;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: $text-secondary;
+      margin-bottom: 14px;
+    }
+
+    .level {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #c8c8d4;
+      border-radius: $radius-full;
+      padding: 5px 14px;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  }
+
+  // ── Navigation Card ───────────────────────────────────────────────────────
+  .tab-navigation {
+    background-color: $surface-card;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-card;
+    padding: 12px;
+
+    .tab-wrapper {
+      & + .tab-wrapper {
+        margin-top: 4px;
+        padding-top: 4px;
+        border-top: 1px solid $border-default;
+      }
+
+      &:last-child {
+        margin-top: 4px;
+      }
+
+      .tab-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: $radius-sm;
+        padding: 10px 14px;
+        color: $text-secondary;
+        font-size: 14.5px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transition-base;
+        user-select: none;
+
+        .tab-icon {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: $radius-sm;
+          background-color: $surface-bg;
+          font-size: 15px;
+          transition: $transition-base;
+          flex-shrink: 0;
+        }
+
+        .tab-label {
+          flex: 1;
+          font-size: 14px;
+        }
+
+        .tab-badge {
+          font-size: 11px;
+          font-weight: 600;
+          background-color: $border-default;
+          color: $text-secondary;
+          border-radius: $radius-full;
+          padding: 2px 7px;
+          transition: $transition-base;
+        }
+
+        // Hover state
+        &:hover {
+          background-color: $surface-hover;
+          color: $text-primary;
+
+          .tab-icon {
+            background-color: $border-default;
+          }
+        }
+
+        // Active state
+        &.active-item {
+          background-color: $surface-active;
+          color: $accent-red;
+          font-weight: 600;
+
+          .tab-icon {
+            background-color: rgba($accent-red, 0.1);
+            color: $accent-red;
+          }
+
+          .tab-badge {
+            background-color: rgba($accent-red, 0.12);
+            color: $accent-red;
+          }
+
+          &:hover {
+            background-color: $surface-active;
+          }
+        }
+      }
+    }
+
+    // Sub-navigation list
+    .list-manager {
+      padding: 6px 0 4px;
+
+      .manager-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: $radius-sm;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: $text-muted;
+        cursor: pointer;
+        transition: $transition-base;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background-color: currentColor;
+          flex-shrink: 0;
+          transition: $transition-base;
+        }
+
+        &:hover {
+          color: $text-secondary;
+          background-color: $surface-hover;
+        }
+
+        &.active {
+          color: var(--primary-red, $accent-red);
+          font-weight: 600;
+
+          &::before {
+            width: 6px;
+            height: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ─── Main Content ─────────────────────────────────────────────────────────────
+.menuUser-content {
+  flex: 1;
+  min-width: 0; // prevents flex blowout
+  overflow: hidden;
+
+  @include md {
+    width: 100%;
   }
 }

@@ -3,6 +3,7 @@ import {
   createArticle,
   deleteArticle,
   getAllArticle,
+  getArticleById,
   updateArticle,
 } from "../controllers/articles.controller";
 import { requireAuth, requireRole } from "../middleware/authMiddleware";
@@ -10,10 +11,16 @@ import { requireAuth, requireRole } from "../middleware/authMiddleware";
 export const articleRouter = express.Router();
 
 articleRouter.get("/articles", getAllArticle);
+articleRouter.get(
+  "/articles/:id",
+  requireAuth,
+  requireRole("staff"),
+  getArticleById,
+);
 articleRouter.put(
   "/articles/:id",
   requireAuth,
-  requireRole("admin"),
+  requireRole("staff"),
   updateArticle,
 );
 articleRouter.patch(

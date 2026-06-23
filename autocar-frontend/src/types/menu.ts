@@ -7,7 +7,6 @@ export interface HeaderNavType {
 
 export interface LanguageType {
   id: string;
-  key: string;
   title: string;
   href: string;
 }

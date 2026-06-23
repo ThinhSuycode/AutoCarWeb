@@ -1,4 +1,5 @@
 import axios from "axios";
+import { changeApi } from "./api";
 
 const API_URL = `${import.meta.env.VITE_APP_API_KEYS}/auth`;
 
@@ -56,7 +57,6 @@ export const updateAvatarApi = async (userId: string, file: File) => {
     },
   );
 
-  console.log("Kết quả upload:", res.data);
   return res.data;
 };
 
@@ -78,4 +78,15 @@ export const changePasswordApi = async (data: {
 export const loginWithGoogleApi = async (credential: string) => {
   const res = await axios.post(`${API_URL}/login-google`, { credential });
   return res.data;
+};
+
+export const forgotPasswordApi = async (email: string) => {
+  return changeApi.request("auth/forgot-password", "add", { email });
+};
+
+export const resetPasswordApi = (token: string, password: string) => {
+  return changeApi.request("/auth/reset-password", "add", {
+    token,
+    password,
+  });
 };

@@ -2,20 +2,45 @@ import mongoose from "mongoose";
 
 const ArticlesSchema = new mongoose.Schema(
   {
-    id: {
+    title: {
       type: String,
       required: true,
-      unique: true,
     },
-    title: String,
-    excerpt: String,
-    category: String,
-    image: String,
-    date: String,
-    readTime: String,
+
+    excerpt: {
+      type: String,
+      required: true,
+    },
+
+    category: {
+      type: String,
+      required: true,
+    },
+
+    image: {
+      type: String,
+      required: true,
+    },
+
+    date: {
+      type: String,
+      default: "",
+    },
+
+    readTime: {
+      type: String,
+      default: "5 phút",
+    },
+
+    status: {
+      type: String,
+      enum: ["draft", "pending", "published", "archived"],
+      default: "draft",
+    },
+
     manager: {
       managerId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         default: null,
       },
@@ -30,4 +55,5 @@ const ArticlesSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
 export const Articles = mongoose.model("Articles", ArticlesSchema);
