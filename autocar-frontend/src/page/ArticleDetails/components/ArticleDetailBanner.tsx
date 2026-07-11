@@ -1,6 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "../ArticleDetails.module.scss";
-import { getColorCategory } from "../../../hooks/getCategoryColor";
+import {
+  getColorCategory,
+  getLabelCategory,
+} from "../../../hooks/getCategoryColor";
 import type { ArticleDetail } from "../../../types/articles";
 import { formatDateToString } from "../../../hooks/formatDate";
 
@@ -14,13 +17,8 @@ interface Props {
 const ArticleDetailBanner = ({ articleDetail, onSave, isSaved }: Props) => {
   return (
     <div className={cx("articleDetail-banner")}>
-      <div
-        className={cx(
-          "category",
-          getColorCategory(articleDetail.articleId.category || ""),
-        )}
-      >
-        {articleDetail.articleId.category}
+      <div className={cx("category", articleDetail.articleId.category)}>
+        {getLabelCategory(articleDetail.articleId.category)}
       </div>
 
       <h2 className={cx("main-title")}>{articleDetail.articleId.title}</h2>

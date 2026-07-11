@@ -1,0 +1,20 @@
+@use "../../../../../styles/tokens" as *;
+
+.dashBoard-date {
+  .date {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: $slate;
+    background: $white;
+    border: 1px solid $border;
+    padding: 7px 14px;
+    border-radius: 8px;
+
+    i {
+      color: $red;
+      font-size: 12px;
+    }
+  }
+}

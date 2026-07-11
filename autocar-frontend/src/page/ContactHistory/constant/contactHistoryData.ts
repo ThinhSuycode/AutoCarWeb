@@ -1,11 +1,46 @@
-export type ContactStatus = "pending" | "contacted" | "done" | "cancelled";
+import type { CONTACT_STATUS } from "../../../types/contact";
 
 export const CONTACT_STATUS_MAP: Record<
-  ContactStatus,
-  { label: string; icon: string; className: string }
+  CONTACT_STATUS,
+  {
+    label: string;
+    icon: string;
+    className: string;
+  }
 > = {
-  pending: { label: "Chờ xử lý", icon: "fa-clock", className: "pending" },
-  contacted: { label: "Đã liên hệ", icon: "fa-phone", className: "contacted" },
-  done: { label: "Hoàn thành", icon: "fa-circle-check", className: "done" },
-  cancelled: { label: "Đã huỷ", icon: "fa-ban", className: "cancelled" },
+  new: {
+    label: "Yêu cầu mới",
+    icon: "fa-envelope",
+    className: "new",
+  },
+
+  assigned: {
+    label: "Đã phân công",
+    icon: "fa-user-check",
+    className: "assigned",
+  },
+
+  contacted: {
+    label: "Đã liên hệ",
+    icon: "fa-phone",
+    className: "contacted",
+  },
+
+  appointment_created: {
+    label: "Đã tạo lịch hẹn",
+    icon: "fa-calendar-check",
+    className: "appointment_created",
+  },
+
+  completed: {
+    label: "Hoàn thành",
+    icon: "fa-circle-check",
+    className: "completed",
+  },
+
+  cancelled: {
+    label: "Đã hủy",
+    icon: "fa-ban",
+    className: "cancelled",
+  },
 };

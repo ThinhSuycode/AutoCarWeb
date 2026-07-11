@@ -4,6 +4,7 @@ import useContactAssign from "./hooks/useContactAssign";
 import ContactStatics from "./components/ContactStatics";
 import ContactTable from "./components/ContactTable";
 import ContactFilter from "./components/ContactFilter";
+import PageHeader from "../../../components/PageHeader/PageHeader";
 
 const cx = classNames.bind(styles);
 
@@ -30,13 +31,12 @@ const ContactAssign = () => {
   } = useContactAssign();
 
   return (
-    <div className={cx("wrapper")}>
-      {/* Header */}
-      <div className={cx("header")}>
-        <h2>Quản lý yêu cầu liên hệ</h2>
-      </div>
+    <div className={cx("contactAssign-page")}>
+      <PageHeader
+        title="Quản lý liên hệ"
+        description="Phân bổ quản lý liên hệ cho nhân viên"
+      ></PageHeader>
 
-      {/* Statistics */}
       <ContactStatics stats={stats}></ContactStatics>
       <ContactFilter
         search={search}

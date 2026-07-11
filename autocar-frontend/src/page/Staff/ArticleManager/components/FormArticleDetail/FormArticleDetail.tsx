@@ -1,35 +1,23 @@
 import classNames from "classnames/bind";
-import styles from "../../ArticleManager.module.scss";
-import {
-  useFieldArray,
-  useForm,
-  useWatch,
-  useController,
-} from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
-import RelatedArticlesPicker from "./RelatedArticlesPicker";
-import {
-  articleDetailFormSchema,
-  type ArticleDetailFormInput,
-  type ArticleDetailFormOutput,
-} from "../../components/FormArticleDetail/schema/ArticleDetailSchema";
-import {
-  SECTION_TYPES,
-  getSectionIcon,
-  getSectionLabel,
-  getContentFieldConfig,
-} from "./constants/sectionTypes";
+import styles from "./FormArticleDetail.module.scss";
+import RelatedArticlesPicker from "./components/RelatedArticlesPicker";
 import type { Articles } from "../../../../../types/articles";
+import type {
+  ArticleDetailInput,
+  ArticleDetailOutput,
+} from "./schema/ArticleDetailSchema";
+
+import { useArticleDetailForm } from "./hooks/useArticleDetails";
+import { SectionItem } from "./components/SectionItem/SectionItem";
 
 const cx = classNames.bind(styles);
 
 interface Props {
   openDetail: Articles;
-  onSubmit: (data: ArticleDetailFormOutput) => void;
+  onSubmit: (data: ArticleDetailOutput) => void;
   closeModal: () => void;
-  defaultValues?: ArticleDetailFormInput;
-  onDraftChange?: (draft: ArticleDetailFormInput) => void;
+  defaultValues?: ArticleDetailInput;
+  onDraftChange?: (draft: ArticleDetailInput) => void;
   isLoading?: boolean;
 }
 
@@ -43,205 +31,99 @@ const FormArticleDetail = ({
 }: Props) => {
   const hasExisting = !!(
     defaultValues?.sections?.length ||
-    (defaultValues?.tags && defaultValues.tags.length > 0) ||
+    defaultValues?.tags?.length ||
     defaultValues?.relatedArticles?.length
   );
 
-  const { register, control, handleSubmit, watch } = useForm<
-    ArticleDetailFormInput,
-    unknown,
-    ArticleDetailFormOutput
-  >({
-    resolver: zodResolver(articleDetailFormSchema),
-    defaultValues: defaultValues ?? {
-      sections: [{ sectionType: "paragraph", content: "" }],
-      tags: "",
-      relatedArticles: [],
-    },
-  });
-
-  const { field: relatedField } = useController({
+  const {
+    register,
     control,
-    name: "relatedArticles",
-    defaultValue: defaultValues?.relatedArticles ?? [],
+    handleSubmit,
+    setValue,
+    relatedField,
+    sectionArray,
+    watchedSections,
+    errors,
+    isSubmitted,
+  } = useArticleDetailForm({
+    articleId: openDetail._id,
+    defaultValues,
+    onDraftChange,
   });
 
-  const { fields, append, remove, move } = useFieldArray({
-    control,
-    name: "sections",
-  });
-
-  const formValues = watch();
-
-  useEffect(() => {
-    onDraftChange?.(formValues);
-  }, [JSON.stringify(formValues)]);
-
-  const watchedSections = useWatch({ control, name: "sections" });
+  const { fields, append, remove, move } = sectionArray;
 
   return (
     <div
       className={cx("modal", "modal-detail")}
       onClick={(e) => e.stopPropagation()}
     >
-      {/* ── Header ── */}
       <div className={cx("modal-header")}>
         <h3>
-          <i className="fa-solid fa-align-left"></i>
+          <i className="fa-solid fa-align-left" />
           {hasExisting ? "Chỉnh sửa nội dung" : "Tạo nội dung bài viết"}
         </h3>
         <button type="button" onClick={closeModal}>
-          <i className="fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark" />
         </button>
       </div>
 
-      {/* ── Form ── */}
-      <form
-        onSubmit={handleSubmit((data) => onSubmit(data))}
-        className={cx("detail-form")}
-      >
-        {/* ── Sections ── */}
+      <form onSubmit={handleSubmit(onSubmit)} className={cx("detail-form")}>
         <div className={cx("section-block")}>
           <div className={cx("block-header")}>
             <span>
-              <i className="fa-solid fa-layer-group"></i>
-              Sections ({fields.length})
+              <i className="fa-solid fa-layer-group" /> Sections (
+              {fields.length})
             </span>
             <button
               type="button"
               className={cx("add-section")}
               onClick={() => append({ sectionType: "paragraph", content: "" })}
             >
-              <i className="fa-solid fa-plus"></i>
-              Thêm section
+              <i className="fa-solid fa-plus" /> Thêm section
             </button>
           </div>
 
           <div className={cx("detail-list")}>
             {fields.length === 0 && (
               <div className={cx("empty-sections")}>
-                <i className="fa-regular fa-file-lines"></i>
+                <i className="fa-regular fa-file-lines" />
                 <p>Chưa có section nào</p>
               </div>
             )}
-
             {fields.map((field, index) => {
               const currentType =
                 watchedSections?.[index]?.sectionType ?? "paragraph";
-
-              const { label, placeholder, rows } =
-                getContentFieldConfig(currentType);
+              const imageUrl = (watchedSections?.[index] as any)?.imageUrl;
 
               return (
-                <div key={field.id} className={cx("detail-item")}>
-                  {/* Section header */}
-                  <div className={cx("section-item-header")}>
-                    <span className={cx("section-index")}>#{index + 1}</span>
-                    <span className={cx("section-type-badge", currentType)}>
-                      <i
-                        className={`fa-solid ${getSectionIcon(currentType)}`}
-                      ></i>
-                      {getSectionLabel(currentType)}
-                    </span>
-                    <div className={cx("section-item-actions")}>
-                      {index > 0 && (
-                        <button
-                          type="button"
-                          className={cx("move-btn")}
-                          onClick={() => move(index, index - 1)}
-                          title="Di chuyển lên"
-                        >
-                          <i className="fa-solid fa-chevron-up"></i>
-                        </button>
-                      )}
-                      {index < fields.length - 1 && (
-                        <button
-                          type="button"
-                          className={cx("move-btn")}
-                          onClick={() => move(index, index + 1)}
-                          title="Di chuyển xuống"
-                        >
-                          <i className="fa-solid fa-chevron-down"></i>
-                        </button>
-                      )}
-                      <button
-                        type="button"
-                        className={cx("remove-section")}
-                        onClick={() => remove(index)}
-                        title="Xoá section"
-                      >
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Section type select */}
-                  <div className={cx("form-group")}>
-                    <label>Loại section</label>
-                    <select {...register(`sections.${index}.sectionType`)}>
-                      {SECTION_TYPES.map((t) => (
-                        <option key={t.value} value={t.value}>
-                          {t.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Content — chỉ là register thuần, schema lo phần transform */}
-                  {currentType !== "image" && (
-                    <div className={cx("form-group")}>
-                      <label>{label}</label>
-                      <textarea
-                        rows={rows}
-                        placeholder={placeholder}
-                        {...register(`sections.${index}.content`)}
-                      />
-                    </div>
-                  )}
-
-                  {/* Image */}
-                  {currentType === "image" && (
-                    <>
-                      <div className={cx("form-group")}>
-                        <label>URL hình ảnh</label>
-                        <input
-                          type="text"
-                          placeholder="https://..."
-                          {...register(`sections.${index}.imageUrl`)}
-                        />
-                      </div>
-                      <div className={cx("form-group")}>
-                        <label>Chú thích (tuỳ chọn)</label>
-                        <input
-                          type="text"
-                          placeholder="Mô tả hình ảnh..."
-                          {...register(`sections.${index}.caption`)}
-                        />
-                      </div>
-                      {(watchedSections?.[index] as any)?.imageUrl && (
-                        <img
-                          src={(watchedSections?.[index] as any).imageUrl}
-                          alt="preview"
-                          className={cx("img-preview")}
-                          onError={(e) =>
-                            ((e.target as HTMLImageElement).style.display =
-                              "none")
-                          }
-                        />
-                      )}
-                    </>
-                  )}
-                </div>
+                <SectionItem
+                  key={field.id}
+                  fieldId={field.id}
+                  index={index}
+                  total={fields.length}
+                  currentType={currentType}
+                  imageUrl={imageUrl}
+                  control={control}
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                  isSubmitted={isSubmitted}
+                  onMoveUp={() => move(index, index - 1)}
+                  onMoveDown={() => move(index, index + 1)}
+                  onRemove={() => remove(index)}
+                />
               );
             })}
           </div>
+          {isSubmitted && errors.sections && (
+            <small className={cx("error")}>{errors.sections.message}</small>
+          )}
         </div>
 
-        {/* ── Tags — register thuần, schema transform "a, b" → ["a","b"] ── */}
         <div className={cx("form-group")}>
           <label>
-            <i className="fa-solid fa-tags"></i>
-            Tags
+            <i className="fa-solid fa-tags" /> Tags
           </label>
           <input
             type="text"
@@ -249,22 +131,23 @@ const FormArticleDetail = ({
             {...register("tags")}
           />
           <small>Nhập các tag cách nhau bằng dấu phẩy</small>
+
+          {isSubmitted && errors?.tags && (
+            <span className={cx("error")}>{errors.tags.message}</span>
+          )}
         </div>
 
-        {/* ── Related articles ── */}
         <div className={cx("form-group")}>
           <label>
-            <i className="fa-solid fa-link"></i>
-            Bài viết liên quan
+            <i className="fa-solid fa-link" /> Bài viết liên quan
           </label>
           <RelatedArticlesPicker
-            value={relatedField.value as Articles[]}
+            value={relatedField.value || []}
             onChange={relatedField.onChange}
             articlesActive={openDetail}
           />
         </div>
 
-        {/* ── Actions ── */}
         <div className={cx("modal-actions")}>
           <button type="button" className={cx("cancel")} onClick={closeModal}>
             Huỷ
@@ -272,11 +155,11 @@ const FormArticleDetail = ({
           <button type="submit" className={cx("submit")} disabled={isLoading}>
             {isLoading ? (
               <>
-                <i className="fa-solid fa-spinner"></i> Đang lưu...
+                <i className="fa-solid fa-spinner" /> Đang lưu...
               </>
             ) : (
               <>
-                <i className="fa-regular fa-floppy-disk"></i> Lưu nội dung
+                <i className="fa-regular fa-floppy-disk" /> Lưu nội dung
               </>
             )}
           </button>

@@ -5,6 +5,8 @@ import { useDashboardManager } from "./useDashboardManager";
 import Charts from "./components/Charts";
 import QuickAction from "./components/QuickAction";
 import LoadingData from "../../../components/LoadingData/LoadingData";
+import PageHeader from "../../../components/PageHeader/PageHeader";
+import DashBoardHeader from "./components/DashboardHeader/DashboardHeader";
 
 const cx = classNames.bind(styles);
 
@@ -30,23 +32,7 @@ const DashboardManager = () => {
   return (
     <div className={cx("dashboardManager-page")}>
       {/* ── Header ──────────────────────────────────────────────────────────── */}
-      <div className={cx("page-header")}>
-        <div className={cx("header-left")}>
-          <h2>Dashboard</h2>
-          <p>Tổng quan hệ thống AutoViet</p>
-        </div>
-        <div className={cx("header-right")}>
-          <span className={cx("date")}>
-            <i className="fa-regular fa-calendar"></i>
-            {new Date().toLocaleDateString("vi-VN", {
-              weekday: "long",
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            })}
-          </span>
-        </div>
-      </div>
+      <DashBoardHeader></DashBoardHeader>
       <Charts></Charts>
 
       {/* ── Stats cards ─────────────────────────────────────────────────────── */}

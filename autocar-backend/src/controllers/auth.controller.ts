@@ -15,6 +15,7 @@ import {
 } from "../schemas/auth.schema";
 import * as authService from "../services/auth.service";
 import { catchAsync } from "../utils/catchAsync";
+import { AppError } from "../utils/AppError";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -23,9 +24,7 @@ export const register = catchAsync(async (req: Request, res: Response) => {
   const validated = registerSchema.safeParse(req.body);
 
   if (!validated.success) {
-    return res.status(400).json({
-      message: validated.error.issues[0]?.message,
-    });
+    throw new AppError(validated.error.issues[0].message);
   }
 
   const { email, password, username, phone } = validated.data;
@@ -59,9 +58,7 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const validated = loginSchema.safeParse(req.body);
 
   if (!validated.success) {
-    return res.status(400).json({
-      message: validated.error.issues[0]?.message,
-    });
+    throw new AppError(validated.error.issues[0].message);
   }
 
   const { email, password } = validated.data;
@@ -112,9 +109,7 @@ export const loginWithGoogle = catchAsync(
     const validated = googleLoginSchema.safeParse(req.body);
 
     if (!validated.success) {
-      return res.status(400).json({
-        message: validated.error.issues[0]?.message,
-      });
+      throw new AppError(validated.error.issues[0].message);
     }
 
     const { credential } = validated.data;
@@ -181,11 +176,8 @@ export const changePasswordAccount = catchAsync(
     const validated = changePasswordSchema.safeParse(req.body);
 
     if (!validated.success) {
-      return res.status(400).json({
-        message: validated.error.issues[0]?.message,
-      });
+      throw new AppError(validated.error.issues[0].message);
     }
-
     const { currentPassword, newPassword } = validated.data;
 
     if (currentPassword === newPassword) {
@@ -225,9 +217,7 @@ export const forgotPassword = catchAsync(
     const validated = forgotPasswordSchema.safeParse(req.body);
 
     if (!validated.success) {
-      return res.status(400).json({
-        message: validated.error.issues[0]?.message,
-      });
+      throw new AppError(validated.error.issues[0].message);
     }
 
     const { email } = validated.data;
@@ -244,9 +234,7 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
   const validated = resetPasswordSchema.safeParse(req.body);
 
   if (!validated.success) {
-    return res.status(400).json({
-      message: validated.error.issues[0]?.message,
-    });
+    throw new AppError(validated.error.issues[0].message);
   }
 
   const { token, password } = validated.data;

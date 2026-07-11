@@ -9,7 +9,7 @@ interface ContactQueryParams {
   limit?: number;
 }
 
-export const useContacts = ({
+export const useContactsQuery = ({
   search = "",
   status = "",
   page = 1,

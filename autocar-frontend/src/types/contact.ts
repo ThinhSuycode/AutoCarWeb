@@ -1,6 +1,14 @@
+import type { STAFF_STATUS_CONTACT } from "../page/Staff/MyContact/constants/statusLabelData";
 import type { Staff } from "./car";
 
-// types/contact.ts
+export type CONTACT_STATUS =
+  | "new"
+  | "assigned"
+  | "contacted"
+  | "appointment_created"
+  | "completed"
+  | "cancelled";
+
 export interface Contact {
   _id: string;
   // Thông tin người liên hệ
@@ -17,7 +25,7 @@ export interface Contact {
   // Người gửi (nếu đã đăng nhập)
   buyerId?: string;
   managerId?: Staff;
-  status: "pending" | "contacted" | "done" | "cancelled";
+  status: CONTACT_STATUS;
   notes: string;
   createdAt: Date;
   updatedAt: Date;
@@ -56,7 +64,7 @@ export interface ContactListResponse {
 }
 
 export interface UpdateContactStatusPayload {
-  status: "pending" | "contacted" | "done" | "cancelled";
+  status: STAFF_STATUS_CONTACT;
   // notes?: string;
 }
 

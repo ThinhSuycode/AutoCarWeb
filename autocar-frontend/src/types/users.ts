@@ -1,3 +1,5 @@
+import type { PaginationMeta } from "./pagination";
+
 export interface UserType {
   _id?: string;
   address?: string | undefined;
@@ -11,4 +13,10 @@ export interface UserType {
   appointmentSchedule?: [];
   articleSave?: string[];
   loginType: string;
+}
+
+
+export interface UserResponse {
+  data: UserType;
+  pagination: PaginationMeta;
 }

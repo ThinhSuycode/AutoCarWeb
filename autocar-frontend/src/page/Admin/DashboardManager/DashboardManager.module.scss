@@ -1,16 +1,15 @@
 // ─── Tokens ───────────────────────────────────────────────────────────────────
-$navy: #0f172a;
-$navy-mid: #1e293b;
-$slate: #64748b;
-$slate-light: #f1f5f9;
-$border: #e9ecef;
-$red: #dc2626;
-$white: #ffffff;
-$bg: #f8fafc;
+// $navy: #0f172a;
+// $navy-mid: #1e293b;
+// $slate: #64748b;
+// $slate-light: #f1f5f9;
+// $border: #e9ecef;
+// $red: #dc2626;
+// $white: #ffffff;
+// $bg: #f8fafc;
+@use "../../../styles/tokens" as *;
 
 .dashboardManager-page {
-  padding: 24px 28px;
-  background: $bg;
   min-height: 100vh;
 
   // ── Loading ────────────────────────────────────────────────────────────────
@@ -33,51 +32,6 @@ $bg: #f8fafc;
     @keyframes spin {
       to {
         transform: rotate(360deg);
-      }
-    }
-  }
-
-  // ── Page header ────────────────────────────────────────────────────────────
-  .page-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 24px;
-
-    .header-left {
-      h2 {
-        font-size: 26px;
-        font-weight: 800;
-        color: $navy;
-        letter-spacing: -0.5px;
-        padding-bottom: 4px;
-        border-bottom: 3px solid $red;
-        display: inline-block;
-        margin-bottom: 4px;
-      }
-
-      p {
-        font-size: 13px;
-        color: $slate;
-      }
-    }
-
-    .header-right {
-      .date {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        font-size: 13px;
-        color: $slate;
-        background: $white;
-        border: 1px solid $border;
-        padding: 7px 14px;
-        border-radius: 8px;
-
-        i {
-          color: $red;
-          font-size: 12px;
-        }
       }
     }
   }

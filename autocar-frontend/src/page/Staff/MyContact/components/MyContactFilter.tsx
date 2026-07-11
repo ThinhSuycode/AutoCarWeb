@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "../MyContact.module.scss";
+import { STAFF_FILTER_STATUS } from "../constants/statusLabelData";
 
 const cx = classNames.bind(styles);
 
@@ -38,10 +39,12 @@ const MyContactFilter = ({
         }}
       >
         <option value="">Tất cả trạng thái</option>
-        <option value="pending">Chờ xử lý</option>
-        <option value="contacted">Đã liên hệ</option>
-        <option value="done">Hoàn thành</option>
-        <option value="cancelled">Đã huỷ</option>
+
+        {STAFF_FILTER_STATUS.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
+        ))}
       </select>
     </div>
   );

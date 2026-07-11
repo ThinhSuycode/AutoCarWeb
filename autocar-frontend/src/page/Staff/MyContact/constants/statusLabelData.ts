@@ -1,18 +1,50 @@
-import type { UpdateContactStatusPayload } from "../../../../types/contact";
+import type { CONTACT_STATUS } from "../../../../types/contact";
 
-export const STATUS_LABEL: Record<string, string> = {
-  pending: "Chờ xử lý",
+export type STAFF_STATUS_CONTACT =
+  | "contacted"
+  | "appointment_created"
+  | "completed"
+  | "cancelled";
+
+export const STATUS_LABEL: Record<CONTACT_STATUS, string> = {
+  new: "Mới",
+
+  assigned: "Đã phân công",
+
   contacted: "Đã liên hệ",
-  done: "Hoàn thành",
+
+  appointment_created: "Đã tạo lịch hẹn",
+
+  completed: "Hoàn thành",
+
   cancelled: "Đã huỷ",
 };
-export type MAP_STATUS_CONTACT = "pending" | "contacted" | "done" | "cancelled";
-export const MAP_STATUS_DATA = ["pending", "contacted", "done", "cancelled"];
 
-export const NEXT_STATUS_CONTACT: Partial<
-  Record<MAP_STATUS_CONTACT, MAP_STATUS_CONTACT>
-> = {
-  pending: "contacted",
-  contacted: "done",
-  done: "cancelled",
-};
+export const MAP_STATUS_DATA: STAFF_STATUS_CONTACT[] = [
+  "contacted",
+  "appointment_created",
+  "completed",
+  "cancelled",
+];
+export const STAFF_FILTER_STATUS = [
+  {
+    value: "assigned",
+    label: "Đã phân công",
+  },
+  {
+    value: "contacted",
+    label: "Đã liên hệ",
+  },
+  {
+    value: "appointment_created",
+    label: "Đã tạo lịch hẹn",
+  },
+  {
+    value: "completed",
+    label: "Hoàn thành",
+  },
+  {
+    value: "cancelled",
+    label: "Đã huỷ",
+  },
+];

@@ -2,6 +2,7 @@ import axios from "axios";
 import { changeApi } from "./api";
 
 const API_URL = `${import.meta.env.VITE_APP_API_KEYS}/auth`;
+const getToken = () => localStorage.getItem("token");
 
 export const loginApi = async (email: string, password: string) => {
   const res = await axios.post(`${API_URL}/login`, {
@@ -21,8 +22,6 @@ export const registerApi = async (data: {
   return res.data;
 };
 
-const getToken = () => localStorage.getItem("token");
-
 export const getMeApi = async () => {
   const token = getToken();
   if (!token) return null;
@@ -36,22 +35,15 @@ export const getMeApi = async () => {
 };
 
 export const updateAvatarApi = async (userId: string, file: File) => {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
   formData.append("avatar", file);
-
-  console.log("userId gửi lên:", userId);
-  console.log(
-    "URL gọi:",
-    `${import.meta.env.VITE_APP_API_KEYS}/users/${userId}/avatar`,
-  );
 
   const res = await axios.patch(
     `${import.meta.env.VITE_APP_API_KEYS}/users/${userId}/avatar`,
     formData,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${getToken()}`,
         "Content-Type": "multipart/form-data",
       },
     },

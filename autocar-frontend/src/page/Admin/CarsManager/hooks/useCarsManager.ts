@@ -26,13 +26,10 @@ export const useCarsManager = () => {
     try {
       const params = new URLSearchParams();
 
-      // Nếu có search → lấy ALL
       if (keyword.trim()) {
         params.set("all", "true");
         params.set("search", keyword);
-      }
-      // Nếu xoá search → quay lại pagination
-      else {
+      } else {
         params.set("page", String(page));
         params.set("limit", String(9));
       }
@@ -51,7 +48,6 @@ export const useCarsManager = () => {
     }
   }, []);
 
-  // Khi search thay đổi
   useEffect(() => {
     fetchData(1, search);
   }, [search]);

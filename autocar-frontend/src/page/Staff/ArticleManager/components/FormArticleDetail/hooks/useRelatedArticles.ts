@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useDebounce } from "../../../../../../hooks/useDebounce";
 import { useArticlesQuery } from "../../../../../../queries/useArticlesQuery";
 import type { Articles } from "../../../../../../types/articles";
 
 interface Props {
-  value: Articles[];
-  onChange: (articles: Articles[]) => void;
+  value: string[];
+  onChange: (articles: string[]) => void;
   articlesActive: Articles;
 }
 
 const useRelatedArticles = ({ value, onChange, articlesActive }: Props) => {
   const [query, setQuery] = useState("");
+
   const debouncedQuery = useDebounce(query, 350);
 
   const { data, isLoading } = useArticlesQuery({
@@ -19,32 +20,38 @@ const useRelatedArticles = ({ value, onChange, articlesActive }: Props) => {
     search: debouncedQuery || undefined,
   });
 
-  // ✅ Lọc bỏ bài đang mở để không hiện trong danh sách
-  const articles = (data?.data ?? []).filter(
-    (a) => a._id !== articlesActive._id,
+  const articles = useMemo(
+    () => (data?.data ?? []).filter((a) => a._id !== articlesActive._id),
+    [data?.data, articlesActive._id],
   );
 
-  const selectedIds = new Set(value.map((a) => a._id));
+  const selectedIds = useMemo(() => new Set(value), [value]);
+
+  const selectedArticles = useMemo(
+    () => articles.filter((article) => selectedIds.has(article._id)),
+    [articles, selectedIds],
+  );
 
   const toggle = (article: Articles) => {
     if (selectedIds.has(article._id)) {
-      onChange(value.filter((a) => a._id !== article._id));
+      onChange(value.filter((id) => id !== article._id));
     } else {
-      onChange([...value, article]);
+      onChange([...value, article._id]);
     }
   };
 
-  const remove = (id: string) => onChange(value.filter((a) => a._id !== id));
-
-  const clearQuery = () => setQuery("");
+  const remove = (id: string) => {
+    onChange(value.filter((item) => item !== id));
+  };
 
   return {
     query,
     setQuery,
-    clearQuery,
+    clearQuery: () => setQuery(""),
     articles,
-    isLoading,
+    selectedArticles,
     selectedIds,
+    isLoading,
     toggle,
     remove,
   };

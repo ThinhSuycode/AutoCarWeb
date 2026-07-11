@@ -1,33 +1,43 @@
-import { Router } from "express";
-import { requireAuth, requireRole } from "../middleware/authMiddleware";
+import express from "express";
+
 import {
   createAppointment,
-  getAppointments,
-  getAppointmentById,
-  updateAppointmentStatus,
+  confirmAppointment,
+  completeAppointment,
   cancelAppointment,
-  deleteAppointment,
+  getAppointmentsAll,
 } from "../controllers/appointment.controller";
 
-const appoinmentRouter = Router();
+import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
-const authGuard = [requireAuth];
-const adminGuard = [requireAuth, requireRole("admin")];
-const staffGuard = [requireAuth, requireRole("admin", "staff")];
+export const appointmentRouter = express.Router();
 
-appoinmentRouter.post("/appointments", ...authGuard, createAppointment); // User đặt lịch
-appoinmentRouter.get("/appointments", ...authGuard, getAppointments); // Xem danh sách
-appoinmentRouter.get("/appointments/:id", ...authGuard, getAppointmentById); // Xem chi tiết
-appoinmentRouter.patch(
-  "/appointments/:id/status",
-  ...staffGuard,
-  updateAppointmentStatus,
-); // Staff/Admin cập nhật
-appoinmentRouter.patch(
+appointmentRouter.get("/appointments", requireAuth, getAppointmentsAll);
+
+appointmentRouter.post(
+  "/appointments/contact/:contactId",
+  requireAuth,
+  requireRole("admin", "staff"),
+  createAppointment,
+);
+
+appointmentRouter.patch(
+  "/appointments/:id/confirm",
+  requireAuth,
+  requireRole("admin", "staff"),
+  confirmAppointment,
+);
+
+appointmentRouter.patch(
+  "/appointments/:id/complete",
+  requireAuth,
+  requireRole("admin", "staff"),
+  completeAppointment,
+);
+
+appointmentRouter.patch(
   "/appointments/:id/cancel",
-  ...authGuard,
+  requireAuth,
+  requireRole("admin", "staff"),
   cancelAppointment,
-); // User tự hủy
-appoinmentRouter.delete("/appointments/:id", ...adminGuard, deleteAppointment); // Admin xóa
-
-export default appoinmentRouter;
+);

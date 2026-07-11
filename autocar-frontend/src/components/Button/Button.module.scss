@@ -2,9 +2,9 @@
 @use "../../styles/mixins" as *;
 
 .wrapper {
-  display: inline-block;
+  display: flex;
   align-items: center;
-  // width: 80px;
+  justify-content: center;
   padding: 10px 16px;
   border-radius: 8px;
   background-color: var(--button-bg-medium);

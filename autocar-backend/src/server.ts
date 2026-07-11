@@ -9,9 +9,9 @@ import { articleRouter } from "./routes/articles.routes";
 import { articleDetailRouter } from "./routes/articleDetails.routes";
 import authRouter from "./routes/auth.routes";
 import { contactRouter } from "./routes/contact.routes";
-import appoinmentRouter from "./routes/appointment.routes";
 import uploadRouter from "./routes/upload.route";
 import dashboardRouter from "./routes/dashboard.route";
+import { appointmentRouter } from "./routes/appointment.routes";
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ app.use("/api", articleDetailRouter);
 app.use("/api/auth", authRouter);
 app.use("/api", contactRouter);
 app.use("/api/upload", uploadRouter);
-app.use("/api", appoinmentRouter);
+app.use("/api", appointmentRouter);
 app.use("/api/dashboard", dashboardRouter);
 const PORT = process.env.PORT || 5001;
 

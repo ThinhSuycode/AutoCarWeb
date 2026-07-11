@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
 
@@ -9,23 +9,22 @@ export const globalErrorHandler = (
   next: NextFunction,
 ) => {
   const isAppError = err instanceof AppError;
-  const statusCode = isAppError ? err.statusCode : 500;
-  const message = isAppError ? err.message : "Lỗi server!";
 
-  if (!isAppError) {
-    logger.error("Unexpected error", {
-      message: err.message,
-      stack: err.stack,
-      url: req.originalUrl,
-      method: req.method,
-      user: (req as any).user?.id ?? "guest",
-    });
-  }
+  const statusCode = isAppError ? err.statusCode : 500;
+
+  const message = isAppError ? err.message : "Đã xảy ra lỗi hệ thống!";
+
+  logger.error({
+    statusCode,
+    message,
+    url: req.originalUrl,
+    method: req.method,
+    stack: err.stack,
+  });
 
   res.status(statusCode).json({
     success: false,
+    statusCode,
     message,
-    // Chỉ trả stack khi dev — không lộ thông tin nhạy cảm ở production
-    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
   });
 };

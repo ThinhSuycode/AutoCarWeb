@@ -1,0 +1,694 @@
+@use "../../../../../styles/tokens" as *;
+
+// ─── Modal ────────────────────────────────────────────────────────────────────
+.modal {
+  width: 600px;
+  max-height: 88vh;
+  background: $white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  animation: slideUp 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+
+  &.modal-detail {
+    width: 680px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+// ─── Modal header ─────────────────────────────────────────────────────────────
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid $border;
+  background: $white;
+  flex-shrink: 0;
+  position: relative;
+
+  // Red underline accent
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 22px;
+    width: 36px;
+    height: 3px;
+    background: $red;
+    border-radius: 2px 2px 0 0;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: $navy;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: -0.2px;
+
+    i {
+      color: $red;
+      font-size: 13px;
+    }
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: $border-2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $slate;
+    font-size: 13px;
+    transition:
+      background 0.18s,
+      color 0.18s,
+      transform 0.2s;
+
+    &:hover {
+      background: #fee2e2;
+      color: $red;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.add-section {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px dashed #cbd5e1;
+  background: transparent;
+  color: $slate;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    color 0.18s,
+    background 0.18s;
+  margin-bottom: 6px;
+
+  &:hover {
+    border-color: $red;
+    color: $red;
+    background: #fef2f2;
+  }
+}
+
+.detail-form {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 22px;
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: $muted;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+
+      i {
+        color: $red;
+        font-size: 10px;
+      }
+    }
+
+    .thumbnail-preview {
+      height: 220px;
+      margin-top: 10px;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid $border;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1.5px solid $border;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13.5px;
+      color: $navy;
+      background: $bg;
+      outline: none;
+      font-family: inherit;
+      margin-bottom: 5px;
+      transition:
+        border-color 0.15s,
+        box-shadow 0.15s,
+        background 0.15s;
+
+      &::placeholder {
+        color: $muted;
+        font-size: 13px;
+      }
+
+      &:focus {
+        border-color: $blue;
+        background: $white;
+        box-shadow: 0 0 0 3px rgba($blue, 0.08);
+      }
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 11px center;
+      background-color: $bg;
+      padding-right: 32px;
+    }
+
+    textarea {
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    small {
+      display: block;
+      font-size: 11px;
+      color: $muted;
+      margin-top: 4px;
+
+      &.error {
+        color: $red;
+      }
+    }
+    .error {
+      color: #ef4444;
+      font-size: 13px !important;
+      font-weight: 400 !important;
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 22px;
+    border-top: 1px solid $border;
+    background: $bg;
+    flex-shrink: 0;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background 0.18s,
+        transform 0.15s;
+    }
+
+    .cancel {
+      background: $border-2;
+      color: $slate;
+      border: 1.5px solid $border;
+      &:hover {
+        background: $border;
+      }
+    }
+
+    .submit {
+      background: $navy;
+      color: $white;
+      box-shadow: 0 2px 6px rgba($navy, 0.2);
+
+      &:hover {
+        background: $blue;
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+  }
+}
+
+// ─── Section block ────────────────────────────────────────────────────────────
+.section-block {
+  margin-bottom: 20px;
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: $navy;
+
+    i {
+      color: $red;
+      margin-right: 5px;
+    }
+  }
+}
+
+// ─── Detail list & item ───────────────────────────────────────────────────────
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.detail-item {
+  background: $white;
+  border: 1.5px solid $border;
+  border-radius: 10px;
+  padding: 14px;
+  transition: border-color 0.18s;
+
+  &:hover {
+    border-color: rgba($red, 0.2);
+  }
+}
+
+.section-item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $border;
+}
+
+.section-index {
+  font-size: 11px;
+  font-weight: 700;
+  color: $muted;
+  min-width: 22px;
+}
+
+.section-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  flex: 1;
+
+  i {
+    font-size: 10px;
+  }
+
+  &.paragraph {
+    background: #eff6ff;
+    color: $blue;
+  }
+  &.heading {
+    background: #f0fdf4;
+    color: $green;
+  }
+  &.image {
+    background: #fef9ec;
+    color: $amber;
+  }
+  &.quote {
+    background: #fdf4ff;
+    color: #9333ea;
+  }
+  &.list {
+    background: #fef2f2;
+    color: $red;
+  }
+}
+
+.section-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.move-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  border: none;
+  background: $bg;
+  color: $slate;
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: $border;
+    color: $navy;
+  }
+}
+
+.remove-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #fef2f2;
+  color: $red;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+
+  &:hover {
+    background: $red;
+    color: $white;
+  }
+}
+
+// ─── Empty sections ───────────────────────────────────────────────────────────
+.empty-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  border: 2px dashed $border;
+  border-radius: 10px;
+  color: #cbd5e1;
+  text-align: center;
+
+  i {
+    font-size: 26px;
+  }
+  p {
+    font-size: 13px;
+    color: $muted;
+  }
+}
+
+// ─── Image preview ────────────────────────────────────────────────────────────
+.img-preview {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid $border;
+}
+
+// ─── Related articles picker ──────────────────────────────────────────────────
+.picker-box {
+  border: 1.5px solid $border;
+  border-radius: 8px;
+  overflow: hidden;
+  background: $white;
+}
+
+.picker-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid $border;
+  background: $bg;
+
+  i {
+    color: $slate;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 13px;
+    color: $navy;
+
+    &::placeholder {
+      color: $muted;
+    }
+  }
+}
+
+.picker-list {
+  max-height: 220px;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 4px;
+  }
+}
+
+.picker-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid $border-2;
+  transition: background 0.1s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background: $bg;
+  }
+  &.selected {
+    background: #eff6ff;
+  }
+}
+
+.picker-thumb {
+  width: 44px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid $border;
+  flex-shrink: 0;
+  background: $bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c0c0c0;
+  font-size: 14px;
+}
+
+.picker-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.picker-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: $navy;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
+}
+
+.picker-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.badge-cat {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #eff6ff;
+  color: $blue;
+  font-weight: 600;
+  border: 1px solid #bfdbfe;
+}
+
+.badge-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+
+  &.published {
+    background: #f0fdf4;
+    color: $green;
+  }
+  &.draft {
+    background: #fef9ec;
+    color: $amber;
+  }
+  &.pending {
+    background: #eff6ff;
+    color: $blue;
+  }
+  &.archived {
+    background: $border-2;
+    color: $slate;
+  }
+}
+
+.picker-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid $border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+
+  &.checked {
+    background: $blue;
+    border-color: $blue;
+    color: $white;
+
+    i {
+      font-size: 11px;
+    }
+  }
+}
+
+.picker-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 24px;
+  color: #cbd5e1;
+  font-size: 13px;
+
+  i {
+    font-size: 20px;
+  }
+}
+
+.picker-selected {
+  padding: 10px 12px;
+  border-top: 1px solid $border;
+  background: $bg;
+}
+
+.picker-selected-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 7px;
+}
+
+.picker-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.picker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 20px;
+  padding: 3px 8px 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: $navy;
+
+  i {
+    color: $muted;
+    font-size: 11px;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: $muted;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

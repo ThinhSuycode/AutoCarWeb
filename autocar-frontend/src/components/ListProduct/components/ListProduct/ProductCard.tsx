@@ -2,8 +2,7 @@ import classNames from "classnames/bind";
 import styles from "../../ListProduct.module.scss";
 import { Button } from "../../../Button/Button";
 import type { CarType } from "../../../../types/car";
-import { createSlug } from "../../../../hooks/createSlug";
-import { useCallback } from "react";
+import { createSlug } from "../../../../utils/slug";
 
 const cx = classNames.bind(styles);
 

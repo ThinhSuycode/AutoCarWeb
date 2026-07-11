@@ -23,7 +23,7 @@ export const useAssignContact = () => {
   });
 
   return {
-    assignContactStaff: mutation.mutate,
+    assignContactStaff: mutation.mutateAsync,
     isPending: mutation.isPending,
   };
 };

@@ -5,7 +5,6 @@ import type { Contact } from "../../../../types/contact";
 import type { UserType } from "../../../../types/users";
 
 import { STATUS_ICON, STATUS_LABEL } from "../constants/contactManagerData";
-import LoadingData from "../../../../components/LoadingData/LoadingData";
 
 const cx = classNames.bind(styles);
 

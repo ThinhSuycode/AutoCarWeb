@@ -2,25 +2,24 @@ import type React from "react";
 import classNames from "classnames/bind";
 import styles from "./ListProduct.module.scss";
 import { useCallback, useEffect, useState } from "react";
-import { config } from "../../config";
-import { createSlug } from "../../hooks/createSlug";
-
 import type {
   BrandsType,
   CarType,
   ListCarType,
   ModePropsType,
-} from "../../types/car";
+} from "../../../../types/car";
+import { useCarsFilter } from "../../../../hooks/useCarsFilter";
+import { config } from "../../../../config";
+import LoadingData from "../../../LoadingData/LoadingData";
 import {
   BodyTypeCar,
   carsBrand,
   modeData,
   transmissions,
-} from "../../data/carsData";
-import { Button } from "../Button/Button";
-import EmptyData from "../EmtyData/EmptyData";
-import { useCarsFilter } from "../../hooks/useCarsFilter";
-import LoadingData from "../LoadingData/LoadingData";
+} from "../../../../data/carsData";
+import { Button } from "../../../Button/Button";
+import { createSlug } from "../../../../utils/slug";
+import EmptyData from "../../../EmtyData/EmptyData";
 
 const cx = classNames.bind(styles);
 

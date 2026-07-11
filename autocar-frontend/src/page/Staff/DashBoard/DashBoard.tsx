@@ -15,6 +15,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
+import PageHeader from "../../../components/PageHeader/PageHeader";
 
 const cx = classNames.bind(styles);
 
@@ -107,13 +108,10 @@ const STATUS_MAP: Record<
 const DashBoard = () => {
   return (
     <div className={cx("dashboardStaff-page")}>
-      {/* Header */}
-      <div className={cx("page-header")}>
-        <div>
-          <h2>Dashboard Nhân Viên</h2>
-          <p>Theo dõi lịch hẹn và khách hàng hôm nay</p>
-        </div>
-
+      <PageHeader
+        title="Dashboard Nhân Viên"
+        description="Theo dõi lịch hẹn và khách hàng hôm nay"
+      >
         <div className={cx("date")}>
           <i className="fa-regular fa-calendar"></i>
 
@@ -124,7 +122,7 @@ const DashBoard = () => {
             year: "numeric",
           })}
         </div>
-      </div>
+      </PageHeader>
 
       {/* Stats */}
       <div className={cx("stats-grid")}>

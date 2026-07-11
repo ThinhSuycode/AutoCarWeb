@@ -1,58 +1,93 @@
 import { z } from "zod";
-import type { Articles } from "../../../../../../types/articles";
 
-const sectionTypeEnum = z.enum([
-  "paragraph",
-  "heading",
-  "image",
-  "quote",
-  "list",
-]);
+const objectId = z.string().regex(/^[0-9a-fA-F]{24}$/, "ID không hợp lệ");
 
-const baseSectionSchema = z.object({
-  sectionType: sectionTypeEnum,
-  imageUrl: z.string().optional(),
+// ─── Section schemas ──────────────────────────────────────────────────────────
+const paragraphSchema = z.object({
+  sectionType: z.literal("paragraph"),
+  content: z.string().min(1, "Nội dung không được để trống"),
+});
+
+const headingSchema = z.object({
+  sectionType: z.literal("heading"),
+  title: z.string().min(1, "Tiêu đề không được để trống"),
+});
+
+const imageSchema = z.object({
+  sectionType: z.literal("image"),
+  imageUrl: z.string().url("URL hình ảnh không hợp lệ"),
+  alt: z.string().optional(),
   caption: z.string().optional(),
 });
 
-const sectionSchema = baseSectionSchema
-  .extend({
-    content: z.string().default(""),
-  })
-  .transform((section) => {
-    if (section.sectionType === "list") {
-      return {
-        ...section,
-        content: section.content
-          .split("\n")
-          .map((s) => s.trim())
-          .filter(Boolean),
-      };
-    }
-    return section;
-  });
+const quoteSchema = z.object({
+  sectionType: z.literal("quote"),
+  content: z.string().min(1, "Nội dung trích dẫn không được để trống"),
+  caption: z.string().optional(),
+});
 
-/** Input: "tag1, tag2" (string) → Output: string[] */
+// list: input là string (textarea), output là string[]
+const listSchema = z
+  .object({
+    sectionType: z.literal("list"),
+    content: z.string().min(1, "Danh sách không được để trống"),
+  })
+  .transform((s) => ({
+    ...s,
+    content: s.content
+      .split("\n")
+      .map((i) => i.trim())
+      .filter(Boolean),
+  }));
+
+const videoSchema = z.object({
+  sectionType: z.literal("video"),
+  imageUrl: z.string().url("URL video không hợp lệ"),
+  title: z.string().optional(),
+  caption: z.string().optional(),
+});
+
+const codeSchema = z.object({
+  sectionType: z.literal("code"),
+  content: z.string().min(1, "Nội dung code không được để trống"),
+  title: z.string().optional(),
+});
+
+export const sectionSchema = z.discriminatedUnion("sectionType", [
+  paragraphSchema,
+  headingSchema,
+  imageSchema,
+  quoteSchema,
+  listSchema,
+  videoSchema,
+  codeSchema,
+]);
+
 const tagsSchema = z
   .string()
   .default("")
-  .transform((raw) =>
-    raw
+  .transform((v) =>
+    v
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
   );
 
-const articleRefSchema = z.custom<Articles>(() => true);
-
-export const articleDetailFormSchema = z.object({
+// ─── Root schema ──────────────────────────────────────────────────────────────
+export const articleDetailSchema = z.object({
+  articleId: objectId,
   sections: z.array(sectionSchema).min(1, "Cần ít nhất 1 section"),
   tags: tagsSchema,
-  relatedArticles: z.array(articleRefSchema).default([]),
+  relatedArticles: z.array(objectId).default([]),
 });
 
-/** Type của giá trị TRONG FORM (trước transform) — dùng cho useForm<T>() */
-export type ArticleDetailFormInput = z.input<typeof articleDetailFormSchema>;
+export const updateArticleDetailSchema = articleDetailSchema.partial();
 
-/** Type SAU transform — dùng khi gửi API (onSubmit nhận type này) */
-export type ArticleDetailFormOutput = z.output<typeof articleDetailFormSchema>;
+// ─── Exported types ───────────────────────────────────────────────────────────
+export type ArticleDetailInput = z.input<typeof articleDetailSchema>;
+export type ArticleDetailOutput = z.output<typeof articleDetailSchema>;
+export type UpdateArticleDetailInput = z.infer<
+  typeof updateArticleDetailSchema
+>;
+export type SectionInput = z.input<typeof sectionSchema>;
+export type SectionOutput = z.output<typeof sectionSchema>;

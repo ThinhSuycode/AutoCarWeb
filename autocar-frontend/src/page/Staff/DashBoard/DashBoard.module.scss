@@ -1,14 +1,4 @@
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$navy: #0f172a;
-$slate: #64748b;
-$border: #e2e8f0;
-$blue: #2563eb;
-$red: #dc2626;
-$green: #22c55e;
-$amber: #f59e0b;
-$white: #ffffff;
-$bg: #f8fafc;
-
+@use "../../../styles/tokens" as *;
 // ─── Page ─────────────────────────────────────────────────────────────────────
 .dashboardStaff-page {
   display: flex;
@@ -20,41 +10,23 @@ $bg: #f8fafc;
 }
 
 // ─── Page header ──────────────────────────────────────────────────────────────
-.page-header {
+
+.date {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  background: $white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid $border;
+  font-size: 13px;
+  font-weight: 500;
+  color: $navy;
+  white-space: nowrap;
 
-  h2 {
-    font-size: 26px;
-    font-weight: 800;
-    color: $navy;
-    margin-bottom: 4px;
-  }
-
-  p {
-    font-size: 13px;
-    color: $slate;
-  }
-
-  .date {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: $white;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: 1px solid $border;
-    font-size: 13px;
-    font-weight: 500;
-    color: $navy;
-    white-space: nowrap;
-
-    i {
-      color: $red;
-      font-size: 14px;
-    }
+  i {
+    color: $red;
+    font-size: 14px;
   }
 }
 

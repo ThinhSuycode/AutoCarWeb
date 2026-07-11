@@ -291,20 +291,19 @@ export const removeManager = catchAsync(
 
 export const getCarsByManager = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    if (!req.user) {
-      throw new AppError("Unauthorized!", 401);
-    }
-
     const {
       page = "1",
       limit = "10",
       search,
+      managerStatus = "all",
     } = req.query as Record<string, string>;
 
     const query: Record<string, any> = {
-      managerId: req.user._id,
+      managerId: req.user?._id,
     };
-
+    if (managerStatus !== "all") {
+      query.managerStatus = managerStatus;
+    }
     if (search) {
       query.$or = [
         { name: { $regex: search, $options: "i" } },

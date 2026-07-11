@@ -17,6 +17,7 @@ export const useAssignManager = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [assigningId, setAssigningId] = useState<string | null>(null);
   const [filter, setFilter] = useState<FilterType>("all");
+  const [page, setPage] = useState("");
 
   const [pagination, setPagination] = useState<PaginationMeta>({
     page: 1,

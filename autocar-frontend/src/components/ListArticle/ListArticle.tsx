@@ -1,7 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "./ListArticle.module.scss";
 import type { Articles } from "../../types/articles";
-import { getColorCategory } from "../../hooks/getCategoryColor";
+import {
+  getColorCategory,
+  getLabelCategory,
+} from "../../hooks/getCategoryColor";
 import { config } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { createHandleReadArticle } from "../../hooks/HandleArticles";
@@ -29,10 +32,10 @@ const ListArticle: React.FC<ListArticleType> = ({
     <div className={cx("articles-form")}>
       {heading && (
         <div className={cx("form-heading")}>
-        <div className={cx("left")}>
+          <div className={cx("left")}>
             <h2>{heading}</h2>
             <p>Theo dõi bài viết bạn đã lưu</p>
-        </div>
+          </div>
           {!hiddenBtn && (
             <a href={config.Routes.Articles}>
               Xem tất cả
@@ -51,14 +54,9 @@ const ListArticle: React.FC<ListArticleType> = ({
               data-aos="flip-right"
             >
               <div className={cx("img")}>
-                <img src={article.image} alt={article.title} />
-                <div
-                  className={cx(
-                    "category-img",
-                    getColorCategory(article.category),
-                  )}
-                >
-                  {article.category}
+                <img src={article.thumbnail} alt={article.title} />
+                <div className={cx("category-img", article.category)}>
+                  {getLabelCategory(article.category)}
                 </div>
               </div>
               <div className={cx("content")}>

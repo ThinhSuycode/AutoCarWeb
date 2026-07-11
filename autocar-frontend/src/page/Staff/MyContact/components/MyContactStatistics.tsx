@@ -13,13 +13,29 @@ const MyContactStatistics = ({ stats }: Props) => {
     <div className={cx("statistics")}>
       {[
         { label: "Tổng", value: stats.total },
-        { label: "Chờ xử lý", value: stats.pending },
+
+        { label: "Mới", value: stats.new },
+
         { label: "Đã liên hệ", value: stats.contacted },
-        { label: "Hoàn thành", value: stats.done },
-        { label: "Đã huỷ", value: stats.cancelled },
+
+        {
+          label: "Đã tạo lịch hẹn",
+          value: stats.appointment_created,
+        },
+
+        {
+          label: "Hoàn thành",
+          value: stats.completed,
+        },
+
+        {
+          label: "Đã huỷ",
+          value: stats.cancelled,
+        },
       ].map(({ label, value }) => (
         <div key={label} className={cx("card")}>
           <span>{label}</span>
+
           <strong>{value}</strong>
         </div>
       ))}

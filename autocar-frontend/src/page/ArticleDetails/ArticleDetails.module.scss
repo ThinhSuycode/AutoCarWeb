@@ -65,21 +65,34 @@ $bg: #f8fafc;
       letter-spacing: 0.3px;
       margin-bottom: 14px;
 
-      &.CarNews {
-        background: #dbeafe;
+      &.news {
+        background: rgba(#dbeafe, 0.95);
         color: #1d4ed8;
       }
-      &.BuyingGuide {
-        background: #d1fae5;
-        color: #047857;
+
+      &.car-review {
+        background: rgba(#fee2e2, 0.95);
+        color: #dc2626;
       }
-      &.Promotion {
-        background: #fee2e2;
-        color: #b91c1c;
+
+      &.experience {
+        background: rgba(#dcfce7, 0.95);
+        color: #15803d;
       }
-      &.Maintenance {
-        background: #fef3c7;
-        color: #92400e;
+
+      &.maintenance {
+        background: rgba(#fef3c7, 0.95);
+        color: #b45309;
+      }
+
+      &.electric-car {
+        background: rgba(#ede9fe, 0.95);
+        color: #7c3aed;
+      }
+
+      &.market {
+        background: rgba(#cffafe, 0.95);
+        color: #0891b2;
       }
     }
 
@@ -412,6 +425,108 @@ $bg: #f8fafc;
           color: $navy-mid;
           line-height: 1.7;
           margin: 6px 0;
+        }
+      }
+      // ── Thêm vào .article-body trong ArticleDetails.module.scss ──────────────────
+
+      // Quote — cite (tác giả / nguồn)
+      .section-quote {
+        cite {
+          display: block;
+          margin-top: 10px;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 600;
+          color: $slate;
+        }
+      }
+
+      // Video
+      .section-video {
+        margin: 24px 0;
+
+        &__title {
+          font-size: 14px;
+          font-weight: 700;
+          color: $navy;
+          margin-bottom: 10px;
+        }
+
+        &__embed {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%; // 16:9
+          border-radius: 12px;
+          overflow: hidden;
+          background: #000;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+          iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+          }
+        }
+
+        figcaption {
+          margin-top: 10px;
+          font-size: 13px;
+          font-style: italic;
+          color: $slate;
+          text-align: center;
+        }
+      }
+
+      // Code
+      .section-code {
+        margin: 24px 0;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid $border;
+
+        &__header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 16px;
+          background: $navy;
+          color: #94a3b8;
+          font-size: 12.5px;
+          font-weight: 600;
+
+          i {
+            font-size: 12px;
+            color: $red;
+          }
+
+          span {
+            flex: 1;
+          }
+        }
+
+        &__block {
+          margin: 0;
+          padding: 18px 20px;
+          background: $navy-mid;
+          overflow-x: auto;
+          font-size: 13.5px;
+          line-height: 1.7;
+
+          &::-webkit-scrollbar {
+            height: 5px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+          }
+
+          code {
+            font-family: "Fira Code", "Cascadia Code", "Consolas", monospace;
+            color: #e2e8f0;
+            white-space: pre;
+          }
         }
       }
 

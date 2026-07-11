@@ -172,21 +172,34 @@ $bg: #f8fafc;
           border-radius: 20px;
           letter-spacing: 0.2px;
 
-          &.CarNews {
-            background: rgba(#dbeafe, 0.92);
+          &.news {
+            background: rgba(#dbeafe, 0.95);
             color: #1d4ed8;
           }
-          &.BuyingGuide {
-            background: rgba(#d1fae5, 0.92);
-            color: #047857;
+
+          &.car-review {
+            background: rgba(#fee2e2, 0.95);
+            color: #dc2626;
           }
-          &.Promotion {
-            background: rgba(#fee2e2, 0.92);
-            color: #b91c1c;
+
+          &.experience {
+            background: rgba(#dcfce7, 0.95);
+            color: #15803d;
           }
-          &.Maintenance {
-            background: rgba(#fef3c7, 0.92);
-            color: #92400e;
+
+          &.maintenance {
+            background: rgba(#fef3c7, 0.95);
+            color: #b45309;
+          }
+
+          &.electric-car {
+            background: rgba(#ede9fe, 0.95);
+            color: #7c3aed;
+          }
+
+          &.market {
+            background: rgba(#cffafe, 0.95);
+            color: #0891b2;
           }
         }
       }

@@ -2,10 +2,13 @@ import classNames from "classnames/bind";
 import styles from "../Articles.module.scss";
 
 import ListArticle from "../../../components/ListArticle/ListArticle";
-import { filterArticle } from "../../../data/articleData";
-
-import type { Articles, FilterArticleType } from "../../../types/articles";
+import type { Articles } from "../../../types/articles";
 import LoadingData from "../../../components/LoadingData/LoadingData";
+import {
+  ARTICLE_CATEGORIES,
+  type ArticleCategoryItem,
+} from "../../../constants/articleData";
+import { useMemo } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -37,19 +40,30 @@ const ArticleFilter = ({
   isLoading,
 }: Props) => {
   const hasMore = pagination && pagination.page < pagination.totalPages;
+  // const hasFilterArticles = useMemo(() => {
+  //   return filterValue.trim() !== "Tất cả" && showArticleData.length === 0;
+  // }, [filterValue, showArticleData]);
 
   return (
     <div className={cx("news-filters")}>
       <div className={cx("nav-filters")}>
-        {filterArticle.map((item: FilterArticleType, index: number) => (
+        <div
+          className={cx("item-nav", {
+            active: filterValue === "Tất cả",
+          })}
+          onClick={() => setFilterValue("Tất cả")}
+        >
+          Tất cả
+        </div>
+        {ARTICLE_CATEGORIES.map((item: ArticleCategoryItem, index: number) => (
           <div
             key={index}
             className={cx("item-nav", {
-              active: filterValue === item.nameVI,
+              active: filterValue === item.value,
             })}
-            onClick={() => setFilterValue(item.nameVI)}
+            onClick={() => setFilterValue(item.value)}
           >
-            {item.nameVI}
+            {item.label}
           </div>
         ))}
       </div>
@@ -59,7 +73,7 @@ const ArticleFilter = ({
       ) : (
         <ListArticle
           data={showArticleData}
-          emptyDesc="Không tìm thấy bài viết phù hợp!!"
+          emptyDesc={"Chúng tôi sẽ sớm cập nhật tin tức sớm nhất cho bạn !!"}
         />
       )}
 

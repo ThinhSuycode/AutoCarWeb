@@ -1,74 +1,84 @@
-import { useCallback, useEffect, useState } from "react";
-import type { UserType } from "../../../../types/users";
+import { useCallback, useState } from "react";
+import { useUserAllQuery } from "../../../../queries/useUserAllQuery";
 import toast from "react-hot-toast";
-import type {
-  PaginatedResponse,
-  PaginationMeta,
-} from "../../../../types/pagination";
-import axios from "axios";
-
-const API = import.meta.env.VITE_APP_API_KEYS;
-
-const getToken = () => localStorage.getItem("token");
-const authHeader = () => ({ Authorization: `Bearer ${getToken()}` });
+import { useConfirm } from "../../../../hooks/useConfirm";
+import { useDeleteUser } from "../mutations/useDeleteUserMutation";
+import { getErrorMessage } from "../../../../utils/getErrorMessage";
+import type { GetDataProps } from "../types/usersManager.type";
 
 export const useUsersManager = () => {
-  const [usersData, setUsersData] = useState<UserType[]>([]);
-  const [pagination, setPagination] = useState<PaginationMeta>({
-    page: 1,
-    total: 0,
-    totalPages: 0,
-    limit: 9,
-  });
+  const [page, setPage] = useState(1);
+  const [limit] = useState(8);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
 
-  const fetchUserData = useCallback(
-    async (page: number, keyword = "", role = "") => {
+  const { data, isLoading, isFetching, error, refetch } = useUserAllQuery({
+    page,
+    limit,
+    search,
+    role: roleFilter,
+  });
+  const [userDetail, setUserDetail] = useState<GetDataProps>({
+    userData: null,
+    action: "",
+  });
+  const [isCreateFormOpen, setIsCreateFormOpen] = useState<boolean>(false);
+  const { confirm, confirmProps } = useConfirm();
+
+  const { deleteUserMutation } = useDeleteUser();
+
+  const onHandleClose = useCallback(() => {
+    setIsCreateFormOpen(false);
+    setUserDetail({
+      userData: null,
+      action: "",
+    });
+  }, []);
+
+  const handleDeleteUser = useCallback(
+    async (userId: string) => {
+      const ok = await confirm({
+        title: "Xoá người dùng!!",
+        message: `Bạn có muốn xoá người dùng ${userId} này không?`,
+        confirmText: "Xác nhận",
+        cancelText: "Huỷ",
+      });
+      if (!ok) return;
+
       try {
-        const params = new URLSearchParams();
-
-        if (keyword.trim()) {
-          params.set("all", "true");
-          params.set("search", keyword);
-        } else {
-          params.set("page", String(page));
-          params.set("limit", String(9));
-        }
-
-        if (role) params.set("role", role);
-
-        const userRes = await axios.get<PaginatedResponse<UserType>>(
-          `${API}/users?${params.toString()}`,
-          { headers: authHeader() },
+        await deleteUserMutation(userId);
+        toast.success("Xoá thành công dữ liệu người dùng!");
+        onHandleClose();
+        setPage(1);
+      } catch (error) {
+        toast.error(
+          getErrorMessage(error) ?? "Xoá người dùng không thành công",
         );
-
-        setUsersData(userRes.data.data);
-        setPagination(userRes.data.pagination);
-      } catch {
-        toast.error("Không thể tải dữ liệu người dùng!");
       }
     },
-    [],
-  );
-
-  useEffect(() => {
-    fetchUserData(1, search, roleFilter);
-  }, [search, roleFilter]);
-
-  const onPageChange = useCallback(
-    (page: number) => {
-      fetchUserData(page, search, roleFilter);
-    },
-    [fetchUserData, search, roleFilter],
+    [confirm, onHandleClose, setPage],
   );
 
   return {
-    usersData,
-    pagination,
-    onPageChange,
-    setUsersData,
+    usersData: data?.data ?? [],
+    pagination: data?.pagination,
+    page,
+    setPage,
+    search,
     setSearch,
+    roleFilter,
     setRoleFilter,
+    isLoading,
+    isFetching,
+    error,
+    refetch,
+
+    userDetail,
+    isCreateFormOpen,
+    confirmProps,
+    onHandleClose,
+    handleDeleteUser,
+    setIsCreateFormOpen,
+    setUserDetail,
   };
 };

@@ -25,7 +25,6 @@ const CarDetails = () => {
     carDetails?.images,
   );
 
-  console.log(carDetails);
   const isLogin = !!localStorage.getItem("token");
 
   const { data: userInfo } = useCurrentUser(isLogin);

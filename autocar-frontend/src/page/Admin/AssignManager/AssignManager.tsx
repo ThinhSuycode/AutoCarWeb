@@ -2,8 +2,10 @@ import classNames from "classnames/bind";
 import styles from "./AssignManager.module.scss";
 import { useAssignManager } from "./hooks/useAssignManager";
 import StatsBar from "./components/StatsBar";
-import FilterBar from "./components/FilterBar";
-import CarTable from "./components/CarTable";
+import CarTable from "./components/CarTable/CarTable";
+import PageHeader from "../../../components/PageHeader/PageHeader";
+import CarFilterBar from "./components/CarFilterBar/CarFilterBar";
+import PagePagination from "../../../components/PagePagination/PagePagination";
 import Pagination from "./components/Pagination";
 
 const cx = classNames.bind(styles);
@@ -23,10 +25,12 @@ const AssignManager = () => {
 
   return (
     <div className={cx("assignManager-page")}>
-      <div className={cx("header")}>
-        <h2>Phân Bổ Nhân Viên Quản Lý Xe</h2>
-        <FilterBar active={filter} onChange={setFilter} />
-      </div>
+      <PageHeader
+        title="Phân Bổ Nhân Viên Quản Lý Xe"
+        description="Quản lý xe phân công cho nhân viên"
+      >
+        <CarFilterBar active={filter} onChange={setFilter} />
+      </PageHeader>
       <StatsBar cars={cars} staffList={staffList} />
       {isLoading ? (
         <div className={cx("loading")}>Đang tải...</div>
@@ -41,6 +45,13 @@ const AssignManager = () => {
           <Pagination pagination={pagination} onPageChange={onPageChange} />
         </div>
       )}
+      {/* <PagePagination
+        onPageChange={setPage}
+        currentPage={page}
+        limit={pagination?.limit ?? 8}
+        totalPages={pagination?.totalPages ?? 0}
+        total={pagination?.total ?? 0}
+      ></PagePagination> */}
     </div>
   );
 };

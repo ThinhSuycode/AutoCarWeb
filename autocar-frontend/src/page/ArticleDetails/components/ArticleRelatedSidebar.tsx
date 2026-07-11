@@ -23,7 +23,7 @@ const ArticleRelatedSidebar = ({ relatedArticles, onReadArticle }: Props) => (
             onClick={() => onReadArticle(item)}
           >
             <div className={cx("image-small")}>
-              <img src={item.image} alt={item.title} />
+              <img src={item.thumbnail} alt={item.title} />
             </div>
 
             <div className={cx("info")}>

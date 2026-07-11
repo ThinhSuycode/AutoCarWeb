@@ -1,16 +1,16 @@
 import { useCallback, useState } from "react";
-import { useContacts } from "../../../../queries/useContact";
+import { useContactsQuery } from "../../../../queries/useContact";
 
 import { useGetStaffQuery } from "../../../../queries/useGetStaffQuery";
 import { useAssignContact } from "../../../../mutations/useAssignContact";
-import { statistics } from "../utils/contactStatistics";
+import { contactStatistics } from "../utils/contactStatistics";
 
 const useContactAssign = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useContacts({
+  const { data, isLoading } = useContactsQuery({
     search,
     status,
     page,
@@ -20,7 +20,7 @@ const useContactAssign = () => {
   const contacts = data?.data ?? [];
   const pagination = data?.pagination;
 
-  const stats = statistics(contacts);
+  const stats = contactStatistics(contacts);
 
   const { data: staffList } = useGetStaffQuery("staff");
   const staffData = staffList?.data ?? [];

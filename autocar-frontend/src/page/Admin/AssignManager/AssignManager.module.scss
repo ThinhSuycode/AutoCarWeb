@@ -15,8 +15,6 @@ $red: #dc2626;
 $teal: #0d9488;
 
 .assignManager-page {
-  padding: 24px;
-
   @include md {
     padding: 10px;
   }
@@ -28,58 +26,12 @@ $teal: #0d9488;
     align-items: center;
     margin-bottom: 24px;
 
-    @include md {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
     h2 {
       font-size: 28px;
       font-weight: 700;
       color: var(--primary-color);
       padding-bottom: 4px;
       border-bottom: 3px solid var(--primary-red);
-    }
-
-    .filter {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #f7f7f7;
-      padding: 4px;
-      border-radius: 12px;
-
-      span {
-        font-size: 13px;
-        color: #aaa;
-        font-weight: 500;
-        padding: 0 6px;
-      }
-
-      .filter-btn {
-        padding: 6px 16px;
-        border: none;
-        border-radius: 8px;
-        background: transparent;
-        cursor: pointer;
-        font-size: 13px;
-        font-weight: 500;
-        color: #888;
-        transition: all 0.18s ease;
-
-        &.active {
-          background: $white;
-          color: var(--primary-color);
-          font-weight: 600;
-          box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
-        }
-
-        &:hover:not(.active) {
-          color: var(--primary-color);
-          background: rgba(255, 255, 255, 0.6);
-        }
-      }
     }
   }
 

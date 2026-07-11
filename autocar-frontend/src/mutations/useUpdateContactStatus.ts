@@ -1,13 +1,19 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { contactService } from "../services/contact.service";
+import type { STAFF_STATUS_CONTACT } from "../page/Staff/MyContact/constants/statusLabelData";
 
-export type ContactStatus = "pending" | "contacted" | "done" | "cancelled";
 export const useUpdateContactStatus = () => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ id, status }: { id: string; status: ContactStatus }) =>
+    mutationFn: ({
+      id,
+      status,
+    }: {
+      id: string;
+      status: STAFF_STATUS_CONTACT;
+    }) =>
       contactService.updateContactStatus(id, {
         status,
       }),
@@ -26,7 +32,6 @@ export const useUpdateContactStatus = () => {
   });
 
   return {
-    // updateStatus: mutation.mutate,
     updateStatusAsync: mutation.mutateAsync,
     isPending: mutation.isPending,
   };

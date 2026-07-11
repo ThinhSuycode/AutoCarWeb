@@ -1,34 +1,92 @@
-// ─── toFormInput ──────────────────────────────────────────────────────────────
-// Convert dữ liệu ArticleDetail từ API → ArticleDetailFormInput (cho form Zod).
-// API trả về: tags: string[], content: string | string[]
-// Form (zod) cần: tags: string, content: string (textarea hiển thị được)
+import type { ArticleDetail, ArticleSection } from "../../../../types/articles";
 
-import type { Articles } from "../../../../types/articles";
-import type { ArticleDetailFormInput } from "../components/FormArticleDetail/schema/ArticleDetailSchema";
+import type {
+  ArticleDetailInput,
+  SectionInput,
+} from "../components/FormArticleDetail/schema/ArticleDetailSchema";
 
-interface ArticleDetailLike {
-  sections?: {
-    sectionType: string;
-    content: string | string[];
-    imageUrl?: string;
-    caption?: string;
-  }[];
-  tags?: string[];
-  relatedArticles?: Articles[];
-}
+// ================= Helpers =================
+
+const toTextArea = (content?: string | string[]) =>
+  Array.isArray(content) ? content.join("\n") : (content ?? "");
+
+const tagsToInput = (tags?: string[]) => tags?.join(", ") ?? "";
+
+// ================= Section Mapper =================
+
+const sectionToFormInput = (section: ArticleSection): SectionInput => {
+  switch (section.sectionType) {
+    case "paragraph":
+      return {
+        sectionType: "paragraph",
+        content: toTextArea(section.content),
+      };
+
+    case "heading":
+      return {
+        sectionType: "heading",
+        title: section.title ?? "",
+      };
+
+    case "image":
+      return {
+        sectionType: "image",
+        imageUrl: section.imageUrl ?? "",
+        alt: section.alt ?? "",
+        caption: section.caption ?? "",
+      };
+
+    case "quote":
+      return {
+        sectionType: "quote",
+        content: toTextArea(section.content),
+        caption: section.caption ?? "",
+      };
+
+    case "list":
+      return {
+        sectionType: "list",
+        content: toTextArea(section.content),
+      };
+
+    case "video":
+      return {
+        sectionType: "video",
+        imageUrl: section.imageUrl ?? "",
+        title: section.title ?? "",
+        caption: section.caption ?? "",
+      };
+
+    case "code":
+      return {
+        sectionType: "code",
+        content: toTextArea(section.content),
+        title: section.title ?? "",
+      };
+
+    default:
+      return {
+        sectionType: "paragraph",
+        content: "",
+      };
+  }
+};
+
+// ================= Main Mapper =================
 
 export const toFormInput = (
-  articleDetail: ArticleDetailLike | null | undefined,
-): ArticleDetailFormInput => ({
-  sections: articleDetail?.sections?.map((s) => ({
-    ...s,
-    // ép sectionType từ `string` (API) → union literal mà schema yêu cầu
-    sectionType:
-      s.sectionType as ArticleDetailFormInput["sections"][number]["sectionType"],
-    content: Array.isArray(s.content)
-      ? s.content.join("\n")
-      : (s.content ?? ""),
-  })) ?? [{ sectionType: "paragraph", content: "" }],
-  tags: (articleDetail?.tags ?? []).join(", "),
-  relatedArticles: articleDetail?.relatedArticles ?? [],
+  articleDetail?: ArticleDetail | null,
+): ArticleDetailInput => ({
+  articleId: articleDetail?.articleId?._id ?? "",
+
+  sections: articleDetail?.sections.map(sectionToFormInput) ?? [
+    {
+      sectionType: "paragraph",
+      content: "",
+    },
+  ],
+
+  tags: tagsToInput(articleDetail?.tags),
+
+  relatedArticles: articleDetail?.relatedArticles.map((item) => item._id) ?? [],
 });

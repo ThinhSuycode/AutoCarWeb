@@ -10,34 +10,11 @@ import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
 export const articleRouter = express.Router();
 
+const authRequiredRole = [requireAuth, requireRole("admin", "staff")];
+
 articleRouter.get("/articles", getAllArticle);
-articleRouter.get(
-  "/articles/:id",
-  requireAuth,
-  requireRole("staff"),
-  getArticleById,
-);
-articleRouter.put(
-  "/articles/:id",
-  requireAuth,
-  requireRole("staff"),
-  updateArticle,
-);
-articleRouter.patch(
-  "/articles/:id",
-  requireAuth,
-  requireRole("staff"),
-  updateArticle,
-);
-articleRouter.post(
-  "/articles",
-  requireAuth,
-  requireRole("staff"),
-  createArticle,
-);
-articleRouter.delete(
-  "/articles/:id",
-  requireAuth,
-  requireRole("staff"),
-  deleteArticle,
-);
+articleRouter.get("/articles/:id", ...authRequiredRole, getArticleById);
+articleRouter.put("/articles/:id", ...authRequiredRole, updateArticle);
+articleRouter.patch("/articles/:id", ...authRequiredRole, updateArticle);
+articleRouter.post("/articles", ...authRequiredRole, createArticle);
+articleRouter.delete("/articles/:id", ...authRequiredRole, deleteArticle);

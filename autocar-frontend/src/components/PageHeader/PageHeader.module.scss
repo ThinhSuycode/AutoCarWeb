@@ -1,0 +1,40 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  &-left {
+    h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      padding-bottom: 4px;
+      border-bottom: 3px solid #dc2626;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: $muted;
+    }
+  }
+
+  &-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  @include md {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}

@@ -83,6 +83,12 @@ $white: #ffffff;
         resize: vertical;
         line-height: 1.6;
       }
+      .error {
+        margin-top: 5px;
+        color: var(--primary-red);
+        font-size: 13px !important;
+        font-weight: 400 !important;
+      }
     }
   }
 

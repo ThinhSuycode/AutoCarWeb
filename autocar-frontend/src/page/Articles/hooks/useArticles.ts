@@ -20,6 +20,7 @@ const useArticles = () => {
     limit: 6,
     search: searchDelay,
     category: filterValue === "Tất cả" ? undefined : filterValue,
+    status: "published",
   });
 
   useEffect(() => {

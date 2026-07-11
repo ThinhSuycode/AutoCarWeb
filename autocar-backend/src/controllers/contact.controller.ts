@@ -6,25 +6,20 @@ import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
 import { validatePhone } from "../utils/validate";
 import mongoose from "mongoose";
+import { validatedCreateContact } from "../utils/validateContact";
 
 // ─── CREATE ───────────────────────────────────────────────────────────────────
 export const createContactRequest = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const id = req.params.id as string | undefined;
-    const { name, phone, message, carName, carBrand, carPrice, notes } =
-      req.body;
-
-    if (!name || !phone) {
-      throw new AppError("Thiếu thông tin bắt buộc: name, phone", 400);
-    }
-
-    if (!validatePhone(phone)) {
-      throw new AppError("Số điện thoại không hợp lệ", 400);
-    }
 
     if (id && !mongoose.Types.ObjectId.isValid(id)) {
       throw new AppError("ID xe không hợp lệ", 400);
     }
+
+    const validateContact = validatedCreateContact(req.body);
+    const { name, phone, message, carName, carBrand, carPrice, notes } =
+      validateContact;
 
     const contact = await Contact.create({
       name,
@@ -38,7 +33,14 @@ export const createContactRequest = catchAsync(
       buyerId: req.user?._id ?? null,
       managerId: null,
       assignedAt: null,
-      status: "pending",
+      status: "new",
+      timeline: [
+        {
+          action: "CREATE_CONTACT",
+          note: "Khách gửi yêu cầu liên hệ",
+          userId: req.user?._id ?? null,
+        },
+      ],
     });
 
     logger.info("Contact created", {
@@ -174,30 +176,72 @@ export const updateContactRequestStatus = catchAsync(
   async (req: AuthRequest, res: Response) => {
     if (!req.user) throw new AppError("Unauthorized", 401);
 
-    const id = (req.params.id as string) || undefined;
+    const id = req.params.id as string;
     const { status } = req.body;
 
-    if (id && !mongoose.Types.ObjectId.isValid(id))
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new AppError("ID không hợp lệ", 400);
+    }
 
-    const validStatuses = ["pending", "contacted", "done", "cancelled"];
-    if (!status || !validStatuses.includes(status))
-      throw new AppError(
-        `Trạng thái không hợp lệ. Hợp lệ: ${validStatuses.join(", ")}`,
-        400,
-      );
+    const validStatuses = [
+      "contacted",
+      "appointment_created",
+      "completed",
+      "cancelled",
+    ];
+
+    if (!validStatuses.includes(status)) {
+      throw new AppError("Trạng thái không hợp lệ", 400);
+    }
 
     const contact = await Contact.findById(id);
-    if (!contact) throw new AppError("Không tìm thấy yêu cầu", 404);
+
+    if (!contact) {
+      throw new AppError("Không tìm thấy yêu cầu", 404);
+    }
 
     const userId = req.user._id.toString();
-    const role = req.user.role;
     const isManager = contact.managerId?.toString() === userId;
 
-    if (role !== "admin" && !isManager)
+    if (req.user.role !== "admin" && !isManager) {
       throw new AppError("Bạn không có quyền cập nhật yêu cầu này", 403);
+    }
 
     contact.status = status;
+
+    switch (status) {
+      case "contacted":
+        contact.timeline.push({
+          action: "CONTACTED_CUSTOMER",
+          note: "Đã liên hệ khách hàng",
+          userId: req.user._id,
+        });
+        break;
+
+      case "appointment_created":
+        contact.timeline.push({
+          action: "CREATE_APPOINTMENT",
+          note: "Đã tạo lịch hẹn",
+          userId: req.user._id,
+        });
+        break;
+
+      case "completed":
+        contact.timeline.push({
+          action: "COMPLETE_CONTACT",
+          note: "Khách hàng đã hoàn thành quy trình",
+          userId: req.user._id,
+        });
+        break;
+
+      case "cancelled":
+        contact.timeline.push({
+          action: "CANCEL_CONTACT",
+          note: "Yêu cầu đã bị hủy",
+          userId: req.user._id,
+        });
+        break;
+    }
 
     await contact.save();
 
@@ -207,20 +251,27 @@ export const updateContactRequestStatus = catchAsync(
       by: req.user._id,
     });
 
-    res.json({ success: true, message: "Cập nhật thành công", data: contact });
+    res.json({
+      success: true,
+      message: "Cập nhật thành công",
+      data: contact,
+    });
   },
 );
 
 // ─── ASSIGN MANAGER ───────────────────────────────────────────────────────────
 export const assignManagerToContact = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    if (!req.user) throw new AppError("Unauthorized", 401);
+    if (!req.user) {
+      throw new AppError("Unauthorized", 401);
+    }
 
-    const contactId = (req.params.id as string) || undefined;
+    const contactId = req.params.id as string;
     const { managerId } = req.body;
 
-    if (contactId && !mongoose.Types.ObjectId.isValid(contactId))
+    if (!mongoose.Types.ObjectId.isValid(contactId)) {
       throw new AppError("ID contact không hợp lệ", 400);
+    }
 
     const normalizedManagerId =
       managerId && managerId !== "" ? managerId : null;
@@ -232,34 +283,53 @@ export const assignManagerToContact = catchAsync(
       throw new AppError("managerId không hợp lệ", 400);
     }
 
-    const contact = await Contact.findByIdAndUpdate(
-      contactId,
-      {
-        managerId: managerId ?? null,
-        assignedAt: managerId ? new Date() : null,
-        // status: "pending",
-      },
-      { new: true, runValidators: true },
-    )
-      .populate("buyerId", "username email")
-      .populate("managerId", "username email");
+    const contact = await Contact.findById(contactId);
 
-    if (!contact) throw new AppError("Không tìm thấy yêu cầu", 404);
+    if (!contact) {
+      throw new AppError("Không tìm thấy yêu cầu", 404);
+    }
+
+    contact.managerId = normalizedManagerId;
+    contact.assignedAt = normalizedManagerId ? new Date() : null;
+
+    if (normalizedManagerId) {
+      contact.status = "assigned";
+
+      contact.timeline.push({
+        action: "ASSIGN_MANAGER",
+        note: `Phân công sale phụ trách`,
+        userId: req.user._id,
+      });
+    } else {
+      contact.timeline.push({
+        action: "UNASSIGN_MANAGER",
+        note: "Hủy phân công sale",
+        userId: req.user._id,
+      });
+
+      contact.status = "new";
+    }
+
+    await contact.save();
+
+    await contact.populate("buyerId", "username email");
+    await contact.populate("managerId", "username email");
 
     logger.info("Contact assigned", {
       contactId,
-      managerId: managerId ?? null,
+      managerId: normalizedManagerId,
       by: req.user._id,
     });
 
     res.json({
       success: true,
-      message: managerId ? "Phân công thành công" : "Hủy phân công thành công",
+      message: normalizedManagerId
+        ? "Phân công thành công"
+        : "Hủy phân công thành công",
       data: contact,
     });
   },
 );
-
 // ─── DELETE ───────────────────────────────────────────────────────────────────
 export const deleteContactRequest = catchAsync(
   async (req: AuthRequest, res: Response) => {

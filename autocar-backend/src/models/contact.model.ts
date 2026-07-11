@@ -1,5 +1,14 @@
 import mongoose from "mongoose";
 
+export const CONTACT_STATUS = [
+  "new", // khách vừa gửi
+  "assigned", // admin đã giao sale
+  "contacted", // sale đã gọi
+  "appointment_created", // đã tạo lịch hẹn
+  "completed", // mua xe / xử lý xong
+  "cancelled", // huỷ
+] as const;
+
 const ContactSchema = new mongoose.Schema(
   {
     // ── Người liên hệ ──────────────────────────────
@@ -31,9 +40,32 @@ const ContactSchema = new mongoose.Schema(
     // ── Trạng thái ──────────────────────────────
     status: {
       type: String,
-      enum: ["pending", "contacted", "done", "cancelled"],
-      default: "pending",
+      enum: CONTACT_STATUS,
+      default: "new",
     },
+    timeline: [
+      {
+        action: {
+          type: String,
+          required: true,
+        },
+
+        note: {
+          type: String,
+          default: "",
+        },
+
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+
+        createdAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
   },
   { timestamps: true },
 );

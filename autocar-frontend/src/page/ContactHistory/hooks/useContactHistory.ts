@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useContacts } from "../../../queries/useContact";
+import { useContactsQuery } from "../../../queries/useContact";
 
 const useContactHistory = () => {
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isLoading } = useContacts({
+  const { data, isLoading } = useContactsQuery({
     status,
     page,
     limit: 8,

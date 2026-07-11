@@ -1,5 +1,3 @@
-// queries/useArticlesQuery.ts
-
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "./queryKeys";
 import { getArticles, getArticlesAll } from "../services/article.service";
@@ -10,15 +8,23 @@ interface Params {
   limit: number;
   search?: string;
   category?: string;
+  status?: string;
 }
 
-export const useArticlesQuery = ({ page, limit, search, category }: Params) => {
+export const useArticlesQuery = ({
+  page,
+  limit,
+  search,
+  category,
+  status,
+}: Params) => {
   return useQuery<ArticleResponse>({
     queryKey: queryKeys.article.list({
       page,
       limit,
       search,
       category,
+      status,
     }),
 
     queryFn: () =>
@@ -27,9 +33,8 @@ export const useArticlesQuery = ({ page, limit, search, category }: Params) => {
         limit,
         search,
         category,
+        status,
       }),
-
-    // keepPreviousData: true,
   });
 };
 

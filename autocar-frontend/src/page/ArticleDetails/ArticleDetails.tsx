@@ -18,6 +18,7 @@ import ArticleRelatedSidebar from "./components/ArticleRelatedSidebar";
 
 import type { UserType } from "../../types/users";
 import ArticleDetailBanner from "./components/ArticleDetailBanner";
+import { getLabelCategory } from "../../hooks/getCategoryColor";
 
 const cx = classNames.bind(styles);
 
@@ -55,7 +56,7 @@ const ArticleDetails = () => {
     <div className={cx("articleDetail-page")}>
       <NavigationPage
         pageActive="Tin tức"
-        title={articleDetail.articleId.category || "Chi tiết"}
+        title={getLabelCategory(articleDetail.articleId.category)}
       />
 
       {/* BANNER */}
@@ -68,7 +69,7 @@ const ArticleDetails = () => {
       {/* COVER IMAGE */}
       <div className={cx("img-large")}>
         <img
-          src={articleDetail.articleId.image}
+          src={articleDetail.articleId.thumbnail}
           alt={articleDetail.articleId.title}
         />
       </div>

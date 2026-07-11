@@ -1,8 +1,5 @@
 import classNames from "classnames/bind";
 import styles from "./Articles.module.scss";
-
-import LoadingData from "../../components/LoadingData/LoadingData";
-
 import ArticleSearch from "./components/ArticleSearch";
 import ArticleBanner from "./components/ArticleBanner";
 import ArticleFilter from "./components/ArtilceFilter";
@@ -32,10 +29,6 @@ const Article = () => {
 
     onHandleAddArticle,
   } = useArticles();
-
-  // if (loading) {
-  //   return <LoadingData message="Đang tải dữ liệu" />;
-  // }
 
   if (error) {
     return <div>{error}</div>;

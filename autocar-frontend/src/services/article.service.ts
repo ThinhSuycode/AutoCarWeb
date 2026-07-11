@@ -5,11 +5,12 @@ export const getArticleDetail = (id: string) => {
   return callApi.getData<ArticleDetail>(`articleDetails/${id}`);
 };
 
-interface GetArticlesParams {
+export interface GetArticlesParams {
   page: number;
   limit: number;
   search?: string;
   category?: string;
+  status?: string;
 }
 
 export const getArticlesAll = () => {
@@ -20,6 +21,7 @@ export const getArticles = async ({
   page,
   limit,
   search,
+  status,
   category,
 }: GetArticlesParams) => {
   const params = new URLSearchParams();
@@ -31,10 +33,13 @@ export const getArticles = async ({
     params.append("search", search.trim());
   }
 
-  if (category && category !== "Tất cả") {
-    params.append("category", category);
+  if (category) {
+    params.set("category", category);
   }
 
+  if (status && status !== "all") {
+    params.set("status", status);
+  }
   const response = await callApi.getData<ArticleResponse>(
     `articles?${params.toString()}`,
   );

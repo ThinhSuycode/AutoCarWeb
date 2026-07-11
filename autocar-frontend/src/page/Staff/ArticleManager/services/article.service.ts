@@ -1,5 +1,11 @@
 import { callApi, changeApi } from "../../../../services/api";
-import type { ArticleResponse, Articles } from "../../../../types/articles";
+import type {
+  ArticleObjectResponse,
+  ArticleResponse,
+  Articles,
+  CreateArticleDto,
+  UpdateArticleDto,
+} from "../../../../types/articles";
 
 export const articleService = {
   getAll: async () => {
@@ -10,11 +16,11 @@ export const articleService = {
     return await callApi.getData<Articles>(`articles/${id}`);
   },
 
-  create: async (data: Articles) => {
-    return await changeApi.request<Articles>("articles", "add", data);
+  create: async (data: CreateArticleDto) => {
+    return await changeApi.request<ArticleObjectResponse>("articles", "add", data);
   },
 
-  update: async (id: string, data: Articles) => {
+  update: async (id: string, data: UpdateArticleDto) => {
     return await changeApi.request<Articles>("articles", "patch", data, id);
   },
 

@@ -5,11 +5,9 @@ import useMyContact from "./hooks/useMyContact";
 
 import MyContactStatistics from "./components/MyContactStatistics";
 import MyContactFilter from "./components/MyContactFilter";
-import MyContactTable from "./components/MyContactTable";
-import FormContactDetail from "./components/FormContactDetail";
-import useContactDetailQuery from "./queries/useContactDetailQuery";
-import { useState } from "react";
-import type { Contact } from "../../../types/contact";
+import MyContactTable from "./components/MyContactTable/MyContactTable";
+import FormContactDetail from "./components/FormContactDetail/FormContactDetail";
+import PageHeader from "../../../components/PageHeader/PageHeader";
 
 const cx = classNames.bind(styles);
 
@@ -30,10 +28,11 @@ const MyContact = () => {
   } = useMyContact();
 
   return (
-    <div className={cx("wrapper")}>
-      <div className={cx("header")}>
-        <h2>Khách hàng được giao</h2>
-      </div>
+    <div className={cx("myContact-page")}>
+      <PageHeader
+        title="Khách hàng được giao"
+        description="Quản lý lịch hẹn của khách hàng AutoViet"
+      ></PageHeader>
 
       <FormContactDetail
         contact={contactDetail}

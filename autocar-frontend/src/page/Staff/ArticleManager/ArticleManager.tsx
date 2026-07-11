@@ -1,174 +1,153 @@
 import classNames from "classnames/bind";
 import styles from "./ArticleManager.module.scss";
 
-import { useCallback, useRef, useState } from "react";
-
-import { useArticles } from "./hooks/useArticles";
-import { useArticleDetail } from "./hooks/useArticleDetail";
-
-import type { Articles, FormArticleType } from "../../../types/articles";
-
-import FormArticleDetail from "./components/FormArticleDetail/FormArticleDetail";
-import FormArticle from "./components/FormArticle";
-
 import LoadingData from "../../../components/LoadingData/LoadingData";
 import ConfirmDialog from "../../../components/ConfirmDialog/ConfirmDialog";
-import { useConfirm } from "../../../hooks/useConfirm";
-import toast from "react-hot-toast";
+
+import FormArticle from "./components/FormArticle/FormArticle";
+import FormArticleDetail from "./components/FormArticleDetail/FormArticleDetail";
+import ArticleCard from "./components/ArticleCard/ArticleCard";
+import ArticleStats from "./components/ArticleStats/ArticleStats";
 
 import { toFormInput } from "./utils/toFormInput";
-import type {
-  ArticleDetailFormInput,
-  ArticleDetailFormOutput,
-} from "./components/FormArticleDetail/schema/ArticleDetailSchema";
-import ArticleStats from "./components/ArticleStats";
-import ArticleCard from "./components/ArticleCard";
+
+import type { Articles, FormArticleType } from "../../../types/articles";
+import type { ArticleDetailOutput } from "./components/FormArticleDetail/schema/ArticleDetailSchema";
+
+import useArticleManager from "./hooks/useArticleManager";
+import ArticleHeader from "./components/ArticleHeader/ArticleHeader";
 
 const cx = classNames.bind(styles);
 
 const ArticleManager = () => {
-  const { articles, isLoading, createArticle, updateArticle, deleteArticle } =
-    useArticles();
+  const {
+    articles,
+    articleDetail,
 
-  const [openCreate, setOpenCreate] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState<Articles | null>(null);
-  const [openDetail, setOpenDetail] = useState<Articles | null>(null);
-  const { articleDetail, detailLoading, createDetail, updateDetail } =
-    useArticleDetail(openDetail?._id);
-  const { confirm, confirmProps } = useConfirm();
+    isLoading,
+    detailLoading,
 
-  // draftMap lưu giá trị "input" của form (tags: string, content: string)
-  const draftMap = useRef<Record<string, ArticleDetailFormInput>>({});
+    openCreate,
+    openDetail,
+    selectedArticle,
 
-  const onHandleDeleteArticle = useCallback(async (article: Articles) => {
-    if (!article._id) return;
-    try {
-      const ok = await confirm({
-        title: `Bạn có muốn xoá bài viết ${article.title} này không ?? `,
-        message: "Thực hiện thao tác một lần!",
-        confirmText: "Xác nhận",
-        cancelText: "Huỷ",
-      });
-      if (!ok) return;
-      deleteArticle(article._id);
-    } catch {
-      toast.error("Lỗi khi xoá dữ liệu!!");
-    }
-  }, []);
+    draftMapArticle,
+    draftMapArticleDetail,
 
-  if (isLoading) {
-    return <LoadingData message="Đang tải dữ liệu"></LoadingData>;
-  }
+    confirmProps,
+
+    openCreateModal,
+    closeCreateModal,
+
+    openUpdateModal,
+    closeUpdateModal,
+
+    openDetailModal,
+    closeDetailModal,
+
+    handleCreateArticle,
+    handleUpdateArticle,
+    handleDeleteArticle,
+
+    createDetail,
+    updateDetail,
+  } = useArticleManager();
 
   return (
     <div className={cx("articleManager-page")}>
-      <ConfirmDialog {...confirmProps}></ConfirmDialog>
+      <ConfirmDialog {...confirmProps} />
 
-      <div className={cx("header")}>
-        <div className={cx("left")}>
-          <h2>Quản lý bài viết</h2>
-          <p>Quản lý toàn bộ bài viết AutoViet</p>
-        </div>
-
-        <button
-          className={cx("create-btn")}
-          onClick={() => setOpenCreate(true)}
-        >
-          <i className="fa-solid fa-plus"></i>
-          Tạo bài viết
-        </button>
-      </div>
+      {/* Header */}
+      <ArticleHeader openCreateModal={openCreateModal}></ArticleHeader>
 
       <ArticleStats articles={articles} />
 
-      <div className={cx("articles-grid")}>
-        {articles.map((article: Articles) => (
-          <ArticleCard
-            key={article._id}
-            article={article}
-            onEdit={setSelectedArticle}
-            onViewDetail={setOpenDetail}
-            onDelete={onHandleDeleteArticle}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <LoadingData message="Đang tải dữ liệu..." />
+      ) : (
+        <div className={cx("articles-grid")}>
+          {articles.map((article: Articles) => (
+            <ArticleCard
+              key={article._id}
+              article={article}
+              onEdit={openUpdateModal}
+              onViewDetail={openDetailModal}
+              onDelete={handleDeleteArticle}
+            />
+          ))}
+        </div>
+      )}
 
+      {/* CREATE */}
       {openCreate && (
-        <div
-          className={cx("modal-overlay")}
-          onClick={() => setOpenCreate(false)}
-        >
+        <div className={cx("modal-overlay")}>
           <FormArticle
             mode="create"
-            closeModal={() => setOpenCreate(false)}
-            onSubmit={(data) => {
-              createArticle(data);
-              setOpenCreate(false);
+            closeModal={closeCreateModal}
+            onSubmit={handleCreateArticle}
+          />
+        </div>
+      )}
+
+      {/* UPDATE */}
+      {selectedArticle && (
+        <div className={cx("modal-overlay")}>
+          <FormArticle
+            key={selectedArticle._id}
+            mode="update"
+            defaultValues={
+              draftMapArticle.current[selectedArticle._id] ?? selectedArticle
+            }
+            onDraftChange={(draft) => {
+              draftMapArticle.current[selectedArticle._id] = draft;
+            }}
+            closeModal={closeUpdateModal}
+            onSubmit={(data: FormArticleType) => {
+              delete draftMapArticle.current[selectedArticle._id];
+              handleUpdateArticle(selectedArticle._id, data);
             }}
           />
         </div>
       )}
 
+      {/* DETAIL */}
       {openDetail && (
-        <div
-          className={cx("modal-overlay")}
-          onClick={() => setOpenDetail(null)}
-        >
+        <div className={cx("modal-overlay")} onClick={closeDetailModal}>
           {detailLoading ? (
             <LoadingData message="Đang tải nội dung..." color />
           ) : (
             <FormArticleDetail
-              key={`${openDetail._id}-${articleDetail ? "loaded" : "empty"}`}
+              key={`${openDetail._id}-${!!articleDetail}`}
               openDetail={openDetail}
-              closeModal={() => setOpenDetail(null)}
+              closeModal={closeDetailModal}
               defaultValues={
-                draftMap.current[openDetail._id] ?? toFormInput(articleDetail)
+                draftMapArticleDetail.current[openDetail._id] ??
+                toFormInput(articleDetail)
               }
               onDraftChange={(draft) => {
-                draftMap.current[openDetail._id] = draft;
+                draftMapArticleDetail.current[openDetail._id] = draft;
               }}
-              onSubmit={(data: ArticleDetailFormOutput) => {
-                delete draftMap.current[openDetail._id];
+              onSubmit={(data: ArticleDetailOutput) => {
+                delete draftMapArticleDetail.current[openDetail._id];
 
                 if (articleDetail) {
-                  updateDetail({ id: openDetail._id, data });
+                  updateDetail({
+                    id: openDetail._id,
+                    data,
+                  });
                 } else {
                   createDetail({
-                    articleId: openDetail,
+                    articleId: openDetail._id,
                     sections: data.sections,
                     tags: data.tags,
                     relatedArticles: data.relatedArticles,
                   });
                 }
 
-                setOpenDetail(null);
+                closeDetailModal();
               }}
             />
           )}
-        </div>
-      )}
-
-      {selectedArticle && (
-        <div
-          className={cx("modal-overlay")}
-          onClick={() => setSelectedArticle(null)}
-        >
-          <FormArticle
-            mode="update"
-            defaultValues={{
-              title: selectedArticle.title,
-              excerpt: selectedArticle.excerpt,
-              image: selectedArticle.image,
-              category: selectedArticle.category,
-              readTime: selectedArticle.readTime,
-              status: selectedArticle.status,
-            }}
-            closeModal={() => setSelectedArticle(null)}
-            onSubmit={(data: FormArticleType) => {
-              updateArticle({ id: selectedArticle._id, data });
-              setSelectedArticle(null);
-            }}
-          />
         </div>
       )}
     </div>

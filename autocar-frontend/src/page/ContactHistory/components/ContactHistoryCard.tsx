@@ -1,11 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "../ContactHistory.module.scss";
-import {
-  CONTACT_STATUS_MAP,
-  type ContactStatus,
-} from "../constant/contactHistoryData";
+import { CONTACT_STATUS_MAP } from "../constant/contactHistoryData";
 import { formatDateToString } from "../../../hooks/formatDate";
-import type { Contact } from "../../../types/contact";
+import type { Contact, CONTACT_STATUS } from "../../../types/contact";
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +12,8 @@ interface Props {
 
 const ContactHistoryCard = ({ contact }: Props) => {
   const statusInfo =
-    CONTACT_STATUS_MAP[contact.status as ContactStatus] ??
-    CONTACT_STATUS_MAP.pending;
+    CONTACT_STATUS_MAP[contact.status as CONTACT_STATUS] ??
+    CONTACT_STATUS_MAP.new;
 
   return (
     <div className={cx("history-card")}>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import { useContacts } from "../../../../queries/useContact";
+import { useContactsQuery } from "../../../../queries/useContact";
 import { useUpdateContactStatus } from "../../../../mutations/useUpdateContactStatus";
 
 import { statistics } from "../utils/myContactStatistics";
 import type { Contact } from "../../../../types/contact";
+import { useDebounce } from "../../../../hooks/useDebounce";
 
 const useMyContact = () => {
   const [search, setSearch] = useState("");
@@ -12,8 +13,8 @@ const useMyContact = () => {
   const [page, setPage] = useState(1);
   const [contactDetail, setContactDetail] = useState<Contact | null>(null);
 
-  const { data, isLoading } = useContacts({
-    search,
+  const { data, isLoading } = useContactsQuery({
+    search: useDebounce(search, 450),
     status,
     page,
     limit: 10,

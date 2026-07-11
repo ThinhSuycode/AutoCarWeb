@@ -6,6 +6,7 @@ import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
 import type { AuthRequest } from "../middleware/authMiddleware";
 import mongoose from "mongoose";
+import { createUserSchema, updateUserSchema } from "../schemas/user.schema";
 
 const SALT_ROUNDS = 10;
 
@@ -65,13 +66,20 @@ export const getAllUser = catchAsync(async (req: Request, res: Response) => {
 // ─── CREATE ───────────────────────────────────────────────────────────────────
 export const createUser = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { email, password, ...rest } = req.body;
+    const validated = createUserSchema.safeParse(req.body);
+
+    if (!validated.success) {
+      throw new AppError(validated.error.issues[0].message);
+    }
+
+    const { email, password, ...rest } = validated.data;
 
     const existing = await User.findOne({ email });
-    if (existing) throw new AppError("Email đã được sử dụng!", 409);
 
-    if (!password || password.trim().length < 8) {
-      throw new AppError("Mật khẩu phải có ít nhất 8 ký tự!", 400);
+    if (existing) {
+      res.status(409).json({
+        message: "Email này đã có tài khoản sử dụng!!",
+      });
     }
 
     const hashedPassword = await bcrypt.hash(password.trim(), SALT_ROUNDS);
@@ -89,22 +97,19 @@ export const createUser = catchAsync(
 export const updateUser = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
+    const validated = updateUserSchema.safeParse(req.body);
 
-    // Loại bỏ field không được phép thay đổi
-    const { email: email, _id, password, ...safeBody } = req.body;
-
-    if (password) {
-      if (password.trim().length < 8) {
-        throw new AppError("Mật khẩu phải có ít nhất 8 ký tự!", 400);
-      }
-      safeBody.password = await bcrypt.hash(password.trim(), SALT_ROUNDS);
+    if (!validated.success) {
+      throw new AppError(validated.error.issues[0].message);
     }
 
-    if (Object.keys(safeBody).length === 0) {
-      throw new AppError("Không có dữ liệu để cập nhật!", 400);
+    const updateData = { ...validated.data };
+
+    if (updateData.password) {
+      updateData.password = await bcrypt.hash(updateData.password, SALT_ROUNDS);
     }
 
-    const updatedUser = await User.findByIdAndUpdate(id, safeBody, {
+    const updatedUser = await User.findByIdAndUpdate(id, updateData, {
       new: true,
       runValidators: true,
     }).select("-password");

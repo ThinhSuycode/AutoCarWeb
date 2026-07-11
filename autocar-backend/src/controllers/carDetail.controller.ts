@@ -9,10 +9,7 @@ import logger from "../utils/logger";
 
 import type { AuthRequest } from "../middleware/authMiddleware";
 import { Car } from "../models/car.model";
-import {
-  validateCreateCarDetail,
-  validateUpdateCarDetail,
-} from "../utils/vaildateCarDetail";
+import { validateUpdateCarDetail } from "../utils/vaildateCarDetail";
 
 // ─── GET ALL ────────────────────────────────────────────────────────────────
 export const getAllCarDetail = catchAsync(
@@ -71,7 +68,6 @@ export const createCarDetail = catchAsync(
     if (existed) {
       throw new AppError("Xe đã có nội dung chi tiết!", 400);
     }
-    // const validatedData = validateCreateCarDetail(req.body);
 
     const carDetail = await CarDetail.create(req.body);
 

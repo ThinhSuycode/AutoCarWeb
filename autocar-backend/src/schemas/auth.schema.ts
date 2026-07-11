@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 export const loginSchema = z.object({
   email: z.email("Định dạng email không hợp lệ"),
 
   password: z
     .string()
-    .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
+    .min(8, "Mật khẩu phải có ít nhất 8 ký tự")
     .regex(passwordRegex, "Mật khẩu phải chứa chữ hoa, chữ thường và số"),
 });
 

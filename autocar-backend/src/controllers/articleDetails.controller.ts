@@ -1,112 +1,109 @@
 import type { Request, Response } from "express";
 import mongoose from "mongoose";
+import type { ZodError } from "zod";
 
 import { ArticleDetails } from "../models/articleDetails.model";
-
+import { Articles } from "../models/articles.model";
 import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
-
 import type { AuthRequest } from "../middleware/authMiddleware";
-import { Articles } from "../models/articles.model";
+import {
+  articleDetailSchema,
+  updateArticleDetailSchema,
+} from "../schemas/articleDetail.schema";
 
-// ───────────────── GET ALL ─────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const validateObjectId = (id: unknown): string => {
+  if (typeof id !== "string" || !mongoose.Types.ObjectId.isValid(id)) {
+    throw new AppError("ID không hợp lệ!", 400);
+  }
+  return id;
+};
+
+const formatZodError = (error: ZodError): string =>
+  error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join(" | ");
+
+// ─── GET ALL ──────────────────────────────────────────────────────────────────
 export const getAllArticleDetails = catchAsync(
   async (req: Request, res: Response) => {
-    const articleDetails = await ArticleDetails.find()
+    const data = await ArticleDetails.find()
       .populate("articleId")
       .populate("relatedArticles")
-      .select("-__v");
+      .select("-__v")
+      .lean();
 
-    res.status(200).json(articleDetails);
+    res.status(200).json(data);
   },
 );
 
-// ───────────────── GET BY ARTICLE ID ─────────────────
+// ─── GET BY ARTICLE ID ────────────────────────────────────────────────────────
 export const getArticleDetailsById = catchAsync(
   async (req: Request, res: Response) => {
-    const { id } = req.params;
-    if (typeof id !== "string") {
-      throw new AppError("ID không hợp lệ!", 400);
-    }
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ!", 400);
-    }
+    const id = validateObjectId(req.params.id);
 
-    const articleDetail = await ArticleDetails.findOne({
-      articleId: id,
-    })
+    const data = await ArticleDetails.findOne({ articleId: id })
       .populate("articleId")
       .populate("relatedArticles")
-      .select("-__v");
+      .select("-__v")
+      .lean();
 
-    if (!articleDetail) {
-      return res.status(200).json(null);
-    }
-
-    res.status(200).json(articleDetail);
+    res.status(200).json(data ?? null);
   },
 );
 
-// ───────────────── CREATE ─────────────────
+// ─── CREATE ───────────────────────────────────────────────────────────────────
 export const createArticleDetails = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    if (!req.user) {
-      throw new AppError("Unauthorized!", 401);
+    if (!req.user) throw new AppError("Unauthorized!", 401);
+
+    const validated = articleDetailSchema.safeParse(req.body);
+    if (!validated.success) {
+      throw new AppError(formatZodError(validated.error), 400);
     }
 
-    const { articleId } = req.body;
+    const { articleId } = validated.data;
 
-    if (!articleId) {
-      throw new AppError("Không lấy được articleId!", 404);
-    }
-    const article = await Articles.findById(articleId);
+    const [article, existed] = await Promise.all([
+      Articles.findById(articleId),
+      ArticleDetails.findOne({ articleId }),
+    ]);
 
-    if (!article) {
-      throw new AppError("Không tìm thấy bài viết!", 404);
-    }
-    const existed = await ArticleDetails.findOne({
-      articleId: req.body.articleId,
+    if (!article) throw new AppError("Không tìm thấy bài viết!", 404);
+    if (existed) throw new AppError("Bài viết đã có nội dung chi tiết!", 400);
+
+    const created = await ArticleDetails.create(validated.data);
+
+    logger.info("ArticleDetails created", {
+      articleId,
+      by: req.user._id,
+      name: req.user.username,
     });
 
-    if (existed) {
-      throw new AppError("Bài viết đã có nội dung chi tiết!", 400);
-    }
-    const newArticleDetails = await ArticleDetails.create(req.body);
-
-    res.status(201).json(newArticleDetails);
+    res.status(201).json(created);
   },
 );
-// ───────────────── UPDATE ─────────────────
+
+// ─── UPDATE ───────────────────────────────────────────────────────────────────
 export const updateArticleDetails = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
+    const id = validateObjectId(req.params.id);
 
-    if (typeof id !== "string") {
-      throw new AppError("ID không hợp lệ!", 400);
+    const validated = updateArticleDetailSchema.safeParse(req.body);
+    if (!validated.success) {
+      throw new AppError(formatZodError(validated.error), 400);
     }
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ!", 400);
-    }
-
-    const updatedArticleDetails = await ArticleDetails.findOneAndUpdate(
-      {
-        articleId: id,
-      },
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      },
+    const updated = await ArticleDetails.findOneAndUpdate(
+      { articleId: id },
+      validated.data,
+      { new: true, runValidators: true },
     )
       .populate("articleId")
       .populate("relatedArticles")
       .select("-__v");
 
-    if (!updatedArticleDetails) {
-      throw new AppError("Không tìm thấy bài viết!", 404);
-    }
+    if (!updated) throw new AppError("Không tìm thấy bài viết!", 404);
 
     logger.info("ArticleDetails updated", {
       articleId: id,
@@ -114,36 +111,23 @@ export const updateArticleDetails = catchAsync(
       name: req.user?.username,
     });
 
-    res.status(200).json(updatedArticleDetails);
+    res.status(200).json(updated);
   },
 );
 
-// ───────────────── DELETE ─────────────────
+// ─── DELETE ───────────────────────────────────────────────────────────────────
 export const deleteArticleDetails = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
-    if (typeof id !== "string") {
-      throw new AppError("ID không hợp lệ!", 400);
-    }
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ!", 400);
-    }
+    const id = validateObjectId(req.params.id);
 
-    const deletedArticleDetails = await ArticleDetails.findOneAndDelete({
-      articleId: id,
-    });
-
-    if (!deletedArticleDetails) {
-      throw new AppError("Không tìm thấy bài viết!", 404);
-    }
+    const deleted = await ArticleDetails.findOneAndDelete({ articleId: id });
+    if (!deleted) throw new AppError("Không tìm thấy bài viết!", 404);
 
     logger.info("ArticleDetails deleted", {
       articleId: id,
       by: req.user?._id,
     });
 
-    res.status(200).json({
-      message: "Xoá dữ liệu thành công!",
-    });
+    res.status(200).json({ message: "Xoá dữ liệu thành công!" });
   },
 );

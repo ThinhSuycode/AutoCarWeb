@@ -8,6 +8,7 @@ import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
 
 import type { AuthRequest } from "../middleware/authMiddleware";
+import { articleSchema, updateArticleSchema } from "../schemas/article.schema";
 
 // ───────────────── GET ALL ─────────────────
 export const getAllArticle = catchAsync(async (req: Request, res: Response) => {
@@ -19,6 +20,7 @@ export const getAllArticle = catchAsync(async (req: Request, res: Response) => {
     search,
     category,
     all,
+    status,
   } = req.query as Record<string, string>;
 
   const query: Record<string, any> = {};
@@ -30,6 +32,10 @@ export const getAllArticle = catchAsync(async (req: Request, res: Response) => {
       { title: { $regex: search.trim(), $options: "i" } },
       { excerpt: { $regex: search.trim(), $options: "i" } },
     ];
+  }
+
+  if (status?.trim()) {
+    query.status = status;
   }
 
   const sortOrder = order === "asc" ? 1 : -1;
@@ -100,56 +106,97 @@ export const getArticleById = catchAsync(
     res.status(200).json(article);
   },
 );
-
 export const createArticle = catchAsync(
   async (req: AuthRequest, res: Response) => {
     if (!req.user) {
-      throw new AppError("Unauthorized!", 401);
+      throw new AppError("Unauthorized", 401);
+    }
+
+    const validated = articleSchema.safeParse(req.body);
+
+    if (!validated.success) {
+      throw new AppError(
+        validated.error.issues[0]?.message ?? "Dữ liệu không hợp lệ",
+        400,
+      );
     }
 
     const article = await Articles.create({
-      ...req.body,
+      ...validated.data,
 
       manager: {
         managerId: req.user._id,
         managerName: req.user.username,
       },
-    });
-    logger.info("Article Created", {
-      articleId: article.id,
-      by: req.user?._id,
+      timeline: [
+        {
+          action: "CREATE",
+          note: "Tạo bài viết",
+          userId: req.user._id,
+        },
+      ],
     });
 
-    res.status(201).json(article);
+    logger.info("Article Created", {
+      articleId: article._id,
+      by: req.user._id,
+    });
+
+    res.status(201).json({
+      success: true,
+      data: article,
+    });
   },
 );
 // ───────────────── UPDATE ─────────────────
 export const updateArticle = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
+
     if (typeof id !== "string") {
-      throw new AppError("ID không hợp lệ!!", 400);
+      throw new AppError("ID không hợp lệ", 400);
     }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ!", 400);
+      throw new AppError("ID không hợp lệ", 400);
     }
 
-    const updatedArticle = await Articles.findByIdAndUpdate(id, req.body, {
+    const validated = updateArticleSchema.safeParse(req.body);
+
+    if (!validated.success) {
+      throw new AppError(
+        validated.error.issues[0]?.message ?? "Dữ liệu không hợp lệ",
+        400,
+      );
+    }
+
+    const article = await Articles.findByIdAndUpdate(id, validated.data, {
       new: true,
       runValidators: true,
     }).select("-__v");
 
-    if (!updatedArticle) {
-      throw new AppError("Không tìm thấy bài viết!", 404);
+    if (!article) {
+      throw new AppError("Không tìm thấy bài viết", 404);
     }
 
+    Object.assign(article, validated.data);
+
+    article.timeline.push({
+      action: "UPDATE",
+      note: "Cập nhật bài viết",
+      userId: req.user!._id,
+    });
+
+    await article.save();
     logger.info("Article updated", {
       articleId: id,
       by: req.user?._id,
     });
 
-    res.status(200).json(updatedArticle);
+    res.json({
+      success: true,
+      data: article,
+    });
   },
 );
 
@@ -158,18 +205,23 @@ export const deleteArticle = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
     if (typeof id !== "string") {
-      throw new AppError("ID không hợp lệ!!", 400);
+      throw new AppError("ID không hợp lệ!", 400);
     }
-
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new AppError("ID không hợp lệ!", 400);
     }
 
-    const deletedArticle = await Articles.findByIdAndDelete(id);
+    const artciles = await Articles.findByIdAndDelete(id);
 
-    if (!deletedArticle) {
-      throw new AppError("Không tìm thấy bài viết!", 404);
+    if (!artciles) {
+      throw new AppError("Không tìm thấy bài viết!!", 404);
     }
+
+    artciles.timeline.push({
+      action: "DELETE",
+      note: "Xoá bài viết",
+      userId: req.user?._id,
+    });
 
     logger.info("Article deleted", {
       articleId: id,

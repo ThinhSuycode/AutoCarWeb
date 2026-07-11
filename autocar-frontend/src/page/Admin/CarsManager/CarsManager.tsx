@@ -1,18 +1,18 @@
 import classNames from "classnames/bind";
 import styles from "./CarsManager.module.scss";
 import { useCallback, useState } from "react";
-import { Button } from "../../../components/Button/Button";
-import CarTable from "./components/CarTable";
+import CarTable from "./components/CarTable/CarTable";
 import ModalLayout from "../../../components/ModalLayout/ModalLayout";
-import Pagination from "./components/Pagination";
-import Search from "./components/Search";
-import FormCar from "./components/FormCar";
-import FormDetail from "./components/FormDetail";
 import type { CarType } from "../../../types/car";
-import { useCarDetail } from "./hooks/useFormDetail";
-import { useCars } from "./hooks/useForm";
 import type { CarFormData } from "../../../schemas/car.schema";
 import type { CarManagerType } from "../../../types/managerStaff";
+import CarForm from "./components/CarForm/CarForm";
+import CarDetailForm from "./components/CarDetailForm/CarDetailForm";
+import CarHeader from "./components/CarHeader/CarHeader";
+import PagePagination from "../../../components/PagePagination/PagePagination";
+import useDetailFormMutation from "./components/CarDetailForm/mutations/useDetailFormMutation";
+import useCarFormMutation from "./components/CarForm/mutations/useCarFormMutation";
+
 const cx = classNames.bind(styles);
 
 const CarsManager = () => {
@@ -24,17 +24,17 @@ const CarsManager = () => {
   const {
     cars,
     pagination,
+    page,
     setPage,
     setSearch,
     createCar,
     updateCar,
     creating,
     updating,
-  } = useCars();
+  } = useCarFormMutation();
 
-  const { carDetail, createDetail, updateDetail, detailLoading } = useCarDetail(
-    openDetail?._id,
-  );
+  const { carDetail, createDetail, updateDetail, detailLoading } =
+    useDetailFormMutation(openDetail?._id);
 
   const onCloseDetail = useCallback(() => {
     setOpenDetail(null);
@@ -42,10 +42,9 @@ const CarsManager = () => {
 
   return (
     <div className={cx("carsManager-page")}>
-      {/* CREATE */}
       {openCreate && (
         <ModalLayout showForm={openCreate} onClose={() => setOpenCreate(false)}>
-          <FormCar
+          <CarForm
             mode="create"
             onCloseModal={() => setOpenCreate(false)}
             creatingPending={creating}
@@ -57,13 +56,12 @@ const CarsManager = () => {
         </ModalLayout>
       )}
 
-      {/* UPDATE */}
       {selectedCar && (
         <ModalLayout
           showForm={!!selectedCar}
           onClose={() => setSelectedCar(null)}
         >
-          <FormCar
+          <CarForm
             mode="update"
             updatingPending={updating}
             defaultValues={{
@@ -88,10 +86,9 @@ const CarsManager = () => {
         </ModalLayout>
       )}
 
-      {/* DETAIL */}
       {openDetail && (
         <ModalLayout showForm={!!openDetail} onClose={onCloseDetail}>
-          <FormDetail
+          <CarDetailForm
             onCloseModal={onCloseDetail}
             carDetail={carDetail}
             defaultValues={carDetail ?? undefined}
@@ -115,21 +112,11 @@ const CarsManager = () => {
         </ModalLayout>
       )}
 
-      {/* HEADER */}
-      <div className={cx("header")}>
-        <h2>Quản lý xe</h2>
+      <CarHeader
+        setSearch={setSearch}
+        setOpenCreate={setOpenCreate}
+      ></CarHeader>
 
-        <div>
-          <Search onSearch={setSearch} />
-
-          <Button small onClick={() => setOpenCreate(true)}>
-            <i className="fa-solid fa-plus"></i>
-          </Button>
-        </div>
-      </div>
-
-      {/* <StatsBar cars={cars}></StatsBar> */}
-      {/* CONTENT */}
       <div className={cx("content")}>
         <CarTable
           cars={cars}
@@ -138,9 +125,14 @@ const CarsManager = () => {
         />
       </div>
 
-      {/* PAGINATION */}
       {pagination && (
-        <Pagination pagination={pagination} onPageChange={setPage} />
+        <PagePagination
+          currentPage={page}
+          total={pagination.total}
+          limit={pagination.limit}
+          totalPages={pagination.totalPages}
+          onPageChange={setPage}
+        ></PagePagination>
       )}
     </div>
   );

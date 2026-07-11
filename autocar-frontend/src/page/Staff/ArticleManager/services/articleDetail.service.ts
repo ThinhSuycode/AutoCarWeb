@@ -1,12 +1,16 @@
 import { callApi, changeApi } from "../../../../services/api";
-import type { ArticleDetail } from "../../../../types/articles";
+import type {
+  ArticleDetail,
+  CreateArticleDetailDto,
+  UpdateArticleDetailDto,
+} from "../../../../types/articles";
 
 export const articleDetailService = {
   getByArticleId: async (articleId: string) => {
     return await callApi.getData<ArticleDetail>(`articleDetails/${articleId}`);
   },
 
-  create: async (data: ArticleDetail) => {
+  create: async (data: CreateArticleDetailDto) => {
     return await changeApi.request<ArticleDetail>(
       "articleDetails",
       "add",
@@ -14,7 +18,7 @@ export const articleDetailService = {
     );
   },
 
-  update: async (id: string, data: ArticleDetail) => {
+  update: async (id: string, data: UpdateArticleDetailDto) => {
     return await changeApi.request<ArticleDetail>(
       "articleDetails",
       "patch",
