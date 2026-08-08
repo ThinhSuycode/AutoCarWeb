@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./MenuUser.module.scss";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { MenuUserData } from "../../data/HeaderData";
+import { MenuUserData } from "../../constants/HeaderData";
 import Header from "../Component/Header/Header";
 import type { UserType } from "../../types/users";
 import { getMeApi, updateAvatarApi } from "../../services/auth.service";

@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { carDetailsService } from "../../../../../../services/carDetail.service";
-import type { CarDetailsType } from "../../../../../../types/car";
 import toast from "react-hot-toast";
-import type { CarDetailFormData } from "../../../../../../schemas/carDetail.schema";
+import type { CarDetailsType } from "../../../../../../types/car/car-detail.type";
+import type { UpdateCarDetailDto } from "../../../../../../schemas/carDetail.schema";
 
 const useDetailFormMutation = (carId: string | undefined) => {
   const queryClient = useQueryClient();
@@ -35,7 +35,7 @@ const useDetailFormMutation = (carId: string | undefined) => {
 
   // ───────────────── UPDATE──────────────
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: CarDetailFormData }) =>
+    mutationFn: ({ id, data }: { id: string; data: UpdateCarDetailDto }) =>
       carDetailsService.update(id, data),
 
     onSuccess: () => {

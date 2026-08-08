@@ -1,14 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./CarFilterBar.module.scss";
-import type { FilterType } from "../../hooks/useAssignManager";
+import { FILTERS_ASSIGN } from "../../constants/assignManagerData";
+import type { FilterType } from "../../types/assignManagerType";
 
 const cx = classNames.bind(styles);
-
-const FILTERS: { label: string; value: FilterType }[] = [
-  { label: "Tất cả", value: "all" },
-  { label: "Chưa phân bổ", value: "false" },
-  { label: "Đã phân bổ", value: "true" },
-];
 
 interface Props {
   active: FilterType;
@@ -18,7 +13,7 @@ interface Props {
 const CarFilterBar = ({ active, onChange }: Props) => (
   <div className={cx("filter")}>
     <span>Lọc:</span>
-    {FILTERS.map((f) => (
+    {FILTERS_ASSIGN.map((f) => (
       <button
         key={f.value}
         className={cx("filter-btn", { active: active === f.value })}

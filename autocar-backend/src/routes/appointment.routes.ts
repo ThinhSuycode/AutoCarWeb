@@ -5,39 +5,63 @@ import {
   confirmAppointment,
   completeAppointment,
   cancelAppointment,
-  getAppointmentsAll,
+  getMyAppointment,
+  getAppointmentDetail,
+  getAllAppointment,
+  deleteAppointment,
+  exportAppointments,
 } from "../controllers/appointment.controller";
 
 import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
 export const appointmentRouter = express.Router();
 
-appointmentRouter.get("/appointments", requireAuth, getAppointmentsAll);
+const AuthRequiredRole = [requireAuth, requireRole("admin", "staff")];
+
+appointmentRouter.get(
+  "/appointments/export",
+  ...AuthRequiredRole,
+  exportAppointments,
+);
+appointmentRouter.get(
+  "/appointments/:id/export",
+  ...AuthRequiredRole,
+  exportAppointments,
+);
+
+appointmentRouter.get(
+  "/appointments/:id",
+  ...AuthRequiredRole,
+  getAppointmentDetail,
+);
+appointmentRouter.get("/appointments", ...AuthRequiredRole, getAllAppointment);
+appointmentRouter.get("/my-appointments", requireAuth, getMyAppointment);
 
 appointmentRouter.post(
   "/appointments/contact/:contactId",
-  requireAuth,
-  requireRole("admin", "staff"),
+  ...AuthRequiredRole,
   createAppointment,
 );
 
 appointmentRouter.patch(
   "/appointments/:id/confirm",
-  requireAuth,
-  requireRole("admin", "staff"),
+  ...AuthRequiredRole,
   confirmAppointment,
 );
 
 appointmentRouter.patch(
   "/appointments/:id/complete",
-  requireAuth,
-  requireRole("admin", "staff"),
+  ...AuthRequiredRole,
   completeAppointment,
 );
 
 appointmentRouter.patch(
   "/appointments/:id/cancel",
   requireAuth,
-  requireRole("admin", "staff"),
   cancelAppointment,
+);
+appointmentRouter.delete(
+  "/appointments/:id/delete",
+  requireAuth,
+  deleteAppointment,
 );

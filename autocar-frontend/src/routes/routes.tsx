@@ -30,6 +30,9 @@ import MyContact from "../page/Staff/MyContact/MyContact";
 import ContactHistory from "../page/ContactHistory/ContactHistory";
 import ForgotPassword from "../page/ForgotPassword/ForgotPassword";
 import ResetPassword from "../page/ResetPassword/ResetPassword";
+import AppointmentAdmin from "../page/Admin/AppointmentAdmin/AppointmentAdmin";
+import AppointmentStaff from "../page/Staff/AppointmentStaff/AppointmentStaff";
+// import AppointmentManager from "../components/Appointment/AppointmentManager/AppointmentManager";
 
 export interface RouteItem {
   path: string;
@@ -115,6 +118,13 @@ const privateRoutes: RouteItem[] = [
     Layout: MenuCustomer,
     requiredRole: "admin",
   },
+  {
+    path: config.Routes.AppointmentAdmin,
+    Component: AppointmentAdmin,
+    Layout: MenuCustomer,
+    requiredRole: "admin",
+  },
+
   // Phải đăng nhập + role staff
   {
     path: config.Routes.ArticleStaff,
@@ -131,6 +141,12 @@ const privateRoutes: RouteItem[] = [
   {
     path: config.Routes.MyContact,
     Component: MyContact,
+    Layout: MenuCustomer,
+    requiredRole: "staff",
+  },
+  {
+    path: config.Routes.AppointmentStaff,
+    Component: AppointmentStaff,
     Layout: MenuCustomer,
     requiredRole: "staff",
   },

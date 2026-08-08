@@ -14,7 +14,11 @@ const authRequiredRole = [requireAuth, requireRole("admin", "staff")];
 
 articleRouter.get("/articles", getAllArticle);
 articleRouter.get("/articles/:id", ...authRequiredRole, getArticleById);
-articleRouter.put("/articles/:id", ...authRequiredRole, updateArticle);
-articleRouter.patch("/articles/:id", ...authRequiredRole, updateArticle);
+
 articleRouter.post("/articles", ...authRequiredRole, createArticle);
+
+articleRouter.put("/articles/:id", ...authRequiredRole, updateArticle);
+
+articleRouter.patch("/articles/:id", ...authRequiredRole, updateArticle);
+
 articleRouter.delete("/articles/:id", ...authRequiredRole, deleteArticle);

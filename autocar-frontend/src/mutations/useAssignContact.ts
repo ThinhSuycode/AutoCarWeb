@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { contactService } from "../services/contact.service";
+import { queryKeys } from "../queries/queryKeys";
 
 export const useAssignContact = () => {
   const queryClient = useQueryClient();
@@ -11,7 +12,7 @@ export const useAssignContact = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["contacts"],
+        queryKey: queryKeys.contact.all,
       });
 
       toast.success("Phân công thành công");

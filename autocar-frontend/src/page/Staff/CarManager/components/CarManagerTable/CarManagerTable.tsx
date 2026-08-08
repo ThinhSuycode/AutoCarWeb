@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import styles from "./CarManagerTable.module.scss";
-import type { CarManagerType } from "../../../../../types/managerStaff";
 import { useUpdateManagerStatus } from "../../../../../mutations/useUpdateManagerStatus";
 import { formatPrice } from "../../../../../hooks/formatPrice";
 import EmptyState from "../../../../../components/EmtyState/EmptyState";
@@ -8,11 +7,12 @@ import {
   MANAGER_STATUS_MAP,
   NEXT_STATUS,
 } from "../../../../../constants/managerStatus";
+import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  cars: CarManagerType[];
+  cars: ManagerCar[];
   isLoading: boolean;
 }
 
@@ -50,9 +50,9 @@ const CarManagerTable = ({ cars, isLoading }: Props) => {
                   <td>
                     <div className={cx("car-cell")}>
                       <div className={cx("car-thumb")}>
-                        {car.image ? (
+                        {car.thumbnail ? (
                           <img
-                            src={car.image}
+                            src={car.thumbnail}
                             alt={car.name}
                             onError={(e) =>
                               ((e.target as HTMLImageElement).style.display =

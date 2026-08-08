@@ -1,32 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { UserType } from "../types/users";
-import { queryKeys } from "../queries/queryKeys";
-import toast from "react-hot-toast";
 import { updateFavourite } from "../services/user.service";
+import { queryKeys } from "../queries/queryKeys";
 
-export type FavouritePayload = {
+export interface FavouritePayload {
   id: string;
-  data: UserType;
-};
+  carId: string;
+}
 
 export const useFavouriteMutation = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<
-    UserType, // data trả về
-    Error, // error
-    FavouritePayload // biến truyền vào mutate()
-  >({
-    mutationFn: ({ id, data }) => updateFavourite(id, data),
-
+  return useMutation({
+    mutationFn: async ({ id, carId }: FavouritePayload) =>
+      await updateFavourite(id, carId),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: queryKeys.user.me,
       });
-    },
-
-    onError: (error) => {
-      toast.error(error.message);
     },
   });
 };

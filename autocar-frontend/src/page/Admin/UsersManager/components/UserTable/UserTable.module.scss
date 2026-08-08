@@ -1,3 +1,5 @@
+@use "../../../../../styles/tokens" as *;
+
 .content {
   .table-wrapper {
     background: white;
@@ -38,8 +40,9 @@
         border-bottom: 1px solid #f6f6f6;
         font-size: 14px;
         vertical-align: middle;
+        font-weight: 600;
         text-align: center;
-        color: #333;
+        color: #475569;
 
         &:first-child {
           text-align: left;
@@ -69,6 +72,28 @@
             color: #4a6cf7;
           }
         }
+        .role {
+          padding: 5px 10px;
+          border-radius: 20px;
+          font-size: 12px;
+          border: 1px solid currentColor;
+          font-weight: 600;
+          display: inline-flex;
+          &.admin {
+            background: rgba(139, 92, 246, 0.1);
+            color: #8b5cf6 !important;
+          }
+
+          &.staff {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9 !important;
+          }
+
+          &.user {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e !important;
+          }
+        }
       }
     }
 
@@ -93,16 +118,14 @@
       border: 2px solid #f0f0f0;
     }
     .user-name {
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 600;
     }
-  }
-
-  .role {
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--primary-red) !important;
+    .user-id {
+      font-size: 12.5px;
+      color: $gray-light;
+      font-weight: 550;
+    }
   }
 
   .price {

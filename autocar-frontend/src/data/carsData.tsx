@@ -7,74 +7,6 @@ import type {
   ModePropsType,
   PriceRangeType,
 } from "../types/car";
-
-export const brands: string[] = [
-  "Toyota",
-  "Honda",
-  "Mazda",
-  "Hyundai",
-  "Ford",
-  "Mercedes",
-  "BMW",
-];
-
-export const colors: ColorType[] = [
-  {
-    key: "red",
-    title: "Màu đỏ",
-  },
-  {
-    key: "yellow",
-    title: "Màu vàng",
-  },
-  {
-    key: "white",
-    title: "Màu trắng",
-  },
-];
-export const priceRanges: PriceRangeType[] = [
-  {
-    value: "",
-    label: "Tất cả giá",
-  },
-  {
-    value: "0-500",
-    label: "Dưới 500 triệu",
-  },
-  {
-    value: "500-800",
-    label: "500 - 800 triệu",
-  },
-  {
-    value: "800-1200",
-    label: "800 triệu - 1.2 tỷ",
-  },
-  {
-    value: "1200+",
-    label: "Trên 1.2 tỷ",
-  },
-];
-
-export const years: string[] = [
-  "Tất cả",
-  "2024",
-  "2023",
-  "2022",
-  "2021",
-  "2020",
-  "Trước 2020",
-];
-
-export const BodyTypeCar: string[] = [
-  "Tất cả loại",
-  "Bán tải",
-  "Hatchback",
-  "MPV",
-  "SUV",
-  "Sedan",
-];
-export const transmissions: string[] = ["Tất cả", "Số tự động", "Số sàn"];
-
 export const modeData: ModePropsType[] = [
   {
     icon: <i className="fa-solid fa-grip"></i>,
@@ -749,10 +681,10 @@ export const carsDatabase: CarType[] = [
   },
 ];
 
-export const carsBrand: BrandsType[] = Array.from(
-  new Set(carsDatabase.map((item: CarType) => item.brand)),
-).map((brand, idx) => ({
-  id: (idx + 1).toString(),
-  title: brand,
-  value: brand.toLowerCase(),
-}));
+// export const carsBrand: BrandsType[] = Array.from(
+//   new Set(carsDatabase.map((item: CarType) => item.brand)),
+// ).map((brand, idx) => ({
+//   id: (idx + 1).toString(),
+//   title: brand,
+//   value: brand.toLowerCase(),
+// }));

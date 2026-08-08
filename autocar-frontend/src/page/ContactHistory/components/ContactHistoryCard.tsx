@@ -2,7 +2,8 @@ import classNames from "classnames/bind";
 import styles from "../ContactHistory.module.scss";
 import { CONTACT_STATUS_MAP } from "../constant/contactHistoryData";
 import { formatDateToString } from "../../../hooks/formatDate";
-import type { Contact, CONTACT_STATUS } from "../../../types/contact";
+import type { Contact } from "../../../types/contact/contact.type";
+import type { ContactStatus } from "../../../types/contact/contact.constant";
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +13,7 @@ interface Props {
 
 const ContactHistoryCard = ({ contact }: Props) => {
   const statusInfo =
-    CONTACT_STATUS_MAP[contact.status as CONTACT_STATUS] ??
+    CONTACT_STATUS_MAP[contact.status as ContactStatus] ??
     CONTACT_STATUS_MAP.new;
 
   return (
@@ -55,7 +56,7 @@ const ContactHistoryCard = ({ contact }: Props) => {
             {contact.managerId ? (
               <>
                 <div className={cx("staff-avatar")}>
-                  {contact.managerId.username.charAt(0).toUpperCase()}
+                  {(contact.managerId.username ?? "").charAt(0).toUpperCase()}
                 </div>
                 <span className={cx("staff-name")}>
                   {contact.managerId.username}

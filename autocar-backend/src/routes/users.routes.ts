@@ -3,6 +3,8 @@ import {
   createUser,
   deleteUser,
   getAllUser,
+  toggleArticleSave,
+  toggleFavouriteCar,
   updateAvatar,
   updateUser,
 } from "../controllers/user.controller";
@@ -13,13 +15,15 @@ export const userRouter = express.Router();
 
 userRouter.get("/users", requireAuth, requireRole("admin"), getAllUser);
 
-userRouter.post("/users", requireAuth, createUser);
-
 userRouter.put("/users/:id", requireAuth, updateUser);
+
+userRouter.post("/users", requireAuth, createUser);
 
 userRouter.patch("/users/:id", requireAuth, updateUser);
 
-userRouter.delete("/users/:id", requireAuth, requireRole("admin"), deleteUser);
+userRouter.patch("/users/:id/favourite", requireAuth, toggleFavouriteCar);
+
+userRouter.patch("/users/:id/article", requireAuth, toggleArticleSave);
 
 userRouter.patch(
   "/users/:id/avatar",
@@ -27,3 +31,5 @@ userRouter.patch(
   upload.single("avatar"),
   updateAvatar,
 );
+
+userRouter.delete("/users/:id", requireAuth, requireRole("admin"), deleteUser);

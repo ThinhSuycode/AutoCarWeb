@@ -1,38 +1,28 @@
 import classNames from "classnames/bind";
 import styles from "./CarDetails.module.scss";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
-import { useParams } from "react-router-dom";
 import LoadingData from "../../components/LoadingData/LoadingData";
 import FormContact from "../../components/FormContact/FormContact";
-import { useCurrentUser } from "../../queries/useCurrentUser";
-import { useCarDetail } from "../../queries/useCarDetail";
-import { useCarGallery } from "./hooks/useCarGallery";
-import CarGallery from "./components/CarGallary";
-import useCarActions from "./hooks/useCarActions";
-import CarDescription from "./components/CarDescription";
-import CarSpecs from "./components/CarSpecs";
-import CarHeader from "./components/CarHeader";
-import CarMobile from "./components/CarMobile";
+import CarGallery from "./components/CarGallary/CarGallary";
+import CarDescription from "./components/CarDescription/CarDescription";
+import CarSpecs from "./components/CarSpecs/CarSpecs";
+import CarHeader from "./components/CarHeader/CarHeader";
+import CarMobile from "./components/CarMobile/CarMobile";
+import useCarDetail from "./hooks/useCarDetail";
 
 const cx = classNames.bind(styles);
 
 const CarDetails = () => {
-  const { id } = useParams();
-
-  const { data: carDetails, isLoading } = useCarDetail(id);
-
-  const { imgCurrent, isTransitioning, onChangeImg } = useCarGallery(
-    carDetails?.images,
-  );
-
-  const isLogin = !!localStorage.getItem("token");
-
-  const { data: userInfo } = useCurrentUser(isLogin);
-
-  const { isFavourite } = useCarActions({
-    userInfo,
+  const {
+    id,
     carDetails,
-  });
+    isLoading,
+    userInfo,
+    isFavourite,
+    imgCurrent,
+    isTransitioning,
+    onChangeImg,
+  } = useCarDetail();
 
   if (isLoading) {
     return <LoadingData message={"Đang tải dữ liệu"}></LoadingData>;
@@ -44,7 +34,10 @@ const CarDetails = () => {
 
   return (
     <div className={cx("carDetails-page")}>
-      <NavigationPage pageActive="Xe đang bán" title={carDetails?.name || ""} />
+      <NavigationPage
+        pageActive="Xe đang bán"
+        title={carDetails.carId.name || ""}
+      />
       <div className={cx("content")}>
         <div className={cx("left")}>
           <CarGallery

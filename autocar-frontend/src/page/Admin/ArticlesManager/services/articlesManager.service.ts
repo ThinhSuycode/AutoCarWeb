@@ -1,5 +1,5 @@
 import { changeApi } from "../../../../services/api";
-import type { Articles } from "../../../../types/articles";
+import type { Article } from "../../../../types/article/article.type";
 import type { ArticleStatus } from "../../../Staff/ArticleManager/constants/statusMapData";
 
 export interface GetArticlesParams {
@@ -12,5 +12,5 @@ export interface GetArticlesParams {
 
 export const articlesManagerService = {
   updateStatus: (id: string, status: ArticleStatus) =>
-    changeApi.request<Articles>("articles", "patch", { status }, id),
+    changeApi.request<Article>("articles", "patch", { status }, id),
 };

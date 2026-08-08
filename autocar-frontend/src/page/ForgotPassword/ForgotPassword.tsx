@@ -5,6 +5,7 @@ import FormAccount from "../../components/FormAccount/FormAccount";
 import { Button } from "../../components/Button/Button";
 
 import useForgotPassword from "./hooks/useForgotPassword";
+import { config } from "../../config";
 
 const cx = classNames.bind(styles);
 
@@ -46,7 +47,7 @@ const ForgotPassword = () => {
         </form>
 
         <div className={cx("back-login")}>
-          <a href="/login">
+          <a href={config.Routes.Login}>
             <i className="fa-solid fa-arrow-left"></i>
             Quay lại đăng nhập
           </a>

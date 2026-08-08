@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
 import { carDetailSchema } from "../../../../../../schemas/carDetail.schema";
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import type z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { CarDetailsType } from "../../../../../../types/car";
+import type { CarDetailsType } from "../../../../../../types/car/car-detail.type";
 
 interface Props {
   carDetail: CarDetailsType | null;
@@ -22,6 +22,7 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
     watch,
     setValue,
     reset,
+    control,
     formState: { errors },
   } = useForm<
     z.input<typeof carDetailSchema>,
@@ -34,13 +35,18 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
 
   useEffect(() => {
     if (carDetail) {
+      console.log("RESET");
       reset(carDetail);
     }
   }, [carDetail, reset]);
 
   const features = watch("features") || [];
   const specs = watch("specs") || [];
-  const images = watch("images") || [];
+  const images = useWatch({
+    control,
+    name: "images",
+    defaultValue: [],
+  });
 
   const handleAddFeature = () => {
     const trimmed = newFeature.trim();
@@ -153,17 +159,6 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
     setValue("specs", updated);
   };
 
-  // ─────────────────────────────────────────────
-  // Images
-  // ─────────────────────────────────────────────
-
-  const handleRemoveImage = (index: number) => {
-    setValue(
-      "images",
-      images.filter((_, i) => i !== index),
-    );
-  };
-
   const handleAddImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
 
@@ -196,7 +191,10 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
 
       const { urls }: { urls: string[] } = await res.json();
 
-      setValue("images", [...images, ...urls], { shouldValidate: true });
+      setValue("images", [...images, ...urls], {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
       toast.success(`Đã tải lên ${urls.length} ảnh!`, {
         id: toastId,
       });
@@ -208,13 +206,12 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
       setIsUploading(false);
     }
   };
+
   return {
-    // form
     register,
     handleSubmit,
     errors,
 
-    // features
     features,
     newFeature,
     setNewFeature,
@@ -236,6 +233,7 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
     isUploading,
     fileInputRef,
     handleAddImages,
-    handleRemoveImage,
+
+    control,
   };
 };

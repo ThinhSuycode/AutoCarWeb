@@ -1,4 +1,4 @@
-import type { CONTACT_STATUS } from "../../../../types/contact";
+import type { ContactStatus } from "../../../../types/contact/contact.constant";
 
 export type STAFF_STATUS_CONTACT =
   | "contacted"
@@ -6,7 +6,7 @@ export type STAFF_STATUS_CONTACT =
   | "completed"
   | "cancelled";
 
-export const STATUS_LABEL: Record<CONTACT_STATUS, string> = {
+export const STATUS_LABEL: Record<ContactStatus, string> = {
   new: "Mới",
 
   assigned: "Đã phân công",

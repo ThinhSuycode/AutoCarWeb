@@ -1,100 +1,90 @@
-import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
+import { useCallback, useState } from "react";
+
+import type { FilterType } from "../types/assignManagerType";
+
+import useAssignCarQuery from "../queries/useAssignCarQuery";
+import {
+  useAssignManagerMutation,
+  useRemoveManagerMutation,
+} from "../mutations/useManagerMutation";
 import toast from "react-hot-toast";
-import type { PaginationMeta } from "../../../../types/pagination";
-import type { CarManagerType } from "../../../../types/managerStaff";
-import type { Staff } from "../../../../types/car";
-
-const API = import.meta.env.VITE_APP_API_KEYS;
-const getToken = () => localStorage.getItem("token");
-const authHeader = () => ({ Authorization: `Bearer ${getToken()}` });
-
-export type FilterType = "all" | "true" | "false";
+import useGetStaffQuery from "../queries/useGetStaffQuery";
 
 export const useAssignManager = () => {
-  const [cars, setCars] = useState<CarManagerType[]>([]);
-  const [staffList, setStaffList] = useState<Staff[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [assigningId, setAssigningId] = useState<string | null>(null);
-  const [filter, setFilter] = useState<FilterType>("all");
-  const [page, setPage] = useState("");
 
-  const [pagination, setPagination] = useState<PaginationMeta>({
-    page: 1,
-    limit: 9,
-    total: 0,
-    totalPages: 1,
+  const [hasManager, setHasManagerState] = useState<FilterType>("all");
+
+  const [page, setPage] = useState(1);
+
+  const limit = 8;
+
+  const { data, isLoading } = useAssignCarQuery({
+    page,
+    limit,
+    hasManager,
   });
 
-  const fetchData = useCallback(
-    async (page = 1) => {
-      setIsLoading(true);
-      try {
-        const params = new URLSearchParams();
-        params.set("page", String(page));
-        params.set("limit", String(pagination.limit));
-        if (filter !== "all") params.set("hasManager", filter);
+  const { data: staffRes } = useGetStaffQuery();
 
-        const [carsRes, staffRes] = await Promise.all([
-          axios.get(`${API}/cars/admin/all?${params.toString()}`, {
-            headers: authHeader(),
-          }),
-          axios.get(`${API}/cars/admin/staff`, { headers: authHeader() }),
-        ]);
-        setCars(carsRes.data.data);
-        setPagination(carsRes.data.pagination);
-        setStaffList(staffRes.data.data);
-      } catch {
-        toast.error("Không thể tải dữ liệu!");
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [filter, pagination.limit],
-  );
+  const assignMutation = useAssignManagerMutation();
 
-  useEffect(() => {
-    fetchData(1);
-  }, [filter]);
+  const removeMutation = useRemoveManagerMutation();
 
-  const onAssign = useCallback(
-    async (carId: string, managerId: string) => {
-      const isUnassign = !managerId;
-      const url = `${API}/cars/${carId}/${isUnassign ? "unassign" : "assign"}`;
+  const staffData = staffRes?.data ?? [];
 
+  const onManagerChange = useCallback(
+    async (carId: string, managerId: string, username: string) => {
       try {
         setAssigningId(carId);
-        await axios.patch(url, isUnassign ? {} : { managerId }, {
-          headers: authHeader(),
+
+        if (!managerId) {
+          await removeMutation.mutateAsync(carId);
+          return;
+        }
+
+        await assignMutation.mutateAsync({
+          carId,
+          managerId,
         });
-        toast.success(isUnassign ? "Đã hủy phân bổ!" : "Phân bổ thành công!");
-        fetchData(pagination.page); //  Reload đúng trang hiện tại
-      } catch (error: any) {
-        toast.error(error?.response?.data?.message || "Có lỗi xảy ra!");
+        toast.success(`Phân bổ thành công cho nhân viên ${username}!!`);
       } finally {
         setAssigningId(null);
       }
     },
-    [fetchData, pagination.page],
+    [assignMutation, removeMutation],
   );
 
-  //  Handler chuyển trang
-  const onPageChange = useCallback(
-    (page: number) => {
-      fetchData(page);
-    },
-    [fetchData],
-  );
+  const onPageChange = useCallback((page: number) => {
+    setPage(page);
+  }, []);
+
+  const setHasManager = useCallback((value: FilterType) => {
+    setHasManagerState(value);
+    setPage(1);
+  }, []);
 
   return {
-    cars,
-    staffList,
-    isLoading,
+    cars: data?.data ?? [],
+
+    pagination: data?.pagination,
+
+    staffData,
+
     assigningId,
-    filter,
-    setFilter,
-    onAssign,
-    pagination,
+
+    hasManager,
+
+    page,
+
+    isLoading,
+
+    isAssigning: assignMutation.isPending || removeMutation.isPending,
+
+    setHasManager,
+
     onPageChange,
+
+    onManagerChange,
   };
 };

@@ -1,27 +1,29 @@
 import { callApi, changeApi } from "../../../../services/api";
 import type {
-  ArticleObjectResponse,
-  ArticleResponse,
-  Articles,
   CreateArticleDto,
   UpdateArticleDto,
-} from "../../../../types/articles";
+} from "../../../../types/article/article.dto";
+import type {
+  ArticleListResponse,
+  ArticleResponse,
+} from "../../../../types/article/article.response";
+import type { Article } from "../../../../types/article/article.type";
 
 export const articleService = {
   getAll: async () => {
-    return await callApi.getData<ArticleResponse>("articles?all=true");
+    return await callApi.getData<ArticleListResponse>("articles?all=true");
   },
 
   getDetail: async (id: string) => {
-    return await callApi.getData<Articles>(`articles/${id}`);
+    return await callApi.getData<Article>(`articles/${id}`);
   },
 
   create: async (data: CreateArticleDto) => {
-    return await changeApi.request<ArticleObjectResponse>("articles", "add", data);
+    return await changeApi.request<ArticleResponse>("articles", "add", data);
   },
 
   update: async (id: string, data: UpdateArticleDto) => {
-    return await changeApi.request<Articles>("articles", "patch", data, id);
+    return await changeApi.request<Article>("articles", "patch", data, id);
   },
 
   delete: async (id: string) => {

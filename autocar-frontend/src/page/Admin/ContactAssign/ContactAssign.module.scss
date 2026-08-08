@@ -361,6 +361,25 @@ $card-accents: $navy, $amber, $blue, $green, $red, $violet, $teal;
     border: 1px solid #bbf7d0;
   }
 }
+.show-contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 16px;
+    color: $muted;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  &:hover i {
+    color: $red;
+    transform: scale(1.15);
+  }
+}
 
 // ─── Notes ────────────────────────────────────────────────────────────────────
 .notes {

@@ -1,10 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./ListArticle.module.scss";
 import type { Articles } from "../../types/articles";
-import {
-  getColorCategory,
-  getLabelCategory,
-} from "../../hooks/getCategoryColor";
+import { getLabelCategory } from "../../hooks/getCategoryColor";
 import { config } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { createHandleReadArticle } from "../../hooks/HandleArticles";

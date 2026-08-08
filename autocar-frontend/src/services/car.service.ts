@@ -1,11 +1,12 @@
 import { callApi, changeApi } from "./api";
-import { type CarDetailsType, type CarType } from "../types/car";
-import type { CarManagerResponse, CarManagerType } from "../types/managerStaff";
-import type { CarFormData } from "../schemas/car.schema";
-import type { PaginatedResponse } from "../types/pagination";
+import type { CarDetailsType } from "../types/car/car-detail.type";
+import type { CarListResponse } from "../types/car/car.response";
+import type { CarType } from "../types/car/car.type";
+import type { ManagerCar } from "../types/user/manager-cars.type";
+import type { CreateCarDto, UpdateCarDto } from "../schemas/car.schema";
 
 export const getCarDetail = async (id: string) => {
-  return await callApi.getData<CarDetailsType>(`carDetail/${id}`);
+  return callApi.getData<CarDetailsType>(`carDetail/${id}`);
 };
 
 export const carService = {
@@ -17,7 +18,7 @@ export const carService = {
     page?: number;
     limit?: number;
     search?: string;
-  }): Promise<PaginatedResponse<CarManagerType>> => {
+  }): Promise<CarListResponse> => {
     const params = new URLSearchParams();
 
     if (search.trim()) {
@@ -28,68 +29,30 @@ export const carService = {
       params.set("limit", String(limit));
     }
 
-    const res = await callApi.getData<PaginatedResponse<CarManagerType>>(
-      `/cars?${params.toString()}`,
-    );
-
-    return res;
-  },
-  getDetail: async (id: string) => {
-    return await callApi.getData<CarType>(`cars/${id}`);
+    return callApi.getData<CarListResponse>(`/cars?${params.toString()}`);
   },
 
-  create: async (data: CarFormData) => {
-    return await changeApi.request<CarManagerType>("cars", "add", data);
+  getCars: async () => {
+    return await callApi.getData<CarListResponse>("/cars?all=true");
   },
 
-  update: async (id: string, data: CarType) => {
-    return await changeApi.request<CarType>("cars", "patch", data, id);
+  getDetail: (id: string) => {
+    return callApi.getData<CarType>(`cars/${id}`);
   },
 
-  delete: async (id: string) => {
-    return await changeApi.request("cars", "delete", undefined, id);
+  create: (data: CreateCarDto) => {
+    return changeApi.request<ManagerCar>("cars", "add", data);
   },
 
-  getCarsWithManager: (params?: string) =>
-    callApi.getData(`cars/manager/all${params ? `?${params}` : ""}`),
-};
-
-interface CarManagerStaffType {
-  search: string;
-  page?: number;
-  limit?: number;
-  managerStatus?: string;
-}
-
-export const managerStaffServices = {
-  getMyCars: async ({
-    search,
-    page,
-    limit,
-    managerStatus,
-  }: CarManagerStaffType) => {
-    const params = new URLSearchParams();
-    if (search.trim()) {
-      params.set("all", "true");
-      params.set("search", search);
-    } else {
-      params.set("page", String(page));
-      params.set("limit", String(limit));
-    }
-    if (managerStatus && managerStatus !== "all") {
-      params.set("managerStatus", managerStatus);
-    }
-    const res = await callApi.getData<CarManagerResponse>(
-      `cars/staff/my-cars?${params ? params.toString() : ""}`,
-    );
-    return res;
+  update: (id: string, data: UpdateCarDto) => {
+    return changeApi.request<CarType>("cars", "patch", data, id);
   },
-  updateManagerStatus: (id: string, managerStatus: string) =>
-    changeApi.request<CarManagerResponse>(`/cars/staff/${id}/status`, "patch", {
-      managerStatus,
-    }),
-};
 
-export const managerAdminServices = {
-  getAllCar: async () => {},
+  delete: (id: string) => {
+    return changeApi.request("cars", "delete", undefined, id);
+  },
+
+  getCarsWithManager: (params?: string) => {
+    return callApi.getData(`cars/manager/all${params ? `?${params}` : ""}`);
+  },
 };

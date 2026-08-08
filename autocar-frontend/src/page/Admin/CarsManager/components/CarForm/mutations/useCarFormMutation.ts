@@ -1,46 +1,19 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { carService } from "../../../../../../services/car.service";
-import type { CarFormData } from "../../../../../../schemas/car.schema";
 import { carDetailsService } from "../../../../../../services/carDetail.service";
 import toast from "react-hot-toast";
+import { queryKeys } from "../../../../../../queries/queryKeys";
+import type { CreateCarDto } from "../../../../../../schemas/car.schema";
 
 const useCarFormMutation = () => {
   const queryClient = useQueryClient();
 
-  // ───────────────── STATE ─────────────────
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-
-  // ───────────────── GET ALL ─────────────────
-  const { data, isLoading } = useQuery({
-    queryKey: ["cars", page, search],
-
-    queryFn: () =>
-      carService.getAll({
-        page,
-        limit: 9,
-        search,
-      }),
-
-    staleTime: 0,
-  });
-
-  const cars = data?.data ?? [];
-  const pagination = data?.pagination;
-
   // ───────────────── CREATE ─────────────────
   const createMutation = useMutation({
-    mutationFn: async (formData: CarFormData) => {
+    mutationFn: async (formData: CreateCarDto) => {
       const newCar = await carService.create(formData);
       await carDetailsService.create({
         carId: newCar,
-        name: newCar.name,
-        brand: newCar.brand,
-        price: newCar.price,
-        year: newCar.year,
-        mileage: newCar.mileage,
-        transmission: newCar.transmission,
         location: "",
         description: "",
         images: [],
@@ -51,17 +24,11 @@ const useCarFormMutation = () => {
       return newCar;
     },
 
-    onSuccess: (newCar) => {
-      toast.success("Tạo xe thành công!");
-
-      queryClient.setQueryData(["cars", page, search], (old: any) => {
-        if (!old) return old;
-
-        return {
-          ...old,
-          data: [newCar, ...(old.data || [])],
-        };
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.car.all,
       });
+      toast.success("Tạo xe thành công!");
     },
 
     onError: () => {
@@ -74,25 +41,28 @@ const useCarFormMutation = () => {
     mutationFn: ({ id, data }: { id: string; data: any }) =>
       carService.update(id, data),
 
-    onSuccess: (updatedCar) => {
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.car.all,
+      });
       toast.success("Cập nhật thành công!");
 
-      queryClient.setQueryData(["cars", page, search], (old: any) => {
-        if (!old) return old;
+      // queryClient.setQueryData(["cars"], (old: any) => {
+      //   if (!old) return old;
 
-        return {
-          ...old,
+      //   return {
+      //     ...old,
 
-          data: old.data.map((car: any) =>
-            car._id === updatedCar._id
-              ? {
-                  ...car,
-                  ...updatedCar,
-                }
-              : car,
-          ),
-        };
-      });
+      //     data: old.data.map((car: any) =>
+      //       car._id === updatedCar._id
+      //         ? {
+      //             ...car,
+      //             ...updatedCar,
+      //           }
+      //         : car,
+      //     ),
+      //   };
+      // });
     },
 
     onError: () => {
@@ -128,19 +98,9 @@ const useCarFormMutation = () => {
   });
 
   return {
-    cars,
-    pagination,
-    isLoading,
-
-    page,
-    setPage,
-
-    search,
-    setSearch,
-
-    createCar: createMutation.mutate,
-    updateCar: updateMutation.mutate,
-    deleteCar: deleteMutation.mutate,
+    createCar: createMutation.mutateAsync,
+    updateCar: updateMutation.mutateAsync,
+    deleteCar: deleteMutation.mutateAsync,
     creating: createMutation.isPending,
     updating: updateMutation.isPending,
     deleting: deleteMutation.isPending,

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { managerStaffServices } from "../services/car.service";
+import { managerStaffServices } from "../services/manager.service";
 
 export const useUpdateManagerStatus = () => {
   const queryClient = useQueryClient();

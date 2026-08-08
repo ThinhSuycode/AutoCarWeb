@@ -1,21 +1,21 @@
 import type React from "react";
 import classNames from "classnames/bind";
 import styles from "./ListProduct.module.scss";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import type { CarType, ListCarType } from "../../types/car";
 import { useCarsFilter } from "../../hooks/useCarsFilter";
 import LoadingData from "../LoadingData/LoadingData";
-import ProductFilter from "./components/ListProduct/ProductFilter";
-import ProductToolbar from "./components/ListProduct/ProductToolbar";
-import ProductFilterTags from "./components/ListProduct/ProductFilterTags";
-import ProductCard from "./components/ListProduct/ProductCard";
+import ProductFilter from "./components/ProductFilter";
+import ProductToolbar from "./components/ProductToolbar";
+import ProductFilterTags from "./components/ProductFilterTags";
+import ProductCard from "./components/ProductCard";
 import EmptyData from "../EmtyData/EmptyData";
 import useProductNavigation from "./hooks/useProductNavigation";
 import { useMobileFilter } from "./hooks/useMobileFilter";
+import type { CarType } from "../../types/car/car.type";
+import type { ListCarProps } from "./types/ListProductCar";
 
 const cx = classNames.bind(styles);
 
-const ListProduct: React.FC<ListCarType> = ({
+const ListProduct: React.FC<ListCarProps> = ({
   hiddenBtn = false,
   productData,
   heading,
@@ -35,7 +35,7 @@ const ListProduct: React.FC<ListCarType> = ({
     setOpenFilterMobile,
   } = useMobileFilter();
 
-  const carsDisplay = useMemo(() => productData ?? cars, [productData, cars]);
+  const carsDisplay = productData ?? cars;
 
   if (isLoading) return <LoadingData message="Đang tải dữ liệu" />;
 
@@ -63,7 +63,7 @@ const ListProduct: React.FC<ListCarType> = ({
           )}
         </div>
         <div
-          className={cx("product-content-bottom")}
+          className={cx("product-content-bottom", { userLayout })}
           style={filterCar ? { display: "flex", gap: "25px" } : {}}
         >
           <div
@@ -79,7 +79,7 @@ const ListProduct: React.FC<ListCarType> = ({
               onReset={onReset}
             />
           )}
-          <div className={cx("list-product", { filterFix1: filterCar })}>
+          <div className={cx("content")}>
             {filterCar && (
               <div className={cx("filter-heading")}>
                 <div
@@ -103,21 +103,30 @@ const ListProduct: React.FC<ListCarType> = ({
                 ></ProductFilterTags>
               </div>
             )}
-            {carsDisplay.length > 0 ? (
-              carsDisplay.map((car: CarType) => (
-                <ProductCard
-                  filterCar={!!filterCar}
-                  key={car._id}
-                  userLayout={userLayout}
-                  filter={filter}
-                  car={car}
-                ></ProductCard>
-              ))
-            ) : (
-              <div className={cx("emptyCar")}>
-                {emptyTitle?.trim() ? <></> : <EmptyData />}
-              </div>
-            )}
+            <div
+              className={cx(
+                "list-product",
+                { filterFix1: filterCar },
+                { changeItem: filter.mode === "list" },
+                {
+                  empty: carsDisplay.length === 0,
+                },
+              )}
+            >
+              {carsDisplay.length > 0 ? (
+                carsDisplay.map((car: CarType) => (
+                  <ProductCard
+                    key={car._id}
+                    userLayout={userLayout}
+                    car={car}
+                  ></ProductCard>
+                ))
+              ) : (
+                <div className={cx("emptyCar")}>
+                  {emptyTitle?.trim() ? <></> : <EmptyData />}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

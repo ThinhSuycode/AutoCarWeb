@@ -1,30 +1,27 @@
 import { useCallback, useRef, useState } from "react";
 import toast from "react-hot-toast";
-
 import { useArticleDetailMutations } from "../components/FormArticleDetail/mutations/useArticleDetailMutations";
-
 import { useConfirm } from "../../../../hooks/useConfirm";
-
-import type {
-  Articles,
-  CreateArticleDto,
-  UpdateArticleDto,
-} from "../../../../types/articles";
 import type { ArticleDetailInput } from "../components/FormArticleDetail/schema/ArticleDetailSchema";
 import useArticleMutations from "../components/FormArticle/mutations/useArticleMutations";
 import type { ArticleFormInput } from "../components/FormArticle/schema/article.schema";
+import type { Article } from "../../../../types/article/article.type";
+import type {
+  CreateArticleDto,
+  UpdateArticleDto,
+} from "../../../../types/article/article.dto";
 
 const useArticleManager = () => {
   const { articles, isLoading, createArticle, updateArticle, deleteArticle } =
     useArticleMutations();
 
-  const [openDetail, setOpenDetail] = useState<Articles | null>(null);
+  const [openDetail, setOpenDetail] = useState<Article | null>(null);
 
   const { articleDetail, detailLoading, createDetail, updateDetail } =
     useArticleDetailMutations(openDetail?._id);
 
   const [openCreate, setOpenCreate] = useState(false);
-  const [selectedArticle, setSelectedArticle] = useState<Articles | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   const { confirm, confirmProps } = useConfirm();
   const draftMapArticleDetail = useRef<Record<string, ArticleDetailInput>>({});
@@ -45,7 +42,7 @@ const useArticleManager = () => {
     [updateArticle],
   );
   const handleDeleteArticle = useCallback(
-    async (article: Articles) => {
+    async (article: Article) => {
       try {
         const ok = await confirm({
           title: `Bạn có muốn xoá "${article.title}"?`,
@@ -70,7 +67,7 @@ const useArticleManager = () => {
     setSelectedArticle(null);
   };
 
-  const openUpdateModal = (article: Articles) => {
+  const openUpdateModal = (article: Article) => {
     setSelectedArticle(article);
   };
 
@@ -78,7 +75,7 @@ const useArticleManager = () => {
     setSelectedArticle(null);
   };
 
-  const openDetailModal = (article: Articles) => {
+  const openDetailModal = (article: Article) => {
     setOpenDetail(article);
   };
 

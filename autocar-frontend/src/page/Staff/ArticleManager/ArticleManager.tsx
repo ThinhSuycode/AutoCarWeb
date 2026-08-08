@@ -10,12 +10,13 @@ import ArticleCard from "./components/ArticleCard/ArticleCard";
 import ArticleStats from "./components/ArticleStats/ArticleStats";
 
 import { toFormInput } from "./utils/toFormInput";
-
-import type { Articles, FormArticleType } from "../../../types/articles";
 import type { ArticleDetailOutput } from "./components/FormArticleDetail/schema/ArticleDetailSchema";
 
 import useArticleManager from "./hooks/useArticleManager";
 import ArticleHeader from "./components/ArticleHeader/ArticleHeader";
+import type { Article } from "../../../types/article/article.type";
+import type { ArticleDetail } from "../../../types/article/article-detail.type";
+import type { CreateArticleDto } from "../../../types/article/article.dto";
 
 const cx = classNames.bind(styles);
 
@@ -66,7 +67,7 @@ const ArticleManager = () => {
         <LoadingData message="Đang tải dữ liệu..." />
       ) : (
         <div className={cx("articles-grid")}>
-          {articles.map((article: Articles) => (
+          {articles.map((article: Article) => (
             <ArticleCard
               key={article._id}
               article={article}
@@ -102,7 +103,7 @@ const ArticleManager = () => {
               draftMapArticle.current[selectedArticle._id] = draft;
             }}
             closeModal={closeUpdateModal}
-            onSubmit={(data: FormArticleType) => {
+            onSubmit={(data: CreateArticleDto) => {
               delete draftMapArticle.current[selectedArticle._id];
               handleUpdateArticle(selectedArticle._id, data);
             }}

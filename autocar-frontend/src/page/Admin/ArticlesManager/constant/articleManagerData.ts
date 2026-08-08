@@ -1,7 +1,7 @@
-import type { Articles } from "../../../../types/articles";
+import type { Article } from "../../../../types/article/article.type";
 
 export const STATUS_OPTIONS: {
-  value: Articles["status"] | "all";
+  value: Article["status"] | "all";
   label: string;
 }[] = [
   { value: "all", label: "Tất cả trạng thái" },

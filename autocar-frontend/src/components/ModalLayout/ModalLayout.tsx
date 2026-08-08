@@ -16,10 +16,13 @@ const ModalLayout = ({
 }) => {
   return (
     <div
-      className={cx("modal-layout", { activeModal: showForm }, classNames)}
+      className={cx("modal-layout", { activeModal: showForm })}
       onClick={onClose}
     >
-      <div className={cx("form")} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={cx("form", classNames)}
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </div>
     </div>

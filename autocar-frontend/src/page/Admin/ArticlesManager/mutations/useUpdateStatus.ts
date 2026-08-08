@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { articlesManagerService } from "../services/articlesManager.service";
-import type { ArticleStatus } from "../../../../types/articles";
 import toast from "react-hot-toast";
 import { queryKeys } from "../../../../queries/queryKeys";
+import type { ArticleStatus } from "../../../Staff/ArticleManager/constants/statusMapData";
 
 const useUpdateStatus = () => {
   const queryClient = useQueryClient();

@@ -1,13 +1,13 @@
 import classNames from "classnames/bind";
 import styles from "../ArticleDetails.module.scss";
 import { formatDateToString } from "../../../hooks/formatDate";
-import type { Articles } from "../../../types/articles";
+import type { Article } from "../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  relatedArticles: Articles[];
-  onReadArticle: (article: Articles) => void;
+  relatedArticles: Article[];
+  onReadArticle: (article: Article) => void;
 }
 
 const ArticleRelatedSidebar = ({ relatedArticles, onReadArticle }: Props) => (

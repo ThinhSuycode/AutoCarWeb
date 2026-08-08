@@ -1,18 +1,26 @@
 import classNames from "classnames/bind";
 import styles from "./CarTable.module.scss";
 import ConfirmDialog from "../../../../../components/ConfirmDialog/ConfirmDialog";
-import type { CarManagerType } from "../../../../../types/managerStaff";
 import useCarTable from "./hooks/useCarTable";
+import LoadingData from "../../../../../components/LoadingData/LoadingData";
+import EmptyState from "../../../../../components/EmtyState/EmptyState";
+import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  cars: CarManagerType[];
-  carSelected: (data: CarManagerType) => void;
-  carDetailSelected: (data: CarManagerType) => void;
+  cars: ManagerCar[];
+  carSelected: (data: ManagerCar) => void;
+  isLoading: boolean;
+  carDetailSelected: (data: ManagerCar) => void;
 }
 
-const CarTable = ({ cars, carSelected, carDetailSelected }: Props) => {
+const CarTable = ({
+  cars,
+  carSelected,
+  carDetailSelected,
+  isLoading,
+}: Props) => {
   const { confirmProps, onHandleDeleteCar } = useCarTable();
   return (
     <>
@@ -30,20 +38,24 @@ const CarTable = ({ cars, carSelected, carDetailSelected }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {cars.length === 0 ? (
+            {isLoading ? (
               <tr>
-                <td colSpan={6} className={cx("empty")}>
-                  Không có dữ liệu
+                <td colSpan={6}>
+                  <LoadingData message="Đang tải..."></LoadingData>
                 </td>
               </tr>
+            ) : cars?.length === 0 ? (
+              <td colSpan={6}>
+                <EmptyState type="cars"></EmptyState>
+              </td>
             ) : (
               cars.map((car) => (
                 <tr key={car._id} className={cx("row")}>
                   <td>
                     <div className={cx("car-info")}>
-                      {car.image && (
+                      {car.thumbnail && (
                         <img
-                          src={car.image}
+                          src={car.thumbnail}
                           alt={car.name}
                           className={cx("car-img")}
                         />
@@ -54,7 +66,9 @@ const CarTable = ({ cars, carSelected, carDetailSelected }: Props) => {
                       </div>
                     </div>
                   </td>
-                  <td>{car.brand}</td>
+                  <td className={cx("brand")}>
+                    <div>{car.brand}</div>
+                  </td>
                   <td className={cx("price")}>
                     {car.price.toLocaleString("vi-VN")}₫
                   </td>

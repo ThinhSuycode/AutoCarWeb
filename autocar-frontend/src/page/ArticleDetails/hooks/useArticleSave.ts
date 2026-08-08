@@ -1,26 +1,31 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import type { Dispatch, SetStateAction } from "react";
 
-import type { UserType } from "../../../types/users";
-import type { ArticleDetail } from "../../../types/articles";
 import useArticleSaveMutation from "../../../mutations/useArticleSaveMutation";
+import type { UserType } from "../../../types/user/user.type";
+import type { ArticleDetail } from "../../../types/article/article-detail.type";
 
 interface Props {
   userActive: UserType | null;
   articleDetail?: ArticleDetail;
-  setUserActive: Dispatch<SetStateAction<UserType | null>>;
 }
 
-const useArticleSave = ({
-  userActive,
-  articleDetail,
-  setUserActive,
-}: Props) => {
+const useArticleSave = ({ userActive, articleDetail }: Props) => {
   const navigate = useNavigate();
+
   const articleSaveMutation = useArticleSaveMutation();
-  const [isSaved, setIsSaved] = useState<boolean>(false);
+
+  const articleId = articleDetail?.articleId;
+
+  const isSaved = useMemo(() => {
+    if (!userActive || !articleId) return false;
+
+    return (
+      userActive.articleSave?.some((item) => item._id === articleId._id) ??
+      false
+    );
+  }, [userActive, articleId]);
 
   const onHandleSaveArticle = useCallback(async () => {
     if (!userActive) {
@@ -33,63 +38,22 @@ const useArticleSave = ({
       return;
     }
 
-    const articleId = articleDetail?.articleId._id;
-
-    if (!articleId) return;
-
-    const currentSaved = userActive.articleSave ?? [];
-    const isAlreadySaved = currentSaved.includes(articleId);
-
-    const updatedSave = isAlreadySaved
-      ? currentSaved.filter((id) => id !== articleId)
-      : [...currentSaved, articleId];
-
-    const previousUser = userActive;
-
-    const updatedUser: UserType = {
-      ...userActive,
-      articleSave: updatedSave,
-    };
-
-    // Optimistic update
-    setIsSaved(!isAlreadySaved);
-    setUserActive(updatedUser);
-
     try {
       await articleSaveMutation.mutateAsync({
         id: userActive._id ?? "",
-        data: updatedUser,
+        articleId: articleId?._id ?? "",
       });
 
-      toast.success(
-        isAlreadySaved ? "Đã bỏ lưu bài viết!" : "Đã lưu bài viết!",
-      );
+      toast.success(isSaved ? "Đã bỏ lưu bài viết!" : "Đã lưu bài viết!");
     } catch (error) {
-      // Rollback
-      setIsSaved(isAlreadySaved);
-      setUserActive(previousUser);
-
-      toast.error("Có lỗi xảy ra, vui lòng thử lại!");
       console.error(error);
     }
-  }, [
-    userActive,
-    articleDetail?.articleId?._id,
-    navigate,
-    articleSaveMutation,
-    setIsSaved,
-    setUserActive,
-  ]);
-  useEffect(() => {
-    if (userActive && articleDetail?.articleId) {
-      setIsSaved(
-        userActive.articleSave?.includes(articleDetail.articleId._id) ?? false,
-      );
-    }
-  }, [userActive, articleDetail?.articleId]);
+  }, [userActive, articleId, isSaved, articleSaveMutation, navigate]);
+
   return {
-    onHandleSaveArticle,
     isSaved,
+    onHandleSaveArticle,
+    isLoading: articleSaveMutation.isPending,
   };
 };
 

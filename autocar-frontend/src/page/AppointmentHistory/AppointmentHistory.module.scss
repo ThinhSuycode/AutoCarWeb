@@ -1,211 +1,239 @@
+@use "../../styles/tokens" as *;
 @use "../../styles/mixins" as *;
-@use "../../styles/variables" as *;
 
 .appointmentHistory-page {
-  .appointmentHistory-heading {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+    transition: all 0.25s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+    }
+  }
+
+  .card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    h2 {
-      font-size: 24px;
-      font-weight: 800;
-      color: #0f172a;
-      padding-bottom: 4px;
-      border-bottom: 3px solid #dc2626;
-      display: inline-block;
+  }
+
+  .service {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    i {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #eef5ff;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
     }
 
-    .add-calendar {
-      font-size: 32px;
+    span {
+      font-size: 15px;
       font-weight: 600;
+      color: #1f2937;
+    }
+  }
+
+  .status {
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid currentColor;
+
+    &.pending {
+      background: #fff7e6;
+      color: #d48806;
+    }
+
+    &.confirmed {
+      background: #e6f7ff;
+      color: #096dd9;
+    }
+
+    &.completed {
+      background: #f6ffed;
+      color: #389e0d;
+    }
+
+    &.cancelled {
+      background: #fff1f0;
+      color: #cf1322;
+    }
+  }
+
+  .car {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    img {
+      width: 110px;
+      height: 74px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #eee;
+      flex-shrink: 0;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .price {
+      color: $red;
+    }
+
+    span {
+      display: block;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+
+    div {
       display: flex;
-      gap: 8px;
-      color: var(--primary-red);
-      cursor: pointer;
-      font-family: initial;
-      transition: 0.25s ease-in-out;
-      user-select: none;
+      align-items: center;
+      gap: 6px;
+      color: #4b5563;
+      font-size: 13px;
 
-      .icon {
-        width: 35px;
-        height: 35px;
-        border-radius: 8px;
-        background-color: white;
-        display: flex;
-        color: black;
-        align-items: center;
-        transition:
-          background-color 0.25s ease-in-out,
-          transform 0.25s ease-in-out;
-        justify-content: center;
-        border: 1px solid var(--primary-red);
-
-        &:hover {
-          transform: scale(1.02);
-          background-color: var(--primary-red);
-          color: white;
-          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-        }
-      }
-
-      &:hover {
-        opacity: 0.8;
+      i {
+        color: #2563eb;
+        font-size: 13px;
       }
     }
   }
 
-  .list-card {
-    .card {
-      padding: 15px 20px;
-      background-color: white;
-      display: flex;
-      border-radius: 12px;
-      gap: 10px;
-      color: #64748b;
-      margin-bottom: 10px;
+  .note {
+    padding: 10px 14px;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.6;
+  }
 
-      .left {
-        width: 8%;
-        display: flex;
-        justify-content: center;
-        font-size: 20px;
+  .actions {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
 
-        .icon {
-          width: 45px;
-          height: 45px;
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #6f9cdb78;
-          color: #0018ff;
-          @include sm {
-            width: 40px;
-            height: 40px;
-          }
-          &.test_drive {
-            background-color: #eff6ff;
-            color: #2563eb;
-            border: 1px solid #2563eb;
-          }
+  .detail,
+  .cancel {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
 
-          &.maintenance {
-            background-color: #fef9c3;
-            color: #854d0e;
-            border: 1px solid #fde047;
-          }
+  .detail {
+    background: #2563eb;
+    color: #fff;
 
-          &.consultation {
-            background-color: #faf5ff;
-            color: #9333ea;
-            border: 1px solid #9333ea;
-          }
-
-          &.inspection {
-            background-color: #fef9c3;
-            color: #92400e;
-            border: 1px solid #fde68a;
-          }
-        }
-      }
-
-      .info {
-        flex: 1;
-        font-size: 15px;
-
-        .heading {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-size: 16px;
-          color: black;
-
-          h4 {
-            font-size: 16px;
-          }
-
-          .status {
-            font-size: 12px;
-            font-weight: 600;
-            padding: 5px 15px;
-            border-radius: 12px;
-
-            // Chờ xác nhận — vàng
-            &.pending {
-              background-color: #fef9c3;
-              color: #854d0e;
-              border: 1px solid #fde047;
-            }
-
-            // Đã xác nhận — xanh lá
-            &.confirmed {
-              background-color: #dcfce7;
-              color: #166534;
-              border: 1px solid #86efac;
-            }
-
-            // Hoàn thành — xanh dương
-            &.completed {
-              background-color: #dbeafe;
-              color: #1e40af;
-              border: 1px solid #93c5fd;
-            }
-
-            // Đã hủy — xám đỏ
-            &.cancelled {
-              background-color: #fee2e2;
-              color: #991b1b;
-              border: 1px solid #fca5a5;
-            }
-          }
-        }
-        .desc {
-          font-size: 14px;
-        }
-
-        .meta {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          margin-top: 10px;
-
-          div {
-            display: flex;
-            span {
-              &:first-child {
-                margin-right: 7px;
-              }
-            }
-          }
-        }
-
-        .note {
-          padding: 10px;
-          background-color: #f8fafc;
-          margin-top: 10px;
-          color: #475569;
-          border-left: 3px solid #cbd5e1;
-          border-radius: 4px;
-        }
-
-        .cancel {
-          color: #dc2626;
-          font-weight: bold;
-          margin-top: 10px;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          cursor: pointer;
-          width: fit-content;
-          transition: 0.25s ease-in-out;
-
-          &:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-          }
-        }
-      }
+    &:hover {
+      background: #1d4ed8;
     }
   }
+
+  .cancel {
+    background: #ef4444;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background: #dc2626;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@include md {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include sm {
+  .card {
+    padding: 16px;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .car {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+
+    img {
+      width: 100%;
+      height: 180px;
+    }
+  }
+
+  .meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+
+    .detail,
+    .cancel {
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+.emptyData {
+  height: 52vh;
 }

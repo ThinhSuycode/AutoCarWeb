@@ -1,14 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "../FormArticleDetail.module.scss";
-import type { Articles } from "../../../../../../types/articles";
 import useRelatedArticles from "../hooks/useRelatedArticles";
 import { STATUS_LABEL } from "../constants/sectionTypes";
 import { getLabelCategory } from "../../../../../../hooks/getCategoryColor";
+import type { Article } from "../../../../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  articlesActive: Articles;
+  articlesActive: Article;
   value: string[];
   onChange: (articles: string[]) => void;
 }

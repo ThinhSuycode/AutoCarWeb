@@ -4,20 +4,16 @@
   height: 91vh;
   display: flex;
   flex-direction: column;
-  // background-color: $white;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
-  .articles-grid {
-    flex: 1;
-    background-color: $white;
-    overflow-y: auto;
-    border-radius: 11px;
-    max-height: 60vh;
-  }
+  overflow: hidden;
 }
 
+.articles-grid {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0; // rất quan trọng với flex
+  background: $white;
+  border-radius: 12px;
+}
 // ─── Modal overlay ────────────────────────────────────────────────────────────
 .modal-overlay {
   position: fixed;

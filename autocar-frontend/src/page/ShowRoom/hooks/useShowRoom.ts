@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-
 const useShowRoom = () => {
-     const [activeAddress, setActiveAddress] = useState<string>("");
+  const [activeAddress, setActiveAddress] = useState<string>("");
   return {
-activeAddress,
-setActiveAddress
-  }
-}
+    activeAddress,
+    setActiveAddress,
+  };
+};
 
-export default useShowRoom
+export default useShowRoom;

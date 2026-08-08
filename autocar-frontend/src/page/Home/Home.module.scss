@@ -1,16 +1,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
-
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$navy: #0b1120;
-$navy-mid: #1e293b;
-$red: #dc2626;
-$red-dark: #b91c1c;
-$slate: #64748b;
-$slate-light: #f1f5f9;
-$border: #e9ecef;
-$white: #ffffff;
-$bg: #f8fafc;
+@use "../../styles/tokens" as *;
 
 .home-page {
   width: 100%;
@@ -295,6 +285,9 @@ $bg: #f8fafc;
       position: sticky;
       top: 12%;
       z-index: 100;
+      @include md {
+        top: 7%;
+      }
 
       .filter-mobile {
         display: none;
@@ -380,7 +373,6 @@ $bg: #f8fafc;
       }
     }
 
-    // ── Why choose us ─────────────────────────────────────────────────────
     .information-inner {
       background: $white;
       border-top: 1px solid $border;

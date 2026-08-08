@@ -5,11 +5,15 @@ export const EMPTY_STATE_DATA = {
   },
   cars: {
     icon: "fa-solid fa-car-burst",
-    title: "Không tìm thấy dữ liệu xe",
+    title: "Hiện tại không có dữ liệu",
   },
   contacts: {
     icon: "fa-regular fa-folder-open",
     title: "Không có yêu cầu liên hệ nào",
+  },
+  articles: {
+    icon: "fa-regular fa-newspaper",
+    title: "Không tìm thấy bài viết nào",
   },
 } as const;
 

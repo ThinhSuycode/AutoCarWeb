@@ -1,5 +1,6 @@
 import FilterOptions from "../../../data/FilterOptions";
-import type { BrandsType } from "../../../types/car";
+import type { BrandsType } from "../../../types/car/car-filter.type";
+import type { OptionType } from "../../../types/common/option.type";
 
 // ─── Banner Stats ─────────────────────────────────────────────────────────────
 export const getBannerStats = (carCount: number) => [
@@ -88,7 +89,7 @@ export const FILTER_SELECTS = [
   {
     name: "priceFilter",
     field: "priceRanges" as const,
-    options: FilterOptions.priceRanges.map((p) => ({
+    options: FilterOptions.priceRanges.map((p: OptionType) => ({
       value: p.label,
       label: p.label,
     })),
@@ -96,11 +97,17 @@ export const FILTER_SELECTS = [
   {
     name: "yearFilter",
     field: "yearRanges" as const,
-    options: FilterOptions.years.map((y) => ({ value: y, label: String(y) })),
+    options: FilterOptions.years.map((y: OptionType) => ({
+      value: y,
+      label: String(y),
+    })),
   },
   {
     name: "transmissionFilter",
     field: "transmission" as const,
-    options: FilterOptions.transmissions.map((t) => ({ value: t, label: t })),
+    options: FilterOptions.transmissions.map((t: OptionType) => ({
+      value: t,
+      label: t,
+    })),
   },
 ];

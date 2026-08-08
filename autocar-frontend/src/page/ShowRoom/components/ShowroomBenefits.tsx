@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "../ShowRoom.module.scss";
 import { whyVisitData } from "../constants/showroomData";
-import type { WhyVisitType } from "../../../types/showroom";
+import type { WhyVisitType } from "../../../types/showroom/showroom-feature.type";
 
 const cx = classNames.bind(styles);
 

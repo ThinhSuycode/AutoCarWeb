@@ -1,51 +1,47 @@
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-
 import type { ContactFormData } from "../../../schemas/contact.schema";
-import type { UserType } from "../../../types/users";
-import type { CarDetailsType } from "../../../types/car";
+import type { UserType } from "../../../types/user/user.type";
+import type { CarDetailsType } from "../../../types/car/car-detail.type";
+import usePostContact from "../../../mutations/usePostContact";
 
 interface Props {
-  userInfo: UserType | null;
+  userInfo: UserType | undefined | null;
   car?: CarDetailsType | null;
   reset: () => void;
-  postContact: any;
 }
 
-const useFormContact = ({ userInfo, car, reset, postContact }: Props) => {
+const useFormContact = ({ userInfo, car, reset }: Props) => {
   const navigate = useNavigate();
 
-  const onSubmit = (data: ContactFormData) => {
-    if (!userInfo) {
-      toast.error("Vui lòng đăng nhập để gửi yêu cầu!");
-      setTimeout(() => navigate("/dang-nhap"), 1500);
-      return;
-    }
+  const { mutate: postContact, isPending } = usePostContact();
 
-    postContact(
-      {
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      if (!userInfo) {
+        toast.error("Vui lòng đăng nhập để gửi yêu cầu!");
+        setTimeout(() => navigate("/dang-nhap"), 1500);
+        return;
+      }
+
+      await postContact({
         carId: car?.carId._id,
         data: {
           ...data,
-          carName: car?.name,
-          carBrand: car?.brand,
-          carPrice: car?.price,
+          carName: car?.carId.name,
+          carBrand: car?.carId.brand,
+          carPrice: car?.carId.price,
           notes: "Khách liên hệ từ website",
         },
-      },
-      {
-        onSuccess: () => {
-          toast.success("Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ sớm.");
-          reset();
-        },
-        onError: () => {
-          toast.error("Không thể gửi yêu cầu, vui lòng thử lại!");
-        },
-      },
-    );
+      });
+      reset();
+    } catch (error: any) {
+      const message = error?.response?.data?.message;
+      toast.error(message || "Gửi yêu cầu thất bại!!");
+    }
   };
 
-  return { onSubmit };
+  return { onSubmit, isPending };
 };
 
 export default useFormContact;

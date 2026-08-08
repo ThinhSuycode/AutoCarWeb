@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
 import styles from "./ArticleStats.module.scss";
-import type { Articles } from "../../../../../types/articles";
+import type { Article } from "../../../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface ArticleStatsProps {
-  articles: Articles[];
+  articles: Article[];
 }
 
 const ArticleStats = ({ articles }: ArticleStatsProps) => {

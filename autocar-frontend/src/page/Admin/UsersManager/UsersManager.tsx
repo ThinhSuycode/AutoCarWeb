@@ -22,6 +22,7 @@ const UsersManager = () => {
     isCreateFormOpen,
     confirmProps,
     onHandleClose,
+    isLoading,
     handleDeleteUser,
     setIsCreateFormOpen,
     setUserDetail,
@@ -59,6 +60,7 @@ const UsersManager = () => {
 
         <UserTable
           users={usersData}
+          isLoading={isLoading}
           onUserAction={(data, action) => {
             if (action === "delete") {
               handleDeleteUser(data._id || "");

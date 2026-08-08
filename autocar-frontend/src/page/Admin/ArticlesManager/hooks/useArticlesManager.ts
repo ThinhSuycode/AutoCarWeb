@@ -1,10 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { articlesManagerService } from "../services/articlesManager.service";
-import type { ArticleStatus } from "../../../Staff/ArticleManager/constants/statusMapData";
 import { useArticlesQuery } from "../../../../queries/useArticlesQuery";
-import { queryKeys } from "../../../../queries/queryKeys";
 import useUpdateStatus from "../mutations/useUpdateStatus";
 export const useArticlesManager = () => {
   const [page, setPage] = useState(1);
@@ -38,7 +33,7 @@ export const useArticlesManager = () => {
   };
 
   return {
-    articles: data?.data ?? [],
+    articles: data?.data,
     pagination: data?.pagination,
 
     isLoading,

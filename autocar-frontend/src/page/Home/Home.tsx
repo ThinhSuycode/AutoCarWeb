@@ -38,7 +38,6 @@ const Home = () => {
           carShow
           productData={cars.slice(0, 6)}
           desc={`${cars.length} sản phẩm`}
-          emptyTitle="Không tìm thấy sản phẩm tại cửa hàng !!"
         />
 
         <HomeWhyChoose />

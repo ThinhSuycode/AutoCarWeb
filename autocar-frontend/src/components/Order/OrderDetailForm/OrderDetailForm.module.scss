@@ -1,0 +1,30 @@
+.orderDetail-wrapper {
+  .form-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 20px !important;
+    gap: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  }
+}

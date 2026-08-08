@@ -1,4 +1,5 @@
-import type { ArticleDetail, ArticleResponse } from "../types/articles";
+import type { ArticleDetail } from "../types/article/article-detail.type";
+import type { ArticleListResponse } from "../types/article/article.response";
 import { callApi } from "./api";
 
 export const getArticleDetail = (id: string) => {
@@ -14,7 +15,7 @@ export interface GetArticlesParams {
 }
 
 export const getArticlesAll = () => {
-  return callApi.getData<ArticleResponse>("articles?all=true");
+  return callApi.getData<ArticleListResponse>("articles?all=true");
 };
 
 export const getArticles = async ({
@@ -40,7 +41,7 @@ export const getArticles = async ({
   if (status && status !== "all") {
     params.set("status", status);
   }
-  const response = await callApi.getData<ArticleResponse>(
+  const response = await callApi.getData<ArticleListResponse>(
     `articles?${params.toString()}`,
   );
 

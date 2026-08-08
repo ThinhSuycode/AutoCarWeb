@@ -1,0 +1,240 @@
+@use "../../../styles/tokens" as *;
+@use "../../../styles/mixins" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0px;
+}
+
+// ───────────────── Customer Info ─────────────────
+
+.customer-info {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 18px;
+
+  h3 {
+    margin: 0 0 18px;
+    font-size: 16px;
+    font-weight: 700;
+    color: $navy;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border;
+  }
+}
+
+// ───────────────── Row ─────────────────
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: $navy;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid $border;
+    border-radius: 10px;
+    background: $white;
+    color: $navy;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba($blue, 0.1);
+    }
+  }
+
+  input:disabled {
+    background: #f8fafc;
+    color: $slate;
+    cursor: not-allowed;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  select {
+    cursor: pointer;
+  }
+}
+
+// ───────────────── Error ─────────────────
+
+.error {
+  @include error;
+}
+
+// ───────────────── Footer ─────────────────
+
+// ───────────────── Footer ─────────────────
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid $border;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 24px;
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
+
+    i {
+      font-size: 13px;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  // Nút "Huỷ"
+  button[type="button"] {
+    background: $white;
+    border-color: $border;
+    color: $slate;
+
+    &:hover:not(:disabled) {
+      background: rgba($red, 0.06);
+      border-color: rgba($red, 0.4);
+      color: $red;
+    }
+
+    &:active:not(:disabled) {
+      background: rgba($red, 0.1);
+    }
+  }
+
+  // Nút "Lưu thông tin"
+  button[type="submit"] {
+    background: linear-gradient(135deg, $blue 0%, #1d4ed8 100%);
+    color: $white;
+    // box-shadow:
+    //   0 2px 6px rgba($blue, 0.25),
+    //   0 6px 16px rgba($blue, 0.18);
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #3b76f0 0%, $blue 100%);
+      transform: translateY(-2px);
+      // box-shadow:
+      //   0 4px 10px rgba($blue, 0.3),
+      //   0 10px 24px rgba($blue, 0.25);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba($blue, 0.25);
+    }
+  }
+}
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 16px;
+
+  border: 1px solid #dcdfe4;
+  border-radius: 10px;
+
+  background: #fff;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 22px;
+    color: #6b7280;
+    transition: color 0.2s;
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  &:hover {
+    border-color: #2563eb;
+    background: #f8fbff;
+
+    i {
+      color: #2563eb;
+    }
+  }
+
+  &.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+
+    i,
+    span {
+      color: #2563eb;
+    }
+  }
+}
+
+// ───────────────── Responsive ─────────────────
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column-reverse;
+
+    button {
+      width: 100%;
+    }
+  }
+}

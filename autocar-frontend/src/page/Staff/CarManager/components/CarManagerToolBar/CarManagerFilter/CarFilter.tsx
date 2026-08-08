@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./CarFilter.module.scss";
-import type { ManagerStatus } from "../../../../../../types/managerStaff";
 import { MANAGER_STATUS_OPTIONS } from "../../../constant/managerStatus";
+import type { ManagerStatus } from "../../../../../../types/car/car.constant";
 
 const cx = classNames.bind(styles);
 

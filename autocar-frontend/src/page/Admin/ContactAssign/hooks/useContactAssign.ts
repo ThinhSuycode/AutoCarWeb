@@ -1,20 +1,25 @@
 import { useCallback, useState } from "react";
 import { useContactsQuery } from "../../../../queries/useContact";
 
-import { useGetStaffQuery } from "../../../../queries/useGetStaffQuery";
 import { useAssignContact } from "../../../../mutations/useAssignContact";
 import { contactStatistics } from "../utils/contactStatistics";
+import { useGetRoleQuery } from "../../../../queries/useGetRoleQuery";
+import type { Contact } from "../../../../types/contact/contact.type";
 
 const useContactAssign = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
+  const [contactId, setContactId] = useState("");
+  const [contactDetail, setContactDetail] = useState<Contact | undefined>(
+    undefined,
+  );
 
-  const { data, isLoading } = useContactsQuery({
+  const { data, isLoading, refetch } = useContactsQuery({
     search,
     status,
     page,
-    limit: 10,
+    limit: 8,
   });
 
   const contacts = data?.data ?? [];
@@ -22,7 +27,7 @@ const useContactAssign = () => {
 
   const stats = contactStatistics(contacts);
 
-  const { data: staffList } = useGetStaffQuery("staff");
+  const { data: staffList } = useGetRoleQuery("staff");
   const staffData = staffList?.data ?? [];
 
   const { assignContactStaff, isPending } = useAssignContact();
@@ -51,7 +56,6 @@ const useContactAssign = () => {
 
     contacts,
     pagination,
-
     stats,
 
     isLoading,
@@ -60,6 +64,11 @@ const useContactAssign = () => {
     staffData,
 
     onAssignStaffContact,
+
+    setContactDetail,
+    contactDetail,
+    setContactId,
+    contactId,
   };
 };
 

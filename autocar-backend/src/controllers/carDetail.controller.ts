@@ -9,7 +9,7 @@ import logger from "../utils/logger";
 
 import type { AuthRequest } from "../middleware/authMiddleware";
 import { Car } from "../models/car.model";
-import { validateUpdateCarDetail } from "../utils/vaildateCarDetail";
+import { validateUpdateCarDetail } from "../validators/vaildateCarDetail";
 
 // ─── GET ALL ────────────────────────────────────────────────────────────────
 export const getAllCarDetail = catchAsync(

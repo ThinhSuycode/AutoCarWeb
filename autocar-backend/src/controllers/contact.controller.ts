@@ -4,9 +4,9 @@ import { Contact } from "../models/contact.model";
 import logger from "../utils/logger";
 import { catchAsync } from "../utils/catchAsync";
 import { AppError } from "../utils/AppError";
-import { validatePhone } from "../utils/validate";
 import mongoose from "mongoose";
-import { validatedCreateContact } from "../utils/validateContact";
+import { validatedCreateContact } from "../validators/validateContact";
+import { Appointment } from "../models/appoinment.model";
 
 // ─── CREATE ───────────────────────────────────────────────────────────────────
 export const createContactRequest = catchAsync(
@@ -167,7 +167,7 @@ export const getContactRequestById = catchAsync(
     if (role !== "admin" && !isBuyer && !isManager)
       throw new AppError("Bạn không có quyền xem yêu cầu này", 403);
 
-    res.json({ success: true, data: contact });
+    res.json(contact);
   },
 );
 
@@ -292,8 +292,15 @@ export const assignManagerToContact = catchAsync(
     contact.managerId = normalizedManagerId;
     contact.assignedAt = normalizedManagerId ? new Date() : null;
 
+    // const appointment = await Appointment.findOne({
+    //   contactId: contactId,
+    // });
+
     if (normalizedManagerId) {
       contact.status = "assigned";
+      await Appointment.deleteOne({
+        contactId,
+      });
 
       contact.timeline.push({
         action: "ASSIGN_MANAGER",
@@ -342,6 +349,9 @@ export const deleteContactRequest = catchAsync(
 
     const contact = await Contact.findById(id);
     if (!contact) throw new AppError("Không tìm thấy yêu cầu", 404);
+    const appointment = await Appointment.findOne({
+      contactId: id,
+    });
 
     const userId = req.user._id.toString();
     const role = req.user.role;
@@ -351,6 +361,9 @@ export const deleteContactRequest = catchAsync(
       throw new AppError("Bạn không có quyền xóa yêu cầu này", 403);
 
     await Contact.findByIdAndDelete(id);
+    if (appointment) {
+      await appointment.deleteOne();
+    }
 
     logger.info("Contact deleted", { contactId: id, by: req.user._id });
 

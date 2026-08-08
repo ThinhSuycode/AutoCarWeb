@@ -1,11 +1,11 @@
 import classNames from "classnames/bind";
 import styles from "./CarManager.module.scss";
-import type { CarManagerType } from "../../../types/managerStaff";
 import CarManagerStats from "./components/CarManagerStats/CarManagerStats";
 import CarManagerTable from "./components/CarManagerTable/CarManagerTable";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import useStaffManager from "./hooks/useStaffManager";
 import CarManagerToolBar from "./components/CarManagerToolBar/CarManagerToolBar";
+import type { ManagerCar } from "../../../types/user/manager-cars.type";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ const CarManager = () => {
         </div>
       </PageHeader>
 
-      <CarManagerStats cars={cars as CarManagerType[]} />
+      <CarManagerStats cars={cars as ManagerCar[]} />
 
       <CarManagerToolBar
         search={search}

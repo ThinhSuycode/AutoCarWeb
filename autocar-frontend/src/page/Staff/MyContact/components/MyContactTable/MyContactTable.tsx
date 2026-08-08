@@ -1,7 +1,5 @@
 import classNames from "classnames/bind";
 import styles from "./MyContactTable.module.scss";
-
-import type { Contact } from "../../../../../types/contact";
 import { STATUS_ICON } from "../../../../Admin/ContactAssign/constants/contactManagerData";
 import {
   STATUS_LABEL,
@@ -9,6 +7,8 @@ import {
 } from "../../constants/statusLabelData";
 import { NEXT_STATUS } from "../../constants/contactWorkflow";
 import EmptyState from "../../../../../components/EmtyState/EmptyState";
+import LoadingData from "../../../../../components/LoadingData/LoadingData";
+import type { Contact } from "../../../../../types/contact/contact.type";
 
 const cx = classNames.bind(styles);
 
@@ -20,9 +20,9 @@ interface Props {
   updateStatus: (payload: {
     id: string;
     status: STAFF_STATUS_CONTACT;
-  }) => Promise<any>;
+  }) => Promise<Contact>;
 
-  onShowContact: (data: Contact | null) => void;
+  onShowContact: (data: Contact | undefined) => void;
 }
 
 const MyContactTable = ({
@@ -50,8 +50,14 @@ const MyContactTable = ({
         <tbody>
           {isLoading ? (
             <tr>
-              <td style={{ textAlign: "center" }} colSpan={7}>
-                Đang tải dữ liệu...
+              <td colSpan={7}>
+                <LoadingData message="Đang tải..."></LoadingData>
+              </td>
+            </tr>
+          ) : contacts.length === 0 ? (
+            <tr>
+              <td colSpan={7}>
+                <EmptyState type="contacts"></EmptyState>
               </td>
             </tr>
           ) : (
@@ -139,10 +145,6 @@ const MyContactTable = ({
           )}
         </tbody>
       </table>
-
-      {!isLoading && contacts.length === 0 && (
-        <EmptyState type="contacts"></EmptyState>
-      )}
     </div>
   );
 };

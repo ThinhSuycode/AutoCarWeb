@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "./queryKeys";
 import { getArticles, getArticlesAll } from "../services/article.service";
-import type { ArticleResponse } from "../types/articles";
+import type { ArticleListResponse } from "../types/article/article.response";
 
 interface Params {
   page: number;
@@ -18,7 +18,7 @@ export const useArticlesQuery = ({
   category,
   status,
 }: Params) => {
-  return useQuery<ArticleResponse>({
+  return useQuery<ArticleListResponse>({
     queryKey: queryKeys.article.list({
       page,
       limit,

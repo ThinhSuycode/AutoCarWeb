@@ -3,7 +3,6 @@ import classNames from "classnames/bind";
 import { imgBannerData } from "../../data/ShowRoom";
 import Banner from "../../components/Banner/Banner";
 import ShowroomLocations from "./components/ShowroomLocations";
-import ShowroomBooking from "./components/ShowroomBooking";
 import ShowroomBenefits from "./components/ShowroomBenefits";
 import ShowroomGallery from "./components/ShowroomGallery";
 
@@ -17,7 +16,7 @@ const ShowRoom = () => {
       <ShowroomLocations></ShowroomLocations>
 
       {/* Form đặt lịch */}
-      <ShowroomBooking></ShowroomBooking>
+      {/* <ShowroomBooking></ShowroomBooking> */}
       {/* Hình ảnh showroom */}
       <ShowroomGallery></ShowroomGallery>
 

@@ -25,8 +25,10 @@ export const Routes = {
   CarsManager: "/admin/quan-ly/xe-o-to",
   DashBoardAdmin: "/admin/quan-ly/dasboard",
   ContactAssign: "/admin/quan-ly/phan-bo-contact",
+  AppointmentAdmin: "/admin/quan-ly/lich-hen-khach-hang",
   //Staff
   CarStaff: "/staff/quan-ly/xe-duoc-phan-cong",
+  AppointmentStaff: "/staff/quan-ly/lich-hen-khach-hang",
   MyContact: "/staff/quan-ly/my-contact",
   DashBoardStaff: "/staff/quan-ly/dasboard",
   ArticleStaff: "/staff/quan-ly/bai-viet",

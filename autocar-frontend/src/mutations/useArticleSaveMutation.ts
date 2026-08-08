@@ -1,24 +1,28 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { UserType } from "../types/users";
+import toast from "react-hot-toast";
+
 import { updateArticleSave } from "../services/user.service";
 import { queryKeys } from "../queries/queryKeys";
-import toast from "react-hot-toast";
 
 export interface ArticleSavePayload {
   id: string;
-  data: UserType;
+  articleId: string;
 }
 
 const useArticleSaveMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation<UserType, Error, ArticleSavePayload>({
-    mutationFn: ({ id, data }) => updateArticleSave(id, data),
+
+  return useMutation({
+    mutationFn: async ({ id, articleId }: ArticleSavePayload) =>
+      await updateArticleSave(id, articleId),
+
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: queryKeys.user.me,
       });
     },
-    onError: (error: any) => {
+
+    onError: (error) => {
       toast.error(error.message);
     },
   });

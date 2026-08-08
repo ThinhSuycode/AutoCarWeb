@@ -1,57 +1,54 @@
 import classNames from "classnames/bind";
 import styles from "./AssignManager.module.scss";
+
 import { useAssignManager } from "./hooks/useAssignManager";
-import StatsBar from "./components/StatsBar";
+
+import StatsBar from "./components/StatsBar/StatsBar";
 import CarTable from "./components/CarTable/CarTable";
-import PageHeader from "../../../components/PageHeader/PageHeader";
-import CarFilterBar from "./components/CarFilterBar/CarFilterBar";
+import { Header } from "./components/Header/Header";
 import PagePagination from "../../../components/PagePagination/PagePagination";
-import Pagination from "./components/Pagination";
 
 const cx = classNames.bind(styles);
 
 const AssignManager = () => {
   const {
     cars,
-    staffList,
+    staffData,
     isLoading,
     assigningId,
-    filter,
-    setFilter,
-    onAssign,
-    pagination,
+
+    hasManager,
+    setHasManager,
+
+    page,
     onPageChange,
+
+    onManagerChange,
+
+    pagination,
   } = useAssignManager();
 
   return (
     <div className={cx("assignManager-page")}>
-      <PageHeader
-        title="Phân Bổ Nhân Viên Quản Lý Xe"
-        description="Quản lý xe phân công cho nhân viên"
-      >
-        <CarFilterBar active={filter} onChange={setFilter} />
-      </PageHeader>
-      <StatsBar cars={cars} staffList={staffList} />
-      {isLoading ? (
-        <div className={cx("loading")}>Đang tải...</div>
-      ) : (
-        <div className={cx("table-content")}>
-          <CarTable
-            cars={cars}
-            staffList={staffList}
-            assigningId={assigningId}
-            onAssign={onAssign}
-          />
-          <Pagination pagination={pagination} onPageChange={onPageChange} />
-        </div>
-      )}
-      {/* <PagePagination
-        onPageChange={setPage}
+      <Header filter={hasManager} setFilter={setHasManager} />
+
+      <StatsBar cars={cars} staffList={staffData} />
+
+      <CarTable
+        cars={cars}
+        staffList={staffData}
+        assigningId={assigningId}
+        onManagerChange={onManagerChange}
+        isLoading={isLoading}
+      />
+
+      <PagePagination
         currentPage={page}
+        onPageChange={onPageChange}
         limit={pagination?.limit ?? 8}
         totalPages={pagination?.totalPages ?? 0}
         total={pagination?.total ?? 0}
-      ></PagePagination> */}
+      />
     </div>
   );
 };

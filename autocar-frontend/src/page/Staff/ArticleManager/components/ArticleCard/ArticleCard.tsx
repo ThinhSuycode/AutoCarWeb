@@ -1,18 +1,18 @@
 import classNames from "classnames/bind";
 import styles from "./ArticleCard.module.scss";
 
-import type { Articles } from "../../../../../types/articles";
 import { formatDateToString } from "../../../../../hooks/formatDate";
 import { STATUS_MAP } from "../../constants/statusMapData";
 import { getLabelCategory } from "../../../../../hooks/getCategoryColor";
+import type { Article } from "../../../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface ArticleCardProps {
-  article: Articles;
-  onEdit: (article: Articles) => void;
-  onViewDetail: (article: Articles) => void;
-  onDelete: (article: Articles) => void;
+  article: Article;
+  onEdit: (article: Article) => void;
+  onViewDetail: (article: Article) => void;
+  onDelete: (article: Article) => void;
 }
 
 const DEFAULT_STATUS = {

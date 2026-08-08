@@ -1,4 +1,4 @@
-import type { ManagerStatus } from "../../../../types/managerStaff";
+import type { ManagerStatus } from "../../../../types/car/car.constant";
 
 export const MANAGER_STATUS_OPTIONS: {
   value: ManagerStatus | "all";

@@ -1,8 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "./queryKeys";
-import type { UserType } from "../types/users";
-import type { PaginatedResponse } from "../types/pagination";
 import { userService } from "../services/user.service";
+import type { UserListResponse } from "../types/user/user.response";
 
 interface Props {
   page: number;
@@ -12,7 +11,7 @@ interface Props {
 }
 
 export const useUserAllQuery = ({ page, limit, search, role }: Props) => {
-  return useQuery<PaginatedResponse<UserType>>({
+  return useQuery<UserListResponse>({
     queryKey: queryKeys.user.list({ page, limit, search, role }),
     queryFn: () => userService.getAllUser({ page, limit, search, role }),
   });

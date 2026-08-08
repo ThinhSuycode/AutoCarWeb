@@ -11,10 +11,8 @@ import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
 export const articleDetailRouter = express.Router();
 
-// GET ALL
 articleDetailRouter.get("/articleDetails", getAllArticleDetails);
 
-// GET ONE
 articleDetailRouter.get("/articleDetails/:id", getArticleDetailsById);
 
 // CREATE

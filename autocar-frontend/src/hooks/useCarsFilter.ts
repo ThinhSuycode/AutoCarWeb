@@ -6,6 +6,7 @@ import {
   PRICE_RANGES_MAP,
   YEAR_RANGES_MAP,
 } from "../page/Home/constants/homeData";
+import { sortMap } from "../constants/carData";
 
 export interface FilterState {
   brand: string;
@@ -63,16 +64,6 @@ export const useCarsFilter = () => {
     if (filter.yearMax) {
       params.set("yearMax", filter.yearMax);
     }
-
-    // SORT
-    const sortMap: Record<string, { sort: string; order: string }> = {
-      "year-max": { sort: "year", order: "desc" },
-      "year-min": { sort: "year", order: "asc" },
-      "price-asc": { sort: "price", order: "asc" },
-      "price-desc": { sort: "price", order: "desc" },
-      "km-asc": { sort: "mileage", order: "asc" },
-      "km-desc": { sort: "mileage", order: "desc" },
-    };
 
     const { sort, order } = sortMap[filter.sort] ?? {
       sort: "createdAt",

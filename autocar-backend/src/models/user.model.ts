@@ -36,9 +36,26 @@ const userSchema = new mongoose.Schema(
       default:
         "https://www.pngall.com/wp-content/uploads/15/User-PNG-Photos.png",
     },
-    favouriteCar: [String],
-    appointmentSchedule: [],
-    articleSave: [String],
+    favouriteCar: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Car",
+      },
+    ],
+
+    articleSave: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Articles",
+      },
+    ],
+
+    appointmentSchedule: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Appointment",
+      },
+    ],
 
     resetPasswordToken: String,
 

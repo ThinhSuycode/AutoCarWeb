@@ -1,45 +1,44 @@
 import classNames from "classnames/bind";
 import styles from "./Profile.module.scss";
-
-import { Button } from "../../components/Button/Button";
-import FormActive from "../../components/FormActive/FormActive";
 import ModalLayout from "../../components/ModalLayout/ModalLayout";
-
 import useProfile from "./hooks/useProfile";
 import FormAccount from "./components/FormAccount";
+import FormChangePassword from "../../components/FormChangePassword/FormChangePassword";
 
 const cx = classNames.bind(styles);
 
 const Profile = () => {
   const {
     account,
-    inputProfile,
-    loading,
+    register,
+    handleSubmit,
+    errors,
+    isLoading,
     showForm,
-    fields,
-    onChangeInputProfile,
-    onHandleSaveProfile,
+    handleSaveProfile,
     onHandleShowForm,
     onPasswordChanged,
     setShowForm,
+    isSubmitted,
   } = useProfile();
 
   return (
     <div className={cx("profile-page")}>
       <ModalLayout showForm={showForm} onClose={() => setShowForm(false)}>
-        <FormActive
+        <FormChangePassword
           onClose={() => setShowForm(false)}
           onSuccess={onPasswordChanged}
         />
       </ModalLayout>
+
       <FormAccount
-        account={account}
-        inputProfile={inputProfile}
-        loading={loading}
-        fields={fields}
-        onChangeInputProfile={onChangeInputProfile}
+        account={account ?? null}
+        isSubmitted={isSubmitted}
+        register={register}
+        errors={errors}
+        isLoading={isLoading}
         onHandleShowForm={onHandleShowForm}
-        onHandleSaveProfile={onHandleSaveProfile}
+        onSubmit={handleSubmit(handleSaveProfile)}
       />
     </div>
   );

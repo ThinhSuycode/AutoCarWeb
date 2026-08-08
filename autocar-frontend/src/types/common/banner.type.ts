@@ -1,0 +1,11 @@
+export interface BannerType {
+  id: string;
+
+  image: string;
+
+  title?: string;
+
+  subtitle?: string;
+
+  link?: string;
+}

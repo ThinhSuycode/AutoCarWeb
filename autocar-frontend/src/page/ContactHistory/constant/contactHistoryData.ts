@@ -1,7 +1,7 @@
-import type { CONTACT_STATUS } from "../../../types/contact";
+import type { ContactStatus } from "../../../types/contact/contact.constant";
 
 export const CONTACT_STATUS_MAP: Record<
-  CONTACT_STATUS,
+  ContactStatus,
   {
     label: string;
     icon: string;

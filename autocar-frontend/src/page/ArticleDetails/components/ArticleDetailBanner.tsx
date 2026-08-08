@@ -1,11 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "../ArticleDetails.module.scss";
-import {
-  getColorCategory,
-  getLabelCategory,
-} from "../../../hooks/getCategoryColor";
-import type { ArticleDetail } from "../../../types/articles";
+import { getLabelCategory } from "../../../hooks/getCategoryColor";
 import { formatDateToString } from "../../../hooks/formatDate";
+import type { ArticleDetail } from "../../../types/article/article-detail.type";
 
 const cx = classNames.bind(styles);
 

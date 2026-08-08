@@ -1,6 +1,6 @@
-import type { CONTACT_STATUS } from "../../../../types/contact";
+import type { ContactStatus } from "../../../../types/contact/contact.constant";
 
-export const NEXT_STATUS: Record<CONTACT_STATUS, CONTACT_STATUS[]> = {
+export const NEXT_STATUS: Record<ContactStatus, ContactStatus[]> = {
   new: [],
 
   assigned: ["contacted"],

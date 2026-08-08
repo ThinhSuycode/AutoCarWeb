@@ -4,8 +4,9 @@ import useCarFormMutation from "../../CarForm/mutations/useCarFormMutation";
 import toast from "react-hot-toast";
 
 const useCarTable = () => {
-  const { confirm, confirmProps } = useConfirm();
   const { deleteCar } = useCarFormMutation();
+
+  const { confirm, confirmProps } = useConfirm();
 
   const onHandleDeleteCar = useCallback(
     async (id: string, name: string) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { CarType } from "../../../types/car";
 import { callApi } from "../../../services/api";
-import type { PaginatedResponse } from "../../../types/pagination";
+import type { CarType } from "../../../types/car/car.type";
+import type { CarListResponse } from "../../../types/car/car.response";
 
 export const useProductSold = () => {
   const [carDataSold, setCarDataSold] = useState<CarType[]>([]);
@@ -10,8 +10,7 @@ export const useProductSold = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res =
-          await callApi.getData<PaginatedResponse<CarType>>("cars?all=true");
+        const res = await callApi.getData<CarListResponse>("cars?all=true");
         setCarDataSold(res.data);
       } catch (error) {
         console.log(error);

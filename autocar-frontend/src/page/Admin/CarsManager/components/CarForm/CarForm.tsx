@@ -1,19 +1,18 @@
 import classNames from "classnames/bind";
 import styles from "./CarForm.module.scss";
-import type { ColorType } from "../../../../../types/car";
-import { brands, colors } from "../../../../../data/carsData";
 import { Button } from "../../../../../components/Button/Button";
-
-import { type CarFormData } from "../../../../../schemas/car.schema";
 import { useCarForm } from "./hooks/useCarForm";
+import { brands, colors } from "../../../../../constants/carData";
+import type { CreateCarDto } from "../../../../../schemas/car.schema";
+import { BODY_TYPES, FUEL } from "../../../../../types/car/car.constant";
 
 const cx = classNames.bind(styles);
 
 type FormCarProps = {
   mode: "create" | "update";
   onCloseModal: () => void;
-  onSubmit: (data: CarFormData) => void;
-  defaultValues?: Partial<CarFormData>;
+  onSubmit: (data: CreateCarDto) => void;
+  defaultValues?: Partial<CreateCarDto>;
   creatingPending?: boolean;
   updatingPending?: boolean;
 };
@@ -26,7 +25,16 @@ const CarForm = ({
   creatingPending,
   updatingPending,
 }: FormCarProps) => {
-  const { handleSubmit, register, errors } = useCarForm({ defaultValues });
+  const {
+    handleSubmit,
+    register,
+    errors,
+    isUploading,
+    fileInputRef,
+    handleUploadImage,
+    watch,
+  } = useCarForm({ defaultValues });
+
   return (
     <div className={cx("form-car")}>
       <div className={cx("heading")}>
@@ -49,7 +57,6 @@ const CarForm = ({
               <span className={cx("error")}>{errors.name.message}</span>
             )}
           </div>
-
           {/* BRAND */}
           <div className={cx("form-group")}>
             <label>Hãng xe</label>
@@ -58,8 +65,8 @@ const CarForm = ({
               <option value="">Chọn hãng</option>
 
               {brands.map((b) => (
-                <option key={b} value={b}>
-                  {b}
+                <option key={b.key} value={b.label}>
+                  {b.label}
                 </option>
               ))}
             </select>
@@ -68,7 +75,26 @@ const CarForm = ({
               <span className={cx("error")}>{errors.brand.message}</span>
             )}
           </div>
+          <div className={cx("form-group")}>
+            <label>Loại xe</label>
 
+            <div className={cx("checkbox-group")}>
+              {BODY_TYPES.map((type) => (
+                <label key={type}>
+                  <input
+                    type="checkbox"
+                    value={type}
+                    {...register("bodyType")}
+                  />
+                  {type}
+                </label>
+              ))}
+            </div>
+
+            {errors.bodyType && (
+              <span className={cx("error")}>{errors.bodyType.message}</span>
+            )}
+          </div>
           {/* PRICE */}
           <div className={cx("form-group")}>
             <label>Giá</label>
@@ -83,7 +109,6 @@ const CarForm = ({
               <span className={cx("error")}>{errors.price.message}</span>
             )}
           </div>
-
           {/* YEAR */}
           <div className={cx("form-group")}>
             <label>Năm sản xuất</label>
@@ -94,7 +119,6 @@ const CarForm = ({
               <span className={cx("error")}>{errors.year.message}</span>
             )}
           </div>
-
           {/* MILEAGE */}
           <div className={cx("form-group")}>
             <label>Số km đã đi</label>
@@ -105,7 +129,6 @@ const CarForm = ({
               <span className={cx("error")}>{errors.mileage.message}</span>
             )}
           </div>
-
           {/* TRANSMISSION */}
           <div className={cx("form-group")}>
             <label>Hộp số</label>
@@ -120,7 +143,6 @@ const CarForm = ({
               <span className={cx("error")}>{errors.transmission.message}</span>
             )}
           </div>
-
           {/* COLOR */}
           <div className={cx("form-group")}>
             <label>Màu xe</label>
@@ -128,7 +150,7 @@ const CarForm = ({
             <select {...register("color")}>
               <option value="">Chọn màu</option>
 
-              {colors.map((cl: ColorType) => (
+              {colors.map((cl) => (
                 <option value={cl.key} key={cl.key}>
                   {cl.title}
                 </option>
@@ -139,19 +161,93 @@ const CarForm = ({
               <span className={cx("error")}>{errors.color.message}</span>
             )}
           </div>
-
-          {/* IMAGE */}
           <div className={cx("form-group")}>
-            <label>Link ảnh</label>
+            <label>Nhiên liệu</label>
 
-            <input {...register("image")} placeholder="https://..." />
+            <select {...register("fuel")}>
+              <option value="">Chọn nhiên liệu</option>
 
-            {errors.image && (
-              <span className={cx("error")}>{errors.image.message}</span>
+              {FUEL.map((fuel) => (
+                <option key={fuel} value={fuel}>
+                  {fuel}
+                </option>
+              ))}
+            </select>
+
+            {errors.fuel && (
+              <span className={cx("error")}>{errors.fuel.message}</span>
             )}
           </div>
-        </div>
 
+          <div className={cx("form-group")}>
+            <label>Động cơ</label>
+
+            <input
+              type="text"
+              placeholder="2.0 Turbo"
+              {...register("engine")}
+            />
+
+            {errors.engine && (
+              <span className={cx("error")}>{errors.engine.message}</span>
+            )}
+          </div>
+
+          <div className={cx("form-group")}>
+            <label>Số chỗ ngồi</label>
+
+            <input type="number" {...register("seats")} />
+
+            {errors.seats && (
+              <span className={cx("error")}>{errors.seats.message}</span>
+            )}
+          </div>
+          <div className={cx("form-group")}>
+            <label>Xuất xứ</label>
+
+            <select {...register("origin")}>
+              <option value="">Chọn xuất xứ</option>
+              <option value="Nhập khẩu">Nhập khẩu</option>
+              <option value="Lắp ráp trong nước">Lắp ráp trong nước</option>
+            </select>
+
+            {errors.origin && (
+              <span className={cx("error")}>{errors.origin.message}</span>
+            )}
+          </div>
+          {/* IMAGE */}
+          <div className={cx("form-group")}>
+            <label>Upload ảnh</label>
+            <div className={cx("upload-image")}>
+              <input {...register("thumbnail")} placeholder="https://..." />
+              <input
+                type="file"
+                accept="image/*"
+                hidden
+                ref={fileInputRef}
+                onChange={handleUploadImage}
+              />
+
+              <Button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disable={isUploading}
+              >
+                <i className="fa-regular fa-image"></i>
+                {isUploading ? "Đang tải..." : "Chọn ảnh"}
+              </Button>
+            </div>
+
+            {errors.thumbnail && (
+              <span className={cx("error")}>{errors.thumbnail.message}</span>
+            )}
+          </div>
+          {watch("thumbnail") && (
+            <div className={cx("thumbnail-preview")}>
+              {watch("thumbnail") && <img src={watch("thumbnail")} alt="" />}
+            </div>
+          )}
+        </div>
         <div className={cx("form-actions")}>
           <Button onClick={onCloseModal}>Huỷ</Button>
 

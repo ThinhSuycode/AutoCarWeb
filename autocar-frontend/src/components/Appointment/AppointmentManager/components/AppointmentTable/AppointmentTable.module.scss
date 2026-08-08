@@ -1,0 +1,270 @@
+@use "../../../../../styles/tokens" as *;
+@use "../../../../../styles/mixins" as *;
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 14px 14px 0px 0px;
+  border: 1px solid #eef1f5;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 12px;
+  }
+}
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+
+  thead {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+
+    th {
+      padding: 12px 14px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      text-align: center;
+      border-bottom: 1px solid #eef1f5;
+      white-space: nowrap;
+      border-bottom: 1.5px solid rgba(28, 39, 64, 0.1);
+      &:last-child {
+        width: 90px;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: #f8fafc;
+      }
+
+      &:not(:last-child) td {
+        border-bottom: 1px solid #f1f5f9;
+      }
+    }
+
+    td {
+      padding: 14px 16px;
+      font-size: 13px;
+      color: #334155;
+      vertical-align: middle;
+      text-align: center;
+      overflow: hidden;
+      font-weight: 550;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .car-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+
+    img {
+      width: 48px;
+      height: 36px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    div {
+      text-align: start;
+
+      p {
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:first-child {
+          font-size: 13px;
+          font-weight: 600;
+          color: #0f172a;
+        }
+      }
+    }
+
+    .car-id {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+  }
+
+  // ===========================
+  // Status badge
+  // ===========================
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    &::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    &.pending {
+      background: #fff7ed;
+      color: #ea580c;
+    }
+
+    &.confirmed {
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    &.completed {
+      background: #ecfdf5;
+      color: #16a34a;
+    }
+
+    &.cancelled {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+  }
+
+  // ===========================
+  // Action button
+  // ===========================
+
+  .btn-activeDetail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-width: 90px;
+    height: 30px;
+    padding: 0 12px;
+
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 8px;
+
+    background: rgba(37, 99, 235, 0.08);
+    color: $blue;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.18);
+    }
+
+    &:active {
+      transform: scale(0.97);
+      box-shadow: none;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    i {
+      font-size: 12px;
+    }
+  }
+}
+
+// ===========================
+// Responsive
+// ===========================
+
+@include lg {
+  .table {
+    font-size: 12.5px;
+
+    thead th,
+    tbody td {
+      padding: 10px 10px;
+    }
+
+    .car-info img {
+      width: 42px;
+      height: 32px;
+    }
+  }
+}
+
+@include md {
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    table-layout: auto;
+
+    thead th,
+    tbody td {
+      white-space: nowrap;
+    }
+
+    .car-info {
+      min-width: 160px;
+    }
+  }
+}
+
+@include sm {
+  .table {
+    border-radius: 10px;
+
+    thead th,
+    tbody td {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .status {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+
+    .btn-activeDetail {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+  }
+}
+
+.emptyData {
+  height: 44vh;
+}

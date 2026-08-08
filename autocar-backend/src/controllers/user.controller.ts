@@ -121,6 +121,94 @@ export const updateUser = catchAsync(
   },
 );
 
+export const toggleFavouriteCar = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    const { id } = req.params;
+    const { carId } = req.body;
+
+    if (id && typeof id !== "string") {
+      throw new AppError("ID người dùng không hợp lệ", 400);
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new AppError("ID người dùng không hợp lệ", 400);
+    }
+
+    if (!carId) {
+      throw new AppError("Thiếu carId", 400);
+    }
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      throw new AppError("Không tìm thấy người dùng", 404);
+    }
+
+    const exists = user.favouriteCar.some((item) => item.toString() === carId);
+
+    user.favouriteCar = exists
+      ? user.favouriteCar.filter((item) => item.toString() !== carId)
+      : [...user.favouriteCar, new mongoose.Types.ObjectId(carId)];
+    await user.save();
+
+    logger.info("Toggle favourite", {
+      userId: id,
+      carId,
+      action: exists ? "remove" : "add",
+      by: req.user?._id,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  },
+);
+export const toggleArticleSave = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    const { id } = req.params;
+    const { articleId } = req.body;
+
+    if (id && typeof id !== "string") {
+      throw new AppError("ID người dùng không hợp lệ", 400);
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new AppError("ID người dùng không hợp lệ", 400);
+    }
+
+    if (!articleId) {
+      throw new AppError("Thiếu articleId", 400);
+    }
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      throw new AppError("Không tìm thấy người dùng", 404);
+    }
+
+    const exists = user.articleSave.some(
+      (item) => item.toString() === articleId,
+    );
+    user.articleSave = exists
+      ? user.articleSave.filter((item) => item.toString() !== articleId)
+      : [...user.articleSave, new mongoose.Types.ObjectId(articleId)];
+
+    await user.save();
+
+    logger.info("Toggle article", {
+      userId: id,
+      articleId,
+      action: exists ? "remove" : "add",
+      by: req.user?._id,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  },
+);
+
 // ─── DELETE ───────────────────────────────────────────────────────────────────
 export const deleteUser = catchAsync(
   async (req: AuthRequest, res: Response) => {

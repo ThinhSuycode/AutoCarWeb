@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./CarStatsBar.module.scss";
-import type { CarType } from "../../../../../types/car";
+import type { CarType } from "../../../../../types/car/car.type";
+
 const cx = classNames.bind(styles);
 
 interface Props {

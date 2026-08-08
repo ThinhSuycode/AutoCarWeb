@@ -1,0 +1,137 @@
+@use "../../../../styles/tokens" as *;
+@use "../../../../styles/mixins" as *;
+.mobile-heading {
+  width: 100%;
+  padding: 15px 0px;
+  border-radius: $radius-md;
+  display: none;
+
+  @include md {
+    display: block;
+  }
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include md {
+      padding: 10px 14px;
+      background: linear-gradient(135deg, $navy, $navy-mid);
+      color: $paper;
+      border-radius: $radius-lg 0 $radius-sm 0;
+    }
+
+    .action {
+      display: flex;
+      gap: 12px;
+      color: $slate-light;
+      font-size: 17px;
+
+      span {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.2s $ease-smooth;
+
+        &:first-child:hover {
+          color: $red;
+          background: $red-soft;
+        }
+        &:last-child:hover {
+          color: #3b58ff;
+          background: #eaf0ff;
+        }
+      }
+
+      .favourite-btn.activeHeart {
+        color: $red;
+        background: $red-soft;
+      }
+      .share-btn.activeShare {
+        color: #3b58ff;
+        background: #eaf0ff;
+      }
+    }
+
+    .brand {
+      padding: 5px 18px;
+      border-radius: $radius-sm;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: $paper;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 6px 0px;
+    color: $navy;
+  }
+
+  .price {
+    margin-bottom: 10px;
+
+    p {
+      font-size: 14px;
+
+      &:first-child {
+        color: $red;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+    }
+  }
+
+  .specs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 10px 0px 20px;
+
+    div {
+      width: 45%;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: $navy-soft;
+      border-radius: $radius-md;
+
+      span {
+        font-size: 14px;
+        font-weight: 600;
+        color: $navy-mid;
+      }
+    }
+  }
+
+  .commitments {
+    padding: 10px 0px;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      span {
+        font-size: 15px;
+        color: $slate;
+
+        &:first-child {
+          color: $green;
+        }
+      }
+    }
+  }
+}

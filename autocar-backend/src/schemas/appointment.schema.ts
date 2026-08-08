@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const appointmentSchema = z.object({
-  type: z.enum(["consultation", "test_drive", "maintain"]),
+  appointmentType: z.string(),
 
   appointmentDate: z.string().min(1, "Vui lòng chọn ngày"),
-
+  appointmentCar: z.string().optional(),
   appointmentTime: z.string().min(1, "Vui lòng chọn giờ"),
 
   showroom: z.enum([

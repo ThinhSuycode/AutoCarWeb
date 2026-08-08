@@ -4,7 +4,11 @@ import { requireAuth, requireRole } from "../middleware/authMiddleware";
 
 const router = Router();
 
-// Chỉ admin mới truy cập được
-router.get("/stats", requireAuth, requireRole("admin"), getDashboardStats);
+router.get(
+  "/admin/dashboard/stats",
+  requireAuth,
+  requireRole("admin"),
+  getDashboardStats,
+);
 
 export default router;

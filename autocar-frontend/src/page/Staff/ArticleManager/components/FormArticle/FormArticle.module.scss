@@ -1,5 +1,6 @@
 // articleForm.module.scss
 @use "../../../../../styles/tokens" as *;
+@use "../../../../../styles/mixins" as *;
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
 .modal {
@@ -61,30 +62,9 @@
       font-size: 13px;
     }
   }
-
-  button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: none;
-    background: $border-2;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $slate;
-    font-size: 13px;
-    transition:
-      background 0.18s,
-      color 0.18s,
-      transform 0.2s;
-
-    &:hover {
-      background: #fee2e2;
-      color: $red;
-      transform: rotate(90deg);
-    }
-  }
+}
+.close-btn {
+  @include closeBtn-base;
 }
 
 form {
@@ -174,19 +154,8 @@ form {
       line-height: 1.6;
     }
 
-    small {
-      display: block;
-      font-size: 11px;
-      color: $muted;
-      margin-top: 4px;
-      &.error {
-        color: $red;
-      }
-    }
-
     .error {
-      color: #ef4444;
-      font-size: 13px;
+      @include error;
     }
   }
 
@@ -202,28 +171,19 @@ form {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 14px 22px;
+  padding: 15px 0px;
   border-top: 1px solid $border;
   background: $bg;
   flex-shrink: 0;
 
   button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    height: 38px;
-    padding: 0 18px;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-      background 0.18s,
-      transform 0.15s;
+    width: 130px;
+    @include button_base;
+    gap: 10px;
   }
 
   .cancel {
+    width: 75px;
     background: $border-2;
     color: $slate;
     border: 1.5px solid $border;

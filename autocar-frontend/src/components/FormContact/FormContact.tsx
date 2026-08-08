@@ -4,25 +4,23 @@ import classNames from "classnames/bind";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../Button/Button";
-import type { CarDetailsType } from "../../types/car";
-import type { UserType } from "../../types/users";
 import usePostContact from "../../mutations/usePostContact";
 import {
   contactFormSchema,
   type ContactFormData,
 } from "../../schemas/contact.schema";
 import useFormContact from "./hooks/useFormContact";
+import type { UserType } from "../../types/user/user.type";
+import type { CarDetailsType } from "../../types/car/car-detail.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  userInfo: UserType | null;
+  userInfo: UserType | undefined | null;
   car?: CarDetailsType | null;
 }
 
 const FormContact: React.FC<Props> = ({ userInfo, car }) => {
-  const { mutate: postContact, isPending } = usePostContact();
-
   const {
     register,
     handleSubmit,
@@ -32,11 +30,10 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
     resolver: zodResolver(contactFormSchema),
     defaultValues: { name: "", phone: "", message: "" },
   });
-  const { onSubmit } = useFormContact({
+  const { onSubmit, isPending } = useFormContact({
     userInfo,
     car,
     reset,
-    postContact,
   });
   return (
     <div className={cx("form-contact")}>
@@ -58,6 +55,7 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
             placeholder="Nhập họ và tên"
             {...register("name")}
           />
+          <i className={cx("field-icon", "fa-regular", "fa-user")}></i>
           {errors.name && (
             <span className={cx("error")}>{errors.name.message}</span>
           )}
@@ -71,6 +69,7 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
             placeholder="Nhập số điện thoại"
             {...register("phone")}
           />
+          <i className={cx("field-icon", "fa-solid", "fa-phone")}></i>
           {errors.phone && (
             <span className={cx("error")}>{errors.phone.message}</span>
           )}
@@ -83,6 +82,10 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
             placeholder="Nhập lời nhắn của bạn"
             {...register("message")}
           />
+          <i
+            className={cx("field-icon", "fa-regular", "fa-message")}
+            style={{ top: 40 }}
+          ></i>
           {errors.message && (
             <span className={cx("error")}>{errors.message.message}</span>
           )}
@@ -92,7 +95,6 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
           large
           type="submit"
           iconLeft={<i className="fa-regular fa-paper-plane"></i>}
-          // disabled={isPending}
         >
           {isPending ? "Đang gửi..." : "Gửi yêu cầu"}
         </Button>

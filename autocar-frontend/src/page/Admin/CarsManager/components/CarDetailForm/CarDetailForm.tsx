@@ -1,10 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "./CarDetailForm.module.scss";
-import type { CarDetailsType } from "../../../../../types/car";
 import { Button } from "../../../../../components/Button/Button";
 import LoadingData from "../../../../../components/LoadingData/LoadingData";
-import { type CarDetailFormData } from "../../../../../schemas/carDetail.schema";
 import { useCarDetail } from "./hooks/useCarDetailForm";
+import { Controller } from "react-hook-form";
+import { ImagesEditor } from "./components/ImagesEditor";
+import type { CarDetailsType } from "../../../../../types/car/car-detail.type";
+import type { CreateCarDetailDto } from "../../../../../schemas/carDetail.schema";
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +15,7 @@ interface Props {
   onCloseModal: () => void;
   defaultValues?: CarDetailsType;
   isLoading: boolean;
-  onSubmit: (data: CarDetailFormData) => void;
+  onSubmit: (data: CreateCarDetailDto) => void;
 }
 const CarDetailForm = ({
   carDetail,
@@ -39,11 +41,10 @@ const CarDetailForm = ({
     handleSpecItemChange,
     handleAddSpecItem,
     handleRemoveSpecItem,
-    images,
     isUploading,
     fileInputRef,
     handleAddImages,
-    handleRemoveImage,
+    control,
   } = useCarDetail({ carDetail, defaultValues });
   if (isLoading) {
     return <LoadingData message="Đang tải dữ liệu" color></LoadingData>;
@@ -69,13 +70,10 @@ const CarDetailForm = ({
 
             <input
               type="text"
-              {...register("name")}
+              value={carDetail.carId.name ?? ""}
               readOnly
               style={{ opacity: "0.8" }}
             />
-            {errors.name && (
-              <span className={cx("error")}>{errors.name.message}</span>
-            )}
           </div>
 
           {/* BRAND */}
@@ -84,13 +82,10 @@ const CarDetailForm = ({
 
             <input
               type="text"
-              {...register("brand")}
+              value={carDetail.carId.brand ?? ""}
               readOnly
               style={{ opacity: "0.8" }}
             />
-            {errors.brand && (
-              <span className={cx("error")}>{errors.brand.message}</span>
-            )}
           </div>
 
           {/* PRICE */}
@@ -99,13 +94,10 @@ const CarDetailForm = ({
 
             <input
               type="number"
-              {...register("price")}
+              value={carDetail.carId.price ?? ""}
               readOnly
               style={{ opacity: "0.8" }}
             />
-            {errors.price && (
-              <span className={cx("error")}>{errors.price.message}</span>
-            )}
           </div>
 
           {/* YEAR */}
@@ -114,13 +106,10 @@ const CarDetailForm = ({
 
             <input
               type="number"
-              {...register("year")}
+              value={carDetail.carId.year ?? ""}
               readOnly
               style={{ opacity: "0.8" }}
             />
-            {errors.year && (
-              <span className={cx("error")}>{errors.year.message}</span>
-            )}
           </div>
 
           {/* MILEAGE */}
@@ -129,27 +118,22 @@ const CarDetailForm = ({
 
             <input
               type="number"
-              {...register("mileage")}
+              value={carDetail.carId.mileage ?? ""}
               readOnly
               style={{ opacity: "0.8" }}
             />
-            {errors.mileage && (
-              <span className={cx("error")}>{errors.mileage.message}</span>
-            )}
           </div>
 
           {/* TRANSMISSION */}
           <div className={cx("form-group")}>
             <label>Hộp số</label>
 
-            <select {...register("transmission")} style={{ opacity: "0.8" }}>
-              <option value="Số tự động">Số tự động</option>
-
-              <option value="Số sàn">Số sàn</option>
-            </select>
-            {errors.transmission && (
-              <span className={cx("error")}>{errors.transmission.message}</span>
-            )}
+            <input
+              type="text"
+              value={carDetail.carId.transmission ?? ""}
+              readOnly
+              style={{ opacity: "0.8" }}
+            />
           </div>
 
           {/* LOCATION */}
@@ -201,51 +185,31 @@ const CarDetailForm = ({
                 onKeyDown={handleFeatureKeyDown}
               />
 
-              <Button type="button" onClick={handleAddFeature}>
+              <button onClick={handleAddFeature}>
                 <i className="fa-solid fa-plus"></i>
                 Thêm
-              </Button>
+              </button>
             </div>
           </div>
 
           {/* IMAGES */}
           <div className={cx("form-group")}>
             <label>Hình ảnh</label>
-
-            <div className={cx("images-list")}>
-              {images.map((img, index) => (
-                <div key={index} className={cx("image-item")}>
-                  <img src={img} alt="car" />
-
-                  <span onClick={() => handleRemoveImage(index)}>
-                    <i className="fa-solid fa-x"></i>
-                  </span>
-                </div>
-              ))}
-
-              <div
-                className={cx("image-add")}
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <i className="fa-solid fa-plus"></i>
-
-                <span>{isUploading ? "Đang tải..." : "Thêm ảnh"}</span>
-              </div>
-
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                multiple
-                hidden
-                onChange={handleAddImages}
-              />
-              {errors.images && (
-                <span className={cx("error")}>{errors.images.message}</span>
+            <Controller
+              control={control}
+              name="images"
+              render={({ field }) => (
+                <ImagesEditor
+                  value={field.value ?? []}
+                  onChange={field.onChange}
+                  isUploading={isUploading}
+                  fileInputRef={fileInputRef}
+                  onAddImages={handleAddImages}
+                  error={errors.images?.message}
+                />
               )}
-            </div>
+            />
           </div>
-
           {/* SPECS */}
           <div className={cx("form-group")}>
             <label>Thông số kỹ thuật</label>
@@ -313,29 +277,30 @@ const CarDetailForm = ({
                       </div>
                     ))}
 
-                    <Button
+                    <button
                       type="button"
+                      className={cx("btn-addRow")}
                       onClick={() => handleAddSpecItem(groupIndex)}
                     >
                       <i className="fa-solid fa-plus"></i>
                       Thêm dòng
-                    </Button>
+                    </button>
                   </div>
                 ))}
 
                 <Button onClick={handleAddSpecGroup}>
                   <i className="fa-solid fa-plus"></i>
-                  <span>Thêm nhóm thông số</span>
+                  Thêm nhóm thông số
                 </Button>
               </>
             ) : (
               <div className={cx("spec-empty")}>
                 <p>Chưa có thông số kỹ thuật</p>
 
-                <Button type="button" onClick={handleAddSpecGroup}>
+                <button type="button" onClick={handleAddSpecGroup}>
                   <i className="fa-solid fa-plus"></i>
                   Thêm nhóm thông số
-                </Button>
+                </button>
               </div>
             )}
           </div>

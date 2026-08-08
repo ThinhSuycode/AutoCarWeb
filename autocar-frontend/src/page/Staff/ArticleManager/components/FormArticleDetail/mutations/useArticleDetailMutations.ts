@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+
+import { articleDetailService } from "../../../services/articleDetail.service";
+import type { ArticleDetail } from "../../../../../../types/article/article-detail.type";
 import type {
-  ArticleDetail,
   CreateArticleDetailDto,
   UpdateArticleDetailDto,
-} from "../../../../../../types/articles";
-import { articleDetailService } from "../../../services/articleDetail.service";
+} from "../../../../../../types/article/article.dto";
 
 export const useArticleDetailMutations = (articleId?: string) => {
   const queryClient = useQueryClient();

@@ -1,12 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "./MyContact.module.scss";
-
 import useMyContact from "./hooks/useMyContact";
-
 import MyContactStatistics from "./components/MyContactStatistics";
 import MyContactFilter from "./components/MyContactFilter";
 import MyContactTable from "./components/MyContactTable/MyContactTable";
-import FormContactDetail from "./components/FormContactDetail/FormContactDetail";
+import FormContactDetail from "../../../components/FormContactDetail/FormContactDetail";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 
 const cx = classNames.bind(styles);
@@ -24,6 +22,7 @@ const MyContact = () => {
     updateStatusAsync,
     isUpdating,
     contactDetail,
+    handleClose,
     setContactDetail,
   } = useMyContact();
 
@@ -36,7 +35,7 @@ const MyContact = () => {
 
       <FormContactDetail
         contact={contactDetail}
-        onClose={() => setContactDetail(null)}
+        onClose={handleClose}
       ></FormContactDetail>
 
       <MyContactStatistics stats={stats} />

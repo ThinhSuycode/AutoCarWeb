@@ -41,7 +41,7 @@ const FormArticle = ({
       <div className={cx("modal-header")}>
         <h3>{mode === "create" ? "Tạo bài viết" : "Chỉnh sửa bài viết"}</h3>
 
-        <button type="button" onClick={closeModal}>
+        <button className={cx("close-btn")} onClick={closeModal}>
           <i className="fa-solid fa-xmark" />
         </button>
       </div>
@@ -160,6 +160,7 @@ const FormArticle = ({
           </button>
 
           <button type="submit" className={cx("submit")}>
+            <i className="fa-regular fa-floppy-disk"></i>
             {mode === "create" ? "Tạo bài viết" : "Cập nhật"}
           </button>
         </div>

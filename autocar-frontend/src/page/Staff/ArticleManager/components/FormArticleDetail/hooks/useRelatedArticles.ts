@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
 import { useDebounce } from "../../../../../../hooks/useDebounce";
 import { useArticlesQuery } from "../../../../../../queries/useArticlesQuery";
-import type { Articles } from "../../../../../../types/articles";
+import type { Article } from "../../../../../../types/article/article.type";
 
 interface Props {
   value: string[];
   onChange: (articles: string[]) => void;
-  articlesActive: Articles;
+  articlesActive: Article;
 }
 
 const useRelatedArticles = ({ value, onChange, articlesActive }: Props) => {
@@ -32,7 +32,7 @@ const useRelatedArticles = ({ value, onChange, articlesActive }: Props) => {
     [articles, selectedIds],
   );
 
-  const toggle = (article: Articles) => {
+  const toggle = (article: Article) => {
     if (selectedIds.has(article._id)) {
       onChange(value.filter((id) => id !== article._id));
     } else {

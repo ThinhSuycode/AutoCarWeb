@@ -1,94 +1,88 @@
 import { useCallback, useMemo } from "react";
-import type { UserType } from "../../../types/users";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
 import { config } from "../../../config";
 import { useFavouriteMutation } from "../../../mutations/useFavouriteMutation";
-import type { CarDetailsType } from "../../../types/car";
+import type { UserType } from "../../../types/user/user.type";
+import type { CarDetailsType } from "../../../types/car/car-detail.type";
 
 interface Props {
-  userInfo: UserType | undefined;
-  carDetails: CarDetailsType | undefined;
+  userInfo?: UserType | null;
+  carDetails?: CarDetailsType;
 }
 
 const useCarActions = ({ userInfo, carDetails }: Props) => {
   const navigate = useNavigate();
-  const favouriteMutation = useFavouriteMutation();
-  const onHandleFavourite = useCallback(
-    async (id: string) => {
-      if (!userInfo) {
-        toast.error("Vui lòng đăng nhập để thêm sản phẩm yêu thích!");
 
-        setTimeout(() => navigate(config.Routes.Login), 1500);
+  const { mutateAsync: favouriteMutation, isPending } = useFavouriteMutation();
 
-        return;
-      }
+  const carId = carDetails?.carId;
 
-      const currentFavourite = [...(userInfo.favouriteCar ?? [])];
-
-      const isAlreadyFavourite = currentFavourite.includes(id);
-
-      const updateFavouriteData = isAlreadyFavourite
-        ? currentFavourite.filter((fav) => fav !== id)
-        : [...currentFavourite, id];
-
-      const dataNew: UserType = {
-        ...userInfo,
-        favouriteCar: updateFavouriteData,
-      };
-
-      try {
-        await favouriteMutation.mutateAsync({
-          id: userInfo._id ?? "",
-          data: dataNew,
-        });
-
-        toast.success(
-          isAlreadyFavourite
-            ? "Đã xóa khỏi danh sách yêu thích!"
-            : "Đã thêm vào danh sách yêu thích!",
-        );
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    [userInfo, navigate, favouriteMutation],
-  );
   const isFavourite = useMemo(() => {
-    const favouriteCars = userInfo?.favouriteCar ?? [];
-    return favouriteCars.some(
-      (id) => String(id) === String(carDetails?.carId._id),
-    );
-  }, [userInfo?.favouriteCar, carDetails?.carId._id]);
-  //  Handle share
+    if (!userInfo || !carId) return false;
+
+    return userInfo.favouriteCar?.some((item) => item._id === carId._id);
+  }, [userInfo?.favouriteCar, carId]);
+
+  const onHandleFavourite = useCallback(async () => {
+    if (!userInfo) {
+      toast.error("Vui lòng đăng nhập để thêm xe yêu thích!");
+
+      setTimeout(() => {
+        navigate(config.Routes.Login);
+      }, 1500);
+
+      return;
+    }
+
+    try {
+      await favouriteMutation({
+        id: userInfo._id ?? "",
+        carId: carId?._id ?? "",
+      });
+
+      toast.success(
+        isFavourite
+          ? "Đã xóa khỏi danh sách yêu thích!"
+          : "Đã thêm vào danh sách yêu thích!",
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }, [userInfo, carId, isFavourite, favouriteMutation, navigate]);
+
   const onHandleShare = useCallback(() => {
     const url = window.location.href;
 
     if (navigator.share) {
       navigator
         .share({
-          title: carDetails?.name || "Chi tiết xe",
-          text: `Xem chi tiết ${carDetails?.name} - Giá: ${carDetails?.price?.toLocaleString("vi-VN")}₫`,
-          url: url,
+          title: carDetails?.carId.name ?? "Chi tiết xe",
+          text: `Xem ${carDetails?.carId.name} - ${carDetails?.carId.price?.toLocaleString(
+            "vi-VN",
+          )} VNĐ`,
+          url,
         })
         .then(() => toast.success("Chia sẻ thành công!"))
-        .catch((error) => {
-          if (error.name !== "AbortError") {
-            console.error("Share error:", error);
+        .catch((err) => {
+          if (err.name !== "AbortError") {
+            console.error(err);
           }
         });
     } else {
       navigator.clipboard
         .writeText(url)
-        .then(() => toast.success("Đã sao chép link vào clipboard!"))
-        .catch(() => toast.error("Không thể sao chép link!"));
+        .then(() => toast.success("Đã sao chép liên kết!"))
+        .catch(() => toast.error("Không thể sao chép liên kết!"));
     }
   }, [carDetails]);
 
   return {
-    onHandleFavourite,
     isFavourite,
+    onHandleFavourite,
     onHandleShare,
+    isLoading: isPending,
   };
 };
 

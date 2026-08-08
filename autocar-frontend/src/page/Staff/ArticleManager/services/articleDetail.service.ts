@@ -1,9 +1,9 @@
 import { callApi, changeApi } from "../../../../services/api";
+import type { ArticleDetail } from "../../../../types/article/article-detail.type";
 import type {
-  ArticleDetail,
   CreateArticleDetailDto,
   UpdateArticleDetailDto,
-} from "../../../../types/articles";
+} from "../../../../types/article/article.dto";
 
 export const articleDetailService = {
   getByArticleId: async (articleId: string) => {

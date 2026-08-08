@@ -10,7 +10,7 @@ import { Car } from "../models/car.model";
 import {
   validateCreateCarData,
   validateUpdateCarData,
-} from "../utils/vaildateCar";
+} from "../validators/vaildateCar";
 import { updateManagerStatusSchema } from "../schemas/car.schema";
 
 // ─── GET ALL ──────────────────────────────────────────────────────────────────
@@ -43,7 +43,8 @@ export const getAllCar = catchAsync(async (req: Request, res: Response) => {
   }
 
   if (brand && brand !== "Hãng xe") query.brand = brand;
-  if (bodyType && bodyType !== "Tất cả loại") query.bodyType = bodyType;
+  if (bodyType && bodyType !== "Tất cả loại")
+    query.bodyType = { $in: [bodyType] };
   if (transmission && transmission !== "Tất cả")
     query.transmission = transmission;
 
@@ -104,6 +105,7 @@ export const createCar = catchAsync(async (req: AuthRequest, res: Response) => {
     throw new AppError("Unauthorized!", 401);
   }
   const validatedData = validateCreateCarData(req.body);
+
   const car = await Car.create({
     ...validatedData,
     managerId: null,
@@ -172,6 +174,7 @@ export const deleteCar = catchAsync(async (req: AuthRequest, res: Response) => {
 export const assignManager = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const { carId } = req.params;
+
     const { managerId } = req.body;
 
     if (!managerId) throw new AppError("Thiếu managerId!", 400);
@@ -182,6 +185,7 @@ export const assignManager = catchAsync(
     ]);
 
     if (!staff) throw new AppError("Không tìm thấy nhân viên!", 404);
+
     if (staff.role !== "staff")
       throw new AppError("User này không phải nhân viên!", 400);
     if (!car) throw new AppError("Không tìm thấy xe!", 404);
@@ -196,7 +200,7 @@ export const assignManager = catchAsync(
 
     res.status(200).json({
       success: true,
-      message: `Đã phân bổ ${staff.username} quản lý xe ${car.name}!`,
+      message: `Cập nhật trạng thái thành công!!`,
       data: updatedCar,
     });
   },
@@ -206,7 +210,7 @@ export const assignManager = catchAsync(
 export const getAllCarsWithManager = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const {
-      page = "1",
+      page,
       hasManager,
       limit: limitQuery = "5",
     } = req.query as Record<string, string>;
@@ -248,6 +252,7 @@ export const getAllStaff = catchAsync(
       .sort({ createdAt: -1 });
 
     const staffIds = staffList.map((s) => s._id);
+
     const carCounts = await Car.aggregate([
       { $match: { managerId: { $in: staffIds } } },
       { $group: { _id: "$managerId", count: { $sum: 1 } } },

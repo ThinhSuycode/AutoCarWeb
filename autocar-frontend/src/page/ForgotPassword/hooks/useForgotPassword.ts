@@ -1,5 +1,3 @@
-// pages/ForgotPassword/hooks/useForgotPassword.ts
-
 import toast from "react-hot-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

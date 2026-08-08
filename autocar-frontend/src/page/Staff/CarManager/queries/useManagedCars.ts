@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { managerStaffServices } from "../../../../services/car.service";
-import type { CarManagerResponse } from "../../../../types/managerStaff";
+import { managerStaffServices } from "../../../../services/manager.service";
+import type { ManagerCarsListResponse } from "../../../../types/user/manager.response";
 
 interface Props {
   search: string;
@@ -15,8 +15,8 @@ export const useManagedCars = ({
   limit,
   managerStatus,
 }: Props) => {
-  const { data, isLoading, refetch } = useQuery<CarManagerResponse>({
-    queryKey: ["managedCars", { search, page, limit, managerStatus }],
+  const { data, isLoading, refetch } = useQuery<ManagerCarsListResponse>({
+    queryKey: ["manager-cars", { search, page, limit, managerStatus }],
     queryFn: () =>
       managerStaffServices.getMyCars({ search, page, limit, managerStatus }),
   });

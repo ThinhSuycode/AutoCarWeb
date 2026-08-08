@@ -1,7 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./FormArticleDetail.module.scss";
 import RelatedArticlesPicker from "./components/RelatedArticlesPicker";
-import type { Articles } from "../../../../../types/articles";
 import type {
   ArticleDetailInput,
   ArticleDetailOutput,
@@ -9,11 +8,12 @@ import type {
 
 import { useArticleDetailForm } from "./hooks/useArticleDetails";
 import { SectionItem } from "./components/SectionItem/SectionItem";
+import type { Article } from "../../../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  openDetail: Articles;
+  openDetail: Article;
   onSubmit: (data: ArticleDetailOutput) => void;
   closeModal: () => void;
   defaultValues?: ArticleDetailInput;
@@ -63,7 +63,7 @@ const FormArticleDetail = ({
           <i className="fa-solid fa-align-left" />
           {hasExisting ? "Chỉnh sửa nội dung" : "Tạo nội dung bài viết"}
         </h3>
-        <button type="button" onClick={closeModal}>
+        <button className={cx("close-btn")} onClick={closeModal}>
           <i className="fa-solid fa-xmark" />
         </button>
       </div>

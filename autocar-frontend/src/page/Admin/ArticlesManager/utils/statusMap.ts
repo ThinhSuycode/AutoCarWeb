@@ -1,11 +1,11 @@
-import type { Articles } from "../../../../types/articles";
+import type { Article } from "../../../../types/article/article.type";
 
 export const STATUS_CONFIG: Record<
-  Articles["status"],
+  Article["status"],
   {
     label: string;
     className: string;
-    actions: { value: Articles["status"]; label: string }[];
+    actions: { value: Article["status"]; label: string }[];
   }
 > = {
   pending: {

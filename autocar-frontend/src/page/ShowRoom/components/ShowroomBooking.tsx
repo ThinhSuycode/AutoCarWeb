@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "../ShowRoom.module.scss";
-import AppointmentForm from "./AppointmentForm/AppointmentForm";
+import AppointmentForm from "../../../components/AppointmentForm/AppointmentForm";
 
 const cx = classNames.bind(styles);
 

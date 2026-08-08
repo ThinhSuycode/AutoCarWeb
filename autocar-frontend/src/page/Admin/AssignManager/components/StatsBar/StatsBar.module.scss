@@ -1,0 +1,59 @@
+ @use "../../../../../styles/mixins" as *;
+ @use "../../../../../styles/tokens" as *;
+ 
+ 
+ .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-item {
+      background: $white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      border-top: 2px solid #f5f5f5;
+      border-bottom: 2px solid #f5f5f5;
+      cursor: pointer;
+      transition:
+        box-shadow 0.2s,
+        transform 0.2s,
+        border 0.25s;
+
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+        border-color: var(--primary-red);
+        p {
+          color: #1f1f1f;
+        }
+        span {
+          color: #562b2b;
+        }
+      }
+
+      span {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+        transition: 0.25s ease-in-out;
+      }
+
+      p {
+        font-size: 14px;
+        color: #aaa;
+        margin-top: 4px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        transition: 0.25s ease-in-out;
+      }
+    }
+  }

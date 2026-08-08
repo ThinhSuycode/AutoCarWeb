@@ -1,18 +1,19 @@
 import classNames from "classnames/bind";
 import styles from "./UserTable.module.scss";
-import type { UserType } from "../../../../../types/users";
 import type { UserAction } from "../../types/usersManager.type";
-import EmptyData from "../../../../../components/EmtyData/EmptyData";
+import EmptyState from "../../../../../components/EmtyState/EmptyState";
+import LoadingData from "../../../../../components/LoadingData/LoadingData";
+import type { UserType } from "../../../../../types/user/user.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
   users: UserType[] | null;
+  isLoading: boolean;
   onUserAction: (userData: UserType, action: UserAction) => void;
 }
 
-const UserTable = ({ users, onUserAction }: Props) => {
-  if (!users) return <EmptyData></EmptyData>;
+const UserTable = ({ users, onUserAction, isLoading }: Props) => {
   return (
     <div className={cx("content")}>
       <div className={cx("table-wrapper")}>
@@ -28,12 +29,16 @@ const UserTable = ({ users, onUserAction }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {users?.length === 0 ? (
+            {isLoading ? (
               <tr>
-                <td colSpan={5} className={cx("empty")}>
-                  Không có dữ liệu
+                <td colSpan={5}>
+                  <LoadingData message="Đang tải..."></LoadingData>
                 </td>
               </tr>
+            ) : users?.length === 0 ? (
+              <td colSpan={5}>
+                <EmptyState type="users"></EmptyState>
+              </td>
             ) : (
               users?.map((user) => (
                 <tr key={user._id} className={cx("row")}>
@@ -47,14 +52,16 @@ const UserTable = ({ users, onUserAction }: Props) => {
                         />
                       )}
                       <div>
-                        <p className={cx("user-name")}>{user.email}</p>
-                        <span className={cx("user-id")}>{user.username}</span>
+                        <p className={cx("user-name")}>{user.username}</p>
+                        <span className={cx("user-id")}>{user._id}</span>
                       </div>
                     </div>
                   </td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
-                  <td className={cx("role")}>{user.role}</td>
+                  <td>
+                    <div className={cx("role", user.role)}>{user.role}</div>
+                  </td>
 
                   <td>
                     <button

@@ -1,11 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "../ContactHistory.module.scss";
-import type { ContactPagination } from "../../../types/contact";
-
+import type { Pagination } from "../../../types/common/pagination";
 const cx = classNames.bind(styles);
 
 interface Props {
-  pagination?: ContactPagination;
+  pagination?: Pagination;
   page: number;
   onPageChange: (p: number) => void;
 }

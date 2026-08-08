@@ -1,16 +1,30 @@
-import type { CreateUserInput, UpdateUserInput } from "../schemas/user.schema";
-import type { Contact, FormCarContact } from "../types/contact";
-import type { Role } from "../types/menu";
-import type { PaginatedResponse } from "../types/pagination";
-import type { UserType } from "../types/users";
+import type {
+  CreateUserInput,
+  FormInputProfile,
+  UpdateUserInput,
+} from "../schemas/user.schema";
+import type { Role } from "../types/common/role.type";
+import type { CreateContactDto } from "../types/contact/contact.dto";
+import type { Contact } from "../types/contact/contact.type";
+import type { StaffListResponse } from "../types/user/manager.response";
+import type {
+  UserListResponse,
+  UserResponse,
+} from "../types/user/user.response";
+import type { UserType } from "../types/user/user.type";
+
 import { callApi, changeApi } from "./api";
 
-export const updateFavourite = async (id: string, data: UserType) => {
-  return changeApi.request<UserType>("users", "patch", data, id);
+export const updateFavourite = async (id: string, carId: string) => {
+  return changeApi.request<UserResponse>(`users/${id}/favourite`, "patch", {
+    carId,
+  });
 };
 
-export const updateArticleSave = async (id: string, data: UserType) => {
-  return changeApi.request<UserType>("users", "patch", data, id);
+export const updateArticleSave = async (id: string, articleId: string) => {
+  return changeApi.request<UserResponse>(`users/${id}/article`, "patch", {
+    articleId,
+  });
 };
 
 interface GetAllUserParams {
@@ -21,10 +35,14 @@ interface GetAllUserParams {
 }
 export const userService = {
   getRoleUser: async (role: Role) => {
-    return callApi.getData<PaginatedResponse<UserType>>(`users?role=${role}`);
+    return callApi.getData<UserListResponse>(`users?role=${role}`);
   },
-  postContact: async (id: string, data: FormCarContact) => {
+  postContact: async (id: string, data: CreateContactDto) => {
     return changeApi.request<Contact>("contacts", "add", data, id);
+  },
+
+  getAllStaff: () => {
+    return callApi.getData<StaffListResponse>("/cars/admin/getStaff");
   },
 
   getAllUser: async ({
@@ -46,7 +64,7 @@ export const userService = {
       params.set("role", role);
     }
 
-    const response = await callApi.getData<PaginatedResponse<UserType>>(
+    const response = await callApi.getData<UserListResponse>(
       `users?${params.toString()}`,
     );
 
@@ -57,6 +75,9 @@ export const userService = {
   },
   updateUser: async (userId: string, data: UpdateUserInput) => {
     return changeApi.request<UserType>("users", "patch", data, userId);
+  },
+  updateProfile: async (id: string | undefined, data: FormInputProfile) => {
+    return await changeApi.request<UserType>(`users/${id}`, "patch", data);
   },
   deleteUser: async (userId: string) => {
     return changeApi.request<UserType>("users", "delete", undefined, userId);

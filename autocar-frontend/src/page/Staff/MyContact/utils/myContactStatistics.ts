@@ -1,4 +1,5 @@
-import type { Contact } from "../../../../types/contact";
+import type { Contact } from "../../../../types/contact/contact.type";
+
 
 export const statistics = (contacts: Contact[]) => {
   return {
@@ -21,3 +22,8 @@ export const statistics = (contacts: Contact[]) => {
 };
 
 export type StaticsType = ReturnType<typeof statistics>;
+
+export type ContactDetailView =
+  | "detail"
+  | "createAppointment"
+  | "appointmentDetail";

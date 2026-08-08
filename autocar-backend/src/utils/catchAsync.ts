@@ -14,7 +14,6 @@ export const catchAsync = (fn: AsyncHandler) => {
     } catch (error) {
       console.error("❌ BACKEND ERROR:");
       console.error(error);
-
       next(error);
     }
   };

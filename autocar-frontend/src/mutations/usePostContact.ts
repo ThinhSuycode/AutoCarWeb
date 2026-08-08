@@ -20,6 +20,8 @@ const usePostContact = () => {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.contact.all });
+
+      toast.success("Gửi yêu cầu thành công! Chúng tôi sẽ liên hệ sớm.");
     },
 
     onError: (error) => {

@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import logo from "../../../assets/icon/logoCar.png";
-import { dataHeaderNav, MenuUserData } from "../../../data/HeaderData";
+import { dataHeaderNav, MenuUserData } from "../../../constants/HeaderData";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { config } from "../../../config";
 import Menu from "../../../components/Menu/Menu";

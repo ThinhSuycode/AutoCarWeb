@@ -16,7 +16,7 @@ export const useContactsQuery = ({
   limit = 10,
 }: ContactQueryParams) => {
   return useQuery({
-    queryKey: [...queryKeys.contact.all, search, status, page, limit],
+    queryKey: queryKeys.contact.list({ page, limit, search, status }),
 
     queryFn: () =>
       contactService.getContactsAll({
@@ -25,6 +25,5 @@ export const useContactsQuery = ({
         page,
         limit,
       }),
-    staleTime: 60_000,
   });
 };

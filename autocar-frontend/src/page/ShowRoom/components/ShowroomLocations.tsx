@@ -1,14 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "../ShowRoom.module.scss";
-import type { ShowroomType } from "../../../types/showroom";
 import { showrooms } from "../constants/showroomData";
 import { Button } from "../../../components/Button/Button";
 import useShowRoom from "../hooks/useShowRoom";
+import type { ShowroomType } from "../../../types/showroom/showroom.type";
 
 const cx = classNames.bind(styles);
 
 const ShowroomLocations = () => {
-    const {activeAddress,setActiveAddress}=useShowRoom();
+  const { activeAddress, setActiveAddress } = useShowRoom();
   return (
     <div className={cx("address-inner")}>
       <div className={cx("heading")}>

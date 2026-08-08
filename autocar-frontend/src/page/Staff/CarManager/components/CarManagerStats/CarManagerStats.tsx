@@ -1,17 +1,15 @@
 import classNames from "classnames/bind";
 import styles from "./CarManagerStats.module.scss";
-import type {
-  CarManagerType,
-  ManagerStatus,
-} from "../../../../../types/managerStaff";
 
 import { STAT_STATUSES } from "../../constant/statStatusData";
 import { MANAGER_STATUS_MAP } from "../../../../../constants/managerStatus";
+import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
+import type { ManagerStatus } from "../../../../../types/car/car.constant";
 
 const cx = classNames.bind(styles);
 
 interface Props {
-  cars: CarManagerType[];
+  cars: ManagerCar[];
 }
 
 const CarManagerStats = ({ cars }: Props) => {

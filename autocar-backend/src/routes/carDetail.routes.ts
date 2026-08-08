@@ -12,24 +12,28 @@ export const carDetailRouter = express.Router();
 
 carDetailRouter.get("/carDetail", getAllCarDetail);
 carDetailRouter.get("/carDetail/:id", getCarDetailById);
-carDetailRouter.put(
-  "/carDetail/:id",
-  requireAuth,
-  requireRole("admin"),
-  updateCarDetail,
-);
-carDetailRouter.patch(
-  "/carDetail/:id",
-  requireAuth,
-  requireRole("admin"),
-  updateCarDetail,
-);
+
 carDetailRouter.post(
   "/carDetail",
   requireAuth,
   requireRole("admin"),
   createCarDetail,
 );
+
+carDetailRouter.put(
+  "/carDetail/:id",
+  requireAuth,
+  requireRole("admin"),
+  updateCarDetail,
+);
+
+carDetailRouter.patch(
+  "/carDetail/:id",
+  requireAuth,
+  requireRole("admin"),
+  updateCarDetail,
+);
+
 carDetailRouter.delete(
   "/carDetail/:id",
   requireAuth,

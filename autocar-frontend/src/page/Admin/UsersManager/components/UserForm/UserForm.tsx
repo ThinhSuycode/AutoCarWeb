@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "../Form.module.scss";
 import { Button } from "../../../../../components/Button/Button";
-import type { UserType } from "../../../../../types/users";
 import { useUserForm } from "./hooks/useUserForm";
+import type { UserType } from "../../../../../types/user/user.type";
 
 const cx = classNames.bind(styles);
 

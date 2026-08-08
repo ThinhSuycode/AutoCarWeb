@@ -1,4 +1,24 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/tokens" as *;
+
 .register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/img/bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 90vh;
+  background-size: cover;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    filter: contrast(0.5);
+    background: rgba(0, 0, 0, 0.25);
+  }
+
   form {
     padding: 0;
     .input-form {
@@ -21,37 +41,40 @@
         padding: 10px 12px;
         border-radius: 10px;
         border: 2px solid #afafaf;
+        font-size: 15px;
         &:focus {
           box-shadow: 0px 0px 10px rgba(95, 95, 95, 0.15);
         }
       }
       p {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         margin-bottom: 5px;
       }
     }
 
-    button {
+    .btn-register {
       width: 100%;
       margin-top: 5px;
-      font-size: 18px;
+      font-size: 16px !important;
       font-weight: bold;
     }
 
     .account-login {
-      text-align: center;
       padding: 10px 0px;
-      font-size: 18px;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+      color: $slate;
+      transition: 0.25s ease-in-out;
       &:hover {
-        color: #dc2626;
+        color: var(--primary-red);
+        text-decoration: underline;
+        font-weight: 600;
       }
     }
   }
 }
 .error {
-  margin-top: 6px;
-  color: #ef4444;
-  font-size: 14px !important;
-  font-weight: 400 !important;
+  @include error;
 }

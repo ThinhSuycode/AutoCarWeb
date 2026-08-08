@@ -84,7 +84,7 @@ export const Button = ({
   return (
     <Comp type={type} className={classes} {...props}>
       {iconLeft && <span className={cx("icon")}>{iconLeft}</span>}
-      <span className={cx("title")}>{children}</span>
+      {children}
       {iconRight && <span className={cx("icon")}>{iconRight}</span>}
     </Comp>
   );

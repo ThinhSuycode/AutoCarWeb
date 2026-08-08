@@ -1,9 +1,5 @@
 import imgBanner from "../assets/img/showroom1.jpg";
-import type {
-  BannerData,
-  serviceAppointmentType,
-  ShowroomType,
-} from "../types/showroom";
+import type { BannerData, ShowroomType } from "../types/showroom";
 
 export const imgBannerData: BannerData[] = [
   {
@@ -24,25 +20,6 @@ export const imgBannerData: BannerData[] = [
     id: "3",
     image:
       "https://mercedes-car.com.vn/wp-content/uploads/2022/09/banner-pc.jpg",
-  },
-];
-
-export const serviceAppointment: serviceAppointmentType[] = [
-  {
-    id: "test_drive",
-    label: "Lái thử xe",
-  },
-  {
-    id: "consultation",
-    label: "Tư vấn",
-  },
-  {
-    id: "maintenance",
-    label: "Bảo dưỡng",
-  },
-  {
-    id: "inspection",
-    label: "Kiểm định",
   },
 ];
 

@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./ArticlesManager.module.scss";
 import { useArticlesManager } from "./hooks/useArticlesManager";
 import { ArticleFilters } from "./components/ArticleFilters";
-import { ArticleTable } from "./components/ArticleTable";
+import { ArticleTable } from "./components/ArticleTable/ArticleTable";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import PagePagination from "../../../components/PagePagination/PagePagination";
 
@@ -42,7 +42,7 @@ const ArticlesManager = () => {
       />
 
       <ArticleTable
-        articles={articles}
+        articles={articles ?? []}
         isLoading={isLoading}
         isUpdating={isUpdating}
         onUpdateStatus={updateStatus}

@@ -112,7 +112,9 @@ const Register = () => {
             )}
           </div>
 
-          <Button type="submit">Đăng ký</Button>
+          <Button type="submit" className={cx("btn-register")}>
+            Đăng ký
+          </Button>
 
           <div className={cx("account-login")}>
             <a href={config.Routes.Login}>Đã có tài khoản đăng nhập</a>

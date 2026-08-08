@@ -5,6 +5,7 @@ import ContactStatics from "./components/ContactStatics";
 import ContactTable from "./components/ContactTable";
 import ContactFilter from "./components/ContactFilter";
 import PageHeader from "../../../components/PageHeader/PageHeader";
+import FormContactDetail from "../../../components/FormContactDetail/FormContactDetail";
 
 const cx = classNames.bind(styles);
 
@@ -24,9 +25,10 @@ const ContactAssign = () => {
 
     isLoading,
     isPending,
+    contactDetail,
 
     staffData,
-
+    setContactDetail,
     onAssignStaffContact,
   } = useContactAssign();
 
@@ -36,6 +38,11 @@ const ContactAssign = () => {
         title="Quản lý liên hệ"
         description="Phân bổ quản lý liên hệ cho nhân viên"
       ></PageHeader>
+
+      <FormContactDetail
+        contact={contactDetail}
+        onClose={() => setContactDetail(undefined)}
+      ></FormContactDetail>
 
       <ContactStatics stats={stats}></ContactStatics>
       <ContactFilter
@@ -51,6 +58,7 @@ const ContactAssign = () => {
         isPending={isPending}
         staffData={staffData}
         onAssignStaffContact={onAssignStaffContact}
+        onShowContact={(data) => setContactDetail(data)}
       />
     </div>
   );

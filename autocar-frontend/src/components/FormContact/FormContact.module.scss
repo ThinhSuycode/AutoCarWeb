@@ -3,50 +3,102 @@ $navy: #0f172a;
 $slate: #64748b;
 $border: #e2e8f0;
 $red: #dc2626;
+$red-dark: #b91c1c;
 $bg: #f8fafc;
 $white: #ffffff;
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
 %field-base {
   width: 100%;
-  padding: 9px 12px;
+  padding: 10px 12px 10px 38px;
   margin-top: 6px;
   background: $bg;
   border: 1.5px solid $border;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13.5px;
   color: $navy;
   outline: none;
   transition:
     border-color 0.18s,
-    box-shadow 0.18s;
+    box-shadow 0.18s,
+    background 0.18s;
 
   &::placeholder {
-    color: #c0c0c0;
+    color: #b0b7c3;
+  }
+
+  &:hover {
+    border-color: darken($border, 8%);
   }
 
   &:focus {
     border-color: $red;
     background: $white;
-    box-shadow: 0 0 0 3px rgba($red, 0.08);
+    box-shadow: 0 0 0 3px rgba($red, 0.1);
   }
 }
 
 .form-contact {
+  position: relative;
   margin-top: 24px;
-  padding: 24px;
+  padding: 26px 24px 24px;
   background: $white;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid $border;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $red, #f97316);
+  }
+
+  &:hover {
+    border-color: rgba($red, 0.3);
+    box-shadow: 0 8px 28px rgba(220, 38, 38, 0.1);
+  }
 
   .heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     color: $navy;
-    padding-bottom: 8px;
-    border-bottom: 3px solid $red;
-    display: inline-block;
     margin-bottom: 6px;
+
+    i {
+      color: $red;
+      font-size: 15px;
+    }
   }
 
   .desc {
@@ -56,54 +108,38 @@ $white: #ffffff;
     margin-bottom: 4px;
   }
 
-  .form-request {
-    padding: 16px 0 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-
-    .form-input {
-      display: flex;
-      flex-direction: column;
-
-      label {
-        font-size: 11px;
-        font-weight: 700;
-        color: $slate;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      input {
-        @extend %field-base;
-      }
-      textarea {
-        @extend %field-base;
-        min-height: 110px;
-        resize: vertical;
-        line-height: 1.6;
-      }
-      .error {
-        margin-top: 5px;
-        color: var(--primary-red);
-        font-size: 13px !important;
-        font-weight: 400 !important;
-      }
-    }
-  }
-
   button {
     width: 100%;
     font-size: 14px;
     font-weight: 700;
-    padding: 11px;
+    padding: 12px;
     border-radius: 8px;
+    background: linear-gradient(135deg, $red, $red-dark);
+    border: none;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      opacity 0.15s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.28);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
   }
 
   .hotline {
     text-align: center;
     padding: 18px 0 4px;
-    border-top: 1px solid $border;
+    border-top: 1px dashed $border;
     margin-top: 14px;
     user-select: none;
 
@@ -140,6 +176,7 @@ $white: #ffffff;
 
         i {
           color: $white;
+          animation: pulse 0.6s ease infinite;
         }
       }
     }

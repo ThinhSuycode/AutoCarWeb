@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "../ContactAssign.module.scss";
-
-import type { Contact } from "../../../../types/contact";
-import type { UserType } from "../../../../types/users";
-
 import { STATUS_ICON, STATUS_LABEL } from "../constants/contactManagerData";
+import LoadingData from "../../../../components/LoadingData/LoadingData";
+import EmptyState from "../../../../components/EmtyState/EmptyState";
+import type { Contact } from "../../../../types/contact/contact.type";
+import type { UserType } from "../../../../types/user/user.type";
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +14,7 @@ interface Props {
   isPending: boolean;
   staffData: UserType[];
   onAssignStaffContact: (id: string, managerId: string) => void;
+  onShowContact: (contact: Contact | undefined) => void;
 }
 
 const ContactTable = ({
@@ -22,6 +23,7 @@ const ContactTable = ({
   isPending,
   staffData,
   onAssignStaffContact,
+  onShowContact,
 }: Props) => {
   return (
     <div className={cx("table-wrapper")}>
@@ -35,14 +37,21 @@ const ContactTable = ({
             <th>Trạng thái</th>
             <th>Ngày tạo</th>
             <th>Ghi chú</th>
+            <th>Chi tiết</th>
           </tr>
         </thead>
 
         <tbody>
           {isLoading ? (
             <tr>
-              <td style={{ textAlign: "center" }} colSpan={7}>
-                Đang tải dữ liệu...
+              <td colSpan={8}>
+                <LoadingData message="Đang tải..."></LoadingData>
+              </td>
+            </tr>
+          ) : contacts.length === 0 ? (
+            <tr>
+              <td colSpan={8}>
+                <EmptyState type="contacts"></EmptyState>
               </td>
             </tr>
           ) : (
@@ -115,18 +124,19 @@ const ContactTable = ({
                     {contact.notes || "—"}
                   </span>
                 </td>
+                <td>
+                  <div
+                    className={cx("show-contact")}
+                    onClick={() => onShowContact(contact)}
+                  >
+                    <i className="fa-regular fa-eye"></i>
+                  </div>
+                </td>
               </tr>
             ))
           )}
         </tbody>
       </table>
-
-      {!isLoading && contacts.length === 0 && (
-        <div className={cx("empty")}>
-          <i className="fa-regular fa-folder-open" />
-          <p>Không có yêu cầu liên hệ nào</p>
-        </div>
-      )}
     </div>
   );
 };

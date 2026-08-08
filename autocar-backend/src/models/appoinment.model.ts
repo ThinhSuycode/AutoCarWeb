@@ -18,6 +18,15 @@ const AppointmentSchema = new mongoose.Schema(
       required: true,
     },
 
+    appointmentType: {
+      type: String,
+      required: true,
+    },
+
+    appointmentCar: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Car",
+    },
     showroom: {
       type: String,
       enum: ["AutoViet Hà Nội", "AutoViet Đà Nẵng", "AutoViet Bình Định"],
@@ -46,6 +55,21 @@ const AppointmentSchema = new mongoose.Schema(
     completedAt: Date,
 
     cancelledAt: Date,
+
+    confirmedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+
+    completedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+
+    cancelledBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

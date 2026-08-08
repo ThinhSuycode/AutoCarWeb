@@ -7,11 +7,9 @@ import {
   updateUserSchema,
   type UpdateUserInput,
 } from "../../../../../../schemas/user.schema";
-import type { UserType } from "../../../../../../types/users";
-import { changeApi } from "../../../../../../services/api";
-import { config } from "../../../../../../config";
 import { useUpdateAvatar } from "../mutations/useUpdateAvatar";
 import { useUpdateUser } from "../mutations/useUpdateUser";
+import type { UserType } from "../../../../../../types/user/user.type";
 
 const DEFAULT_AVATAR =
   "https://www.pngall.com/wp-content/uploads/15/User-PNG-Photos.png";

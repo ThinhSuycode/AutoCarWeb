@@ -8,38 +8,73 @@ export const MANAGER_STATUS = [
   "completed",
 ] as const;
 
-export const carSchema = z.object({
-  name: z.string().trim().min(2, "Tên xe tối thiểu 2 ký tự"),
+export const CAR_STATUS = [
+  "available",
+  "reserved",
+  "sold",
+  "maintenance",
+] as const;
 
-  brand: z.string().min(1, "Vui lòng chọn hãng xe"),
+export const TRANSMISSION = ["Số tự động", "Số sàn"] as const;
 
-  price: z.coerce.number().min(1, "Giá phải lớn hơn 0"),
+export const FUEL = ["Xăng", "Diesel", "Hybrid", "Điện"] as const;
 
-  year: z.coerce.number().min(1900, "Năm không hợp lệ"),
+export const createCarSchema = z.object({
+  name: z.string().trim().min(2).max(100),
 
-  mileage: z.coerce.number().min(0, "Số km không hợp lệ"),
+  brand: z.string().trim().min(1),
 
-  transmission: z.string().min(1, "Vui lòng chọn hộp số"),
+  price: z.coerce.number().min(100_000_000),
 
-  color: z.string().min(1, "Vui lòng chọn màu xe"),
+  year: z.coerce
+    .number()
+    .int()
+    .min(1900)
+    .max(new Date().getFullYear() + 1),
 
-  image: z.string().url("Link ảnh không hợp lệ"),
+  mileage: z.coerce.number().min(0),
 
-  managerStatus: z
-    .enum(MANAGER_STATUS)
-    .default("pending"),
+  bodyType: z.array(z.string()).min(1),
+
+  transmission: z.enum(TRANSMISSION),
+
+  fuel: z.enum(FUEL),
+
+  engine: z.string().trim().min(1),
+
+  seats: z.coerce.number().int().min(2),
+
+  color: z.string().trim().min(1),
+
+  origin: z.string().trim().min(1),
+
+  thumbnail: z.string().url(),
+
+  status: z.enum(CAR_STATUS).default("available"),
+
+  managerStatus: z.enum(MANAGER_STATUS).default("pending"),
 });
 
-export const updateCarSchema = carSchema.partial();
+export const updateCarSchema = createCarSchema
+  .omit({
+    status: true,
+    managerStatus: true,
+  })
+  .partial();
+
+export const updateCarStatusSchema = z.object({
+  status: z.enum(CAR_STATUS),
+});
 
 export const updateManagerStatusSchema = z.object({
   managerStatus: z.enum(MANAGER_STATUS),
 });
 
-export type CarFormData = z.infer<typeof carSchema>;
+// DTO
+export type CreateCarDto = z.infer<typeof createCarSchema>;
 
-export type ManagerStatus = typeof MANAGER_STATUS[number];
+export type UpdateCarDto = z.infer<typeof updateCarSchema>;
 
-export type UpdateManagerStatusData = z.infer<
-  typeof updateManagerStatusSchema
->;
+export type UpdateCarStatusDto = z.infer<typeof updateCarStatusSchema>;
+
+export type UpdateManagerStatusDto = z.infer<typeof updateManagerStatusSchema>;

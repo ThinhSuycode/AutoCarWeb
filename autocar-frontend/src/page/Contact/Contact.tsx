@@ -1,12 +1,15 @@
 import classNames from "classnames/bind";
 import styles from "./Contact.module.scss";
 import { BannerContactData, questionContactData } from "../../data/contactData";
-import type { BannerContact, QuestionContact } from "../../types/contact";
 import FormContact from "../../components/FormContact/FormContact";
 import { useCallback, useEffect, useState } from "react";
-import type { UserType } from "../../types/users";
 import toast from "react-hot-toast";
 import { getMeApi } from "../../services/auth.service";
+import type { UserType } from "../../types/user/user.type";
+import type {
+  BannerContact,
+  QuestionContact,
+} from "../../types/contact/contact.ui";
 const cx = classNames.bind(styles);
 
 const Contact = () => {
@@ -24,6 +27,7 @@ const Contact = () => {
     };
     fetchUserInfo();
   }, []);
+
   const onHandleQuestion = useCallback((idx: number) => {
     setActiveIdx((prev) => {
       if (prev.includes(idx)) {

@@ -1,6 +1,6 @@
-import type { CarDetailFormData } from "../schemas/carDetail.schema";
+import type { UpdateCarDetailDto } from "../schemas/carDetail.schema";
+import type { CarDetailsType } from "../types/car/car-detail.type";
 import { callApi, changeApi } from "./api";
-import type { CarDetailsType } from "../types/car";
 
 export const carDetailsService = {
   getAll: async () => {
@@ -15,8 +15,8 @@ export const carDetailsService = {
     return await changeApi.request<CarDetailsType>("carDetail", "add", data);
   },
 
-  update: async (id: string, data: CarDetailFormData) => {
-    return await changeApi.request<CarDetailFormData>(
+  update: async (id: string, data: UpdateCarDetailDto) => {
+    return await changeApi.request<CarDetailsType>(
       "carDetail",
       "patch",
       data,

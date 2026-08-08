@@ -35,40 +35,6 @@ const carDetailSchema = new mongoose.Schema(
       required: true,
       ref: "Car",
       unique: true,
-      trim: true,
-    },
-
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-
-    brand: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-
-    price: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
-
-    year: {
-      type: Number,
-      min: 1900,
-    },
-
-    mileage: {
-      type: Number,
-      min: 0,
-    },
-
-    transmission: {
-      type: String,
-      trim: true,
     },
 
     location: {
@@ -79,11 +45,6 @@ const carDetailSchema = new mongoose.Schema(
     images: {
       type: [String],
       default: [],
-    },
-
-    color: {
-      type: [String],
-      default: null,
     },
 
     description: {

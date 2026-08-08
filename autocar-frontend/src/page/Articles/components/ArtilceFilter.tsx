@@ -1,14 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "../Articles.module.scss";
-
 import ListArticle from "../../../components/ListArticle/ListArticle";
-import type { Articles } from "../../../types/articles";
 import LoadingData from "../../../components/LoadingData/LoadingData";
 import {
   ARTICLE_CATEGORIES,
   type ArticleCategoryItem,
 } from "../../../constants/articleData";
-import { useMemo } from "react";
+import type { Article } from "../../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +21,7 @@ interface Props {
   filterValue: string;
   setFilterValue: React.Dispatch<React.SetStateAction<string>>;
 
-  showArticleData: Articles[];
+  showArticleData: Article[];
 
   pagination?: Pagination;
   isLoading: boolean;

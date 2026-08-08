@@ -1,17 +1,17 @@
-import { useState } from "react";
-
+import { useCallback, useState } from "react";
 import { useContactsQuery } from "../../../../queries/useContact";
 import { useUpdateContactStatus } from "../../../../mutations/useUpdateContactStatus";
-
 import { statistics } from "../utils/myContactStatistics";
-import type { Contact } from "../../../../types/contact";
 import { useDebounce } from "../../../../hooks/useDebounce";
+import type { Contact } from "../../../../types/contact/contact.type";
 
 const useMyContact = () => {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [page, setPage] = useState(1);
-  const [contactDetail, setContactDetail] = useState<Contact | null>(null);
+  const [contactDetail, setContactDetail] = useState<Contact | undefined>(
+    undefined,
+  );
 
   const { data, isLoading } = useContactsQuery({
     search: useDebounce(search, 450),
@@ -25,6 +25,10 @@ const useMyContact = () => {
   const stats = statistics(contacts);
 
   const { updateStatusAsync, isPending } = useUpdateContactStatus();
+
+  const handleClose = useCallback(() => {
+    setContactDetail(undefined);
+  }, []);
 
   return {
     contacts,
@@ -45,6 +49,7 @@ const useMyContact = () => {
     isUpdating: isPending,
 
     setContactDetail,
+    handleClose,
     contactDetail,
   };
 };

@@ -1,0 +1,42 @@
+@use "../../styles/mixins" as *;
+.wrapper {
+  label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #64748b;
+  }
+  .money-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+
+    font-size: 14px;
+    color: #333;
+    background: #fafafa;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+
+    &::placeholder {
+      color: #aaa;
+    }
+
+    &:hover {
+      border-color: #ccc;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #4a90e2;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.12);
+    }
+  }
+  .error {
+    @include error;
+  }
+}

@@ -19,99 +19,94 @@ const Login = () => {
     onSubmit,
     errors,
     isSubmitted,
-
     handleGoogleLogin,
-
     passwordShow,
     passwordShowLength,
     onHandlePasswordActive,
-
     isLoading,
   } = useLogin();
 
   return (
     <div className={cx("login-page")}>
-      <FormAccount title="Đăng nhập">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className={cx("input-form")}>
-            <p>Email</p>
-
-            <div className={cx("form")}>
-              <div className={cx("icon-left")}>
-                <i className="fa-regular fa-envelope"></i>
-              </div>
-
-              <input
-                type="email"
-                placeholder="Nhập email của bạn"
-                {...register("email")}
-              />
-            </div>
-
-            {isSubmitted && errors.email && (
-              <p className={cx("error")}>{errors.email.message}</p>
-            )}
-          </div>
-
-          <div className={cx("input-form")}>
-            <p>Mật khẩu</p>
-
-            <div className={cx("form")}>
-              <div className={cx("icon-left")}>
-                <i className="fa-solid fa-lock"></i>
-              </div>
-
-              <input
-                type={passwordShow ? "text" : "password"}
-                placeholder="Nhập mật khẩu"
-                {...register("password")}
-              />
-
-              {passwordShowLength && (
-                <div
-                  className={cx("icon-right")}
-                  onClick={onHandlePasswordActive}
-                >
-                  {!passwordShow ? (
-                    <i className="fa-regular fa-eye"></i>
-                  ) : (
-                    <i className="fa-regular fa-eye-slash"></i>
-                  )}
+      <div className={cx("login-wrapper")}>
+        <FormAccount title="Đăng nhập">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={cx("input-form")}>
+              <p>Email</p>
+              <div className={cx("form")}>
+                <div className={cx("icon-left")}>
+                  <i className="fa-regular fa-envelope"></i>
                 </div>
+                <input
+                  type="email"
+                  placeholder="Nhập email của bạn"
+                  {...register("email")}
+                />
+              </div>
+              {isSubmitted && errors.email && (
+                <span className={cx("error")}>{errors.email.message}</span>
               )}
             </div>
 
-            {isSubmitted && errors.password && (
-              <p className={cx("error")}>{errors.password.message}</p>
-            )}
-          </div>
-
-          <div className={cx("form-options")}>
-            <div className={cx("left")}>
-              <input type="checkbox" id="checkbox" />
-              <label htmlFor="checkbox">Ghi nhớ đăng nhập</label>
+            <div className={cx("input-form")}>
+              <p>Mật khẩu</p>
+              <div className={cx("form")}>
+                <div className={cx("icon-left")}>
+                  <i className="fa-solid fa-lock"></i>
+                </div>
+                <input
+                  type={passwordShow ? "text" : "password"}
+                  placeholder="Nhập mật khẩu"
+                  {...register("password")}
+                />
+                {passwordShowLength && (
+                  <div
+                    className={cx("icon-right")}
+                    onClick={onHandlePasswordActive}
+                  >
+                    {!passwordShow ? (
+                      <i className="fa-regular fa-eye"></i>
+                    ) : (
+                      <i className="fa-regular fa-eye-slash"></i>
+                    )}
+                  </div>
+                )}
+              </div>
+              {isSubmitted && errors.password && (
+                <span className={cx("error")}>{errors.password.message}</span>
+              )}
             </div>
 
-            <div className={cx("right")}>
-              <a href={config.Routes.ForgotPassword}>Quên mật khẩu?</a>
+            <div className={cx("form-options")}>
+              <div className={cx("left")}>
+                <input type="checkbox" id="checkbox" />
+                <label htmlFor="checkbox">Ghi nhớ đăng nhập</label>
+              </div>
+              <div className={cx("right")}>
+                <a href={config.Routes.ForgotPassword}>Quên mật khẩu?</a>
+              </div>
             </div>
+
+            <Button type="submit" className={cx("btn-login")}>
+              {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
+            </Button>
+          </form>
+
+          <div className={cx("divider")}>
+            <span>Hoặc</span>
           </div>
 
-          <Button type="submit">
-            {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
-          </Button>
-        </form>
-
-        <p className={cx("divider")}>Hoặc</p>
-
-        <GoogleLogin
-          onSuccess={handleGoogleLogin}
-          onError={() => toast.error("Đăng nhập Google thất bại!")}
-          shape="rectangular"
-          theme="outline"
-          text="signin_with"
-        />
-      </FormAccount>
+          <div className={cx("gg-wrapper")}>
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onError={() => toast.error("Đăng nhập Google thất bại!")}
+              shape="rectangular"
+              theme="outline"
+              text="signin_with"
+            />
+          </div>
+        </FormAccount>
+      </div>
     </div>
   );
 };

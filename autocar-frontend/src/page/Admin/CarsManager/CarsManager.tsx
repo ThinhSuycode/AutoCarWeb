@@ -1,37 +1,37 @@
 import classNames from "classnames/bind";
 import styles from "./CarsManager.module.scss";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import CarTable from "./components/CarTable/CarTable";
 import ModalLayout from "../../../components/ModalLayout/ModalLayout";
-import type { CarType } from "../../../types/car";
-import type { CarFormData } from "../../../schemas/car.schema";
-import type { CarManagerType } from "../../../types/managerStaff";
 import CarForm from "./components/CarForm/CarForm";
 import CarDetailForm from "./components/CarDetailForm/CarDetailForm";
 import CarHeader from "./components/CarHeader/CarHeader";
 import PagePagination from "../../../components/PagePagination/PagePagination";
 import useDetailFormMutation from "./components/CarDetailForm/mutations/useDetailFormMutation";
 import useCarFormMutation from "./components/CarForm/mutations/useCarFormMutation";
+import { useCarsManager } from "./hooks/useCarsManager";
+import type { CreateCarDetailDto } from "../../../schemas/carDetail.schema";
+import type { CreateCarDto, UpdateCarDto } from "../../../schemas/car.schema";
 
 const cx = classNames.bind(styles);
 
 const CarsManager = () => {
-  const [openCreate, setOpenCreate] = useState(false);
+  const { createCar, updateCar, creating, updating } = useCarFormMutation();
 
-  const [selectedCar, setSelectedCar] = useState<CarType | null>(null);
-
-  const [openDetail, setOpenDetail] = useState<CarManagerType | null>(null);
   const {
     cars,
     pagination,
     page,
-    setPage,
     setSearch,
-    createCar,
-    updateCar,
-    creating,
-    updating,
-  } = useCarFormMutation();
+    isLoading,
+    onPageChange,
+    openCreate,
+    setOpenCreate,
+    selectedCar,
+    setSelectedCar,
+    openDetail,
+    setOpenDetail,
+  } = useCarsManager();
 
   const { carDetail, createDetail, updateDetail, detailLoading } =
     useDetailFormMutation(openDetail?._id);
@@ -48,7 +48,7 @@ const CarsManager = () => {
             mode="create"
             onCloseModal={() => setOpenCreate(false)}
             creatingPending={creating}
-            onSubmit={(data) => {
+            onSubmit={(data: CreateCarDto) => {
               createCar(data);
               setOpenCreate(false);
             }}
@@ -66,16 +66,22 @@ const CarsManager = () => {
             updatingPending={updating}
             defaultValues={{
               name: selectedCar.name,
-              price: selectedCar.price,
               brand: selectedCar.brand,
+              price: selectedCar.price,
               year: selectedCar.year,
               mileage: selectedCar.mileage,
-              image: selectedCar.image,
+              bodyType: selectedCar.bodyType,
               transmission: selectedCar.transmission,
               color: selectedCar.color,
+              fuel: selectedCar.fuel,
+              engine: selectedCar.engine,
+              seats: selectedCar.seats,
+              origin: selectedCar.origin,
+
+              thumbnail: selectedCar.thumbnail,
             }}
             onCloseModal={() => setSelectedCar(null)}
-            onSubmit={(data: CarFormData) => {
+            onSubmit={(data: UpdateCarDto) => {
               updateCar({
                 id: selectedCar._id,
                 data,
@@ -87,13 +93,13 @@ const CarsManager = () => {
       )}
 
       {openDetail && (
-        <ModalLayout showForm={!!openDetail} onClose={onCloseDetail}>
+        <ModalLayout showForm={!!openDetail} onClose={() => null}>
           <CarDetailForm
             onCloseModal={onCloseDetail}
             carDetail={carDetail}
             defaultValues={carDetail ?? undefined}
             isLoading={detailLoading}
-            onSubmit={(data) => {
+            onSubmit={(data: CreateCarDetailDto) => {
               if (carDetail) {
                 updateDetail({
                   id: openDetail._id,
@@ -119,7 +125,8 @@ const CarsManager = () => {
 
       <div className={cx("content")}>
         <CarTable
-          cars={cars}
+          cars={cars ?? []}
+          isLoading={isLoading}
           carSelected={(data) => setSelectedCar(data)}
           carDetailSelected={(data) => setOpenDetail(data)}
         />
@@ -131,7 +138,7 @@ const CarsManager = () => {
           total={pagination.total}
           limit={pagination.limit}
           totalPages={pagination.totalPages}
-          onPageChange={setPage}
+          onPageChange={onPageChange}
         ></PagePagination>
       )}
     </div>

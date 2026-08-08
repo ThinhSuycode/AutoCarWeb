@@ -1,52 +1,26 @@
 import classNames from "classnames/bind";
 import styles from "./ArticleDetails.module.scss";
-import { useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
 import LoadingData from "../../components/LoadingData/LoadingData";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
 import ListArticle from "../../components/ListArticle/ListArticle";
 
-import { useArticleDetail } from "../../queries/useArticleDetail";
-import { useCurrentUser } from "../../queries/useCurrentUser";
-import useArticleSave from "./hooks/useArticleSave";
-import { createHandleReadArticle } from "../../hooks/HandleArticles";
-
 import ArticleSections from "./components/ArticleSections";
 import ArticleTagsAndSocial from "./components/ArticleTagsAndSocial";
 import ArticleRelatedSidebar from "./components/ArticleRelatedSidebar";
-
-import type { UserType } from "../../types/users";
 import ArticleDetailBanner from "./components/ArticleDetailBanner";
 import { getLabelCategory } from "../../hooks/getCategoryColor";
+import useArticleDetail from "./hooks/useArticleDetail";
 
 const cx = classNames.bind(styles);
 
 const ArticleDetails = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const [userActive, setUserActive] = useState<UserType | null>(null);
-
-  const { data: articleDetail, isLoading } = useArticleDetail(id);
-  const login = !!localStorage.getItem("token");
-  const { data: userInfo } = useCurrentUser(login);
-
-  useMemo(() => {
-    if (userInfo) setUserActive(userInfo);
-  }, [userInfo]);
-
-  const handleReadArticle = useMemo(
-    () => createHandleReadArticle(navigate),
-    [navigate],
-  );
-
-  const { onHandleSaveArticle, isSaved } = useArticleSave({
-    userActive,
+  const {
     articleDetail,
-    setUserActive,
-  });
-
+    isLoading,
+    isSaved,
+    onHandleSaveArticle,
+    handleReadArticle,
+  } = useArticleDetail();
   if (isLoading) return <LoadingData message="Đang tải dữ liệu" />;
 
   if (!articleDetail)

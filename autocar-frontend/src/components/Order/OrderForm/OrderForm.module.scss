@@ -1,0 +1,98 @@
+@use "../../../styles/tokens" as *;
+
+.orderForm-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 24px;
+  max-width: 720px;
+  margin: 0 auto;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(28, 39, 64, 0.08);
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #1c2740;
+      text-transform: uppercase;
+    }
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    background: #ffffff;
+    border-top: 1px solid rgba(28, 39, 64, 0.1);
+    button {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 4px;
+      background: none;
+      border: none;
+      color: #1c2740;
+      cursor: pointer;
+      transition: color 0.25s ease-in-out;
+      span {
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      i {
+        font-size: 11px;
+      }
+    }
+    .btn-back {
+      i {
+        font-size: 11px;
+        transform: translateX(4px);
+        transition: transform 0.25s ease-in-out;
+      }
+
+      &:hover {
+        color: $red;
+
+        i {
+          transform: translateX(0px);
+        }
+      }
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+    .btn-create {
+      background-color: $blue;
+      color: #ffffff;
+      padding: 10px 12px;
+      transform: translateY(0px);
+      transition: transform 0.25s ease-in-out;
+      span {
+        font-size: 13px;
+        &:last-child {
+          font-size: 14px;
+        }
+      }
+      &:hover {
+        box-shadow: 0px 0px 10px rgba(137, 200, 244, 0.715);
+        transform: translateY(-3px);
+      }
+    }
+  }
+}

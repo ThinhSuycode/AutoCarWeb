@@ -1,9 +1,8 @@
 import type { ContactFormData } from "../schemas/contact.schema";
-import type {
-  Contact,
-  ContactListResponse,
-  UpdateContactStatusPayload,
-} from "../types/contact";
+import type { ContactListResponse } from "../types/contact/contact.response";
+import type { Contact } from "../types/contact/contact.type";
+import type { UpdateContactStatusDto } from "../types/staff/staff-contact.dto";
+
 import { changeApi, callApi } from "./api";
 
 export const contactService = {
@@ -67,7 +66,7 @@ export const contactService = {
   getContactById: (id: string) => callApi.getData<Contact>(`contacts/${id}`),
 
   // Cập nhật trạng thái
-  updateContactStatus: (id: string, data: UpdateContactStatusPayload) =>
+  updateContactStatus: (id: string, data: UpdateContactStatusDto) =>
     changeApi.request<Contact>(`contacts/staff/${id}/status`, "patch", data),
 
   // Phân công nhân viên

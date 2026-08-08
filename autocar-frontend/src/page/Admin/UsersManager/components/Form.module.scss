@@ -1,3 +1,5 @@
+@use "../../../../styles/mixins" as *;
+
 .form-wrapper {
   width: 820px;
   background: #ffffff;
@@ -38,23 +40,7 @@
     }
 
     .close-icon {
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #aaa;
-      font-size: 13px;
-      transition: all 0.18s ease;
-      background: transparent;
-
-      &:hover {
-        background: #fff0f0;
-        color: var(--primary-red);
-        transform: rotate(90deg);
-      }
+      @include closeBtn-base;
     }
   }
 
@@ -411,22 +397,23 @@
     }
   }
   .error {
-    color: #ef4444;
-    font-size: 13px !important;
-    font-weight: 400 !important;
+    @include error;
   }
 
   // ─── Footer ────────────────────────────────────────────────────────────────
   .footer-act {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 14px 24px;
     border-top: 1px solid #f0f0f0;
     background: #fafafa;
 
-    .btn-add {
-      margin-left: auto;
+    button {
+      @include button_base;
+    }
+    &:has(.left) {
+      justify-content: space-between;
     }
 
     .left {
@@ -434,6 +421,7 @@
         background: #f1f1f1 !important;
         color: #666 !important;
         transition: all 0.2s;
+        @include button_base;
 
         &:hover {
           background: var(--primary-red) !important;
@@ -446,10 +434,15 @@
     .right {
       display: flex;
       gap: 10px;
+      button {
+        width: 130px;
+        @include button_base;
+      }
 
       button:first-child {
         background: #f1f1f1 !important;
         color: #666 !important;
+        width: 70px;
 
         &:hover {
           background: #e0e0e0 !important;

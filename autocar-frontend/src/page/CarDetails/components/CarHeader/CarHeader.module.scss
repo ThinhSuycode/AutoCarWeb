@@ -1,0 +1,132 @@
+@use "../../../../styles/tokens" as *;
+@use "../../../../styles/mixins" as *;
+.content-top {
+  padding: 20px 24px;
+  background: $paper;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-card;
+  border: 1px solid $border;
+
+  @include md {
+    display: none;
+  }
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .action {
+      display: flex;
+      gap: 12px;
+      color: $slate-light;
+      font-size: 17px;
+
+      span {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: rgb(196, 213, 255);
+        cursor: pointer;
+        transition: 0.2s $ease-smooth;
+
+        &:first-child:hover {
+          color: $red;
+          background: $red-soft;
+        }
+        &:last-child:hover {
+          color: #3b58ff;
+          background: #eaf0ff;
+        }
+      }
+
+      .favourite-btn.activeHeart {
+        color: $red;
+        background: $red-soft;
+        // border: 1px solid rgba(234, 247, 189, 0.518);
+      }
+      .share-btn.activeShare {
+        color: #3b58ff;
+        background: #eaf0ff;
+      }
+    }
+
+    .brand {
+      padding: 5px 18px;
+      border-radius: $radius-sm;
+      background: $navy;
+      color: $paper;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .title {
+    font-size: 23px;
+    font-weight: 700;
+    padding: 12px 0px 6px;
+    color: $navy;
+  }
+
+  .price {
+    padding: 4px 0px;
+
+    p {
+      font-size: 14px;
+      color: $slate;
+
+      &:first-child {
+        color: $red;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+    }
+  }
+
+  .specs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0px 20px;
+
+    div {
+      width: 45%;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: $navy-soft;
+      border-radius: $radius-md;
+
+      span {
+        font-size: 14px;
+        font-weight: 600;
+        color: $navy-mid;
+      }
+    }
+  }
+
+  .commitments {
+    padding: 8px 0px 4px;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      span {
+        font-size: 14px;
+        color: $slate;
+
+        &:first-child {
+          color: $green;
+        }
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     color: #64748b;
     cursor: pointer;
@@ -31,7 +31,6 @@
       gap: 5px;
     }
 
-    // Separator arrow
     .fa-angle-right {
       font-size: 10px;
       color: #cbd5e1;
@@ -48,8 +47,8 @@
       div {
         padding: 3px 10px;
         background: #fff1f1;
-        border-radius: 20px;
-        font-size: 12px;
+        border-radius: 10px 0px;
+        font-size: 13px;
       }
     }
   }

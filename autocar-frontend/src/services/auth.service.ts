@@ -1,5 +1,6 @@
 import axios from "axios";
 import { changeApi } from "./api";
+import type { UserType } from "../types/user/user.type";
 
 const API_URL = `${import.meta.env.VITE_APP_API_KEYS}/auth`;
 const getToken = () => localStorage.getItem("token");
@@ -22,7 +23,7 @@ export const registerApi = async (data: {
   return res.data;
 };
 
-export const getMeApi = async () => {
+export const getMeApi = async (): Promise<UserType | null> => {
   const token = getToken();
   if (!token) return null;
   const res = await axios.get(`${API_URL}/me`, {
