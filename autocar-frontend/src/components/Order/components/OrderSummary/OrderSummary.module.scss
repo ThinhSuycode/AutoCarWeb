@@ -1,0 +1,89 @@
+@use "../../../../styles/tokens" as *;
+
+.summary {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+    }
+    .openOrder {
+      color: $blue;
+      transition: 0.25s ease-in-out;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        transition: 0.2s ease-in-out;
+        background: linear-gradient(
+          to right,
+          rgba(17, 76, 165, 0.764) 35%,
+          rgba(46, 202, 237, 0.823)
+        );
+      }
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+
+    span {
+      font-size: 14px;
+      color: #777;
+    }
+
+    strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px dashed #ddd;
+    margin: 10px 0;
+  }
+
+  .total {
+    padding-top: 4px;
+
+    span {
+      font-size: 15px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    strong {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e0552f;
+    }
+  }
+}

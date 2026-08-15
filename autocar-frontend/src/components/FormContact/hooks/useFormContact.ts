@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { ContactFormData } from "../../../schemas/contact.schema";
 import type { UserType } from "../../../types/user/user.type";
 import type { CarDetailsType } from "../../../types/car/car-detail.type";
-import usePostContact from "../../../mutations/usePostContact";
+import usePostContact from "../../../mutations/ContactMutation/usePostContact";
 
 interface Props {
   userInfo: UserType | undefined | null;

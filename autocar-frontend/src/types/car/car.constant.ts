@@ -24,6 +24,11 @@ export const BODY_TYPES = [
   "Crossover",
 ] as const;
 
+export type ColorType = {
+  key: string;
+  title: string;
+};
+
 export type BodyType = (typeof BODY_TYPES)[number];
 
 export const FUEL = ["Xăng", "Diesel", "Hybrid", "Điện"] as const;

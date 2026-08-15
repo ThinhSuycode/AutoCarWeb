@@ -1,4 +1,5 @@
-import type { FilterOptionsType } from "../types/car";
+import type { FilterOptionsType } from "../types/car/car-filter.type";
+
 
 export const FilterOptions: FilterOptionsType = {
   brands: [

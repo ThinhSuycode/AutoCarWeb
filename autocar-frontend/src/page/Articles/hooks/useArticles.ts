@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
-import { useArticlesQuery } from "../../../queries/useArticlesQuery";
+import { useArticlesQuery } from "../../../queries/articleQuery/useArticlesQuery";
 
 const useArticles = () => {
   const [page, setPage] = useState(1);

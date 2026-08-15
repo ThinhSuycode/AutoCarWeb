@@ -63,7 +63,10 @@ const CarManagerTable = ({ cars, isLoading }: Props) => {
                           <i className="fa-solid fa-car"></i>
                         )}
                       </div>
-                      <span className={cx("car-name")}>{car.name}</span>
+                      <div className={cx("car-info")}>
+                        <div className={cx("car-name")}>{car.name}</div>
+                        <div className={cx("car-id")}>{car._id}</div>
+                      </div>
                     </div>
                   </td>
 

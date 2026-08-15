@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import { config } from "../../../config";
-import { useFavouriteMutation } from "../../../mutations/useFavouriteMutation";
+import { useFavouriteMutation } from "../../../mutations/UserMutation/useFavouriteMutation";
 import type { UserType } from "../../../types/user/user.type";
 import type { CarDetailsType } from "../../../types/car/car-detail.type";
 

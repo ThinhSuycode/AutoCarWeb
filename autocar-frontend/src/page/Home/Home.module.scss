@@ -4,7 +4,6 @@
 
 .home-page {
   width: 100%;
-  margin-bottom: 20px;
 
   p {
     font-size: 1rem;
@@ -14,7 +13,6 @@
     }
   }
 
-  // ─── Banner ────────────────────────────────────────────────────────────────
   .home-banner {
     position: relative;
     width: 100%;
@@ -45,6 +43,24 @@
       pointer-events: none;
       z-index: 1;
     }
+    .circle-left {
+      position: absolute;
+      bottom: -14%;
+      left: -8%;
+      width: 381px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      height: 26vh;
+    }
+    .circle-right {
+      position: absolute;
+      bottom: -14%;
+      right: -8%;
+      width: 381px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      height: 26vh;
+    }
 
     @include md {
       min-height: 600px;
@@ -54,15 +70,6 @@
     @include sm {
       min-height: auto;
       padding: 50px 0 30px;
-    }
-
-    .banner-footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      object-fit: cover;
-      opacity: 0.6;
-      z-index: 2;
     }
 
     .banner-content {
@@ -279,9 +286,11 @@
     .product-filter-inner {
       width: 100%;
       padding: 14px 28px;
-      background: $white;
-      border-bottom: 1px solid $border;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: linear-gradient(
+        313deg,
+        #182033 45%,
+        rgba(93, 109, 112, 0.96)
+      );
       position: sticky;
       top: 12%;
       z-index: 100;
@@ -376,6 +385,7 @@
     .information-inner {
       background: $white;
       border-top: 1px solid $border;
+      background: linear-gradient(122deg, rgba(0, 0, 0, 0.8784313725), #11305e);
 
       .content {
         padding: 56px 28px;
@@ -393,7 +403,7 @@
           h3 {
             font-size: 30px;
             font-weight: 800;
-            color: $navy-mid;
+            color: white;
             letter-spacing: -0.5px;
             margin-bottom: 10px;
 
@@ -403,9 +413,10 @@
           }
 
           p {
+            font-weight: 700;
             font-size: 14px;
-            color: $slate;
-            max-width: 480px;
+            color: #bdbdbd;
+            max-width: 500px;
             margin: 0 auto;
             line-height: 1.6;
           }
@@ -426,13 +437,12 @@
           .item {
             padding: 28px 20px;
             border-radius: 14px;
-            border: 1.5px solid $border;
+            border: 1.5px solid white;
             text-align: center;
-            background: $white;
+            background: #1a1a1a;
             transition: all 0.22s ease;
             position: relative;
             overflow: hidden;
-
             &::before {
               content: "";
               position: absolute;
@@ -440,7 +450,7 @@
               left: 0;
               right: 0;
               height: 3px;
-              background: linear-gradient(90deg, $red, #f87171);
+              background: linear-gradient(90deg, $blue, #1c0a4bbb);
               opacity: 0;
               transition: opacity 0.22s;
             }
@@ -448,14 +458,23 @@
             &:hover {
               transform: translateY(-5px);
               box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-              border-color: rgba($red, 0.15);
+              background: linear-gradient(
+                46deg,
+                rgba(16, 24, 86, 0.52),
+                rgba(101, 140, 141, 0.6196078431)
+              );
 
               &::before {
                 opacity: 1;
               }
 
               div {
-                background: rgba($red, 0.12);
+                // background:;
+                border-color: rgb(11 183 255);
+                i {
+                  color: rgb(11 183 255);
+                  font-size: 19px;
+                }
               }
             }
 
@@ -463,6 +482,7 @@
               width: 48px;
               height: 48px;
               background: #fef2f2;
+              border: 2px solid currentColor;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -479,13 +499,13 @@
             h4 {
               font-size: 15px;
               font-weight: 700;
-              color: $navy-mid;
+              color: white;
               margin-bottom: 8px;
             }
 
             p {
               font-size: 13px;
-              color: $slate;
+              color: #c1c2be;
               line-height: 1.6;
             }
           }

@@ -15,7 +15,8 @@
   transition: 0.25s ease-in-out;
   border: 2px dotted #e6e5e5;
   &:hover {
-    border-color: var(--primary-red);
+    border-color: #999;
+    background-color: white;
   }
 
   .icon-wrapper {

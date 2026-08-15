@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useCarAllQuery } from "../../../../queries/useCarAllQuery";
+import { useCarAllQuery } from "../../../../queries/carQuery/useCarAllQuery";
 import type { CarType } from "../../../../types/car/car.type";
 import type { ManagerCar } from "../../../../types/user/manager-cars.type";
 

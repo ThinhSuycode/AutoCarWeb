@@ -11,7 +11,7 @@ const ModalLayout = ({
 }: {
   children: React.ReactNode;
   showForm: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   classNames?: string;
 }) => {
   return (

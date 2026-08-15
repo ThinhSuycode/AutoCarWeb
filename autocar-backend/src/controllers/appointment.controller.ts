@@ -134,9 +134,14 @@ export const getMyAppointment = catchAsync(
             path: "buyerId",
             select: "username email",
           },
+          {
+            path: "managerId",
+            select: "username email phone",
+          },
         ],
       })
       .populate("appointmentCar", "name brand thumbnail price color year")
+      .populate("orderId")
       .populate("createdBy", "username email")
       .sort({
         appointmentDate: -1,
@@ -182,14 +187,8 @@ export const getAppointmentDetail = catchAsync(
         ],
       })
       .populate("appointmentCar", "name brand thumbnail price color year")
+      .populate("orderId")
       .populate("createdBy", "username email");
-
-    if (!appointment) {
-      return res.json({
-        success: true,
-        data: null,
-      });
-    }
 
     return res.status(200).json({
       success: true,

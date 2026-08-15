@@ -17,5 +17,13 @@ export const orderService = {
   update: (id: string, data: UpdateOrderDto) =>
     changeApi.request<UpdateOrderDto>("orders", "patch", data, id),
 
+  confirmOrder: async (id: string) => {
+    const res = await changeApi.request<OrderResponse>(
+      `orders/${id}/confirmed`,
+      "patch",
+    );
+    return res.data;
+  },
+
   delete: (id: string) => changeApi.request("orders", "delete", undefined, id),
 };

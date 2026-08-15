@@ -13,6 +13,7 @@ import uploadRouter from "./routes/upload.route";
 import dashboardRouter from "./routes/dashboard.route";
 import { appointmentRouter } from "./routes/appointment.routes";
 import orderRouter from "./routes/order.routes";
+import { paymentRouter } from "./routes/payment.routes";
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use("/api", contactRouter);
 app.use("/api/upload", uploadRouter);
 app.use("/api", appointmentRouter);
 app.use("/api", orderRouter);
+app.use("/api", paymentRouter);
 app.use("/api", dashboardRouter);
 const PORT = process.env.PORT || 5001;
 

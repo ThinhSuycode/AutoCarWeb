@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useManagedCars } from "../queries/useManagedCars";
 import { useDebounce } from "../../../../hooks/useDebounce";
+import { useGetCarStaff } from "../../../../queries/managerQuery/useGetCarStaff";
 
 const useStaffManager = () => {
   const [search, setSearch] = useState("");
@@ -9,7 +9,7 @@ const useStaffManager = () => {
   const [limit] = useState(8);
 
   const [statusFilter, setStatusFilter] = useState("all");
-  const { cars, isLoading } = useManagedCars({
+  const { cars, isLoading } = useGetCarStaff({
     search: searchDebounce,
     page,
     limit,

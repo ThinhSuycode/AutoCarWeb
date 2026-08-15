@@ -1,4 +1,5 @@
-import type { ColorType, PriceRangeType } from "../types/car";
+import type { PriceRangeType } from "../types/car/car-filter.type";
+import type { ColorType } from "../types/car/car.constant";
 
 export const brands = [
   {

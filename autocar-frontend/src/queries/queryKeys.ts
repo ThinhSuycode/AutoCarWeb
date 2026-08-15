@@ -84,4 +84,17 @@ export const queryKeys = {
       status: string;
     }) => ["orders", "list", params] as const,
   },
+  payment: {
+    all: ["payments"] as const,
+
+    detail: (id: string) => ["payments", id] as const,
+
+    list: (params: {
+      page?: number;
+      limit?: number;
+      status?: string;
+      method?: string;
+      orderId?: string;
+    }) => ["payments", "list", params] as const,
+  },
 };

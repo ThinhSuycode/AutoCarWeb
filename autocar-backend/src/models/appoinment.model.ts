@@ -60,7 +60,12 @@ const AppointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-
+    
+    orderId:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Order",
+      default:null
+    },
     completedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

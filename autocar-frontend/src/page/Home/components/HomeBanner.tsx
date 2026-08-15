@@ -19,7 +19,8 @@ interface HomeBannerProps {
 const HomeBanner = ({ carCount, bannerStats }: HomeBannerProps) => {
   return (
     <div className={cx("home-banner")}>
-      <img src={bannerFooter} alt="" className={cx("banner-footer")} />
+      <div className={cx("circle-left")}></div>
+      <div className={cx("circle-right")}></div>
       <div className={cx("banner-content")}>
         <div className={cx("banner-content-top")}>
           <div data-aos="fade-down">

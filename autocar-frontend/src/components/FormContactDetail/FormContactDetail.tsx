@@ -4,10 +4,10 @@ import { STATUS_LABEL } from "../../page/Staff/MyContact/constants/statusLabelDa
 import FormAppointment from "../Appointment/FormAppointment/FormAppointment";
 import AppointmentDetail from "../Appointment/AppointmentDetail/AppointmentDetail";
 import useFormContact from "./hooks/useFormContact";
-import { useAppointmentDetailQuery } from "./queries/useAppoinmentDetail";
+import { useAppointmentDetailQuery } from "../../queries/paymentQuery/useAppoinmentDetail";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import { useConfirm } from "../../hooks/useConfirm";
-import useDeleteContact from "../../mutations/useDeleteContact";
+import useDeleteContact from "../../mutations/ContactMutation/useDeleteContact";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import type { Contact } from "../../types/contact/contact.type";

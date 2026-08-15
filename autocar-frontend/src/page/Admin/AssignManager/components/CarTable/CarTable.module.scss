@@ -23,7 +23,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.7px;
-      color: #b0b8c9;
+      color: var(--th-color);
       border-bottom: 1.5px solid $border;
       white-space: nowrap;
 
@@ -89,9 +89,9 @@
   }
 
   .car-id {
-    font-size: 11px;
-    color: $cool-gray;
-    font-family: monospace;
+    font-size: 11.5px;
+    color: #bbbbbb;
+    font-weight: 550;
   }
 }
 

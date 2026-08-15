@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
-import { useCarDetail as useCarDetailQuery } from "../../../queries/useCarDetail";
-import { useCurrentUser } from "../../../queries/useCurrentUser";
+import { useCarDetail as useCarDetailQuery } from "../../../queries/carQuery/useCarDetail";
+import { useCurrentUser } from "../../../queries/userQuery/useCurrentUser";
 
 import { useCarGallery } from "./useCarGallery";
 import useCarActions from "./useCarActions";

@@ -1,7 +1,7 @@
 import imgBanner from "../assets/img/showroom1.jpg";
-import type { BannerData, ShowroomType } from "../types/showroom";
+import type { ShowroomType } from "../types/showroom/showroom.type";
 
-export const imgBannerData: BannerData[] = [
+export const imgBannerData = [
   {
     id: "0",
     image: imgBanner,

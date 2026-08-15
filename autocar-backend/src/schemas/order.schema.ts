@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ORDER_STATUS, PAYMENT_METHOD } from "../models/order.model";
+import { ORDER_STATUS, PAYMENT_METHOD } from "../constants/orderStatus";
 
 export const orderSchema = z.object({
   buyerId: z.string().min(1, "Khách hàng là bắt buộc"),
@@ -8,19 +8,17 @@ export const orderSchema = z.object({
 
   appointmentId: z.string().optional(),
 
-  paymentMethod: z.enum(PAYMENT_METHOD, {
-    message: "Vui lòng chọn phương thức thanh toán",
-  }),
+  // paymentMethod: z.enum(PAYMENT_METHOD, {
+  //   message: "Vui lòng chọn phương thức thanh toán",
+  // }),
 
-  salePrice: z.coerce.number().positive("Giá bán phải lớn hơn 0"),
+  discount: z.coerce.number().min(0, "Giảm giá không hợp lệ").default(0),
 
   taxRate: z.coerce
     .number()
     .min(0, "VAT không hợp lệ")
     .max(100, "VAT không được vượt quá 100%")
     .default(10),
-
-  deposit: z.coerce.number().min(0, "Tiền cọc không hợp lệ").default(0),
 
   note: z.string().trim().max(500, "Ghi chú tối đa 500 ký tự").optional(),
 });
@@ -32,13 +30,11 @@ export type CreateOrderDto = z.infer<typeof orderSchema>;
 // ==========================
 
 export const updateOrderSchema = z.object({
-  paymentMethod: z.enum(PAYMENT_METHOD).optional(),
+  // paymentMethod: z.enum(PAYMENT_METHOD).optional(),
 
-  salePrice: z.coerce.number().positive("Giá bán phải lớn hơn 0").optional(),
+  discount: z.coerce.number().min(0, "Giảm giá không hợp lệ").default(0),
 
   taxRate: z.coerce.number().min(0).max(100).optional(),
-
-  deposit: z.coerce.number().min(0).optional(),
 
   note: z.string().trim().max(500).optional(),
 });

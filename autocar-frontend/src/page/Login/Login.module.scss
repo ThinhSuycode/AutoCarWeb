@@ -59,10 +59,16 @@ form {
           border-color: #dc2626;
         }
       }
+      &:focus-within {
+        .icon-left i {
+          color: $red;
+          transform: scale(1.05);
+        }
+      }
 
       .icon-left {
         position: absolute;
-        top: 53%;
+        top: 24px;
         left: 14px;
         transform: translateY(-50%);
         font-size: 16px;
@@ -75,8 +81,8 @@ form {
       .icon-right {
         position: absolute;
         right: 14px;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 13px;
+        // transform: translateY(-50%);
         cursor: pointer;
         color: #afafaf;
       }

@@ -1,14 +1,7 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+import { ORDER_STATUS, PAYMENT_METHOD } from "../constants/orderStatus";
 
-export const ORDER_STATUS = [
-  "pending",
-  "processing",
-  "completed",
-  "cancelled",
-] as const;
-
-export const PAYMENT_METHOD = ["cash", "bank_transfer", "installment"] as const;
-const orderSchema = new Schema(
+const orderSchema = new mongoose.Schema(
   {
     orderCode: {
       type: String,
@@ -18,27 +11,27 @@ const orderSchema = new Schema(
     },
 
     buyerId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
       index: true,
     },
 
     staffId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
       index: true,
     },
 
     appointmentId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Appointment",
       default: null,
     },
 
     carId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Car",
       required: true,
       index: true,
@@ -109,23 +102,22 @@ const orderSchema = new Schema(
       min: 0,
     },
 
-    deposit: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-
-    // Thành tiền cuối cùng
     totalAmount: {
       type: Number,
       required: true,
       min: 0,
     },
 
-    paymentMethod: {
-      type: String,
-      enum: PAYMENT_METHOD,
-      default: "cash",
+    paidAmount: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    remainingAmount: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
 
     note: {
@@ -139,6 +131,10 @@ const orderSchema = new Schema(
       enum: ORDER_STATUS,
       default: "pending",
       index: true,
+    },
+    confirmedAt: {
+      type: Date,
+      default: null,
     },
 
     completedAt: {

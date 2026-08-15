@@ -15,11 +15,11 @@
       th {
         padding: 11px 16px;
         text-align: center;
-        font-size: 10.5px;
+        font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.7px;
-        color: $muted;
+        color: var(--th-color);
         border-bottom: 1.5px solid $border;
         white-space: nowrap;
         background: $bg;
@@ -208,6 +208,7 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .action-btn {

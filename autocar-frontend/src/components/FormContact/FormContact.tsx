@@ -4,7 +4,6 @@ import classNames from "classnames/bind";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../Button/Button";
-import usePostContact from "../../mutations/usePostContact";
 import {
   contactFormSchema,
   type ContactFormData,
@@ -84,7 +83,7 @@ const FormContact: React.FC<Props> = ({ userInfo, car }) => {
           />
           <i
             className={cx("field-icon", "fa-regular", "fa-message")}
-            style={{ top: 40 }}
+            style={{ top: 42 }}
           ></i>
           {errors.message && (
             <span className={cx("error")}>{errors.message.message}</span>

@@ -1,6 +1,8 @@
 import { onHandleLogout } from "../components/Logout/Logout";
 import { config } from "../config";
-import type { HeaderNavType, MenuItemType } from "../types/menu";
+import type { MenuItem } from "../types/menu/menu.type";
+import type { HeaderNavType } from "../types/menu/navigation.type";
+
 
 export const dataHeaderNav: HeaderNavType[] = [
   {
@@ -24,7 +26,7 @@ export const dataHeaderNav: HeaderNavType[] = [
     href: config.Routes.Articles,
   },
 ];
-export const MenuUserData: MenuItemType[] = [
+export const MenuUserData: MenuItem[] = [
   {
     icon: "fa-regular fa-address-card",
     title: "Thông tin cá nhân",

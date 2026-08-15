@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useArticleDetail as useArticleDetailQuery } from "../../../queries/useArticleDetail";
-import { useCurrentUser } from "../../../queries/useCurrentUser";
+import { useArticleDetail as useArticleDetailQuery } from "../../../queries/articleQuery/useArticleDetail";
+import { useCurrentUser } from "../../../queries/userQuery/useCurrentUser";
 import useArticleSave from "./useArticleSave";
 import { createHandleReadArticle } from "../../../hooks/HandleArticles";
 

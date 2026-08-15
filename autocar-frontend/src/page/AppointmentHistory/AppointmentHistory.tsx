@@ -25,7 +25,8 @@ const AppointmentHistory = () => {
   if (isLoading) {
     return <LoadingData message="Đang tải lịch hẹn..." />;
   }
-  console.log(appointments);
+  console.log(appointmentDetail);
+
   return (
     <div className={cx("appointmentHistory-page")}>
       <PageHeader

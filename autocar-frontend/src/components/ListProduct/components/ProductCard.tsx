@@ -12,6 +12,7 @@ interface Props {
 }
 
 const ProductCard = ({ userLayout, car }: Props) => {
+  console.log(car);
   return (
     <div className={cx("product-item", { userLayout })} data-aos="zoom-in">
       <div className={cx("product-item__img", { userLayout })}>

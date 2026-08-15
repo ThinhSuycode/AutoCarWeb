@@ -12,24 +12,33 @@ import { formatNumber, parseNumber } from "./utils/useTransformInput";
 
 const cx = classNames.bind(styles);
 
-type Props<T extends FieldValues> = {
+type Props<
+  TFieldValues extends FieldValues,
+  TTransformedValues extends FieldValues = TFieldValues,
+> = {
   label: string;
-  name: Path<T>;
-  control: Control<T>;
+  name: Path<TFieldValues>;
+
+  control: Control<TFieldValues, any, TTransformedValues>;
+
   placeholder?: string;
   error?: FieldError;
 };
 
-const MoneyInput = <T extends FieldValues>({
+const MoneyInput = <
+  TFieldValues extends FieldValues,
+  TTransformedValues extends FieldValues = TFieldValues,
+>({
   label,
   name,
   control,
   placeholder,
   error,
-}: Props<T>) => {
+}: Props<TFieldValues, TTransformedValues>) => {
   return (
     <div className={cx("wrapper")}>
       <label>{label}</label>
+
       <Controller
         name={name}
         control={control}
@@ -46,6 +55,7 @@ const MoneyInput = <T extends FieldValues>({
           />
         )}
       />
+
       {error && <small className={cx("error")}>{error.message}</small>}
     </div>
   );

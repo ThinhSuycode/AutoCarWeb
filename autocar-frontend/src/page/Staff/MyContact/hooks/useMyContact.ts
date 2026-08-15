@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { useContactsQuery } from "../../../../queries/useContact";
-import { useUpdateContactStatus } from "../../../../mutations/useUpdateContactStatus";
+import { useContactsQuery } from "../../../../queries/contactQuery/useContact";
+import { useUpdateContactStatus } from "../../../../mutations/ContactMutation/useUpdateContactStatus";
 import { statistics } from "../utils/myContactStatistics";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import type { Contact } from "../../../../types/contact/contact.type";

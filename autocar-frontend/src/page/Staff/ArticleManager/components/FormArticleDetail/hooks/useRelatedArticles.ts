@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useDebounce } from "../../../../../../hooks/useDebounce";
-import { useArticlesQuery } from "../../../../../../queries/useArticlesQuery";
+import { useArticlesQuery } from "../../../../../../queries/articleQuery/useArticlesQuery";
 import type { Article } from "../../../../../../types/article/article.type";
 
 interface Props {

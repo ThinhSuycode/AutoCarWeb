@@ -1,4 +1,3 @@
-import { populate } from "dotenv";
 import { Car } from "../models/car.model";
 import { Order } from "../models/order.model";
 import { User } from "../models/user.model";
@@ -8,6 +7,8 @@ import {
   UpdateOrderStatusDto,
 } from "../schemas/order.schema";
 import { AppError } from "../utils/AppError";
+import { canChangeOrderStatus } from "../constants/orderStatus";
+import { Appointment } from "../models/appoinment.model";
 
 const generateOrderCode = () =>
   `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -37,16 +38,21 @@ export const orderService = {
     if (car.status !== "available") {
       throw new AppError("Xe hiện không thể bán", 400);
     }
-
     const unitPrice = car.price;
 
-    const salePrice = data.salePrice ?? car.price;
+    const discount = data.discount ?? 0;
 
-    const tax = salePrice * (data.taxRate / 100);
+    if (discount > unitPrice) {
+      throw new AppError("Giảm giá không được lớn hơn giá niêm yết", 400);
+    }
 
-    const discount = Math.max(0, unitPrice - salePrice);
+    const salePrice = unitPrice - discount;
 
-    const totalAmount = salePrice + tax - (data.deposit ?? 0);
+    const taxRate = data.taxRate ?? 10;
+
+    const tax = salePrice * (taxRate / 100);
+
+    const totalAmount = salePrice + tax;
 
     const order = await Order.create({
       ...data,
@@ -57,15 +63,19 @@ export const orderService = {
 
       quantity: 1,
 
-      unitPrice: car.price,
+      unitPrice,
+
+      discount,
 
       salePrice,
 
-      discount,
+      taxRate,
 
       tax,
 
       totalAmount,
+
+      remainingAmount: totalAmount,
 
       buyerSnapshot: {
         username: buyer.username ?? "",
@@ -85,6 +95,12 @@ export const orderService = {
       status: "reserved",
       orderId: order._id,
     });
+
+    if (order.appointmentId) {
+      await Appointment.findByIdAndUpdate(order.appointmentId, {
+        orderId: order._id,
+      });
+    }
 
     return populateOrder(Order.findById(order._id));
   },
@@ -110,7 +126,7 @@ export const orderService = {
     ]);
 
     return {
-      orders,
+      data: orders,
       pagination: {
         page,
         limit,
@@ -142,26 +158,32 @@ export const orderService = {
     if (!current) {
       throw new AppError("Đơn hàng không tồn tại", 404);
     }
+    const unitPrice = current.unitPrice;
 
-    const salePrice = data.salePrice ?? current.salePrice;
+    const discount = data.discount ?? current.discount;
 
-    const deposit = data.deposit ?? current.deposit;
+    if (discount > unitPrice) {
+      throw new AppError("Giảm giá không được lớn hơn giá niêm yết", 400);
+    }
 
-    const taxRate = current.taxRate;
+    const salePrice = unitPrice - discount;
+
+    const taxRate = data.taxRate ?? current.taxRate;
 
     const tax = salePrice * (taxRate / 100);
 
-    const discount = Math.max(0, current.unitPrice - salePrice);
-
-    const totalAmount = salePrice + tax - deposit;
+    const totalAmount = salePrice + tax;
 
     const order = await populateOrder(
       Order.findByIdAndUpdate(
         id,
         {
           ...data,
-          salePrice,
+
+          unitPrice,
           discount,
+          salePrice,
+          taxRate,
           tax,
           totalAmount,
         },
@@ -171,7 +193,6 @@ export const orderService = {
         },
       ),
     );
-
     return order;
   },
 
@@ -185,20 +206,59 @@ export const orderService = {
       throw new AppError("Đơn hàng không tồn tại", 404);
     }
 
-    order.status = data.status;
+    const currentStatus = order.status;
+    const nextStatus = data.status;
 
-    switch (data.status) {
-      case "completed":
+    if (!canChangeOrderStatus(currentStatus, nextStatus)) {
+      throw new AppError(
+        `Không thể chuyển trạng thái từ "${currentStatus}" sang "${nextStatus}".`,
+        400,
+      );
+    }
+
+    order.status = nextStatus;
+
+    switch (nextStatus) {
+      case "confirmed": {
+        await Car.findByIdAndUpdate(order.carId, {
+          status: "reserved",
+          orderId: order._id,
+        });
+
+        break;
+      }
+
+      case "processing": {
+        await Car.findByIdAndUpdate(order.carId, {
+          status: "reserved",
+          orderId: order._id,
+        });
+
+        break;
+      }
+
+      case "ready_for_delivery": {
+        await Car.findByIdAndUpdate(order.carId, {
+          status: "reserved",
+          orderId: order._id,
+        });
+
+        break;
+      }
+
+      case "completed": {
         order.completedAt = new Date();
 
         await Car.findByIdAndUpdate(order.carId, {
           status: "sold",
+          orderId: order._id,
           soldAt: new Date(),
         });
 
         break;
+      }
 
-      case "cancelled":
+      case "cancelled": {
         await Car.findByIdAndUpdate(order.carId, {
           status: "available",
           orderId: null,
@@ -206,13 +266,8 @@ export const orderService = {
         });
 
         break;
-
-      case "processing":
+      }
       case "pending":
-        await Car.findByIdAndUpdate(order.carId, {
-          status: "reserved",
-        });
-
         break;
     }
 
@@ -220,7 +275,6 @@ export const orderService = {
 
     return populateOrder(Order.findById(order._id));
   },
-
   // ==========================
   // DELETE
   // ==========================
@@ -242,5 +296,27 @@ export const orderService = {
     return {
       message: "Xóa đơn hàng thành công",
     };
+  },
+  async confirmOrder(id: string, userId: string) {
+    const order = await Order.findById(id);
+
+    if (!order) {
+      throw new AppError("Không tìm thấy chi tiết đơn hàng!!", 404);
+    }
+
+    if (order.buyerId.toString() !== userId) {
+      throw new AppError("Bạn không có quyền cập nhật!!", 403);
+    }
+
+    if (order.status !== "pending") {
+      throw new AppError("Đơn hàng không ở trạng thái chờ xác nhận!!", 400);
+    }
+    order.status = "confirmed";
+
+    order.confirmedAt = new Date();
+
+    await order.save();
+
+    return order;
   },
 };

@@ -1,0 +1,436 @@
+@use "../../../../../styles/tokens" as *;
+
+.order-page {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.order-container {
+  width: 100%;
+  max-width: 680px;
+  background: $paper;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+}
+
+/* HEADER */
+.order-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 32px 26px;
+  background: linear-gradient(135deg, $navy 0%, $navy-2 100%);
+  color: $white;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle at 85% -20%,
+      rgba($white, 0.12),
+      transparent 55%
+    );
+  }
+
+  .label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba($white, 0.6);
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: $white;
+  }
+}
+
+.status {
+  position: relative;
+  padding: 7px 16px;
+  border-radius: $radius-sm;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+
+  &.status-pending {
+    background: rgba($amber, 0.18);
+    color: #ffd899;
+  }
+
+  &.status-confirmed {
+    background: rgba($green, 0.22);
+    color: #b6f3cf;
+  }
+}
+
+/* BODY */
+.section {
+  padding: 24px 32px 0;
+  margin-bottom: 24px;
+
+  &:last-of-type {
+    margin-bottom: 28px;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    color: $navy;
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $border-2;
+  }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 16px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  span {
+    font-size: 12px;
+    color: $muted;
+  }
+
+  strong {
+    font-size: 14px;
+    color: $navy;
+    font-weight: 600;
+  }
+}
+
+/* CAR */
+.car-info {
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  background: $navy-soft;
+  border-radius: $radius-md;
+}
+
+.car-image {
+  flex-shrink: 0;
+  width: 130px;
+  height: 96px;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  background: $border-2;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.car-content {
+  flex: 1;
+
+  h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: $navy;
+  }
+
+  p {
+    margin: 0 0 6px;
+    font-size: 13px;
+    color: $slate;
+
+    strong {
+      color: $navy;
+      font-weight: 600;
+    }
+  }
+}
+
+/* PRICE — top-level rows only (avoids leaking into payment-total's nested rows) */
+.price-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px;
+    font-size: 14px;
+    color: $slate;
+    border-bottom: 1px solid $border-2;
+
+    strong {
+      font-weight: 600;
+      color: $navy;
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.discount {
+  color: $red-dark !important;
+}
+
+.total {
+  margin-top: 8px;
+  padding: 16px !important;
+  background: $navy;
+  border-radius: $radius-sm;
+  border-bottom: none !important;
+
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba($white, 0.75);
+  }
+
+  strong {
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    color: $white !important;
+  }
+}
+
+/* PAID / REMAINING breakdown — split stat cards instead of plain rows */
+.payment-total {
+  margin-top: 16px;
+  padding: 0 !important;
+  display: flex;
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid $border;
+  border-bottom: 1px solid $border !important;
+  box-shadow: $shadow-sm;
+}
+
+.paidAmount,
+.remainingAmount {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px 12px;
+  text-align: center;
+  transition: background 0.3s ease;
+
+  span {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $muted;
+    transition: color 0.3s ease;
+  }
+
+  strong {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+}
+
+.paidAmount {
+  background: $green-soft;
+
+  strong {
+    color: $green !important;
+  }
+
+  /* dashed "tear" divider between the two halves */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 18%;
+    bottom: 18%;
+    right: 0;
+    border-right: 1.5px dashed rgba($navy, 0.18);
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba($green, 0.16), rgba($green, 0.34));
+
+    span {
+      color: $green;
+    }
+  }
+}
+
+.remainingAmount {
+  background: rgba($red-dark, 0.05);
+
+  strong {
+    color: $red-dark !important;
+  }
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba($red-dark, 0.1),
+      rgba($red-dark, 0.26)
+    );
+
+    span {
+      color: $red-dark;
+    }
+  }
+}
+
+/* NOTE */
+.note {
+  margin: 0;
+  padding: 14px 16px;
+  background: rgba($amber, 0.08);
+  border: 1px solid rgba($amber, 0.25);
+  border-radius: $radius-sm;
+  font-size: 13px;
+  color: $navy-2;
+  line-height: 1.5;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  gap: 12px;
+  padding: 0 32px 32px;
+}
+
+.cancel-button,
+.confirm-button {
+  flex: 1;
+  padding: 13px 20px;
+  border-radius: $radius-sm;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition:
+    opacity 0.2s $ease-smooth,
+    transform 0.1s $ease-smooth,
+    box-shadow 0.2s $ease-smooth;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.cancel-button {
+  background: $paper;
+  color: $slate;
+  border: 1.5px solid $border;
+
+  &:hover:not(:disabled) {
+    background: $navy-soft;
+    border-color: $border-strong;
+  }
+}
+
+.confirm-button {
+  background: $navy;
+  color: $white;
+  box-shadow: $shadow-md;
+
+  &:hover:not(:disabled) {
+    background: $navy-2;
+    transform: translateY(-1px);
+  }
+}
+
+/* CONFIRMED */
+.confirmed-message {
+  margin: 0 32px 32px;
+  padding: 18px 20px;
+  border-radius: $radius-md;
+  background: $green-soft;
+  color: $green;
+  border: 1px solid rgba($green, 0.25);
+
+  strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    margin-bottom: 6px;
+
+    &::before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: $green;
+      color: $white;
+      font-size: 12px;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: $green;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 640px) {
+  .order-header {
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 20px 22px;
+  }
+
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .car-info {
+    flex-direction: column;
+  }
+
+  .car-image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .actions,
+  .confirmed-message {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

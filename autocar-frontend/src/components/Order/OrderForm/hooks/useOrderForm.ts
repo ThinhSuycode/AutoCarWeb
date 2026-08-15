@@ -27,9 +27,8 @@ const useOrderForm = ({ defaultValues, appointment, onClose }: Props) => {
     resolver: zodResolver(orderSchema),
     defaultValues: defaultValues ?? {},
   });
-  const paymentMethod = watch("paymentMethod");
 
-  const deposit = watch("deposit") ? Number(watch("deposit")) : 0;
+  const discount = watch("discount") ? Number(watch("discount")) : 0;
 
   const taxRate = watch("taxRate") ? Number(watch("taxRate")) : 0;
 
@@ -45,7 +44,7 @@ const useOrderForm = ({ defaultValues, appointment, onClose }: Props) => {
       }
       await createOrderMutation({
         ...data,
-
+        status: "pending",
         buyerId: appointment.contactId.buyerId?._id ?? "",
 
         carId: appointment.contactId.carId?._id ?? "",
@@ -59,7 +58,6 @@ const useOrderForm = ({ defaultValues, appointment, onClose }: Props) => {
     }
   };
   return {
-    paymentMethod,
     register,
     watch,
     setValue,
@@ -67,7 +65,7 @@ const useOrderForm = ({ defaultValues, appointment, onClose }: Props) => {
     handleSubmit,
     errors,
     salePrice,
-    deposit,
+    discount,
     taxRate,
     control,
   };

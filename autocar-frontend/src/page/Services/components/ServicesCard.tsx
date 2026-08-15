@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "../Services.module.scss";
-import type { ServiceItem } from "../../../types/services";
+import type { ServiceItem } from "../../../types/service/service.type";
 
 const cx = classNames.bind(styles);
 
@@ -24,10 +24,7 @@ const ServiceCard = ({ service }: Props) => {
 
         <div className={cx("list-desc")}>
           {service.features.map((feat) => (
-            <div
-              key={feat}
-              className={cx("desc-item")}
-            >
+            <div key={feat} className={cx("desc-item")}>
               <span>
                 <i className="fa-regular fa-circle-check"></i>
               </span>

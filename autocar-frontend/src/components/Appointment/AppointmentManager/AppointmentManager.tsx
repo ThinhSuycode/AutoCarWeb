@@ -43,6 +43,7 @@ const AppointmentManager = ({ role }: Props) => {
 
     orderDetail,
   } = useAppointmentManager();
+  console.log(orderMode);
 
   return (
     <div className={cx("appointment-page")}>
@@ -61,6 +62,7 @@ const AppointmentManager = ({ role }: Props) => {
             <div className={cx("appointment-form")}>
               <AppointmentDetail
                 appointment={appointmentDetail}
+                activeOrder
                 order={orderDetail}
                 setOrderMode={(message) => setOrderMode(message)}
               />

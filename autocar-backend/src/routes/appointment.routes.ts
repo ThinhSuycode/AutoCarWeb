@@ -45,7 +45,7 @@ appointmentRouter.post(
 
 appointmentRouter.patch(
   "/appointments/:id/confirm",
-  ...AuthRequiredRole,
+  requireAuth,
   confirmAppointment,
 );
 

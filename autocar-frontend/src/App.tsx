@@ -2,16 +2,15 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import DefaultLayout from "./layout/DefaultLayout/DefaultLayout";
 import { publicRoutes, privateRoutes, type RouteItem } from "./routes/routes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import useScrollToTop from "./hooks/useScrollToTop";
 import ProtectedRoute from "./services/ProtedRoute";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { useEffect, useState } from "react";
 import GuestRoute from "./services/GuestRoute";
-
-
-const queryClient = new QueryClient();
+import { queryClient } from "./config/queryClient";
+import AppToaster from "./components/AppToaster/AppToaster";
 
 const renderRoute = (item: RouteItem, wrapProtected = false) => {
   let Layout: any = DefaultLayout;
@@ -39,17 +38,14 @@ const renderRoute = (item: RouteItem, wrapProtected = false) => {
     );
   }
 
-  const element = wrapProtected ? (
-    <ProtectedRoute requiredRole={item.requiredRole}>
-      {pageElement}
-    </ProtectedRoute>
-  ) : item.requiredRole ? (
-    <ProtectedRoute requiredRole={item.requiredRole}>
-      {pageElement}
-    </ProtectedRoute>
-  ) : (
-    pageElement
-  );
+  const element =
+    wrapProtected || item.requiredRole ? (
+      <ProtectedRoute requiredRole={item.requiredRole}>
+        {pageElement}
+      </ProtectedRoute>
+    ) : (
+      pageElement
+    );
 
   return <Route key={item.path} path={item.path} element={element} />;
 };
@@ -82,28 +78,7 @@ function App() {
       <Toaster
         position="bottom-right"
         reverseOrder={false}
-        toastOptions={{
-          duration: 3000,
-          style: {
-            background: "#363636",
-            padding: "15px 25px",
-            color: "#fff",
-          },
-          success: {
-            duration: 3000,
-            iconTheme: {
-              primary: "#22c55e",
-              secondary: "#fff",
-            },
-          },
-          error: {
-            duration: 4000,
-            iconTheme: {
-              primary: "#ef4444",
-              secondary: "#fff",
-            },
-          },
-        }}
+        toastOptions={AppToaster.toastConfig}
       />
       <AppContent />
     </QueryClientProvider>

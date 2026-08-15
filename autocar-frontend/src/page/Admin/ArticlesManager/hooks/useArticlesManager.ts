@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useArticlesQuery } from "../../../../queries/useArticlesQuery";
-import useUpdateStatus from "../mutations/useUpdateStatus";
+import { useArticlesQuery } from "../../../../queries/articleQuery/useArticlesQuery";
+import useUpdateStatus from "../../../../mutations/ArticleMutation/useUpdateStatus";
 export const useArticlesManager = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");

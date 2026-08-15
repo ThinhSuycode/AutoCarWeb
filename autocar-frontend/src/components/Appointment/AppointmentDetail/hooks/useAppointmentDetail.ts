@@ -1,9 +1,12 @@
-import { useExportAppointment } from "../../../../mutations/useExportAppointment";
-import useCancelAppointment from "../mutations/useCancelAppointment";
-import useCompleteAppointment from "../mutations/useCompleteAppointment";
-import useConfirmAppointment from "../mutations/useConfirmAppointment";
+import { useExportAppointment } from "../../../../mutations/AppointmentMutation/useExportAppointment";
+import { useCurrentUser } from "../../../../queries/userQuery/useCurrentUser";
+import useCancelAppointment from "../../../../mutations/AppointmentMutation/useCancelAppointment";
+import useCompleteAppointment from "../../../../mutations/AppointmentMutation/useCompleteAppointment";
+import useConfirmAppointment from "../../../../mutations/AppointmentMutation/useConfirmAppointment";
 
 const useAppointmentDetail = (appointmentId: string) => {
+  const login = !!localStorage.getItem("token");
+  const { data: userData } = useCurrentUser(login);
   const { mutateAsync: confirmAppointment, isPending: isLoadingConfirm } =
     useConfirmAppointment();
   const { mutateAsync: cancelAppointment, isPending: isLoadingCancel } =
@@ -12,6 +15,7 @@ const useAppointmentDetail = (appointmentId: string) => {
     useCompleteAppointment();
   const { exportExcel, isExporting } = useExportAppointment(appointmentId);
 
+  const roleIsUser = userData?.role === "user";
   return {
     confirmAppointment,
     cancelAppointment,
@@ -21,6 +25,7 @@ const useAppointmentDetail = (appointmentId: string) => {
     isLoadingComplete,
     exportExcel,
     isExporting,
+    roleIsUser,
   };
 };
 

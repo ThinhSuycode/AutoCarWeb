@@ -1,15 +1,20 @@
 import classNames from "classnames/bind";
 import styles from "./OrderDetailForm.module.scss";
+
 import type { OrderType } from "../../../types/order/order.type";
-import OrderHeader from "./components/OrderHeader/OrderHeader";
-import OrderCustomerSection from "../OrderForm/components/OrderCustomerSection/OrderCustomerSection";
-import OrderCarSection from "../OrderForm/components/OrderCarSection/OrderCarSection";
-import OrderFooter from "./components/OrderFooter/OrderFooter";
-import OrderSummary from "./components/OrderSummary/OrderSummary";
-import useOrderDetail from "./hooks/useOrderDetail";
-import OrderPaymentSection from "../OrderForm/components/OrderPaymentSection/OrderPaymentSection";
 import type { OrderModeType } from "../../Appointment/AppointmentManager/constant/useAppointmentData";
-import OrderNoteSection from "../OrderForm/components/OrderNoteSection/OrderNoteSection";
+
+import OrderCustomerSection from "../components/OrderCustomerSection/OrderCustomerSection";
+import OrderCarSection from "../components/OrderCarSection/OrderCarSection";
+import OrderSummary from "../components/OrderSummary/OrderSummary";
+
+import OrderHistory from "./components/OrderHistory/OrderHistory";
+import PaymentCreate from "./components/PaymentCreate/PaymentCreate";
+import OrderPaymentForm from "./components/OrderPaymentForm/OrderPaymentForm";
+
+import useOrderDetail from "./hooks/useOrderDetail";
+import OrderDetailHeader from "./components/OrderDetailHeader/OrderDetailHeader";
+import OrderDetailFooter from "./components/OrderDetailFooter/OrderDetailFooter";
 
 const cx = classNames.bind(styles);
 
@@ -19,69 +24,76 @@ interface Props {
 }
 
 const OrderDetailForm = ({ order, onBack }: Props) => {
-  if (!order) return;
+  if (!order) return null;
+
   const {
+    openOrder,
+    setOpenOrder,
+
     control,
+    register,
     errors,
     paymentMethod,
     setValue,
-    paymentMode,
-    setPaymentMode,
-    salePrice,
-    register,
-    taxRate,
+
     handleSubmit,
-    deposit,
-    onSubmitSave,
-    reset,
+    onSubmitPayment,
+
+    isPending,
+    paymentsData,
   } = useOrderDetail(order);
 
   return (
     <div className={cx("orderDetail-wrapper")}>
-      <OrderHeader order={order}></OrderHeader>
-      <form
-        className={cx("form-detail")}
-        id="orderForm-detail"
-        onSubmit={handleSubmit(onSubmitSave)}
-      >
-        <OrderCustomerSection
-          customerName={order.buyerId.username ?? ""}
-          phone={order.buyerId?.phone ?? ""}
-          email={order.buyerId?.email ?? ""}
-        ></OrderCustomerSection>
-        <OrderCarSection
-          image={order.carId.thumbnail ?? ""}
-          name={order.carId.name}
-          brand={order.carId.brand}
-          price={order.unitPrice}
-          year={order.carId.year ?? 0}
-        ></OrderCarSection>
-        <OrderSummary
-          order={order}
-          salePrice={salePrice}
-          taxRate={taxRate}
-          deposit={deposit}
-        ></OrderSummary>
-        <OrderPaymentSection
-          mode={paymentMode}
-          order={order}
-          control={control}
-          errors={errors}
-          paymentMethod={paymentMethod}
-          onChange={(value) => setValue("paymentMethod", value)}
-        ></OrderPaymentSection>
-        <OrderNoteSection
-          register={register}
-          paymentMode={paymentMode}
-        ></OrderNoteSection>
-      </form>
-      <OrderFooter
-        paymentMode={paymentMode}
-        status={order.status}
-        onReset={reset}
-        onChangePaymentMode={(mode) => setPaymentMode(mode)}
-        onChangeOrderMode={(mode) => onBack(mode)}
-      ></OrderFooter>
+      <OrderDetailHeader order={order}></OrderDetailHeader>
+      {openOrder ? (
+        <OrderPaymentForm order={order} onBack={() => setOpenOrder(false)} />
+      ) : (
+        <form
+          className={cx("form-detail")}
+          id="createPaymentForm"
+          onSubmit={handleSubmit(onSubmitPayment)}
+        >
+          <OrderCustomerSection
+            customerName={order.buyerId?.username ?? ""}
+            phone={order.buyerId?.phone ?? ""}
+            email={order.buyerId?.email ?? ""}
+          />
+
+          <OrderCarSection
+            image={order.carId?.thumbnail ?? ""}
+            name={order.carId?.name ?? ""}
+            brand={order.carId?.brand ?? ""}
+            price={order.unitPrice}
+            year={order.carId?.year ?? 0}
+          />
+
+          <OrderSummary
+            unitPrice={order.unitPrice}
+            salePrice={order.salePrice}
+            taxRate={order.taxRate}
+            discount={order.discount}
+            remainingAmount={order.remainingAmount}
+            paidAmount={order.paidAmount}
+            detail
+            setOpenOrder={setOpenOrder}
+          />
+          <OrderHistory payments={paymentsData ?? []} />
+          <PaymentCreate
+            control={control}
+            register={register}
+            errors={errors}
+            paymentMethod={paymentMethod ?? null}
+            onChange={(value) => setValue("method", value)}
+          />
+        </form>
+      )}
+      {!openOrder && (
+        <OrderDetailFooter
+          onBack={onBack}
+          isCreatingPayment={isPending}
+        ></OrderDetailFooter>
+      )}
     </div>
   );
 };

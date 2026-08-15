@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { config } from "../config";
-import { useCurrentUser } from "../queries/useCurrentUser";
+import { useCurrentUser } from "../queries/userQuery/useCurrentUser";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

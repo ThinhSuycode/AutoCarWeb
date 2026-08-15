@@ -15,15 +15,22 @@ const cx = classNames.bind(styles);
 interface Props {
   appointment: Appointment | undefined;
   order?: OrderType | undefined;
+  activeOrder?: boolean;
   setOrderMode?: (message: OrderModeType) => void;
 }
 
-const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
+const AppointmentDetail = ({
+  appointment,
+  setOrderMode,
+  order,
+  activeOrder,
+}: Props) => {
   if (!appointment) {
     return <LoadingData message="Không tìm thấy lịch hẹn..."></LoadingData>;
   }
 
-  const hasOrder = appointment._id === order?.appointmentId?._id;
+  const hasOrder =
+    Boolean(order) && order?.appointmentId?._id === appointment._id;
 
   const {
     confirmAppointment,
@@ -34,6 +41,7 @@ const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
     isLoadingComplete,
     exportExcel,
     isExporting,
+    roleIsUser,
   } = useAppointmentDetail(appointment?._id);
 
   const contact = appointment.contactId;
@@ -106,7 +114,7 @@ const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
           <div className={cx("field")}>
             <label>Họ tên</label>
 
-            <p>{contact.buyerId?.username ?? ""}</p>
+            <p>{contact.name ?? contact.buyerId?.username}</p>
           </div>
 
           <div className={cx("field")}>
@@ -180,7 +188,7 @@ const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
           </>
         )}
 
-        {appointment.status === "confirmed" && (
+        {appointment.status === "confirmed" && !roleIsUser && (
           <>
             <button
               className={cx("complete")}
@@ -199,7 +207,7 @@ const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
             </button>
           </>
         )}
-        {appointment.status === "completed" && (
+        {appointment.status === "completed" && !roleIsUser && (
           <>
             <button
               type="button"
@@ -209,25 +217,29 @@ const AppointmentDetail = ({ appointment, setOrderMode, order }: Props) => {
               <i className="fa-solid fa-file-arrow-down" />
               {isExporting ? "Đang xuất Excel" : "Xuất Excel"}
             </button>
-            {order &&
-              (hasOrder ? (
-                <button
-                  type="button"
-                  className={cx("btn-createOrder")}
-                  onClick={() => setOrderMode?.("detail")}
-                >
-                  Xem hoá hoá đơn
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className={cx("btn-createOrder")}
-                  onClick={() => setOrderMode?.("create")}
-                >
-                  <i className="fa-solid fa-plus" />
-                  Tạo hoá đơn
-                </button>
-              ))}
+
+            {activeOrder && (
+              <>
+                {hasOrder ? (
+                  <button
+                    type="button"
+                    className={cx("btn-createOrder")}
+                    onClick={() => setOrderMode?.("detail")}
+                  >
+                    Xem hoá hoá đơn
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className={cx("btn-createOrder")}
+                    onClick={() => setOrderMode?.("create")}
+                  >
+                    <i className="fa-solid fa-plus" />
+                    Tạo hoá đơn
+                  </button>
+                )}
+              </>
+            )}
           </>
         )}
       </div>

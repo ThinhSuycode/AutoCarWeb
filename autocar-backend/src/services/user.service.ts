@@ -5,7 +5,7 @@ export const getUserWithPopulate = async (id: string) => {
     .select("-password")
     .populate({
       path: "favouriteCar",
-      select: "name brand price year image mileage transmission",
+      select: "name brand price year thumbnail mileage transmission",
     })
     .populate({
       path: "articleSave",

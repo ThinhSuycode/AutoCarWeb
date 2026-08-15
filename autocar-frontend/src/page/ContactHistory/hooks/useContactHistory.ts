@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useContactsQuery } from "../../../queries/useContact";
+import { useContactsQuery } from "../../../queries/contactQuery/useContact";
 
 const useContactHistory = () => {
   const [status, setStatus] = useState("");

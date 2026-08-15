@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { signToken } from "../utils/jwt";
 import { AuthRequest } from "../middleware/authMiddleware";
 import { OAuth2Client } from "google-auth-library";
-import crypto from "crypto";
+
 import {
   changePasswordSchema,
   forgotPasswordSchema,

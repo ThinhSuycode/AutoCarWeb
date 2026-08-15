@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { useDebounce } from "../../../../hooks/useDebounce";
-import useAppointments from "../../../../queries/useAppointments";
-import { useCurrentUser } from "../../../../queries/useCurrentUser";
+import useAppointments from "../../../../queries/appointmentQuery/useAppointments";
+import { useCurrentUser } from "../../../../queries/userQuery/useCurrentUser";
 import { appointmentStatistics } from "../utils/appointmentStatistics";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "../../../../queries/queryKeys";
-import { useExportAppointmentAll } from "../../../../mutations/useExportAppointmentAll";
+import { useExportAppointmentAll } from "../../../../mutations/AppointmentMutation/useExportAppointmentAll";
 import type { Appointment } from "../../../../types/appointment/appointment.type";
 import { useOrderDetail } from "../../../../queries/orderQuery/useOrderDetail";
 import type { OrderModeType } from "../constant/useAppointmentData";

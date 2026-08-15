@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import useArticleSaveMutation from "../../../mutations/useArticleSaveMutation";
+import useArticleSaveMutation from "../../../mutations/UserMutation/useArticleSaveMutation";
 import type { UserType } from "../../../types/user/user.type";
 import type { ArticleDetail } from "../../../types/article/article-detail.type";
 

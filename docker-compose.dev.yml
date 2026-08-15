@@ -1,0 +1,48 @@
+services:
+  backend:
+    build:
+      context: ./autocar-backend
+      dockerfile: Dockerfile.dev
+
+    container_name: autocar-backend-dev
+
+    command: npm run dev
+
+    env_file:
+      - ./autocar-backend/.env
+
+    volumes:
+      - ./autocar-backend:/app
+      - /app/node_modules
+
+    ports:
+      - "5000:5000"
+
+    networks:
+      - autocar-network
+
+  frontend:
+    build:
+      context: ./autocar-frontend
+      dockerfile: Dockerfile.dev
+
+    container_name: autocar-frontend-dev
+
+    command: npm run dev -- --host 0.0.0.0
+
+    volumes:
+      - ./autocar-frontend:/app
+      - /app/node_modules
+
+    ports:
+      - "5173:5173"
+
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+
+    networks:
+      - autocar-network
+
+networks:
+  autocar-network:
+    driver: bridge

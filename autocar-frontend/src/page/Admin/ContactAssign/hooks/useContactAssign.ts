@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
-import { useContactsQuery } from "../../../../queries/useContact";
+import { useContactsQuery } from "../../../../queries/contactQuery/useContact";
 
-import { useAssignContact } from "../../../../mutations/useAssignContact";
+import { useAssignContact } from "../../../../mutations/ContactMutation/useAssignContact";
 import { contactStatistics } from "../utils/contactStatistics";
-import { useGetRoleQuery } from "../../../../queries/useGetRoleQuery";
+import { useGetRoleQuery } from "../../../../queries/userQuery/useGetRoleQuery";
 import type { Contact } from "../../../../types/contact/contact.type";
 
 const useContactAssign = () => {

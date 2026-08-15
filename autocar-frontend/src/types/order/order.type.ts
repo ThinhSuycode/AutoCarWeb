@@ -1,7 +1,7 @@
 import type { Appointment } from "../appointment/appointment.type";
 import type { CarType } from "../car/car.type";
 import type { UserType } from "../user/user.type";
-import type { OrderStatus, PaymentMethod } from "./order.constant";
+import type { OrderStatus } from "./order.constant";
 
 export interface BuyerSnapshot {
   username: string;
@@ -40,8 +40,6 @@ export interface OrderType {
   // Số tiền được giảm
   discount: number;
 
-  deposit: number;
-
   // VAT (%)
   taxRate: number;
 
@@ -51,7 +49,9 @@ export interface OrderType {
   // Thành tiền cuối cùng
   totalAmount: number;
 
-  paymentMethod: PaymentMethod;
+  paidAmount: number;
+
+  remainingAmount: number;
 
   note?: string;
 

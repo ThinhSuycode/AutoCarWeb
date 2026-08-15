@@ -2,11 +2,11 @@ import { useCallback, useState } from "react";
 
 import type { FilterType } from "../types/assignManagerType";
 
-import useAssignCarQuery from "../queries/useAssignCarQuery";
+import useAssignCarQuery from "../../../../queries/managerQuery/useAssignCarQuery";
 import {
   useAssignManagerMutation,
   useRemoveManagerMutation,
-} from "../mutations/useManagerMutation";
+} from "../../../../mutations/ManagerMutation/useManagerMutation";
 import toast from "react-hot-toast";
 import useGetStaffQuery from "../queries/useGetStaffQuery";
 

@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useCurrentUser } from "../queries/useCurrentUser";
+import { useCurrentUser } from "../queries/userQuery/useCurrentUser";
 import { config } from "../config";
 
 interface GuestRouteProps {

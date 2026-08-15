@@ -48,7 +48,7 @@ const AppointmentTable = ({
 
             {role === "admin" && <th>Sale phụ trách</th>}
 
-            <th>Xe</th>
+            <th>Xe quan tâm</th>
             <th>Dịch vụ</th>
             <th>Showroom</th>
             <th>Ngày</th>
@@ -69,7 +69,7 @@ const AppointmentTable = ({
         <tbody>
           {appointments.map((item) => (
             <tr key={item._id}>
-              <td>{item.contactId.buyerId?.username}</td>
+              <td>{item.contactId.name ?? item.contactId.buyerId?.username}</td>
               {role === "admin" && (
                 <td>{item.contactId.managerId?.username}</td>
               )}

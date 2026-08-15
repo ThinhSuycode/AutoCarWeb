@@ -1,4 +1,4 @@
-import type { ManagerStatus } from "../types/managerStaff";
+import type { ManagerStatus } from "../schemas/car.schema";
 
 export const MANAGER_STATUS_MAP: Record<
   ManagerStatus,

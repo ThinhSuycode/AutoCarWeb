@@ -7,8 +7,8 @@ import {
   type FormOutputProfile,
 } from "../../../schemas/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import useSaveProfile from "../mutations/useSaveProfile";
-import { useCurrentUser } from "../../../queries/useCurrentUser";
+import useSaveProfile from "../../../mutations/UserMutation/useSaveProfile";
+import { useCurrentUser } from "../../../queries/userQuery/useCurrentUser";
 
 const useProfile = () => {
   const [showForm, setShowForm] = useState<boolean>(false);

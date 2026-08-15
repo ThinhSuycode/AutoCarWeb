@@ -8,8 +8,8 @@ import {
   type AppointmentFormData,
 } from "../../../../schemas/appointment";
 import { APPOINTMENT_FORM_DEFAULT } from "../constant/appointmentData";
-import { useCreateAppointmentMutation } from "../mutations/useCreateAppointmentMutation";
-import { useGetCars } from "../../../../queries/useCarAllQuery";
+import { useCreateAppointmentMutation } from "../../../../mutations/AppointmentMutation/useCreateAppointmentMutation";
+import { useGetCars } from "../../../../queries/carQuery/useCarAllQuery";
 import type { Contact } from "../../../../types/contact/contact.type";
 
 interface Props {

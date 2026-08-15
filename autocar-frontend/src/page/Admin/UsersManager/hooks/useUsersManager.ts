@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
-import { useUserAllQuery } from "../../../../queries/useUserAllQuery";
+import { useUserAllQuery } from "../../../../queries/userQuery/useUserAllQuery";
 import toast from "react-hot-toast";
 import { useConfirm } from "../../../../hooks/useConfirm";
-import { useDeleteUser } from "../mutations/useDeleteUserMutation";
+import { useDeleteUser } from "../../../../mutations/UserMutation/useDeleteUserMutation";
 import { getErrorMessage } from "../../../../utils/getErrorMessage";
 import type { GetDataProps } from "../types/usersManager.type";
 

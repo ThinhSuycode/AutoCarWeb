@@ -1,4 +1,4 @@
-import useDashboardQuery from "../queries/useDashboardQuery";
+import useDashboardQuery from "../../../../queries/dashboardQuery/useDashboardQuery";
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export const useDashboardManager = () => {

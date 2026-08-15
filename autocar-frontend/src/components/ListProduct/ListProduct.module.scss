@@ -4,7 +4,6 @@
 
 .products-inner {
   width: 100%;
-  // background-color: #f7fbff;
   .product-content {
     .product-content-top {
       display: flex;
@@ -12,6 +11,7 @@
       justify-content: space-between;
       margin-bottom: 10px;
       padding: 16px 25px;
+      background: linear-gradient(165deg, #182033 45%, rgb(93 109 112 / 96%));
 
       .right {
         display: flex;
@@ -27,7 +27,7 @@
         padding: 8px 16px;
         font-size: 14px;
         font-weight: 500;
-        color: #333;
+        color: #eeea6e;
         border: 1px solid #ddd;
         border-radius: 20px;
         cursor: pointer;
@@ -81,6 +81,8 @@
         h2 {
           font-size: 24px;
           font-weight: 800;
+          color: white;
+          text-shadow: 6px 0px 25px rgb(0 168 255);
           padding-bottom: 4px;
           border-bottom: 3px solid #dc2626;
           display: inline-block;
@@ -89,7 +91,8 @@
 
         p {
           font-size: 13px;
-          color: #64748b;
+          color: #bac1cb;
+          font-weight: 700;
         }
       }
     }

@@ -1,40 +1,39 @@
-import type { BannerContact, QuestionContact } from "../types/contact";
+import type {
+  BannerContact,
+  QuestionContact,
+} from "../types/contact/contact.ui";
 
 export const BannerContactData: BannerContact[] = [
   {
     icon: "fa-solid fa-location-dot",
     heading: "Địa chỉ ShowRoom",
-    desc: 
-    {
-      desc1:"123 Nguyễn Văn Linh",
-      desc2:"Quận 7, TP. Hồ Chí Minh"
+    desc: {
+      desc1: "123 Nguyễn Văn Linh",
+      desc2: "Quận 7, TP. Hồ Chí Minh",
     },
   },
   {
     icon: "fa-solid fa-phone-volume",
     heading: "Điện thoại",
-    desc: 
-     {
-      desc1:"Hotline: 0901 234",
-      desc2:"Kinh doanh: 0902 345 678"
+    desc: {
+      desc1: "Hotline: 0901 234",
+      desc2: "Kinh doanh: 0902 345 678",
     },
   },
   {
     icon: "fa-regular fa-envelope",
     heading: "Email",
-    desc: 
-     {
-      desc1:"info@autoviet.vn",
-      desc2:"support@autoviet.vn"
+    desc: {
+      desc1: "info@autoviet.vn",
+      desc2: "support@autoviet.vn",
     },
   },
   {
     icon: "fa-regular fa-clock",
     heading: "Giờ làm việc",
-    desc:
-     {
-      desc1:"Thứ 2 - Thứ 7: 8:00 - 18:00",
-      desc2:" Chủ nhật: 9:00 - 17:00"
+    desc: {
+      desc1: "Thứ 2 - Thứ 7: 8:00 - 18:00",
+      desc2: " Chủ nhật: 9:00 - 17:00",
     },
   },
 ];

@@ -1,6 +1,6 @@
+@use "sass:list";
 @use "../../../styles/tokens" as *;
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 .myContact-page {
   min-height: 100vh;
 
@@ -10,7 +10,6 @@
   }
 }
 
-// ─── Statistics ───────────────────────────────────────────────────────────────
 .statistics {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -37,7 +36,7 @@ $card-accents: $navy, $violet, $blue, $teal, $green, $red;
 
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-      border-left-color: nth($card-accents, $i);
+      border-left-color: list.nth($card-accents, $i);
     }
   }
 
@@ -114,5 +113,3 @@ $card-accents: $navy, $violet, $blue, $teal, $green, $red;
     cursor: pointer;
   }
 }
-
-// ─── Table wrapper ────────────────────────────────────────────────────────────

@@ -1,13 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "./OrderForm.module.scss";
-import OrderCustomerSection from "./components/OrderCustomerSection/OrderCustomerSection";
+import OrderCustomerSection from "../components/OrderCustomerSection/OrderCustomerSection";
 import type { Appointment } from "../../../types/appointment/appointment.type";
-import OrderCarSection from "./components/OrderCarSection/OrderCarSection";
-import OrderSummary from "./components/OrderSummary/OrderSummary";
-import OrderPaymentSection from "./components/OrderPaymentSection/OrderPaymentSection";
+import OrderCarSection from "../components/OrderCarSection/OrderCarSection";
+import OrderSummary from "../components/OrderSummary/OrderSummary";
+import OrderPaymentSection from "../components/OrderPaymentSection/OrderPaymentSection";
 import useOrderForm from "./hooks/useOrderForm";
-import OrderNoteSection from "./components/OrderNoteSection/OrderNoteSection";
+import OrderNoteSection from "../components/OrderNoteSection/OrderNoteSection";
 import type { CreateOrderDto } from "../../../schemas/order.schema";
+import type { FieldError } from "react-hook-form";
 
 const cx = classNames.bind(styles);
 
@@ -23,20 +24,17 @@ const OrderForm = ({ appointment, setBack, onClose }: OrderFormProps) => {
   const priceCurrent = contactCurrent.carPrice;
 
   const defaultValues: Partial<CreateOrderDto> = {
-    paymentMethod: "cash",
     salePrice: priceCurrent,
     taxRate: 10,
-    deposit: 0,
+    discount: 0,
     status: "pending",
     note: "",
   };
   const {
-    paymentMethod,
     register,
-    setValue,
     handleSubmit,
     onSubmit,
-    deposit,
+    discount,
     salePrice,
     control,
     taxRate,
@@ -72,20 +70,13 @@ const OrderForm = ({ appointment, setBack, onClose }: OrderFormProps) => {
         <OrderSummary
           unitPrice={priceCurrent}
           salePrice={salePrice ?? defaultValues.salePrice}
-          deposit={deposit ?? defaultValues.deposit}
+          discount={discount ?? defaultValues.discount}
           taxRate={taxRate ?? defaultValues.taxRate}
         ></OrderSummary>
         <OrderPaymentSection
           mode="create"
-          paymentMethod={paymentMethod}
           control={control}
-          errors={errors}
-          onChange={(value) =>
-            setValue("paymentMethod", value, {
-              shouldValidate: true,
-              shouldDirty: true,
-            })
-          }
+          errors={errors as FieldError | undefined}
         ></OrderPaymentSection>
         <OrderNoteSection register={register}></OrderNoteSection>
       </form>

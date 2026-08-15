@@ -106,7 +106,6 @@ export const updateOrderStatus = catchAsync(
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw new AppError("ID không hợp lệ", 400);
     }
-
     const data = validateUpdateOrderStatus(req.body);
 
     const order = await orderService.updateStatus(id, data);
@@ -130,6 +129,26 @@ export const deleteOrder = catchAsync(
     return res.status(200).json({
       success: true,
       message: "Xóa đơn hàng thành công.",
+    });
+  },
+);
+
+export const updateStatusConfirm = catchAsync(
+  async (req: AuthRequest, res: Response) => {
+    const { id } = req.params;
+    if (!id) {
+      throw new AppError("Không tìm thấy ID cập nhật!!", 400);
+    }
+    if (typeof id !== "string") {
+      throw new AppError("Kiểu dữ liệu ID không phải là string!!", 400);
+    }
+
+    const order = await orderService.confirmOrder(id, req.user?._id ?? "");
+
+    return res.status(200).json({
+      success: true,
+      message: "Xác nhận đơn hàng thành công!!",
+      data: order,
     });
   },
 );

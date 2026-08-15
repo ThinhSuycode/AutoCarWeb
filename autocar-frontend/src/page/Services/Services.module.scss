@@ -486,9 +486,8 @@ $bg: #f8fafc;
       .right {
         flex: 1;
         min-width: 300px;
-        background: $slate-light;
         border-radius: 16px;
-        border: 1px solid $border;
+
         padding: 32px;
 
         @include md {

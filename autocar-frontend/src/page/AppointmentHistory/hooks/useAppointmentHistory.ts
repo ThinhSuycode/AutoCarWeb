@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import useCancelAppointment from "../../../components/Appointment/AppointmentDetail/mutations/useCancelAppointment";
-import useMyAppointment from "../queries/useMyAppointment";
+import useCancelAppointment from "../../../mutations/AppointmentMutation/useCancelAppointment";
+import useMyAppointment from "../../../queries/appointmentQuery/useMyAppointment";
 import type { Appointment } from "../../../types/appointment/appointment.type";
 
 const useAppointmentHistory = () => {
@@ -8,6 +8,7 @@ const useAppointmentHistory = () => {
   const { data: appointments, isLoading } = useMyAppointment();
   const [appointmentDetail, setAppointmentDetail] =
     useState<Appointment | null>(null);
+
   const onHandleClose = useCallback(() => {
     if (appointmentDetail) {
       setAppointmentDetail(null);

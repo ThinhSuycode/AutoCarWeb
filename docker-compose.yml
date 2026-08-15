@@ -1,0 +1,46 @@
+services:
+
+  backend:
+    build:
+      context: ./autocar-backend
+      dockerfile: Dockerfile
+
+    container_name: autocar-backend
+
+    restart: unless-stopped
+
+    env_file:
+      - ./autocar-backend/.env
+
+    expose:
+      - "5000"
+
+    networks:
+      - autocar-network
+
+
+  frontend:
+    build:
+      context: ./autocar-frontend
+      dockerfile: Dockerfile
+
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+
+    container_name: autocar-frontend
+
+    restart: unless-stopped
+
+    depends_on:
+      - backend
+
+    ports:
+      - "80:80"
+
+    networks:
+      - autocar-network
+
+
+networks:
+  autocar-network:
+    driver: bridge
