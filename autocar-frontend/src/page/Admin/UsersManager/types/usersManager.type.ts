@@ -1,4 +1,4 @@
-import type { UserType } from "../../../../types/users";
+import type { UserType } from "../../../../types/user/user.type";
 
 export type UserAction = "view" | "delete" | "";
 

@@ -1,6 +1,6 @@
 import styles from "./ShowRoom.module.scss";
 import classNames from "classnames/bind";
-import { imgBannerData } from "../../data/ShowRoom";
+import { imgBannerData } from "../../constants/ShowRoom";
 import ShowroomLocations from "./components/ShowroomLocations/ShowroomLocations";
 import ShowroomBenefits from "./components/ShowroomBenefits/ShowroomBenefits";
 import ShowroomGallery from "./components/ShowroomGallery/ShowroomGallery";

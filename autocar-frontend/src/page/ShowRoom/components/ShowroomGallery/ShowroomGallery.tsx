@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./ShowroomGallery.module.scss";
-import { galleryImages } from "../../../../data/social";
+import { galleryImages } from "../../../../constants/social";
 
 const cx = classNames.bind(styles);
 

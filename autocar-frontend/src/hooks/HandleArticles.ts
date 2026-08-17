@@ -1,10 +1,10 @@
-import type { Articles } from "../types/articles";
+import type { Article } from "../types/article/article.type";
 import { createSlug } from "../utils/slug";
 
 export const createHandleReadArticle = (
   navigate: (path: string, options?: object) => void,
 ) => {
-  return (article: Articles) => {
+  return (article: Article) => {
     if (!article) return;
 
     const slug = createSlug(article.title);

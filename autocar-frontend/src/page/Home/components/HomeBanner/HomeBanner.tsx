@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
 import styles from "./HomeBanner.module.scss";
-import { Button } from "../../../../components/Button/Button";
 import useSearchCars from "./hooks/useSearchCars";
 import SearchResult from "./components/SearchResult/SearchResult";
 

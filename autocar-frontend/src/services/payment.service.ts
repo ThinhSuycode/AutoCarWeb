@@ -1,8 +1,4 @@
-import type {
-  CreatePaymentDto,
-  PaymentQuery,
-  UpdateStatusPayment,
-} from "../schemas/payment.schema";
+import type { CreatePaymentDto, PaymentQuery } from "../schemas/payment.schema";
 import type {
   PaymentListResponse,
   PaymentResponse,

@@ -1,15 +1,9 @@
 import classNames from "classnames/bind";
 
 import styles from "./OrderPaymentSection.module.scss";
-
-import PaymentMethodCard from "../PaymentMethodCard/PaymentMethodCard";
 import MoneyInput from "../../../MoneyInput/MoneyInput";
 
-import {
-  PAYMENT_METHODS_DATA,
-  type OrderPaymentMode,
-  type PAYMENT_METHODS_TYPE,
-} from "../../constant/orderData";
+import { type OrderPaymentMode } from "../../constant/orderData";
 
 import type { PaymentMethod } from "../../../../types/order/order.constant";
 import type { OrderType } from "../../../../types/order/order.type";

@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { useContactsQuery } from "../../../../queries/contactQuery/useContact";
-
 import { useAssignContact } from "../../../../mutations/ContactMutation/useAssignContact";
 import { contactStatistics } from "../utils/contactStatistics";
 import { useGetRoleQuery } from "../../../../queries/userQuery/useGetRoleQuery";
@@ -15,7 +14,7 @@ const useContactAssign = () => {
     undefined,
   );
 
-  const { data, isLoading, refetch } = useContactsQuery({
+  const { data, isLoading } = useContactsQuery({
     search,
     status,
     page,

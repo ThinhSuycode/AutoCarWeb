@@ -3,9 +3,6 @@ import styles from "./ArticleDetails.module.scss";
 import LoadingData from "../../components/LoadingData/LoadingData";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
 import ListArticle from "../../components/ListArticle/ListArticle";
-
-import ArticleSections from "./components/ArticleDetailSection/ArticleDetailSections";
-import ArticleTagsAndSocial from "./components/ArticleDetailMeta/ArticleDetailMeta";
 import ArticleRelatedSidebar from "./components/ArticleDetailSideBar/ArticleDetailSideBar";
 import ArticleDetailBanner from "./components/ArticleDetailBanner/ArticleDetailBanner";
 import { getLabelCategory } from "../../hooks/getCategoryColor";

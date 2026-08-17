@@ -2,13 +2,12 @@ import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 import MenuNavigation from "../MenuNavigation/MenuNavigation";
 import { useCallback, useState } from "react";
-import type {
-  LanguageType,
-  MenuItemType,
-  Role,
-  SubMenuType,
-} from "../../types/menu";
+
+import type { MenuItemType } from "../../types/menu/menu.type";
+import type { SubMenuType } from "../../types/menu/navigation.type";
+import type { Role } from "../../types/common/role.type";
 import { MenuItem } from "./MenuItem/MenuItem";
+import type { LanguageType } from "../../types/common/language.type";
 
 const cx = classNames.bind(styles);
 
@@ -59,7 +58,7 @@ const Menu = ({ items, role }: { items: MenuItemType[]; role: string }) => {
           {subMenu.children.map((child: LanguageType) => (
             <MenuItem
               title={child.title}
-              key={child.key}
+              key={child.id}
               href={child.href}
             ></MenuItem>
           ))}

@@ -33,7 +33,6 @@ const useOrderPaymentForm = ({ order }: Props) => {
   } = useForm<CreateOrderInput, any, CreateOrderOutput>({
     resolver: zodResolver(orderSchema),
     defaultValues: {
-      paymentMethod: order.paymentMethod,
       salePrice: order.salePrice,
       taxRate: order.taxRate,
       discount: order.discount,
@@ -43,7 +42,6 @@ const useOrderPaymentForm = ({ order }: Props) => {
 
   const { mutateAsync: updateOrderMutations, isPending } = useUpdateOrder();
 
-  const paymentMethod = watch("paymentMethod");
   const salePrice = watch("salePrice");
   const taxRate = watch("taxRate");
   const discount = watch("discount");
@@ -59,7 +57,6 @@ const useOrderPaymentForm = ({ order }: Props) => {
         setOrderPaymentMode("detail");
 
         reset({
-          paymentMethod: updated.paymentMethod,
           salePrice: updated.salePrice,
           taxRate: updated.taxRate,
           discount: updated.discount,
@@ -78,7 +75,6 @@ const useOrderPaymentForm = ({ order }: Props) => {
 
   useEffect(() => {
     reset({
-      paymentMethod: order.paymentMethod,
       salePrice: order.salePrice,
       taxRate: order.taxRate,
       discount: order.discount,
@@ -95,8 +91,6 @@ const useOrderPaymentForm = ({ order }: Props) => {
     reset,
     errors,
 
-    // values
-    paymentMethod,
     salePrice,
     taxRate,
     discount,

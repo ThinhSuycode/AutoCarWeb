@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./ArticleDetailMeta.module.scss";
-import { socialData } from "../../../../data/social";
+import { socialData } from "../../../../constants/social";
 import type { SocialItem } from "../../../../types/common/social.type";
 
 const cx = classNames.bind(styles);

@@ -1,4 +1,4 @@
-import type { Appointment } from "../../../../types/appointment";
+import type { Appointment } from "../../../../types/appointment/appointment.type";
 
 export const appointmentStatistics = (appointments: Appointment[]) => {
   const total = appointments.length;
@@ -25,8 +25,7 @@ export const appointmentStatistics = (appointments: Appointment[]) => {
     confirmed,
     completed,
     cancelled,
-    completionRate:
-      total === 0 ? 0 : Math.round((completed / total) * 100),
+    completionRate: total === 0 ? 0 : Math.round((completed / total) * 100),
   };
 };
 

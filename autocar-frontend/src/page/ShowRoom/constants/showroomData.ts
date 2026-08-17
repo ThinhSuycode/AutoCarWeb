@@ -1,9 +1,7 @@
 import imgBanner from "../../../assets/img/showroom1.jpg";
+import type { ServiceAppointmentType } from "../../../constants/serviceData";
 import type { BannerType } from "../../../types/common/banner.type";
-import type {
-  ServiceAppointmentItem,
-  ShowroomType,
-} from "../../../types/showroom/showroom.type";
+import type { ShowroomType } from "../../../types/showroom/showroom.type";
 
 export const imgBannerData: BannerType[] = [
   {
@@ -27,7 +25,7 @@ export const imgBannerData: BannerType[] = [
   },
 ];
 
-export const serviceAppointment: ServiceAppointmentItem[] = [
+export const serviceAppointment: ServiceAppointmentType[] = [
   {
     id: "test_drive",
     label: "Lái thử xe",

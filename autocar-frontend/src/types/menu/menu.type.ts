@@ -2,7 +2,7 @@ import type { LanguageType } from "../common/language.type";
 import type { Role } from "../common/role.type";
 import type { ManagerMenuItem } from "./manager-menu.type";
 
-export interface MenuItem {
+export interface MenuItemType {
   id?: number;
 
   title: string;

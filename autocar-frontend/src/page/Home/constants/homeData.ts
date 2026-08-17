@@ -1,11 +1,7 @@
-import FilterOptions from "../../../data/FilterOptions";
-import type {
-  BrandsType,
-  FilterOptionsType,
-} from "../../../types/car/car-filter.type";
+import FilterOptions from "../../../constants/FilterOptions";
+import type { BrandsType } from "../../../types/car/car-filter.type";
 import type { OptionType } from "../../../types/common/option.type";
 
-// ─── Banner Stats ─────────────────────────────────────────────────────────────
 export const getBannerStats = (carCount: number) => [
   {
     icon: "fa-solid fa-check-to-slot",

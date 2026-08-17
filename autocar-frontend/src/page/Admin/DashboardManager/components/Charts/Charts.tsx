@@ -67,21 +67,15 @@ const tranformStatusTitle = (message: string) => {
 // ─── Component ────────────────────────────────────────────────────────────────
 const Charts = () => {
   const [chartData, setChartData] = useState<DashboardResponse | null>(null);
-
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        setLoading(true);
-
         const response =
           await callApi.getData<DashboardResponse>("dashboard/stats");
 
         setChartData(response);
       } catch (error) {
         console.error(error);
-      } finally {
-        setLoading(false);
       }
     };
 

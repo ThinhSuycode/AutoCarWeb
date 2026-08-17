@@ -1,4 +1,4 @@
-import type { SocialItem } from "../types/social";
+import type { SocialItem } from "../types/common/social.type";
 
 export const galleryImages = [
   "https://images.unsplash.com/photo-1562519819-016930ada31b?w=800&auto=format&fit=crop&q=80",

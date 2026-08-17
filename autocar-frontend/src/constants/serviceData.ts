@@ -18,6 +18,7 @@ export const serviceAppointment = [
 ] as const;
 
 export type ServiceAppointmentKey = (typeof serviceAppointment)[number]["id"];
+export type ServiceAppointmentType = (typeof serviceAppointment)[number];
 
 export const SERVICE_LABEL: Record<string, string> = {
   test_drive: "Lái thử xe",

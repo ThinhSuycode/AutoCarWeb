@@ -1,18 +1,16 @@
-import type { ArticleDetail, ArticleSection } from "../../../../types/articles";
-
+import type {
+  ArticleDetail,
+  ArticleSection,
+} from "../../../../types/article/article-detail.type";
 import type {
   ArticleDetailInput,
   SectionInput,
 } from "../components/FormArticleDetail/schema/ArticleDetailSchema";
 
-// ================= Helpers =================
-
 const toTextArea = (content?: string | string[]) =>
   Array.isArray(content) ? content.join("\n") : (content ?? "");
 
 const tagsToInput = (tags?: string[]) => tags?.join(", ") ?? "";
-
-// ================= Section Mapper =================
 
 const sectionToFormInput = (section: ArticleSection): SectionInput => {
   switch (section.sectionType) {

@@ -15,7 +15,7 @@ import type { ArticleDetailOutput } from "./components/FormArticleDetail/schema/
 import useArticleManager from "./hooks/useArticleManager";
 import ArticleHeader from "./components/ArticleHeader/ArticleHeader";
 import type { Article } from "../../../types/article/article.type";
-import type { ArticleDetail } from "../../../types/article/article-detail.type";
+
 import type { CreateArticleDto } from "../../../types/article/article.dto";
 
 const cx = classNames.bind(styles);

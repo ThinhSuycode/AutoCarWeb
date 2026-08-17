@@ -1,7 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Social.module.scss";
-import { socialData } from "../../data/social";
-import type { SocialItem } from "../../types/social";
+import type { SocialItem } from "../../types/common/social.type";
+import { socialData } from "../../constants/social";
 const cx = classNames.bind(styles);
 
 const Social = () => {

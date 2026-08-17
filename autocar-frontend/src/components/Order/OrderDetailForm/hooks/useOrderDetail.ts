@@ -36,8 +36,8 @@ const useOrderDetail = (order: OrderType) => {
   });
   const { mutateAsync: createPaymentAsync, isPending } = useCreatePayment();
 
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
+  const [page] = useState<number>(1);
+  const [limit] = useState<number>(10);
 
   const { data } = useGetAllPayment({ page, limit, orderId: order._id });
 

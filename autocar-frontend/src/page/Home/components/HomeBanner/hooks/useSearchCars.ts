@@ -9,8 +9,8 @@ const useSearchCars = () => {
   const trimmedSearch = searchValue.trim();
 
   const [carsResult, setCarsResult] = useState<CarType[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(8);
+  const [page] = useState<number>(1);
+  const [limit] = useState<number>(8);
 
   const { data: carResponse, isPending } = useCarAllQuery({
     search: trimmedSearch,

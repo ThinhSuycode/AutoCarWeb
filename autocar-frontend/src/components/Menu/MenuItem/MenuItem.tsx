@@ -1,6 +1,6 @@
-import type { MenuItemType } from "../../../types/menu";
 import classNames from "classnames/bind";
 import styles from "./MenuItem.module.scss";
+import type { MenuItemType } from "../../../types/menu/menu.type";
 const cx = classNames.bind(styles);
 
 export const MenuItem: React.FC<
@@ -15,7 +15,6 @@ export const MenuItem: React.FC<
   onShowChildren,
   role,
   currentUserRole,
-  hrefByRole,
 }) => {
   if (role) {
     const allowedRoles = Array.isArray(role) ? role : [role];

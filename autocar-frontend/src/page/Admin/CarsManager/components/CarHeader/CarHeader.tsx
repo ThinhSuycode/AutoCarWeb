@@ -1,9 +1,5 @@
-import classNames from "classnames/bind";
-import styles from "./CarHeader.module.scss";
 import PageHeader from "../../../../../components/PageHeader/PageHeader";
 import HeaderSearch from "../../../../../components/HeaderSearch/HeaderSearch";
-
-const cx = classNames.bind(styles);
 
 interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>;

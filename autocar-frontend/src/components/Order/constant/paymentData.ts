@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import type { PaymentStatus } from "../../../types/payment/payment.type";
 
 export const PAYMENT_STATUS_LABEL: Record<PaymentStatus, string> = {

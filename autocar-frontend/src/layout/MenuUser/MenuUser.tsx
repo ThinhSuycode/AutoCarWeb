@@ -7,8 +7,8 @@ import Header from "../Component/Header/Header";
 import { getMeApi, updateAvatarApi } from "../../services/auth.service";
 import { transformRole } from "../../hooks/transformRole";
 import type { UserType } from "../../types/user/user.type";
-import type { MenuItem } from "../../types/menu/menu.type";
 import type { ManagerMenuItem } from "../../types/menu/manager-menu.type";
+import type { MenuItemType } from "../../types/menu/menu.type";
 
 const cx = classNames.bind(styles);
 
@@ -56,7 +56,7 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
 
   const filteredMenu = useMemo(
     () =>
-      MenuUserData.filter((item: MenuItem) => {
+      MenuUserData.filter((item: MenuItemType) => {
         if (!item.role) return true;
         const role = account?.role;
         if (!role) return false;
@@ -98,7 +98,7 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
           </div>
 
           <div className={cx("tab-navigation")}>
-            {filteredMenu.map((item: MenuItem, idx: number) => {
+            {filteredMenu.map((item: MenuItemType, idx: number) => {
               const isManagerChildActive =
                 item.adminManager?.some(
                   (m: ManagerMenuItem) => locationCurrent.pathname === m.href,
