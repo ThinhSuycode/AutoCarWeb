@@ -6,7 +6,7 @@ import {
   brands,
   transmissions,
   CarBodyType,
-} from "../../../../constants/carData";
+} from "../../../../constants/carDatax";
 
 const cx = classNames.bind(styles);
 

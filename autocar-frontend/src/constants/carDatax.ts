@@ -132,4 +132,17 @@ export const SORT_OPTIONS = [
   { value: "km-asc", label: "Ít Km nhất" },
 ] as const;
 
+export const modeData = [
+  {
+    icon: "fa-solid fa-grip",
+    value: "grid",
+  },
+  {
+    icon: "fa-solid fa-list",
+    value: "list",
+  },
+];
+
+export type ModeDataType = (typeof modeData)[number];
+
 export type SortValue = (typeof SORT_OPTIONS)[number]["value"];

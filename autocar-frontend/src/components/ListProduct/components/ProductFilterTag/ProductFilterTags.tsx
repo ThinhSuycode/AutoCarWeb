@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames/bind";
 import styles from "./ProductFilterTag.module.scss";
 import type { FilterState } from "../../../../hooks/useCarsFilter";
-import { CarBodyType } from "../../../../constants/carData";
+import { CarBodyType } from "../../../../constants/carDatax";
 
 const cx = classNames.bind(styles);
 

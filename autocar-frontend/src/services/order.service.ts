@@ -7,11 +7,6 @@ export const orderService = {
     return changeApi.request<OrderForm>("orders", "add", data);
   },
 
-  //   getAll: (page = 1, limit = 10, status?: string) =>
-  //     axiosClient
-  //       .get("/orders", { params: { page, limit, status } })
-  //       .then((res) => res.data),
-
   getById: (id: string) => callApi.getData<OrderResponse>(`/orders/${id}`),
 
   update: (id: string, data: UpdateOrderDto) =>

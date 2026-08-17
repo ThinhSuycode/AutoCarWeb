@@ -1,9 +1,12 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./ProductToolbar.module.scss";
-import { modeData } from "../../../../data/carsData";
 import type { FilterState } from "../../../../hooks/useCarsFilter";
-import { SORT_OPTIONS } from "../../../../constants/carData";
+import {
+  modeData,
+  SORT_OPTIONS,
+  type ModeDataType,
+} from "../../../../constants/carDatax";
 
 const cx = classNames.bind(styles);
 
@@ -42,15 +45,15 @@ const ProductToolbar: React.FC<Props> = ({
         </select>
 
         <div className={cx("mode-show")}>
-          {modeData.map((item, idx) => (
+          {modeData.map((item: ModeDataType) => (
             <span
-              key={idx}
+              key={item.value}
               onClick={() => onFilterChange("mode", item.value)}
               className={cx({
                 active: filter.mode === item.value,
               })}
             >
-              {item.icon}
+              <i className={`${item.icon}`}></i>
             </span>
           ))}
         </div>

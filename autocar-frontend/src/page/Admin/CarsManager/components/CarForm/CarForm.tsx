@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./CarForm.module.scss";
 import { Button } from "../../../../../components/Button/Button";
 import { useCarForm } from "./hooks/useCarForm";
-import { brands, colors } from "../../../../../constants/carData";
+import { brands, colors } from "../../../../../constants/carDatax";
 import type { CreateCarDto } from "../../../../../schemas/car.schema";
 import { BODY_TYPES, FUEL } from "../../../../../types/car/car.constant";
 
