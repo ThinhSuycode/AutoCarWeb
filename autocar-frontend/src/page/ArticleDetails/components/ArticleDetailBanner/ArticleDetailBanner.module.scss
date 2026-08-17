@@ -1,0 +1,224 @@
+@use "../../../../styles/tokens" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+
+.articleDetail-banner {
+  width: 82%;
+  margin: 0 auto;
+  padding: 32px 0 24px;
+  border-bottom: 1px solid $border;
+
+  @include md {
+    width: 92%;
+    padding: 20px 0;
+  }
+
+  // Category badge
+  .category {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 14px;
+
+    &.news {
+      background: rgba(#dbeafe, 0.95);
+      color: #1d4ed8;
+    }
+
+    &.car-review {
+      background: rgba(#fee2e2, 0.95);
+      color: #dc2626;
+    }
+
+    &.experience {
+      background: rgba(#dcfce7, 0.95);
+      color: #15803d;
+    }
+
+    &.maintenance {
+      background: rgba(#fef3c7, 0.95);
+      color: #b45309;
+    }
+
+    &.electric-car {
+      background: rgba(#ede9fe, 0.95);
+      color: #7c3aed;
+    }
+
+    &.market {
+      background: rgba(#cffafe, 0.95);
+      color: #0891b2;
+    }
+  }
+
+  // Main title
+  .main-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: $navy;
+    line-height: 1.25;
+    width: 88%;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+
+    @include md {
+      font-size: 28px;
+      width: 100%;
+    }
+    @include sm {
+      font-size: 22px;
+    }
+  }
+
+  // Excerpt
+  .excerpt {
+    font-size: 16px;
+    color: $slate;
+    line-height: 1.7;
+    width: 78%;
+    margin-bottom: 20px;
+
+    @include md {
+      width: 100%;
+    }
+  }
+
+  // Meta row
+  .meta-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid $border;
+
+    @include sm {
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    // Author block
+    .info-user {
+      .left {
+        display: flex;
+        align-items: center;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: $slate-light;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 15px;
+          color: $slate;
+          flex-shrink: 0;
+        }
+
+        .author-info {
+          .name {
+            font-size: 14px;
+            font-weight: 700;
+            color: $navy;
+          }
+          .role {
+            font-size: 11px;
+            color: $slate;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+          }
+        }
+      }
+    }
+
+    // Date + actions
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+      justify-content: flex-end;
+
+      @include sm {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        .info-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 13px;
+          color: $slate;
+
+          .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: $slate-light;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            color: $slate;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      .action-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .action-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 15px;
+          cursor: pointer;
+          transition: all 0.18s ease;
+          color: $slate;
+          background: $slate-light;
+          border: 1px solid transparent;
+
+          &:first-child:hover {
+            color: $red;
+            background: $red-soft;
+          }
+          &:first-child {
+            &.saved {
+              color: $red;
+              background: $red-soft;
+              border-color: $red;
+            }
+          }
+
+          &:last-child:hover {
+            color: #0ea5e9;
+            background: #e0f2fe;
+          }
+        }
+      }
+    }
+  }
+}

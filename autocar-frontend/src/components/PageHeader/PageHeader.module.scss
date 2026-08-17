@@ -5,23 +5,27 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-radius: 12px 12px 0px 0px;
   gap: 16px;
+  padding: 15px 20px;
+  background: linear-gradient(165deg, #182033 45%, rgb(93 109 112 / 96%));
   margin-bottom: 20px;
 
   &-left {
     h2 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
-      color: #0f172a;
+      color: white;
+      text-shadow: 6px 0px 25px rgb(0, 168, 255);
       padding-bottom: 4px;
       border-bottom: 3px solid #dc2626;
       display: inline-block;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     p {
       font-size: 13px;
-      color: $muted;
+      color: #bac1cb;
     }
   }
 

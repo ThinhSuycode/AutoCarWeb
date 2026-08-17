@@ -1,0 +1,112 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.form-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  border-bottom: 1px solid $border;
+  background: $white;
+
+  @include sm {
+    flex-wrap: wrap;
+  }
+
+  .left {
+    width: 40%;
+
+    @include md {
+      width: 45%;
+    }
+    @include sm {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: $navy;
+      padding-bottom: 4px;
+      border-bottom: 3px solid $red;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: $slate;
+    }
+  }
+
+  .right {
+    width: 40%;
+
+    @include sm {
+      width: 100%;
+    }
+
+    .input-form {
+      position: relative;
+      width: 100%;
+
+      input {
+        width: 100%;
+        padding: 10px 40px 10px 14px;
+        border-radius: 8px;
+        border: 1.5px solid $border;
+        font-size: 14px;
+        color: $navy;
+        background: $slate-light;
+        outline: none;
+        transition:
+          border-color 0.18s,
+          box-shadow 0.18s,
+          background 0.18s;
+
+        &::placeholder {
+          color: #bbb;
+        }
+
+        &:focus {
+          border-color: $red;
+          background: $white;
+          box-shadow: 0 0 0 3px rgba($red, 0.08);
+        }
+      }
+
+      .icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: $slate;
+        cursor: pointer;
+        transition: color 0.18s;
+
+        &:hover {
+          color: $red;
+        }
+      }
+
+      .icon-load i {
+        animation: rotate 0.6s linear infinite;
+      }
+
+      @keyframes rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -136,6 +136,54 @@
   }
 }
 
+@mixin heading-showroom {
+  text-align: center;
+  margin-bottom: 8px;
+
+  h3 {
+    font-size: 30px;
+    font-weight: 800;
+    color: $navy;
+    letter-spacing: -0.5px;
+
+    @include md {
+      font-size: 24px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    color: $slate;
+    max-width: 480px;
+    margin: 8px auto 0;
+    line-height: 1.6;
+  }
+}
+
+@mixin heading-article-border {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: $navy;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid $border;
+  width: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: $red;
+  }
+}
+
 @mixin closeBtn-base {
   border: 1px solid;
   background: $border-2;

@@ -1,17 +1,17 @@
 import styles from "./ShowRoom.module.scss";
 import classNames from "classnames/bind";
 import { imgBannerData } from "../../data/ShowRoom";
-import Banner from "../../components/Banner/Banner";
-import ShowroomLocations from "./components/ShowroomLocations";
-import ShowroomBenefits from "./components/ShowroomBenefits";
-import ShowroomGallery from "./components/ShowroomGallery";
+import ShowroomLocations from "./components/ShowroomLocations/ShowroomLocations";
+import ShowroomBenefits from "./components/ShowroomBenefits/ShowroomBenefits";
+import ShowroomGallery from "./components/ShowroomGallery/ShowroomGallery";
+import ShowroomBanner from "../../components/ShowroomBanner/ShowroomBanner";
 
 const cx = classNames.bind(styles);
 
 const ShowRoom = () => {
   return (
     <div className={cx("showRoom-page")}>
-      <Banner dataImg={imgBannerData} />
+      <ShowroomBanner listImage={imgBannerData} />
 
       <ShowroomLocations></ShowroomLocations>
 

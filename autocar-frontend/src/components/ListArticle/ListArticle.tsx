@@ -1,16 +1,16 @@
 import classNames from "classnames/bind";
 import styles from "./ListArticle.module.scss";
-import type { Articles } from "../../types/articles";
 import { getLabelCategory } from "../../hooks/getCategoryColor";
 import { config } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { createHandleReadArticle } from "../../hooks/HandleArticles";
 import { formatDateToString } from "../../hooks/formatDate";
+import type { Article } from "../../types/article/article.type";
 
 const cx = classNames.bind(styles);
 
 interface ListArticleType {
-  data: Articles[] | null;
+  data: Article[] | null;
   heading?: string;
   hiddenBtn?: boolean;
   emptyDesc?: string;
@@ -43,7 +43,7 @@ const ListArticle: React.FC<ListArticleType> = ({
       )}
       <div className={cx("list-articles", { fixForm: !!heading })}>
         {data.length > 0 ? (
-          data.map((article: Articles) => (
+          data.map((article: Article) => (
             <div
               className={cx("articles-item")}
               key={article._id}

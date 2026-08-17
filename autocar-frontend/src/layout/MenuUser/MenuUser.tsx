@@ -4,10 +4,11 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { MenuUserData } from "../../constants/HeaderData";
 import Header from "../Component/Header/Header";
-import type { UserType } from "../../types/users";
 import { getMeApi, updateAvatarApi } from "../../services/auth.service";
-import type { ManagerItemType, MenuItemType } from "../../types/menu";
 import { transformRole } from "../../hooks/transformRole";
+import type { UserType } from "../../types/user/user.type";
+import type { MenuItem } from "../../types/menu/menu.type";
+import type { ManagerMenuItem } from "../../types/menu/manager-menu.type";
 
 const cx = classNames.bind(styles);
 
@@ -55,7 +56,7 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
 
   const filteredMenu = useMemo(
     () =>
-      MenuUserData.filter((item: MenuItemType) => {
+      MenuUserData.filter((item: MenuItem) => {
         if (!item.role) return true;
         const role = account?.role;
         if (!role) return false;
@@ -97,13 +98,13 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
           </div>
 
           <div className={cx("tab-navigation")}>
-            {filteredMenu.map((item: MenuItemType, idx: number) => {
+            {filteredMenu.map((item: MenuItem, idx: number) => {
               const isManagerChildActive =
                 item.adminManager?.some(
-                  (m: ManagerItemType) => locationCurrent.pathname === m.href,
+                  (m: ManagerMenuItem) => locationCurrent.pathname === m.href,
                 ) ||
                 item.staffManager?.some(
-                  (m: ManagerItemType) => locationCurrent.pathname === m.href,
+                  (m: ManagerMenuItem) => locationCurrent.pathname === m.href,
                 ) ||
                 false;
               const resolvedHref =
@@ -132,7 +133,7 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                   {/* Admin sub-menu */}
                   {showAdminManager && (
                     <div className={cx("list-manager")}>
-                      {item.adminManager!.map((manager: ManagerItemType) => (
+                      {item.adminManager!.map((manager: ManagerMenuItem) => (
                         <NavLink
                           key={manager.id}
                           to={manager.href}
@@ -150,7 +151,7 @@ const MenuUser: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
                   {/* Staff sub-menu */}
                   {showStaffManager && (
                     <div className={cx("list-manager")}>
-                      {item.staffManager!.map((manager: ManagerItemType) => (
+                      {item.staffManager!.map((manager: ManagerMenuItem) => (
                         <NavLink
                           key={manager.id}
                           to={manager.href}

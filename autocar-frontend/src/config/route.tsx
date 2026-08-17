@@ -14,7 +14,6 @@ export const Routes = {
   NewsDetails: "/chi-tiet-bai-viet/:id/:slug",
   ShowRoom: "/showroom",
   Contact: "/lien-he-showroom",
-  ContactHistory: "/lich-su-lien-he",
   ForgotPassword: "/quen-mat-khau",
   ResetPassword: "/reset-password",
   //Admin

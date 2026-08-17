@@ -11,6 +11,7 @@ import useDeleteContact from "../../mutations/ContactMutation/useDeleteContact";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import type { Contact } from "../../types/contact/contact.type";
+import ModalLayout from "../ModalLayout/ModalLayout";
 
 const cx = classNames.bind(styles);
 
@@ -48,7 +49,7 @@ const FormContactDetail = ({ contact, onClose }: Props) => {
     contact.status === "appointment_created" || contact.status === "completed";
 
   return (
-    <div className={cx("modal-overlay")} onClick={onClose}>
+    <ModalLayout onClose={onClose} showForm={viewMode.length > 0}>
       <ConfirmDialog {...confirmProps}></ConfirmDialog>
       <div className={cx("modal")} onClick={(e) => e.stopPropagation()}>
         <div className={cx("modal-header")}>
@@ -206,7 +207,7 @@ const FormContactDetail = ({ contact, onClose }: Props) => {
           </div>
         )}
       </div>
-    </div>
+    </ModalLayout>
   );
 };
 

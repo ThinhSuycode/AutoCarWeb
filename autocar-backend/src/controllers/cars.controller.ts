@@ -13,7 +13,6 @@ import {
 } from "../validators/vaildateCar";
 import { updateManagerStatusSchema } from "../schemas/car.schema";
 
-// ─── GET ALL ──────────────────────────────────────────────────────────────────
 export const getAllCar = catchAsync(async (req: Request, res: Response) => {
   const {
     page = "1",

@@ -4,12 +4,13 @@ const cx = classNames.bind(styles);
 
 interface Props {
   title?: string;
+  className?:string;
   description?: string;
 }
 
-const EmptyData = ({ title, description }: Props) => {
+const EmptyData = ({ title, description ,className}: Props) => {
   return (
-    <div className={cx("empty-data")}>
+    <div className={cx("empty-data",className)}>
       <div className={cx("icon-wrapper")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

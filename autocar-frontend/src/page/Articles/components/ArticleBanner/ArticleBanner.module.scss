@@ -1,0 +1,123 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.banner-news {
+  position: relative;
+  border-radius: 14px;
+  background: linear-gradient(135deg, $navy 0%, $navy-mid 100%);
+  overflow: hidden;
+  display: block;
+  transition: opacity 0.25s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 80% 50%,
+      rgba($red, 0.12) 0%,
+      transparent 65%
+    );
+    pointer-events: none;
+  }
+
+  &.showBanner {
+    animation: slideUpBanner 0.25s ease-in-out forwards;
+  }
+
+  &.hidding {
+    opacity: 0;
+    display: none;
+  }
+
+  @keyframes slideUpBanner {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 36px 40px;
+    width: 72%;
+    color: $white;
+
+    @include sm {
+      width: 100%;
+      padding: 24px 20px;
+    }
+
+    .heading {
+      margin-bottom: 14px;
+
+      .status-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 12px;
+        background: $green;
+        color: $white;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        letter-spacing: 0.3px;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: $white;
+        line-height: 1.3;
+        margin-bottom: 8px;
+
+        @include sm {
+          font-size: 1.3rem;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+    }
+
+    .info-user {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba($white, 0.1);
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #94a3b8;
+
+        span:first-child {
+          width: 32px;
+          height: 32px;
+          background: rgba($white, 0.1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          color: $white;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+}

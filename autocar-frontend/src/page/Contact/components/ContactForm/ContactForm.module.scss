@@ -1,0 +1,208 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.contact-wrapper {
+  display: flex;
+  gap: 32px;
+  padding: 56px 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+
+  @include md {
+    flex-direction: column;
+    padding: 40px 16px;
+  }
+
+  .form-content {
+    width: 44%;
+    flex-shrink: 0;
+
+    @include md {
+      width: 100%;
+    }
+
+    .form-heading {
+      margin-bottom: 22px;
+
+      h3 {
+        font-size: 22px;
+        font-weight: 800;
+        color: $navy;
+        padding-bottom: 8px;
+        border-bottom: 3px solid $red;
+        display: inline-block;
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 13.5px;
+        color: $slate;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // ─── Contact info card — mẫu sáng, dạng lưới ô (bento grid) ─────────────────
+  .contact-info-card {
+    flex: 1;
+    background: $white;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: 30px;
+    box-shadow: $shadow-card;
+
+    @include md {
+      width: 100%;
+    }
+
+    .info-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+
+      h3 {
+        font-size: 18px;
+        font-weight: 800;
+        color: $navy;
+        margin-bottom: 2px;
+      }
+
+      p {
+        font-size: 12.5px;
+        color: $slate;
+      }
+    }
+
+    .info-heading-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: $red-soft;
+
+      i {
+        font-size: 19px;
+        color: $red;
+      }
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+
+      @include sm {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px;
+      background: $navy-soft;
+      border: 1px solid transparent;
+      border-radius: $radius-md;
+      text-decoration: none;
+      transition:
+        transform 0.2s $ease-smooth,
+        box-shadow 0.2s $ease-smooth,
+        border-color 0.2s $ease-smooth;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-md;
+        border-color: rgba($red, 0.2);
+      }
+    }
+
+    .tile-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: $white;
+      box-shadow: $shadow-sm;
+      margin-bottom: 2px;
+
+      i {
+        font-size: 14px;
+        color: $red;
+      }
+    }
+
+    .tile-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: $muted;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tile-value {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: $navy;
+      line-height: 1.4;
+    }
+
+    .info-social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid $border;
+
+      @include sm {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+    }
+
+    .social-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: $slate;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: $navy;
+      color: $white;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+      i {
+        font-size: 13px;
+      }
+
+      &:hover {
+        background: $red;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

@@ -43,7 +43,6 @@ const AppointmentManager = ({ role }: Props) => {
 
     orderDetail,
   } = useAppointmentManager();
-  console.log(orderMode);
 
   return (
     <div className={cx("appointment-page")}>
@@ -52,11 +51,7 @@ const AppointmentManager = ({ role }: Props) => {
         description="Quản lý, theo dõi và xử lý toàn bộ lịch hẹn của khách hàng."
       />
 
-      <ModalLayout
-        showForm={!!appointmentDetail}
-        classNames="appointment"
-        onClose={onHandleClose}
-      >
+      <ModalLayout showForm={!!appointmentDetail} onClose={onHandleClose}>
         {appointmentDetail ? (
           orderMode === "" ? (
             <div className={cx("appointment-form")}>

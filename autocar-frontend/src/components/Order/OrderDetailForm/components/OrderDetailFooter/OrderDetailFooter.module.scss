@@ -46,17 +46,9 @@ button {
   }
 }
 
-/* =========================
-   QUAY LẠI
-========================= */
-
 .btn-back {
   @include backBtn-base;
 }
-
-/* =========================
-   TẠO THANH TOÁN
-========================= */
 
 .payment {
   background: #25914d;
@@ -70,10 +62,6 @@ button {
   }
 }
 
-/* =========================
-   XUẤT PDF
-========================= */
-
 .pdf {
   background: #7c3aed;
   color: #fff;
@@ -82,10 +70,6 @@ button {
     background: #6d28d9;
   }
 }
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media (max-width: 576px) {
   .footer {
@@ -97,9 +81,5 @@ button {
   .left,
   .right {
     width: 100%;
-  }
-
-  button {
-    flex: 1;
   }
 }

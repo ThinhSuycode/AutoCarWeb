@@ -1,0 +1,151 @@
+@use "../../../../styles/tokens" as *;
+@use "../../../../styles/mixins" as *;
+
+.info-services {
+  padding: 56px 28px;
+  background: $bg;
+
+  .list-info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    // max-width: 1200px;
+    margin: 0 auto;
+
+    .item {
+      width: calc(33.333% - 14px);
+      background: $white;
+      border-radius: 14px;
+      border: 1.5px solid $border;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+
+      // Top accent
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, $red, #f87171);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+
+      &:hover {
+        border-color: rgba($red, 0.2);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(-6px);
+
+        &::before {
+          opacity: 1;
+        }
+
+        .heading div {
+          background: rgba($red, 0.12);
+        }
+
+        .cta-act {
+          color: $red;
+          gap: 8px;
+        }
+      }
+
+      @include md {
+        width: calc(50% - 10px);
+      }
+      @include sm {
+        width: 100%;
+      }
+
+      .heading {
+        margin-bottom: 14px;
+
+        div {
+          width: 48px;
+          height: 48px;
+          background: $red-soft;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 12px;
+          margin-bottom: 14px;
+          transition: background 0.25s;
+
+          i {
+            color: $red;
+            font-size: 20px;
+          }
+        }
+
+        h4 {
+          font-size: 17px;
+          font-weight: 700;
+          color: $navy;
+          margin: 0;
+        }
+      }
+
+      .desc {
+        flex: 1;
+        font-size: 14px;
+        color: $slate;
+        line-height: 1.6;
+
+        .list-desc {
+          margin-top: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+
+          .desc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13.5px;
+            color: #475569;
+
+            span:first-child {
+              color: #22c55e;
+              font-size: 14px;
+              flex-shrink: 0;
+              margin-top: 1px;
+            }
+          }
+        }
+      }
+
+      .cta-act {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid $border;
+        font-size: 13px;
+        font-weight: 700;
+        color: $navy;
+        transition: all 0.2s ease;
+        width: 100%;
+
+        span:last-child {
+          font-size: 12px;
+          transition: transform 0.2s;
+        }
+
+        &:hover span:last-child {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+}

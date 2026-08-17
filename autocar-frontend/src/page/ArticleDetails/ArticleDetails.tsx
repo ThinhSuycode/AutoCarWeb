@@ -4,12 +4,14 @@ import LoadingData from "../../components/LoadingData/LoadingData";
 import NavigationPage from "../../components/NavigationPage/NavigationPage";
 import ListArticle from "../../components/ListArticle/ListArticle";
 
-import ArticleSections from "./components/ArticleSections";
-import ArticleTagsAndSocial from "./components/ArticleTagsAndSocial";
-import ArticleRelatedSidebar from "./components/ArticleRelatedSidebar";
-import ArticleDetailBanner from "./components/ArticleDetailBanner";
+import ArticleSections from "./components/ArticleDetailSection/ArticleDetailSections";
+import ArticleTagsAndSocial from "./components/ArticleDetailMeta/ArticleDetailMeta";
+import ArticleRelatedSidebar from "./components/ArticleDetailSideBar/ArticleDetailSideBar";
+import ArticleDetailBanner from "./components/ArticleDetailBanner/ArticleDetailBanner";
 import { getLabelCategory } from "../../hooks/getCategoryColor";
 import useArticleDetail from "./hooks/useArticleDetail";
+import ArticleDetailMeta from "./components/ArticleDetailMeta/ArticleDetailMeta";
+import ArticleDetailSection from "./components/ArticleDetailSection/ArticleDetailSections";
 
 const cx = classNames.bind(styles);
 
@@ -33,14 +35,12 @@ const ArticleDetails = () => {
         title={getLabelCategory(articleDetail.articleId.category)}
       />
 
-      {/* BANNER */}
       <ArticleDetailBanner
         articleDetail={articleDetail}
         isSaved={isSaved}
         onSave={onHandleSaveArticle}
       />
 
-      {/* COVER IMAGE */}
       <div className={cx("img-large")}>
         <img
           src={articleDetail.articleId.thumbnail}
@@ -48,11 +48,10 @@ const ArticleDetails = () => {
         />
       </div>
 
-      {/* CONTENT + SIDEBAR */}
       <div className={cx("content-wrapper")}>
         <div className={cx("article-body")}>
-          <ArticleSections sections={articleDetail.sections} />
-          <ArticleTagsAndSocial tags={articleDetail.tags} />
+          <ArticleDetailSection sections={articleDetail.sections} />
+          <ArticleDetailMeta tags={articleDetail.tags} />
         </div>
 
         <ArticleRelatedSidebar
@@ -61,7 +60,6 @@ const ArticleDetails = () => {
         />
       </div>
 
-      {/* OTHER ARTICLES */}
       <div className={cx("orther-article")}>
         <ListArticle
           data={articleDetail.relatedArticles}

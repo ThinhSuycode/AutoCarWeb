@@ -1,0 +1,13 @@
+@use "../../../../../../styles/tokens" as *;
+@use "../../../../../../styles/mixins" as *;
+.list-result {
+  position: absolute;
+  width: 100%;
+  top: 58px;
+  border-radius: 0px 0px 10px 10px;
+  max-height: 40vh;
+  background: linear-gradient(45deg, #00030e, rgb(66 58 58 / 98%));
+  z-index: 999;
+  overflow: hidden;
+  outline: none;
+}

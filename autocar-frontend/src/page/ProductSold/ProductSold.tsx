@@ -11,9 +11,9 @@ const ProductSold = () => {
       <ListProduct
         heading="Xe đang bán"
         desc={`Khám phá ${carDataSold.length} xe chất lượng cao`}
-        className={cx("bg-heading")}
         filterCar
         hiddenBtn
+        className="layoutNone"
         isLoading={isLoading}
       ></ListProduct>
     </div>

@@ -1,0 +1,132 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.information-inner {
+  background: linear-gradient(122deg, rgba($black, 0.8784313725), $navy-ink);
+
+  .content {
+    padding: 56px 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @include sm {
+      padding: 40px 16px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 40px;
+
+      h3 {
+        font-size: 30px;
+        font-weight: 800;
+        color: white;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+
+        @include sm {
+          font-size: 22px;
+        }
+      }
+
+      p {
+        font-weight: 700;
+        font-size: 14px;
+        color: #bdbdbd;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+    }
+
+    .list-item {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+
+      @include md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include sm {
+        grid-template-columns: 1fr;
+      }
+
+      .item {
+        padding: 28px 20px;
+        border-radius: 14px;
+        border: 1.5px solid white;
+        text-align: center;
+        background: #1a1a1a;
+        transition: all 0.22s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, $blue, #1c0a4bbb);
+          opacity: 0;
+          transition: opacity 0.22s;
+        }
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+          background: linear-gradient(
+            46deg,
+            rgba(16, 24, 86, 0.52),
+            rgba(101, 140, 141, 0.6196078431)
+          );
+
+          &::before {
+            opacity: 1;
+          }
+
+          div {
+            border-color: rgb(11 183 255);
+            i {
+              color: rgb(11 183 255);
+              font-size: 19px;
+            }
+          }
+        }
+
+        div {
+          width: 48px;
+          height: 48px;
+          background: #fef2f2;
+          border: 2px solid currentColor;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 12px;
+          margin: 0 auto 16px;
+          transition: background 0.22s;
+
+          i {
+            color: $red;
+            font-size: 19px;
+          }
+        }
+
+        h4 {
+          font-size: 15px;
+          font-weight: 700;
+          color: white;
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 13px;
+          color: #c1c2be;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}

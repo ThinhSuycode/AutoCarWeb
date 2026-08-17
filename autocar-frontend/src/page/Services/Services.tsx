@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
 import styles from "./Services.module.scss";
-import ServicesBanner from "./components/ServicesBanner";
-import ServicesList from "./components/ServicesList";
-import ServicesProcess from "./components/ServicesProcess";
-import ServicesContact from "./components/ServicesContact";
+import ServicesBanner from "./components/ServiceBanner/ServicesBanner";
+import ServicesList from "./components/ServiceList/ServicesList";
 import useServices from "./hooks/useServices";
+import ServiceProcess from "./components/ServiceProcess/ServiceProcess";
+import ServiceContact from "./components/ServiceContact/ServiceContact";
 
 const cx = classNames.bind(styles);
 const Services = () => {
@@ -13,8 +13,8 @@ const Services = () => {
     <div className={cx("services-page")}>
       <ServicesBanner></ServicesBanner>
       <ServicesList></ServicesList>
-      <ServicesProcess></ServicesProcess>
-      <ServicesContact userInfo={userInfo}></ServicesContact>
+      <ServiceProcess></ServiceProcess>
+      <ServiceContact userInfo={userInfo}></ServiceContact>
     </div>
   );
 };

@@ -1,0 +1,96 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/tokens" as *;
+
+.why-visit {
+  padding: 56px 28px;
+  background: $bg;
+  .heading {
+    @include heading-showroom;
+  }
+  @include sm {
+    padding: 40px 16px;
+  }
+
+  .main {
+    max-width: 1100px;
+    margin: 32px auto 0;
+
+    .list-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+
+      @include md {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include sm {
+        grid-template-columns: 1fr;
+      }
+
+      .features-item {
+        background: $white;
+        border: 1.5px solid $border;
+        border-radius: 14px;
+        padding: 28px 22px;
+        text-align: center;
+        transition: all 0.22s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, $red, #f87171);
+          opacity: 0;
+          transition: opacity 0.22s;
+        }
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+          border-color: rgba($red, 0.15);
+
+          &::before {
+            opacity: 1;
+          }
+
+          .icon {
+            background: rgba($red, 0.12);
+          }
+        }
+
+        .icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 14px;
+          background: $red-soft;
+          color: $red;
+          font-size: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 16px;
+          transition: background 0.22s;
+        }
+
+        h4 {
+          font-size: 15px;
+          font-weight: 700;
+          color: $navy;
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 13.5px;
+          color: $slate;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+}

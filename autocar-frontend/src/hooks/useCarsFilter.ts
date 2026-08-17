@@ -1,12 +1,12 @@
 import { useState, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../services/api";
-import type { CarType } from "../types/car";
 import {
   PRICE_RANGES_MAP,
   YEAR_RANGES_MAP,
 } from "../page/Home/constants/homeData";
 import { sortMap } from "../constants/carData";
+import type { CarType } from "../types/car/car.type";
 
 export interface FilterState {
   brand: string;
@@ -44,6 +44,7 @@ export const useCarsFilter = () => {
     const params = new URLSearchParams();
 
     params.set("page", String(page));
+
     params.set("all", "true");
 
     if (filter.brand) params.set("brand", filter.brand);

@@ -1,0 +1,301 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.home-banner {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, #060d1f 0%, #0f172a 45%, #1a0a0a 100%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($red, 0.12) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .circle-left {
+    position: absolute;
+    bottom: -14%;
+    left: -8%;
+    width: 381px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    height: 26vh;
+  }
+
+  .circle-right {
+    position: absolute;
+    bottom: -14%;
+    right: -8%;
+    width: 381px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    height: 26vh;
+  }
+
+  @include md {
+    min-height: 600px;
+    padding: 60px 0 40px;
+  }
+
+  @include sm {
+    min-height: auto;
+    padding: 50px 0 30px;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 3;
+    width: 82%;
+    padding-top: 50px;
+
+    @include md {
+      width: 92%;
+      padding-top: 0;
+    }
+
+    .banner-content-top {
+      text-align: center;
+
+      > div:first-child {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba($red, 0.15);
+        border: 1px solid rgba($red, 0.3);
+        padding: 6px 16px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(4px);
+
+        @include md {
+          font-size: 13px;
+        }
+
+        span {
+          color: $white;
+          font-size: 13px;
+          font-weight: 500;
+
+          &:first-child {
+            color: $red;
+          }
+        }
+      }
+
+      .title {
+        margin-bottom: 16px;
+
+        p {
+          font-size: 62px;
+          font-weight: 900;
+          font-family: "Roboto Slab", serif;
+          color: $white;
+          line-height: 1.05;
+          letter-spacing: -2px;
+
+          &:last-child {
+            color: $red;
+            text-shadow: 0 0 40px rgba($red, 0.4);
+          }
+
+          @include md {
+            font-size: 38px;
+            letter-spacing: -1px;
+          }
+          @include sm {
+            font-size: 28px;
+          }
+        }
+      }
+
+      > div:last-child {
+        font-size: 16px;
+        width: 55%;
+        margin: 0 auto;
+        color: #94a3b8;
+        line-height: 1.7;
+
+        @include md {
+          width: 80%;
+          font-size: 14px;
+        }
+        @include sm {
+          width: 90%;
+          font-size: 13px;
+        }
+      }
+    }
+    .search-wrapper {
+      position: relative;
+      width: 60%;
+      margin: 0 auto;
+      @include md {
+        width: 76%;
+      }
+      @include sm {
+        width: 100%;
+      }
+
+      .form-input {
+        position: relative;
+        display: flex;
+        margin: 28px auto;
+
+        input {
+          width: 100%;
+          padding: 16px 55px 16px 22px;
+          border: 2px solid rgba($white, 0.12);
+          border-radius: 10px 10px 0px 0px;
+          font-size: 15px;
+          background: rgba($white, 0.07);
+          color: $white;
+          backdrop-filter: blur(8px);
+          outline: none;
+          transition:
+            border-color 0.2s,
+            background 0.2s;
+
+          &::placeholder {
+            color: rgba($white, 0.35);
+          }
+
+          &:focus {
+            border-color: rgba($white, 0.5);
+            box-shadow: 0px 0px 10px rgba(121, 185, 231, 0.699);
+            background: rgba($white, 0.1);
+          }
+        }
+        span {
+          position: absolute;
+          bottom: 15px;
+          cursor: pointer;
+          right: 22px;
+          i {
+            color: #64748b;
+          }
+        }
+        .loading {
+          i {
+            animation: rotate 0.45s ease-in-out infinite;
+          }
+        }
+        .clear-all {
+          &:hover {
+            i {
+              color: $red;
+            }
+          }
+        }
+
+        @keyframes rotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        button {
+          position: absolute;
+          right: 6px;
+          top: 6px;
+          bottom: 6px;
+          padding: 0 22px;
+          font-size: 14px;
+          font-weight: 600;
+          background: $gradient-home-button;
+          border-radius: 7px;
+
+          @include sm {
+            padding: 0 14px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  .banner-content-bottom {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    width: 100%;
+    margin-top: 48px;
+    background: rgba($white, 0.06);
+    border-top: 1px solid rgba($white, 0.08);
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include sm {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .info-item {
+      background: rgba($white, 0.03);
+      padding: 24px 20px;
+      text-align: center;
+      transition: background 0.2s;
+      border-right: 1px solid rgba($white, 0.06);
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:hover {
+        background: rgba($white, 0.06);
+      }
+
+      .icon {
+        margin-bottom: 10px;
+
+        i {
+          font-size: 22px;
+          color: $red;
+          filter: drop-shadow(0 0 8px rgba($red, 0.4));
+        }
+      }
+
+      .heading {
+        color: $white;
+        font-size: 17px;
+        font-weight: 700;
+        padding: 4px 0;
+        letter-spacing: -0.3px;
+
+        @include md {
+          font-size: 16px;
+        }
+      }
+
+      .desc {
+        color: #64748b;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}

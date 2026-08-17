@@ -15,6 +15,7 @@ const FavouriteCar = () => {
         desc="Theo dõi xe bạn đã lưu lại"
         hiddenBtn
         userLayout
+        className="layoutNone"
         isLoading={isLoading}
         emptyTitle="Không có sản phẩm yêu thích nào được lưu"
       ></ListProduct>

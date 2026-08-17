@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./Articles.module.scss";
-import ArticleSearch from "./components/ArticleSearch";
-import ArticleBanner from "./components/ArticleBanner";
-import ArticleFilter from "./components/ArtilceFilter";
-import ArticleRegister from "./components/ArticleRegister";
+import ArticleSearch from "./components/ArticleSearch/ArticleSearch";
+import ArticleBanner from "./components/ArticleBanner/ArticleBanner";
+import ArticleFilter from "./components/ArticleFilter/ArtilceFilter";
+import ArticleRegister from "./components/ArticleRegister/ArticleRegister";
 
 import useArticles from "./hooks/useArticles";
 

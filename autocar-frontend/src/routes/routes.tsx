@@ -1,7 +1,6 @@
 import type React from "react";
 import Home from "../page/Home/Home";
 import { config } from "../config";
-
 import ProductSold from "../page/ProductSold/ProductSold";
 import About from "../page/About/About";
 import CarDetails from "../page/CarDetails/CarDetails";
@@ -27,12 +26,10 @@ import ArticlesManager from "../page/Admin/ArticlesManager/ArticlesManager";
 import DashBoard from "../page/Staff/DashBoard/DashBoard";
 import ContactAssign from "../page/Admin/ContactAssign/ContactAssign";
 import MyContact from "../page/Staff/MyContact/MyContact";
-import ContactHistory from "../page/ContactHistory/ContactHistory";
 import ForgotPassword from "../page/ForgotPassword/ForgotPassword";
 import ResetPassword from "../page/ResetPassword/ResetPassword";
 import AppointmentAdmin from "../page/Admin/AppointmentAdmin/AppointmentAdmin";
 import AppointmentStaff from "../page/Staff/AppointmentStaff/AppointmentStaff";
-// import AppointmentManager from "../components/Appointment/AppointmentManager/AppointmentManager";
 
 export interface RouteItem {
   path: string;
@@ -73,11 +70,6 @@ const privateRoutes: RouteItem[] = [
   {
     path: config.Routes.ArticleSave,
     Component: ArticleSave,
-    Layout: MenuCustomer,
-  },
-  {
-    path: config.Routes.ContactHistory,
-    Component: ContactHistory,
     Layout: MenuCustomer,
   },
 

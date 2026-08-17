@@ -1,4 +1,5 @@
 @use "../../styles/mixins" as *;
+@use "../../styles/tokens" as *;
 @use "../../styles/variables" as *;
 
 // ─── Design Tokens ────────────────────────────────────────────────────────────
@@ -38,14 +39,13 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 // ─── Layout ───────────────────────────────────────────────────────────────────
 .menuUser-page {
   background-color: $surface-bg;
-  padding-top: 90px;
   min-height: 100vh;
 
   .menuUser-inner {
     padding: 40px 25px;
+    padding-top: 115px;
     display: flex;
     gap: 40px;
-    // background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
 
     @include md {
       flex-direction: column;
@@ -67,12 +67,12 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   // ── Account Card ──────────────────────────────────────────────────────────
   .account-info {
-    background-color: $surface-card;
     border-radius: $radius-lg;
     box-shadow: $shadow-card;
     padding: 32px 20px 24px;
     text-align: center;
     transition: $transition-base;
+    background: linear-gradient(181deg, #191919 45%, rgb(121 224 243 / 96%));
 
     @include md {
       width: 56%;
@@ -91,7 +91,6 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid $accent-blue;
       box-shadow: 0 0 0 4px rgba($accent-blue, 0.12);
       cursor: pointer;
       transition: $transition-base;
@@ -114,7 +113,7 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(0, 0, 0, 0.42);
+        background: rgba(255, 255, 255, 0.42);
         color: #fff;
         opacity: 0;
         transition: $transition-base;
@@ -130,14 +129,14 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     .fullname {
       font-size: 17px;
       font-weight: 700;
-      color: $text-primary;
+      color: $white;
       letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
 
     .desc {
       font-size: 13px;
-      color: $text-secondary;
+      color: wheat;
       margin-bottom: 14px;
     }
 
@@ -158,16 +157,16 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   // ── Navigation Card ───────────────────────────────────────────────────────
   .tab-navigation {
-    background-color: $surface-card;
     border-radius: $radius-lg;
     box-shadow: $shadow-card;
+    border: 1px solid #cccc;
     padding: 12px;
-
+    background: $bg-menuUser;
     .tab-wrapper {
       & + .tab-wrapper {
         margin-top: 4px;
         padding-top: 4px;
-        border-top: 1px solid $border-default;
+        border-top: 1px solid #898c9057;
       }
 
       &:last-child {
@@ -180,7 +179,7 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         gap: 12px;
         border-radius: $radius-sm;
         padding: 10px 14px;
-        color: $text-secondary;
+        color: #073460ab;
         font-size: 14.5px;
         font-weight: 500;
         cursor: pointer;
@@ -227,22 +226,22 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
         // Active state
         &.active-item {
-          background-color: $surface-active;
-          color: $accent-red;
+          background-color: #38667a;
+          color: white;
           font-weight: 600;
 
           .tab-icon {
-            background-color: rgba($accent-red, 0.1);
-            color: $accent-red;
+            background-color: #38667a;
+            color: white;
           }
 
           .tab-badge {
-            background-color: rgba($accent-red, 0.12);
-            color: $accent-red;
+            background-color: #38667a;
+            color: white;
           }
 
           &:hover {
-            background-color: $surface-active;
+            background-color: #38667a;
           }
         }
       }
@@ -298,6 +297,7 @@ $transition-base: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 .menuUser-content {
   flex: 1;
   min-width: 0; // prevents flex blowout
+
   overflow: hidden;
 
   @include md {

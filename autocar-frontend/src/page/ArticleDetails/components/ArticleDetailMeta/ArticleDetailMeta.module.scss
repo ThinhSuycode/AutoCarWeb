@@ -1,0 +1,93 @@
+@use "../../../../styles/tokens" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables" as *;
+
+// Tags
+.tags-container {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid $border;
+
+  .heading-border {
+    @include heading-article-border;
+  }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    .tag-item {
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 20px;
+      background: $slate-light;
+      color: $slate;
+      border: 1px solid $border;
+      cursor: pointer;
+      transition: all 0.18s ease;
+
+      &:hover {
+        background: $navy;
+        color: $white;
+        border-color: $navy;
+      }
+    }
+  }
+}
+
+// Social share
+.social-container {
+  margin: 24px 0;
+  padding: 20px 24px;
+  background: $white;
+  border-radius: 12px;
+  border: 1px solid $border;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: $navy;
+    margin-bottom: 14px;
+  }
+
+  .list-social {
+    display: flex;
+    gap: 10px;
+
+    @include sm {
+      flex-wrap: wrap;
+    }
+
+    .social-item {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #1d4ed8;
+      color: $white;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+
+      span:first-child {
+        font-size: 15px;
+      }
+
+      &:hover {
+        opacity: 0.88;
+        transform: translateY(-2px);
+      }
+
+      @include sm {
+        width: calc(50% - 5px);
+        flex: none;
+      }
+    }
+  }
+}

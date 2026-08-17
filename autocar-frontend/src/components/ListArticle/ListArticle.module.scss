@@ -1,34 +1,30 @@
 @use "../../styles/mixins" as *;
+@use "../../styles/tokens" as *;
 @use "../../styles/variables" as *;
 
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$navy: #0f172a;
-$slate: #64748b;
-$border: #e9ecef;
-$red: #dc2626;
-$white: #ffffff;
-$bg: #f8fafc;
-
 .articles-form {
-  // ─── Heading ───────────────────────────────────────────────────────────────
   .form-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0px 0px;
+    background: linear-gradient(165deg, #182033 45%, rgba(93, 109, 112, 0.96));
     margin-bottom: 4px;
     .left {
       h2 {
         font-size: 24px;
         font-weight: 800;
-        color: $navy;
+        color: white;
+        text-shadow: 6px 0px 25px rgb(0, 168, 255);
         padding-bottom: 4px;
-        border-bottom: 3px solid $red;
+        border-bottom: 3px solid #dc2626;
         display: inline-block;
         margin-bottom: 5px;
       }
       p {
         font-size: 13px;
-        color: #64748b;
+        color: #bac1cb;
       }
     }
 
@@ -38,10 +34,10 @@ $bg: #f8fafc;
       gap: 5px;
       font-size: 13px;
       font-weight: 600;
-      color: $slate;
+      color: #ffffff;
       padding: 6px 12px;
       border-radius: 8px;
-      border: 1.5px solid $border;
+      border: 1.5px solid rgb(218 218 218);
       transition: all 0.18s ease;
 
       i {
@@ -51,7 +47,6 @@ $bg: #f8fafc;
 
       &:hover {
         color: $red;
-        border-color: rgba($red, 0.3);
         background: rgba($red, 0.04);
 
         i {

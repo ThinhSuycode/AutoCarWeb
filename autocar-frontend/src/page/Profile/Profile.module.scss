@@ -1,9 +1,8 @@
 @use "../../styles/mixins" as *;
+@use "../../styles/tokens" as *;
 @use "../../styles/variables" as *;
 
 .profile-page {
-  // background-color: #e2e8f0;
-
   .account-wrapper {
     border-radius: 10px;
     overflow: hidden;
@@ -11,13 +10,18 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background-color: #f4f4f4;
       padding: 13px 20px;
-      border: 1px solid rgb(182 182 182);
+      border: 1px solid $muted;
       border-radius: 10px 10px 0 0;
       font-size: 18px;
       font-weight: 600;
-      color: #1e293b;
+      text-shadow: 6px 0px 25px rgb(0, 168, 255);
+      color: #ffffff;
+      background: linear-gradient(
+        165deg,
+        #182033 45%,
+        rgba(93, 109, 112, 0.96)
+      );
     }
   }
   .form-account {

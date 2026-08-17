@@ -48,6 +48,15 @@
     color: #999;
   }
 }
+.empty-data.home {
+  background: none;
+  .title {
+    color: white;
+  }
+  .subtitle {
+    color: wheat;
+  }
+}
 
 @keyframes fadeIn {
   from {

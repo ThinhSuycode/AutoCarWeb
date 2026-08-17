@@ -1,0 +1,53 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.list-filter {
+  padding-top: 10px;
+  display: none;
+  &.active {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    .item {
+      padding: 5px 10px 5px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      border: 1px solid rgba($red, 0.25);
+      background: $red-soft;
+      font-size: 13px;
+      font-weight: 600;
+      color: $red;
+      transition:
+        background 0.18s,
+        border-color 0.18s,
+        transform 0.15s;
+
+      &:hover {
+        background: rgba($red, 0.12);
+        border-color: rgba($red, 0.4);
+        transform: translateY(-1px);
+      }
+
+      div {
+        display: inline-flex;
+        align-items: center;
+        font-size: 15px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition:
+          opacity 0.15s,
+          transform 0.15s;
+        border-radius: 50%;
+        padding: 1px;
+
+        &:hover {
+          opacity: 1;
+          transform: scale(1.2) rotate(90deg);
+        }
+      }
+    }
+  }
+}

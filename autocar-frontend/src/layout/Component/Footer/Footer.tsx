@@ -1,3 +1,4 @@
+import { config } from "../../../config";
 import styles from "./Footer.module.scss";
 import classNames from "classnames/bind";
 
@@ -42,10 +43,10 @@ const Footer = ({ hidden }: { hidden: boolean }) => {
         <div className={cx("col")}>
           <p className={cx("heading-col")}>Liên kết nhanh</p>
           <div className={cx("list-col-info")}>
-            <p>Xe đang bán</p>
-            <p>Dịch vụ bảo dưỡng</p>
-            <p>Thu mua xe cũ</p>
-            <p>Tư vấn trả góp</p>
+            <a href={config.Routes.ProductSold}>Xe đang bán</a>
+            <a href={config.Routes.Services}>Dịch vụ của ShowRoom</a>
+            <a href={config.Routes.Articles}>Tin tức</a>
+            <a href={config.Routes.Contact}>Liên hệ</a>
           </div>
         </div>
         <div className={cx("col")}>

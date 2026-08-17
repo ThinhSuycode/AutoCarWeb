@@ -3,16 +3,15 @@ import classNames from "classnames/bind";
 import styles from "./ListProduct.module.scss";
 import { useCarsFilter } from "../../hooks/useCarsFilter";
 import LoadingData from "../LoadingData/LoadingData";
-import ProductFilter from "./components/ProductFilter";
-import ProductToolbar from "./components/ProductToolbar";
-import ProductFilterTags from "./components/ProductFilterTags";
-import ProductCard from "./components/ProductCard";
+import ProductFilter from "./components/ProductFilter/ProductFilter";
+import ProductToolbar from "./components/ProductToolbar/ProductToolbar";
+import ProductFilterTags from "./components/ProductFilterTag/ProductFilterTags";
+import ProductCard from "./components/ProductCard/ProductCard";
 import EmptyData from "../EmtyData/EmptyData";
 import useProductNavigation from "./hooks/useProductNavigation";
 import { useMobileFilter } from "./hooks/useMobileFilter";
 import type { CarType } from "../../types/car/car.type";
 import type { ListCarProps } from "./types/ListProductCar";
-
 const cx = classNames.bind(styles);
 
 const ListProduct: React.FC<ListCarProps> = ({
@@ -24,6 +23,7 @@ const ListProduct: React.FC<ListCarProps> = ({
   filterCar,
   emptyTitle,
   userLayout,
+  carShow,
   isLoading,
 }) => {
   const { cars, filter, onFilterChange, onReset } = useCarsFilter();
@@ -40,13 +40,10 @@ const ListProduct: React.FC<ListCarProps> = ({
   if (isLoading) return <LoadingData message="Đang tải dữ liệu" />;
 
   return (
-    <div className={cx("products-inner")}>
+    <div className={cx("products-inner", className)}>
       <div className={cx("product-content", { userLayout })}>
-        <div className={cx("product-content-top", className)}>
-          <div
-            className={cx("left")}
-            style={className ? { padding: "20px 0px " } : {}}
-          >
+        <div className={cx("product-content-top")}>
+          <div className={cx("left")}>
             <h2>{heading}</h2>
             <p>{desc}</p>
           </div>
@@ -118,12 +115,17 @@ const ListProduct: React.FC<ListCarProps> = ({
                   <ProductCard
                     key={car._id}
                     userLayout={userLayout}
+                    changeItem={filter.mode === "list"}
                     car={car}
                   ></ProductCard>
                 ))
               ) : (
                 <div className={cx("emptyCar")}>
-                  {emptyTitle?.trim() ? <></> : <EmptyData />}
+                  {emptyTitle?.trim() ? (
+                    <></>
+                  ) : (
+                    <EmptyData className={carShow ? "home" : ""} />
+                  )}
                 </div>
               )}
             </div>

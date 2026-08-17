@@ -1,0 +1,110 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+
+.info-show {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include sm {
+    margin-top: 10px;
+  }
+
+  .left {
+    font-weight: 700;
+    font-size: 17px;
+    color: $navy;
+
+    @include md {
+      font-size: 1.1rem;
+    }
+
+    span {
+      color: $slate;
+      font-weight: 500;
+      font-size: 14px;
+      margin-left: 6px;
+    }
+    @include sm {
+      font-size: 0.9rem;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include sm {
+      font-size: 0.9rem;
+    }
+    span {
+      color: #978c8c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        font-size: 20px;
+      }
+    }
+
+    select {
+      padding: 9px 12px;
+      border-radius: 8px;
+      background-color: $slate-light;
+      outline: none;
+      cursor: pointer;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.08);
+      border: 1.5px solid $border;
+      font-size: 14px;
+      color: $navy;
+      font-weight: 600;
+      transition:
+        border-color 0.18s,
+        box-shadow 0.18s;
+
+      &:focus {
+        border-color: $red;
+        box-shadow: 0 0 0 3px rgba($red, 0.08);
+      }
+      @include sm {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+      }
+    }
+
+    .mode-show {
+      height: 38px;
+      width: 88px;
+      background-color: $slate-light;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px;
+      border: 1.5px solid $border;
+
+      @include sm {
+        display: none;
+      }
+
+      span {
+        width: 50%;
+        height: 100%;
+        border-radius: 7px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          box-shadow 0.2s,
+          color 0.2s;
+      }
+
+      span.active {
+        background-color: $white;
+        color: $navy;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+}

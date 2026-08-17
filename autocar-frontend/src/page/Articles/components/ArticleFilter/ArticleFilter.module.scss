@@ -1,0 +1,72 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/tokens" as *;
+.news-filters {
+  padding: 28px 0;
+
+  .nav-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    .item-nav {
+      padding: 7px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      background: $white;
+      color: $slate;
+      border: 1.5px solid $border;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+
+      &.active {
+        background: $navy;
+        color: $white;
+        border-color: $navy;
+      }
+
+      &:hover:not(.active) {
+        border-color: $navy;
+        color: $navy;
+      }
+    }
+  }
+
+  // ── Add news CTA ───────────────────────────────────────────────────────
+  .add-news {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 20px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: $slate;
+    cursor: pointer;
+    transition: color 0.18s;
+    user-select: none;
+
+    span:last-child {
+      font-size: 13px;
+    }
+
+    &:hover {
+      color: $red;
+    }
+  }
+
+  // ── Empty add ─────────────────────────────────────────────────────────
+  .empty-add {
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 28px;
+    background: $navy;
+    color: $white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}

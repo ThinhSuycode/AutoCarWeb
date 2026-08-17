@@ -1,9 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./ContactAssign.module.scss";
 import useContactAssign from "./hooks/useContactAssign";
-import ContactStatics from "./components/ContactStatics";
-import ContactTable from "./components/ContactTable";
-import ContactFilter from "./components/ContactFilter";
+import ContactStatics from "./components/ContactStatics/ContactStatics";
+import ContactTable from "./components/ContactTable/ContactTable";
+import ContactFilter from "./components/ContactFilter/ContactFilter";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import FormContactDetail from "../../../components/FormContactDetail/FormContactDetail";
 

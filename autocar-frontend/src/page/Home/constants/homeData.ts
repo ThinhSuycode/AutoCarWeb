@@ -1,5 +1,8 @@
 import FilterOptions from "../../../data/FilterOptions";
-import type { BrandsType } from "../../../types/car/car-filter.type";
+import type {
+  BrandsType,
+  FilterOptionsType,
+} from "../../../types/car/car-filter.type";
 import type { OptionType } from "../../../types/common/option.type";
 
 // ─── Banner Stats ─────────────────────────────────────────────────────────────
@@ -76,7 +79,6 @@ export const YEAR_RANGES_MAP: Record<
 
 export const DEFAULT_SORT = { sort: "createdAt", order: "desc" };
 
-// ─── Filter Selects ───────────────────────────────────────────────────────────
 export const FILTER_SELECTS = [
   {
     name: "companyFilter",
@@ -97,7 +99,7 @@ export const FILTER_SELECTS = [
   {
     name: "yearFilter",
     field: "yearRanges" as const,
-    options: FilterOptions.years.map((y: OptionType) => ({
+    options: FilterOptions.years.map((y) => ({
       value: y,
       label: String(y),
     })),
@@ -105,7 +107,7 @@ export const FILTER_SELECTS = [
   {
     name: "transmissionFilter",
     field: "transmission" as const,
-    options: FilterOptions.transmissions.map((t: OptionType) => ({
+    options: FilterOptions.transmissions.map((t) => ({
       value: t,
       label: t,
     })),

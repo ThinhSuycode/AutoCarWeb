@@ -1,12 +1,4 @@
-// ─── Tokens ───────────────────────────────────────────────────────────────────
-$navy: #0f172a;
-$slate: #64748b;
-$border: #e2e8f0;
-$red: #dc2626;
-$red-dark: #b91c1c;
-$bg: #f8fafc;
-$white: #ffffff;
-$error: #ef4444;
+@use "../../styles/tokens" as *;
 
 @keyframes slideIn {
   from {

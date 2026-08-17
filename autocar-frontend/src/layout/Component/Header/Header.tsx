@@ -5,10 +5,10 @@ import { dataHeaderNav, MenuUserData } from "../../../constants/HeaderData";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { config } from "../../../config";
 import Menu from "../../../components/Menu/Menu";
-import type { UserType } from "../../../types/users";
-import type { HeaderNavType } from "../../../types/menu";
 import { Button } from "../../../components/Button/Button";
 import { getMeApi } from "../../../services/auth.service";
+import type { UserType } from "../../../types/user/user.type";
+import type { HeaderNavType } from "../../../types/menu/navigation.type";
 
 const cx = classNames.bind(styles);
 
@@ -51,7 +51,6 @@ const Header = () => {
     }
   }, []);
 
-  // thêm: đóng drawer khi click ngoài
   const onHandleOverlayNav = useCallback((e: MouseEvent) => {
     if (
       refNavOutside.current &&

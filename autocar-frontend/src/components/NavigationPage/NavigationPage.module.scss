@@ -5,14 +5,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 14px 28px;
-  background: #fff;
+  padding: 26px 28px 14px;
+  background: linear-gradient(45deg, #000000, #70707063);
   border-bottom: 1px solid #f0f0f0;
-
-  @include sm {
-    padding: 10px 16px;
-    flex-wrap: wrap;
-  }
 
   a {
     display: inline-flex;
@@ -20,7 +15,7 @@
     gap: 6px;
     font-size: 13px;
     font-weight: 500;
-    color: #64748b;
+    color: white;
     cursor: pointer;
     transition: color 0.18s ease;
     white-space: nowrap;
@@ -37,16 +32,16 @@
     }
 
     &:not(:last-child):hover {
-      color: #dc2626;
+      color: #75dcf6;
     }
     &:last-child {
       font-weight: 600;
-      color: #dc2626;
+      color: #ffffff;
       pointer-events: none;
 
       div {
         padding: 3px 10px;
-        background: #fff1f1;
+        background: #07a9bea4;
         border-radius: 10px 0px;
         font-size: 13px;
       }

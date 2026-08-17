@@ -3,7 +3,6 @@ import { config } from "../config";
 import type { MenuItem } from "../types/menu/menu.type";
 import type { HeaderNavType } from "../types/menu/navigation.type";
 
-
 export const dataHeaderNav: HeaderNavType[] = [
   {
     title: "TRANG CHỦ",
@@ -44,12 +43,6 @@ export const MenuUserData: MenuItem[] = [
     href: config.Routes.AppoinmentHistory,
     role: "user",
   },
-  // {
-  //   icon: "fa-solid fa-phone",
-  //   title: "Lịch sử liên hệ",
-  //   href: config.Routes.ContactHistory,
-  //   role: "user",
-  // },
 
   {
     icon: "fa-brands fa-buffer",
@@ -158,7 +151,7 @@ export const MenuUserData: MenuItem[] = [
   {
     icon: "fa-solid fa-language",
     title: "Ngôn ngữ",
-    href: "/ca-nhan/ngon-ngu",
+    // href: "/ca-nhan/ngon-ngu",
     children: [
       {
         id: "english",
