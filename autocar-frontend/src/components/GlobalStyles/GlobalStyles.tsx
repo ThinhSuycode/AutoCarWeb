@@ -1,5 +1,5 @@
 import type React from "react";
-import "./GlobalStyles.module.scss";
+import "./GlobalStyles.scss";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
