@@ -8,8 +8,8 @@ RUN npm ci
 
 COPY . .
 
-RUN npx tsc
-
+RUN chmod +x ./node_modules/.bin/tsc
+RUN npm run build
 
 FROM node:22-alpine
 
