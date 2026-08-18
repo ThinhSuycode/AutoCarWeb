@@ -8,21 +8,17 @@ RUN npm ci
 
 COPY . .
 
-RUN chmod +x ./node_modules/.bin/tsc
-RUN npm run build
+RUN node ./node_modules/typescript/bin/tsc
+
 
 FROM node:22-alpine
 
 WORKDIR /app
-
-ENV NODE_ENV=production
 
 COPY package*.json ./
 
 RUN npm ci --omit=dev
 
 COPY --from=builder /app/dist ./dist
-
-EXPOSE 5000
 
 CMD ["node", "dist/server.js"]
