@@ -1,5 +1,5 @@
-// ─── Empty state ──────────────────────────────────────────────────────────────
-@use "../../styles/tokens" as *;
+@use "@styles/tokens" as *;
+
 .empty-state {
   display: flex;
   flex-direction: column;

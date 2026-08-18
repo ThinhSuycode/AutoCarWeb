@@ -1,6 +1,7 @@
-@use "../../../../styles/variables" as *;
-@use "../../../../styles/mixins" as *;
-@use "../../../../styles/tokens" as *;
+@use "@styles/variables" as *;
+@use "@styles/tokens" as *;
+@use "@styles/mixins" as *;
+
 .home-about {
   position: relative;
   padding: 90px 0;

@@ -1,5 +1,6 @@
-@use "../../../../styles/tokens" as *;
-@use "../../../../styles/mixins" as *;
+@use "@styles/tokens" as *;
+@use "@styles/mixins" as *;
+
 .mobile-heading {
   width: 100%;
   padding: 15px 0px;

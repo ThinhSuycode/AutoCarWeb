@@ -1,6 +1,6 @@
-@use "../../../../styles/variables" as *;
-@use "../../../../styles/mixins" as *;
-@use "../../../../styles/tokens" as *;
+@use "@styles/variables" as *;
+@use "@styles/tokens" as *;
+@use "@styles/mixins" as *;
 
 .information-inner {
   background: linear-gradient(122deg, rgba($black, 0.8784313725), $navy-ink);

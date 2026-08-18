@@ -1,6 +1,6 @@
 @use "sass:color";
-@use "../../../styles/tokens" as t;
-@use "../../../styles/mixins" as *;
+@use "@styles/mixins" as *;
+@use "@styles/tokens" as t;
 
 $radius: 14px;
 $shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
