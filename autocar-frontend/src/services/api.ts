@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_KEYS = import.meta.env.VITE_APP_API_KEYS;
-
+console.log("API URL:", API_KEYS);
 // Tạo axios instance riêng
 const axiosInstance = axios.create({
   baseURL: API_KEYS,
