@@ -91,6 +91,7 @@ const OrderDetailForm = ({ order, onBack }: Props) => {
       {!openOrder && (
         <OrderDetailFooter
           onBack={onBack}
+          order={order}
           isCreatingPayment={isPending}
         ></OrderDetailFooter>
       )}

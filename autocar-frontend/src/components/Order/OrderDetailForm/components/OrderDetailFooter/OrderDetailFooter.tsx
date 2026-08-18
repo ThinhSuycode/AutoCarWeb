@@ -7,10 +7,12 @@ import {
 } from "../../../constant/orderData";
 
 import type { OrderModeType } from "../../../../Appointment/AppointmentManager/constant/useAppointmentData";
+import type { OrderType } from "../../../../../types/order/order.type";
 
 const cx = classNames.bind(styles);
 
 interface Props {
+  order?: OrderType;
   status?: "pending" | "processing" | "completed" | "cancelled";
 
   isUpdating?: boolean;
@@ -29,6 +31,7 @@ interface Props {
 const OrderDetailFooter = ({
   status,
   isUpdating = false,
+  order,
   isExporting = false,
   isCreatingPayment = false,
   onBack,
@@ -38,7 +41,6 @@ const OrderDetailFooter = ({
   onExportPdf,
 }: Props) => {
   const nextStatus = status && ORDER_STATUS_TRANSITIONS[status]?.[0];
-
   return (
     <div className={cx("footer")}>
       <div className={cx("left")}>
@@ -52,20 +54,20 @@ const OrderDetailFooter = ({
         </button>
       </div>
 
-      {/* ================= RIGHT ================= */}
       <div className={cx("right")}>
-        {status !== "completed" && status !== "cancelled" && (
-          <button
-            type="submit"
-            form="createPaymentForm"
-            className={cx("payment")}
-            disabled={isCreatingPayment}
-          >
-            <i className="fa-solid fa-money-bill-wave" />
+        {(status !== "completed" && status !== "cancelled") ||
+          (order?.remainingAmount === 0 && (
+            <button
+              type="submit"
+              form="createPaymentForm"
+              className={cx("payment")}
+              disabled={isCreatingPayment}
+            >
+              <i className="fa-solid fa-money-bill-wave" />
 
-            {isCreatingPayment ? "Đang tạo thanh toán..." : "Tạo thanh toán"}
-          </button>
-        )}
+              {isCreatingPayment ? "Đang tạo thanh toán..." : "Tạo thanh toán"}
+            </button>
+          ))}
         {nextStatus && (
           <button
             type="button"
