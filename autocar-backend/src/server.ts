@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+
 import { connectDB } from "./config/db";
+
 import { carRouter } from "./routes/car.routes";
 import { userRouter } from "./routes/users.routes";
 import { carDetailRouter } from "./routes/carDetail.routes";
@@ -19,13 +21,22 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins: string[] = [
+  "http://localhost:5173",
+  "http://localhost:5175",
+  process.env.CLIENT_URL_WEB,
+].filter((origin): origin is string => Boolean(origin));
+app.use((req, _res, next) => {
+  console.log("Origin:", req.headers.origin);
+  next();
+});
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5175",
-      "http://localhost:5173",
-      process.env.CLIENT_URL_WEB || "",
-    ],
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
@@ -43,6 +54,7 @@ app.use("/api", appointmentRouter);
 app.use("/api", orderRouter);
 app.use("/api", paymentRouter);
 app.use("/api", dashboardRouter);
+
 const PORT = process.env.PORT || 5001;
 
 connectDB().then(() => {
