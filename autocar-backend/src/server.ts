@@ -26,6 +26,7 @@ const allowedOrigins: string[] = [
   "http://localhost:5175",
   process.env.CLIENT_URL_WEB,
 ].filter((origin): origin is string => Boolean(origin));
+
 app.use((req, _res, next) => {
   console.log("Origin:", req.headers.origin);
   next();
