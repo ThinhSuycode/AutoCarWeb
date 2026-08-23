@@ -1,20 +1,18 @@
 import type { Request, Response } from "express";
-import mongoose from "mongoose";
-
-import { CarDetail } from "../models/carDetail.model";
-
 import { catchAsync } from "../utils/catchAsync";
-import { AppError } from "../utils/AppError";
 import logger from "../utils/logger";
-
 import type { AuthRequest } from "../middleware/authMiddleware";
-import { Car } from "../models/car.model";
-import { validateUpdateCarDetail } from "../validators/vaildateCarDetail";
+import { validateObjectId } from "../utils/validateObjectId";
+import { carDetailService } from "../services/carDetail.service";
+import {
+  validateCreateCarDetail,
+  validateUpdateCarDetail,
+} from "../validators/validateCarDetail";
 
 // ─── GET ALL ────────────────────────────────────────────────────────────────
 export const getAllCarDetail = catchAsync(
   async (req: Request, res: Response) => {
-    const carDetail = await CarDetail.find().populate("carId").select("-__v");
+    const carDetail = await carDetailService.getAll();
     res.status(200).json(carDetail);
   },
 );
@@ -22,25 +20,8 @@ export const getAllCarDetail = catchAsync(
 // ─── GET BY ID ──────────────────────────────────────────────────────────────
 export const getCarDetailById = catchAsync(
   async (req: Request, res: Response) => {
-    const { id } = req.params;
-    if (typeof id !== "string") {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
-    const car = await CarDetail.findOne({
-      carId: id,
-    })
-      .populate("carId")
-      .select("-__v");
-
-    if (!car) {
-      throw new AppError("Không tìm thấy chi tiết xe tại getId!", 404);
-    }
-
+    const id = validateObjectId(req.params.id);
+    const car = await carDetailService.getByCarId(id);
     res.status(200).json(car);
   },
 );
@@ -48,31 +29,12 @@ export const getCarDetailById = catchAsync(
 // ─── CREATE ────────────────────────────────────────────────────────────────
 export const createCarDetail = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    if (!req.user) {
-      throw new AppError("Unauthorized!", 401);
-    }
-    const { carId } = req.body;
+    const validatedData = validateCreateCarDetail(req.body);
 
-    if (!carId) {
-      throw new AppError("Không lấy được carId!", 404);
-    }
-    const cars = await Car.findById(carId);
-
-    if (!cars) {
-      throw new AppError("Không tìm thấy xe!", 404);
-    }
-    const existed = await CarDetail.findOne({
-      carId: req.body.carId,
-    });
-
-    if (existed) {
-      throw new AppError("Xe đã có nội dung chi tiết!", 400);
-    }
-
-    const carDetail = await CarDetail.create(req.body);
+    const carDetail = await carDetailService.create(validatedData);
 
     logger.info("CarDetail created", {
-      carId: carId,
+      carId: carDetail.carId,
       by: req.user?._id,
     });
 
@@ -83,31 +45,11 @@ export const createCarDetail = catchAsync(
 // ─── UPDATE ────────────────────────────────────────────────────────────────
 export const updateCarDetail = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
-
-    if (typeof id !== "string") {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
+    const id = validateObjectId(req.params.id);
     const validatedData = validateUpdateCarDetail(req.body);
 
-    const updatedCar = await CarDetail.findOneAndUpdate(
-      { carId: id },
-      validatedData,
-      {
-        returnDocument: "after",
-        runValidators: true,
-      },
-    );
-
-    if (!updatedCar) {
-      throw new AppError("Không tìm thấy thông tin xe!", 404);
-    }
-
+    console.log("data", validatedData);
+    const updatedCar = await carDetailService.updateByCarId(id, validatedData);
     logger.info("CarDetail updated", {
       carId: id,
       by: req.user?._id,
@@ -120,24 +62,9 @@ export const updateCarDetail = catchAsync(
 // ─── DELETE ────────────────────────────────────────────────────────────────
 export const deleteCarDetail = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
+    const id = validateObjectId(req.params.id);
 
-    if (typeof id !== "string") {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID xe không hợp lệ!", 400);
-    }
-
-    const deletedCar = await CarDetail.findOneAndDelete({
-      carId: id,
-    });
-
-    if (!deletedCar) {
-      throw new AppError("Không tìm thấy xe!", 404);
-    }
-
+    await carDetailService.deleteByCarId(id);
     logger.info("CarDetail deleted", {
       carId: id,
       by: req.user?._id,

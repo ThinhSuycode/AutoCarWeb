@@ -19,6 +19,14 @@ export const orderService = {
     );
     return res.data;
   },
+  updateStatus: async (id: string, status: string) => {
+    const res = await changeApi.request<OrderResponse>(
+      `/orders/${id}/status`,
+      "patch",
+      { status },
+    );
+    return res.data;
+  },
 
   delete: (id: string) => changeApi.request("orders", "delete", undefined, id),
 };

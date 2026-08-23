@@ -14,6 +14,7 @@ import mongoose from "mongoose";
 import { AppError } from "../utils/AppError";
 import { Appointment } from "../models/appoinment.model";
 import logger from "../utils/logger";
+import { validateObjectId } from "../utils/validateObjectId";
 
 export const createOrder = catchAsync(
   async (req: AuthRequest, res: Response) => {
@@ -66,11 +67,7 @@ export const getOrders = catchAsync(async (req: AuthRequest, res: Response) => {
 
 export const getOrderDetail = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const id = req.params.id as string;
-
-    if (id && !mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID xe không hợp lệ", 400);
-    }
+     const id = validateObjectId(req.params.id);
     const order = await orderService.getById(id);
 
     return res.status(200).json({
@@ -101,11 +98,7 @@ export const updateOrder = catchAsync(
 );
 export const updateOrderStatus = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const id = req.params.id as string;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ", 400);
-    }
+  const id = validateObjectId(req.params.id);
     const data = validateUpdateOrderStatus(req.body);
 
     const order = await orderService.updateStatus(id, data);
@@ -119,11 +112,7 @@ export const updateOrderStatus = catchAsync(
 );
 export const deleteOrder = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const id = req.params.id as string;
-
-    if (id && !mongoose.Types.ObjectId.isValid(id)) {
-      throw new AppError("ID không hợp lệ", 400);
-    }
+  const id = validateObjectId(req.params.id);
     await orderService.delete(id);
 
     return res.status(200).json({
@@ -135,13 +124,7 @@ export const deleteOrder = catchAsync(
 
 export const updateStatusConfirm = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
-    if (!id) {
-      throw new AppError("Không tìm thấy ID cập nhật!!", 400);
-    }
-    if (typeof id !== "string") {
-      throw new AppError("Kiểu dữ liệu ID không phải là string!!", 400);
-    }
+    const id = validateObjectId(req.params.id);
 
     const order = await orderService.confirmOrder(id, req.user?._id ?? "");
 

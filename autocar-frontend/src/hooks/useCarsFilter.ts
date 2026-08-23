@@ -5,7 +5,7 @@ import {
   PRICE_RANGES_MAP,
   YEAR_RANGES_MAP,
 } from "../page/Home/constants/homeData";
-import { sortMap } from "../constants/carDatax";
+import { sortMap } from "../constants/carData";
 import type { CarType } from "../types/car/car.type";
 
 export interface FilterState {

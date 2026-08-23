@@ -26,12 +26,11 @@ const DashboardManager = () => {
   return (
     <div className={cx("dashboardManager-page")}>
       <DashBoardHeader></DashBoardHeader>
-      <Charts></Charts>
+      <Charts stats={stats ?? null}></Charts>
 
       <DashboardStats stats={stats}></DashboardStats>
       <DashboardOverview stats={stats}></DashboardOverview>
 
-      {/* Quick Actions */}
       <QuickAction></QuickAction>
     </div>
   );

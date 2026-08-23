@@ -6,7 +6,7 @@ import {
   modeData,
   SORT_OPTIONS,
   type ModeDataType,
-} from "../../../../constants/carDatax";
+} from "../../../../constants/carData";
 
 const cx = classNames.bind(styles);
 

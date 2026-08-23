@@ -5,6 +5,8 @@ import useCarTable from "./hooks/useCarTable";
 import LoadingData from "../../../../../components/LoadingData/LoadingData";
 import EmptyState from "../../../../../components/EmtyState/EmptyState";
 import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
+import { MANAGER_STATUS_MAP } from "../../../../../constants/managerStatus";
+import { CAR_STATUS_LABEL } from "../../../../../types/car/car.constant";
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +34,7 @@ const CarTable = ({
               <th>Xe</th>
               <th>Thương hiệu</th>
               <th>Giá</th>
+              <th>Trạng thái</th>
               <th>Chỉnh sửa</th>
               <th>Chi tiết</th>
               <th></th>
@@ -72,7 +75,11 @@ const CarTable = ({
                   <td className={cx("price")}>
                     {car.price.toLocaleString("vi-VN")}₫
                   </td>
-
+                  <td>
+                    <span className={cx("status", car.status)}>
+                      {CAR_STATUS_LABEL[car.status]}
+                    </span>
+                  </td>
                   {/* Chỉnh sửa thông tin cơ bản */}
                   <td>
                     <button

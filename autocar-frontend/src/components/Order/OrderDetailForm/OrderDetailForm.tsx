@@ -15,6 +15,7 @@ import OrderPaymentForm from "./components/OrderPaymentForm/OrderPaymentForm";
 import useOrderDetail from "./hooks/useOrderDetail";
 import OrderDetailHeader from "./components/OrderDetailHeader/OrderDetailHeader";
 import OrderDetailFooter from "./components/OrderDetailFooter/OrderDetailFooter";
+import CarInspectionStatus from "./components/CarInspectionStatus/CarInspectionStatus";
 
 const cx = classNames.bind(styles);
 
@@ -79,13 +80,18 @@ const OrderDetailForm = ({ order, onBack }: Props) => {
             setOpenOrder={setOpenOrder}
           />
           <OrderHistory payments={paymentsData ?? []} />
-          <PaymentCreate
-            control={control}
-            register={register}
-            errors={errors}
-            paymentMethod={paymentMethod ?? null}
-            onChange={(value) => setValue("method", value)}
-          />
+          {order.status === "completed" ||
+          order.status === "ready_for_delivery" ? (
+            <CarInspectionStatus car={order.carId}></CarInspectionStatus>
+          ) : (
+            <PaymentCreate
+              control={control}
+              register={register}
+              errors={errors}
+              paymentMethod={paymentMethod ?? null}
+              onChange={(value) => setValue("method", value)}
+            />
+          )}
         </form>
       )}
       {!openOrder && (

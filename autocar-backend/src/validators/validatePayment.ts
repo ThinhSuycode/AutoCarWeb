@@ -2,20 +2,9 @@ import {
   paymentFormSchema,
   UpdateStatusSchema,
 } from "../schemas/payment.schema";
-import { AppError } from "../utils/AppError";
+import { validateWithSchema } from "../utils/validateWithSchema";
 
-export const validatedCreatePayment = (data: unknown) => {
-  const result = paymentFormSchema.safeParse(data);
-  if (!result.success) {
-    throw new AppError(result.error.issues[0].message, 400);
-  }
-  return result.data;
-};
-
-export const validatedUpdateStatus = (data: unknown) => {
-  const result = UpdateStatusSchema.safeParse(data);
-  if (!result.success) {
-    throw new AppError(result.error.issues[0].message, 400);
-  }
-  return result.data;
-};
+export const validatedCreatePayment = (data: unknown) =>
+  validateWithSchema(paymentFormSchema, data);
+export const validatedUpdateStatus = (data: unknown) =>
+  validateWithSchema(UpdateStatusSchema, data);

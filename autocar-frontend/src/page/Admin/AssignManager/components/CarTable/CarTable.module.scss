@@ -1,4 +1,4 @@
-@use "../../../../../styles/tokens" as *;
+@use "@styles/tokens" as *;
 
 .table-wrapper {
   background: $white;
@@ -117,7 +117,7 @@
 
 // ─── Current staff ───────────────────────────────────────────────────────────
 .current-staff {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
 

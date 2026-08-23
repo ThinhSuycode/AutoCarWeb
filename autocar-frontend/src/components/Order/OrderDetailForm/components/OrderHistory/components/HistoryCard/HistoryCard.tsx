@@ -81,6 +81,7 @@ const HistoryCard = ({ payment }: Props) => {
               <button
                 className={cx(item)}
                 onClick={() => handleUpdateStatus(item)}
+                key={item}
               >
                 {isPending ? "Đang tải..." : PAYMENT_STATUS_LABEL[item]}
               </button>

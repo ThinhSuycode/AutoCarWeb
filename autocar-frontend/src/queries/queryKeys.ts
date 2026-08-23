@@ -8,6 +8,10 @@ export const queryKeys = {
       ["cars", "list", params] as const,
     detail: (id: string) => ["cars", id] as const,
   },
+  carDetail: {
+    all: ["car-detail"] as const,
+    detail: (id: string) => ["car-detail", id] as const,
+  },
 
   managerCar: {
     all: ["manager-cars"] as const,

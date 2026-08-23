@@ -130,6 +130,7 @@ export const paymentService = {
       payment.paidAt = new Date();
       order.paidAmount += payment.amount;
       order.remainingAmount -= payment.amount;
+      order.status = "processing";
     }
 
     if (nextStatus === "pending") {

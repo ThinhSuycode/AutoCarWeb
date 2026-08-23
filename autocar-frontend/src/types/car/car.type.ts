@@ -15,9 +15,9 @@ export interface CarType {
 
   mileage: number;
 
-  bodyType: BodyType[];
-
   transmission: TransmissionType;
+
+  bodyType: BodyType[];
 
   fuel: FuelType;
 

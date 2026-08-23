@@ -18,4 +18,10 @@ export const contactFormSchema = z.object({
   notes: z.string().optional(),
 });
 
+export const createContactSchema = contactFormSchema;
+
+export const updateContactSchema = contactFormSchema.partial();
+
 export type ContactFormData = z.infer<typeof contactFormSchema>;
+export type CreateContactData = z.infer<typeof createContactSchema>;
+export type UpdateContactData = z.infer<typeof updateContactSchema>;

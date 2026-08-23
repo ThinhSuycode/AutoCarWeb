@@ -25,7 +25,6 @@ const HomeBanner = ({ carCount, bannerStats }: HomeBannerProps) => {
     handleClearAll,
     isDebouncing,
   } = useSearchCars();
-  console.log(carsResult);
   return (
     <div className={cx("home-banner")}>
       <div className={cx("circle-left")}></div>

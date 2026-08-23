@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
-import {
-  ARTICLE_CATEGORIES,
-  ARTICLE_CATEGORY_VALUES,
-} from "../constants/articleCategory";
+import { ARTICLE_CATEGORY_VALUES } from "../constants/articleCategory";
+import { ARTICLE_STATUS } from "../schemas/article.schema";
 
 const ArticleSchema = new mongoose.Schema(
   {
@@ -32,6 +30,7 @@ const ArticleSchema = new mongoose.Schema(
       required: true,
       enum: ARTICLE_CATEGORY_VALUES,
       trim: true,
+      index: true,
     },
 
     thumbnail: {
@@ -49,7 +48,7 @@ const ArticleSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["draft", "pending", "published", "archived"],
+      enum: ARTICLE_STATUS,
       default: "draft",
     },
 
@@ -104,5 +103,7 @@ const ArticleSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+ArticleSchema.index({ createdAt: -1 });
 
 export const Articles = mongoose.model("Articles", ArticleSchema);

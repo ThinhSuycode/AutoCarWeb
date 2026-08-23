@@ -40,7 +40,14 @@ export const ORDER_STATUS_LABEL: Record<OrderStatus, string> = {
   completed: "Hoàn thành",
   cancelled: "Đã hủy",
 };
-
+export const ORDER_STATUS_ICON: Record<OrderStatus, string> = {
+  pending: "fa-solid fa-clock",
+  confirmed: "fa-solid fa-check",
+  processing: "fa-solid fa-spinner",
+  ready_for_delivery: "fa-solid fa-truck-fast",
+  completed: "fa-solid fa-circle-check",
+  cancelled: "fa-solid fa-ban",
+};
 export const paymentMethods = Object.entries(PAYMENT_LABEL).map(
   ([value, label]) => ({
     value,

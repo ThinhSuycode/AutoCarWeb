@@ -1,0 +1,80 @@
+@use "@/styles/tokens" as *;
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition:
+    transform 0.2s $ease-smooth,
+    box-shadow 0.2s $ease-smooth;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &.skeleton {
+    height: 76px;
+    background: linear-gradient(90deg, $border-2 25%, $bg 37%, $border-2 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+    border: none;
+  }
+}
+
+.kpi-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+}
+
+.kpi-body {
+  min-width: 0;
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: $slate;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: $navy;
+  margin: 0;
+}
+
+// Màu accent cho từng loại KPI — dùng tint nhạt của màu chính làm nền icon
+.kpi-card.red .kpi-icon {
+  background: rgba($red, 0.12);
+  color: $red;
+}
+.kpi-card.blue .kpi-icon {
+  background: rgba($blue, 0.12);
+  color: $blue;
+}
+.kpi-card.amber .kpi-icon {
+  background: rgba($amber, 0.14);
+  color: $amber;
+}
+.kpi-card.green .kpi-icon {
+  background: rgba($green, 0.12);
+  color: $green;
+}
+.kpi-card.violet .kpi-icon {
+  background: rgba($violet, 0.12);
+  color: $violet;
+}

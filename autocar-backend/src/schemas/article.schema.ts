@@ -67,7 +67,12 @@ export const articleQuerySchema = z.object({
 
   all: z.enum(["true", "false"]).optional(),
 });
+export const updateStatusArticleSchema = z.object({
+  status: z.enum(ARTICLE_STATUS),
+});
 
 export type ArticleInput = z.infer<typeof articleSchema>;
+export type ArticleStatusType = (typeof ARTICLE_STATUS)[number];
 export type UpdateArticleInput = z.infer<typeof updateArticleSchema>;
+export type UpdateStatusArticle = z.infer<typeof updateStatusArticleSchema>;
 export type ArticleQuery = z.infer<typeof articleQuerySchema>;

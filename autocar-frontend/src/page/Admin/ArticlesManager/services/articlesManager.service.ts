@@ -2,15 +2,7 @@ import { changeApi } from "../../../../services/api";
 import type { Article } from "../../../../types/article/article.type";
 import type { ArticleStatus } from "../../../Staff/ArticleManager/constants/statusMapData";
 
-export interface GetArticlesParams {
-  page: number;
-  limit: number;
-  search?: string;
-  category?: string;
-  status?: string;
-}
-
 export const articlesManagerService = {
   updateStatus: (id: string, status: ArticleStatus) =>
-    changeApi.request<Article>("articles", "patch", { status }, id),
+    changeApi.request<Article>(`articles/${id}/status`, "patch", { status }),
 };

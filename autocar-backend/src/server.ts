@@ -27,11 +27,6 @@ const allowedOrigins: string[] = [
   process.env.CLIENT_URL_WEB,
 ].filter((origin): origin is string => Boolean(origin));
 
-app.use((req, _res, next) => {
-  console.log("Origin:", req.headers.origin);
-  next();
-});
-
 app.use(
   cors({
     origin: allowedOrigins,

@@ -1,340 +1,216 @@
 import classNames from "classnames/bind";
 import styles from "./DashBoard.module.scss";
-
 import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  CartesianGrid,
-  Tooltip,
-  XAxis,
-  YAxis,
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
-} from "recharts";
+  Car,
+  Users,
+  CalendarClock,
+  ShoppingBag,
+  Wallet,
+  Inbox,
+  Wrench,
+} from "lucide-react";
+import ChartKpiCard from "../../../components/ChartKpiCard/ChartKpiCard";
+import TodoCard from "./components/TodoCard/TodoCard";
+import StatusBreakdownBar from "./components/Statusbreakdownbar/Statusbreakdownbar";
+import {
+  MANAGER_STATUS_COLOR,
+  MANAGER_STATUS_LABEL,
+} from "../../../types/user/manager-cars.type";
+import {
+  CONTACT_STATUS_COLOR,
+  CONTACT_STATUS_LABEL,
+} from "../../../types/contact/contact.constant";
+import { useStaffDashBoard } from "./hooks/useStaffDashBoard";
+import LoadingData from "../../../components/LoadingData/LoadingData";
+import EmptyData from "../../../components/EmtyData/EmptyData";
+import { formatNumber } from "../../../components/MoneyInput/utils/useTransformInput";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 
 const cx = classNames.bind(styles);
 
-// ─────────────────────────────────────────────────────────────
-// Mock Data
-// ─────────────────────────────────────────────────────────────
-
-const appointmentData = [
-  { day: "T2", total: 4 },
-  { day: "T3", total: 7 },
-  { day: "T4", total: 5 },
-  { day: "T5", total: 9 },
-  { day: "T6", total: 6 },
-  { day: "T7", total: 10 },
-  { day: "CN", total: 3 },
-];
-
-const appointmentStatus = [
-  { name: "Chờ xác nhận", value: 8, color: "#f59e0b" },
-  { name: "Đã xác nhận", value: 15, color: "#3b82f6" },
-  { name: "Hoàn thành", value: 21, color: "#22c55e" },
-  { name: "Đã huỷ", value: 3, color: "#ef4444" },
-];
-
-const customerCareData = [
-  { month: "T1", customers: 24 },
-  { month: "T2", customers: 32 },
-  { month: "T3", customers: 28 },
-  { month: "T4", customers: 36 },
-  { month: "T5", customers: 42 },
-  { month: "T6", customers: 38 },
-];
-
-const recentAppointments = [
-  {
-    id: 1,
-    customer: "Nguyễn Văn A",
-    car: "Toyota Camry",
-    date: "20/05/2026",
-    time: "09:30",
-    status: "pending",
-  },
-  {
-    id: 2,
-    customer: "Trần Minh B",
-    car: "Mazda CX5",
-    date: "20/05/2026",
-    time: "13:00",
-    status: "confirmed",
-  },
-  {
-    id: 3,
-    customer: "Lê Quốc C",
-    car: "Ford Everest",
-    date: "21/05/2026",
-    time: "15:30",
-    status: "completed",
-  },
-];
-
-const STATUS_MAP: Record<
-  string,
-  {
-    label: string;
-    cls: string;
-  }
-> = {
-  pending: {
-    label: "Chờ xác nhận",
-    cls: "pending",
-  },
-  confirmed: {
-    label: "Đã xác nhận",
-    cls: "confirmed",
-  },
-  completed: {
-    label: "Hoàn thành",
-    cls: "completed",
-  },
-  cancelled: {
-    label: "Đã huỷ",
-    cls: "cancelled",
-  },
-};
-
-// ─────────────────────────────────────────────────────────────
-// Component
-// ─────────────────────────────────────────────────────────────
-
 const DashBoard = () => {
+  const { stats, isLoading } = useStaffDashBoard();
+  if (isLoading) {
+    return <LoadingData message="Đang tải..."></LoadingData>;
+  }
+  if (!stats) {
+    return (
+      <EmptyData
+        title="Không tìm thấy dữ liệu"
+        description="Vui lòng kiểm tra lại"
+      ></EmptyData>
+    );
+  }
+
   return (
-    <div className={cx("dashboardStaff-page")}>
+    <div className={cx("wrapper")}>
       <PageHeader
-        title="Dashboard Nhân Viên"
-        description="Theo dõi lịch hẹn và khách hàng hôm nay"
-      >
-        <div className={cx("date")}>
-          <i className="fa-regular fa-calendar"></i>
-
-          {new Date().toLocaleDateString("vi-VN", {
-            weekday: "long",
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })}
-        </div>
-      </PageHeader>
-
-      {/* Stats */}
-      <div className={cx("stats-grid")}>
-        <div className={cx("stat-card", "blue")}>
-          <div className={cx("stat-icon")}>
-            <i className="fa-regular fa-calendar-check"></i>
-          </div>
-
-          <div className={cx("stat-content")}>
-            <h3>24</h3>
-            <p>Lịch hẹn hôm nay</p>
-          </div>
-        </div>
-
-        <div className={cx("stat-card", "green")}>
-          <div className={cx("stat-icon")}>
-            <i className="fa-solid fa-users"></i>
-          </div>
-
-          <div className={cx("stat-content")}>
-            <h3>132</h3>
-            <p>Khách hàng hỗ trợ</p>
-          </div>
-        </div>
-
-        <div className={cx("stat-card", "orange")}>
-          <div className={cx("stat-icon")}>
-            <i className="fa-solid fa-clock"></i>
-          </div>
-
-          <div className={cx("stat-content")}>
-            <h3>8</h3>
-            <p>Chờ xác nhận</p>
-          </div>
-        </div>
-
-        <div className={cx("stat-card", "red")}>
-          <div className={cx("stat-icon")}>
-            <i className="fa-solid fa-car"></i>
-          </div>
-
-          <div className={cx("stat-content")}>
-            <h3>16</h3>
-            <p>Lái thử hoàn thành</p>
-          </div>
-        </div>
+        title="DashBoard"
+        description="Xem tổng quan nhiệm vụ của nhân viên"
+      ></PageHeader>
+      <div className={cx("kpi-row")}>
+        <ChartKpiCard
+          icon={Car}
+          label="Xe đang phụ trách"
+          value={stats?.assignedCars}
+          accent="red"
+        />
+        <ChartKpiCard
+          icon={Users}
+          label="Khách đang xử lý"
+          value={stats.activeContacts}
+          accent="blue"
+        />
+        <ChartKpiCard
+          icon={CalendarClock}
+          label="Lịch hẹn hôm nay"
+          value={stats.todayAppointments}
+          accent="amber"
+        />
+        <ChartKpiCard
+          icon={ShoppingBag}
+          label="Đơn hàng tháng này"
+          value={stats.monthlyOrders}
+          accent="violet"
+        />
+        <ChartKpiCard
+          icon={Wallet}
+          label="Doanh số tháng này"
+          value={stats.monthlyRevenue}
+          accent="green"
+        />
       </div>
 
-      {/* Charts */}
-      <div className={cx("charts-grid")}>
-        {/* Area Chart */}
-        <div className={cx("chart-card", "large")}>
-          <div className={cx("chart-header")}>
-            <div>
-              <h3>Lịch hẹn trong tuần</h3>
-              <p>7 ngày gần nhất</p>
+      {/* ─── Việc cần làm hôm nay ─── */}
+      <div className={cx("section-title")}>Việc cần làm hôm nay</div>
+      <div className={cx("todo-row")}>
+        <TodoCard
+          icon={CalendarClock}
+          title="Lịch hẹn hôm nay"
+          count={stats.todayAppointmentsList.length}
+          emptyText="Không có lịch hẹn nào hôm nay"
+          accent="amber"
+        >
+          {stats.todayAppointmentsList.map((item) => (
+            <div key={item._id} className={cx("todo-item")}>
+              <span className={cx("todo-time")}>{item.appointmentTime}</span>
+              <div>
+                <p className={cx("todo-name")}>
+                  {item.contactId?.buyerId?.username ?? "Khách hàng"}
+                </p>
+                <p className={cx("todo-sub")}>
+                  {item.appointmentCar?.name} • {item.showroom}
+                </p>
+              </div>
             </div>
+          ))}
+        </TodoCard>
+
+        <TodoCard
+          icon={Inbox}
+          title="Liên hệ mới"
+          count={stats.newContactsList.length}
+          emptyText="Không có liên hệ mới"
+          accent="blue"
+        >
+          {stats.newContactsList.map((item) => (
+            <div key={item._id} className={cx("todo-item")}>
+              <div>
+                <p className={cx("todo-name")}>{item.name}</p>
+                <p className={cx("todo-sub")}>
+                  {item.phone} {item.carName ? `• ${item.carName}` : ""}
+                </p>
+              </div>
+            </div>
+          ))}
+        </TodoCard>
+
+        <TodoCard
+          icon={Wrench}
+          title="Xe chờ kiểm định"
+          count={stats.pendingInspectionList.length}
+          emptyText="Không có xe nào cần kiểm định"
+          accent="red"
+        >
+          {stats.pendingInspectionList.map((item) => (
+            <div key={item._id} className={cx("todo-item")}>
+              {item.thumbnail && (
+                <img
+                  src={item.thumbnail}
+                  alt={item.name}
+                  className={cx("todo-img")}
+                />
+              )}
+              <div>
+                <p className={cx("todo-name")}>{item.name}</p>
+                <p className={cx("todo-sub")}>{item.brand}</p>
+              </div>
+            </div>
+          ))}
+        </TodoCard>
+      </div>
+
+      {/* ─── Breakdown charts ─── */}
+      <div className={cx("charts-row")}>
+        <StatusBreakdownBar
+          title="Tiến trình kiểm định xe"
+          subtitle="Xe đang phụ trách theo từng bước"
+          data={stats.carsByManagerStatus.map((d) => ({
+            _id: d._id ?? "pending",
+            count: d.count,
+          }))}
+          labelMap={MANAGER_STATUS_LABEL}
+          colorMap={MANAGER_STATUS_COLOR}
+          order={["pending", "received", "maintenance", "ready", "completed"]}
+        />
+
+        <StatusBreakdownBar
+          title="Phễu xử lý khách hàng"
+          subtitle="Khách hàng đang phụ trách theo trạng thái"
+          data={stats.contactsByStatus}
+          labelMap={CONTACT_STATUS_LABEL}
+          colorMap={CONTACT_STATUS_COLOR}
+          order={[
+            "new",
+            "contacted",
+            "assigned",
+            "appointment_created",
+            "completed",
+            "cancelled",
+          ]}
+        />
+      </div>
+
+      {/* ─── Đơn hàng gần đây ─── */}
+      <div className={cx("chart-card")}>
+        <div className={cx("chart-header")}>
+          <div>
+            <h3>Đơn hàng gần đây</h3>
+            <p>5 đơn hàng mới nhất của bạn</p>
           </div>
-
-          <ResponsiveContainer width="100%" height={260}>
-            <AreaChart data={appointmentData}>
-              <defs>
-                <linearGradient
-                  id="appointmentGradient"
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="1"
-                >
-                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-
-              <CartesianGrid
-                strokeDasharray="3 3"
-                vertical={false}
-                stroke="#f1f5f9"
-              />
-
-              <XAxis dataKey="day" axisLine={false} tickLine={false} />
-
-              <YAxis axisLine={false} tickLine={false} />
-
-              <Tooltip />
-
-              <Area
-                type="monotone"
-                dataKey="total"
-                stroke="#3b82f6"
-                fill="url(#appointmentGradient)"
-                strokeWidth={3}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart */}
-        <div className={cx("chart-card")}>
-          <div className={cx("chart-header")}>
-            <div>
-              <h3>Trạng thái lịch hẹn</h3>
-              <p>Phân bổ hiện tại</p>
-            </div>
+        {stats.recentOrders.length === 0 ? (
+          <div className={cx("chart-empty")} style={{ height: 100 }}>
+            <p>Chưa có đơn hàng nào</p>
           </div>
-
-          <ResponsiveContainer width="100%" height={260}>
-            <PieChart>
-              <Pie
-                data={appointmentStatus}
-                dataKey="value"
-                innerRadius={60}
-                outerRadius={90}
-                paddingAngle={3}
-              >
-                {appointmentStatus.map((item, index) => (
-                  <Cell key={index} fill={item.color} />
-                ))}
-              </Pie>
-
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-
-          <div className={cx("pie-legend")}>
-            {appointmentStatus.map((item) => (
-              <div key={item.name} className={cx("legend-item")}>
-                <span
-                  className={cx("dot")}
-                  style={{ background: item.color }}
-                ></span>
-
-                <span>{item.name}</span>
-
-                <strong>{item.value}</strong>
+        ) : (
+          <div className={cx("order-list")}>
+            {stats.recentOrders.map((order) => (
+              <div key={order._id} className={cx("order-row")}>
+                <div>
+                  <p className={cx("order-code")}>{order.orderCode}</p>
+                  <p className={cx("order-sub")}>
+                    {order.carSnapshot?.name} • {order.buyerSnapshot?.username}
+                  </p>
+                </div>
+                <span className={cx("order-amount")}>
+                  {formatNumber(order.totalAmount)} VND
+                </span>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* Bottom Grid */}
-      <div className={cx("bottom-grid")}>
-        {/* Recent appointments */}
-        <div className={cx("table-card")}>
-          <div className={cx("section-header")}>
-            <h3>Lịch hẹn gần đây</h3>
-          </div>
-
-          <table className={cx("table")}>
-            <thead>
-              <tr>
-                <th>Khách hàng</th>
-                <th>Xe</th>
-                <th>Ngày</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {recentAppointments.map((item) => {
-                const status = STATUS_MAP[item.status];
-
-                return (
-                  <tr key={item.id}>
-                    <td>{item.customer}</td>
-
-                    <td>{item.car}</td>
-
-                    <td>
-                      {item.date} - {item.time}
-                    </td>
-
-                    <td>
-                      <span className={cx("status-badge", status.cls)}>
-                        {status.label}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Customer care chart */}
-        <div className={cx("chart-card")}>
-          <div className={cx("chart-header")}>
-            <div>
-              <h3>Khách hàng chăm sóc</h3>
-              <p>6 tháng gần nhất</p>
-            </div>
-          </div>
-
-          <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={customerCareData}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                vertical={false}
-                stroke="#f1f5f9"
-              />
-
-              <XAxis dataKey="month" axisLine={false} tickLine={false} />
-
-              <YAxis axisLine={false} tickLine={false} />
-
-              <Tooltip />
-
-              <Bar dataKey="customers" fill="#22c55e" radius={[6, 6, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        )}
       </div>
     </div>
   );

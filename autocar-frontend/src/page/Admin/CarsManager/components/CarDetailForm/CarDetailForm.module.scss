@@ -1,5 +1,5 @@
 @use "../../styles/formMixin.module" as *;
-@use "../../../../../styles/mixins" as *;
+@use "@styles/mixins" as *;
 
 .form-detail {
   @include form-base;

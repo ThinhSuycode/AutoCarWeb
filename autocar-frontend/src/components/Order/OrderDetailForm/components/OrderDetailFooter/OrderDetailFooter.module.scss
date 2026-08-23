@@ -1,4 +1,4 @@
-@use "../../../../../styles/mixins" as *;
+@use "@styles/mixins" as *;
 
 .footer {
   display: flex;
@@ -38,11 +38,13 @@ button {
     background 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease,
-    opacity 0.2s ease;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    transform: none !important;
   }
 }
 
@@ -62,12 +64,90 @@ button {
   }
 }
 
+// ─── Nút chuyển trạng thái đơn hàng ─────────────────────────────────────────
+// Màu khớp đúng ORDER_STATUS_COLOR trong constant/orderData.ts, đủ cho cả
+// 6 giá trị OrderStatus để không bị thiếu style khi nextStatus đổi khác nhau
+
+.pending {
+  background: #f59e0b;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #d97706;
+    transform: translateY(-2px);
+  }
+}
+
+.confirmed {
+  background: #0ea5e9;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #0284c7;
+    transform: translateY(-2px);
+  }
+}
+
+.processing {
+  background: #2563eb;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+  }
+
+  i {
+    animation: spin 1s linear infinite;
+  }
+}
+
+.ready_for_delivery {
+  background: #7c3aed;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #6d28d9;
+    transform: translateY(-2px);
+  }
+}
+
+.completed {
+  background: #16a34a;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #15803d;
+    transform: translateY(-2px);
+  }
+}
+
+.cancelled {
+  background: #dc2626;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: #b91c1c;
+    transform: translateY(-2px);
+  }
+}
+
 .pdf {
   background: #7c3aed;
   color: #fff;
 
   &:hover:not(:disabled) {
     background: #6d28d9;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -80,6 +160,11 @@ button {
 
   .left,
   .right {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  button {
     width: 100%;
   }
 }

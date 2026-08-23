@@ -5,6 +5,12 @@ export const CAR_STATUS = [
   "maintenance",
 ] as const;
 
+export const CAR_STATUS_LABEL: Record<CarStatus, string> = {
+  available: "Đang bán",
+  reserved: "Đã đặt cọc",
+  sold: "Đã bán",
+  maintenance: "Đang bảo dưỡng",
+};
 export const MANAGER_STATUS = [
   "pending",
   "received",

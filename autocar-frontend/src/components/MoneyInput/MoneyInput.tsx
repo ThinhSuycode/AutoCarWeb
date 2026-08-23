@@ -22,7 +22,7 @@ type Props<
   control: Control<TFieldValues, any, TTransformedValues>;
 
   placeholder?: string;
-  error?: FieldError;
+  error?: { message?: string };
 };
 
 const MoneyInput = <

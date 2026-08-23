@@ -1,8 +1,7 @@
-import useDashboardQuery from "../../../../queries/dashboardQuery/useDashboardQuery";
+import { useAdminDashboardQuery } from "../../../../queries/dashboardQuery/useDashboardQuery";
 
-// ─── Hook ─────────────────────────────────────────────────────────────────────
 export const useDashboardManager = () => {
-  const { data, isLoading, isFetching, refetch } = useDashboardQuery();
+  const { data, isLoading, isFetching, refetch } = useAdminDashboardQuery();
 
   return { stats: data?.data, isLoading, isFetching, refetch };
 };

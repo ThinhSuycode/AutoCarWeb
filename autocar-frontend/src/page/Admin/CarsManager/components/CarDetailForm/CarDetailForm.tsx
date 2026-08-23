@@ -6,16 +6,16 @@ import { useCarDetail } from "./hooks/useCarDetailForm";
 import { Controller } from "react-hook-form";
 import { ImagesEditor } from "./components/ImagesEditor";
 import type { CarDetailsType } from "../../../../../types/car/car-detail.type";
-import type { CreateCarDetailDto } from "../../../../../schemas/carDetail.schema";
+import type { CarDetailFormType } from "../../../../../schemas/carDetail.schema";
 
 const cx = classNames.bind(styles);
 
 interface Props {
   carDetail: CarDetailsType | null;
   onCloseModal: () => void;
-  defaultValues?: CarDetailsType;
+  defaultValues: CarDetailFormType;
   isLoading: boolean;
-  onSubmit: (data: CreateCarDetailDto) => void;
+  onSubmit: (data: CarDetailFormType) => void;
 }
 const CarDetailForm = ({
   carDetail,
@@ -45,7 +45,7 @@ const CarDetailForm = ({
     fileInputRef,
     handleAddImages,
     control,
-  } = useCarDetail({ carDetail, defaultValues });
+  } = useCarDetail({ defaultValues, carDetail });
   if (isLoading) {
     return <LoadingData message="Đang tải dữ liệu" color></LoadingData>;
   }

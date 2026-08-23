@@ -18,6 +18,7 @@ export const useCarForm = ({ defaultValues }: Props) => {
     register,
     setValue,
     watch,
+    control,
     formState: { errors },
   } = useForm<
     z.input<typeof carFormSchema>,
@@ -81,6 +82,7 @@ export const useCarForm = ({ defaultValues }: Props) => {
     errors,
     handleUploadImage,
     isUploading,
+    control,
     watch,
     fileInputRef,
   };

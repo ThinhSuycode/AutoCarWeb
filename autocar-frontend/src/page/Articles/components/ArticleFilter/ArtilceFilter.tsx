@@ -39,9 +39,6 @@ const ArticleFilter = ({
   isLoading,
 }: Props) => {
   const hasMore = pagination && pagination.page < pagination.totalPages;
-  // const hasFilterArticles = useMemo(() => {
-  //   return filterValue.trim() !== "Tất cả" && showArticleData.length === 0;
-  // }, [filterValue, showArticleData]);
 
   return (
     <div className={cx("news-filters")}>

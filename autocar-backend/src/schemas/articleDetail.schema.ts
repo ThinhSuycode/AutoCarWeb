@@ -67,7 +67,9 @@ export const articleDetailSchema = z.object({
   seo: seoSchema.optional(),
 });
 
-export const updateArticleDetailSchema = articleDetailSchema.partial();
+export const updateArticleDetailSchema = articleDetailSchema
+  .omit({ articleId: true })
+  .partial();
 
 export type ArticleDetailInput = z.input<typeof articleDetailSchema>;
 export type ArticleDetailOutput = z.output<typeof articleDetailSchema>;

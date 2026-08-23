@@ -4,14 +4,14 @@ import { useCallback } from "react";
 import CarTable from "./components/CarTable/CarTable";
 import ModalLayout from "../../../components/ModalLayout/ModalLayout";
 import CarForm from "./components/CarForm/CarForm";
-import CarDetailForm from "./components/CarDetailForm/CarDetailForm";
 import CarHeader from "./components/CarHeader/CarHeader";
 import PagePagination from "../../../components/PagePagination/PagePagination";
 import useDetailFormMutation from "./components/CarDetailForm/mutations/useDetailFormMutation";
 import useCarFormMutation from "./components/CarForm/mutations/useCarFormMutation";
 import { useCarsManager } from "./hooks/useCarsManager";
-import type { CreateCarDetailDto } from "../../../schemas/carDetail.schema";
+import { type CarDetailFormType } from "../../../schemas/carDetail.schema";
 import type { CreateCarDto, UpdateCarDto } from "../../../schemas/car.schema";
+import CarDetailForm from "./components/CarDetailForm/CarDetailForm";
 
 const cx = classNames.bind(styles);
 
@@ -34,7 +34,7 @@ const CarsManager = () => {
   } = useCarsManager();
 
   const { carDetail, createDetail, updateDetail, detailLoading } =
-    useDetailFormMutation(openDetail?._id);
+    useDetailFormMutation(openDetail?._id ?? "");
 
   const onCloseDetail = useCallback(() => {
     setOpenDetail(null);
@@ -77,7 +77,6 @@ const CarsManager = () => {
               engine: selectedCar.engine,
               seats: selectedCar.seats,
               origin: selectedCar.origin,
-
               thumbnail: selectedCar.thumbnail,
             }}
             onCloseModal={() => setSelectedCar(null)}
@@ -97,9 +96,16 @@ const CarsManager = () => {
           <CarDetailForm
             onCloseModal={onCloseDetail}
             carDetail={carDetail}
-            defaultValues={carDetail ?? undefined}
+            defaultValues={{
+              carId: carDetail?.carId._id ?? "",
+              location: carDetail?.location ?? "",
+              images: carDetail?.images ?? [],
+              description: carDetail?.description ?? "",
+              features: carDetail?.features ?? [],
+              specs: carDetail?.specs ?? [],
+            }}
             isLoading={detailLoading}
-            onSubmit={(data: CreateCarDetailDto) => {
+            onSubmit={(data: CarDetailFormType) => {
               if (carDetail) {
                 updateDetail({
                   id: openDetail._id,
@@ -108,7 +114,7 @@ const CarsManager = () => {
               } else {
                 createDetail({
                   ...data,
-                  carId: openDetail,
+                  carId: openDetail._id,
                 });
               }
 

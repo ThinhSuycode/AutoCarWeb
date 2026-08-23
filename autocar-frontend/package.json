@@ -16,6 +16,7 @@
     "aos": "^2.3.4",
     "axios": "^1.13.6",
     "classnames": "^2.5.1",
+    "lucide-react": "^1.33.0",
     "react": "^19.2.0",
     "react-confirm-alert": "^3.0.6",
     "react-countup": "^6.5.3",

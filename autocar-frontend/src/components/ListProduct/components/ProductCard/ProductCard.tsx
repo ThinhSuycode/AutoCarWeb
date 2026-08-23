@@ -17,9 +17,7 @@ const ProductCard = ({ userLayout, car, changeItem }: Props) => {
     <div className={cx("product-item", { userLayout }, { changeItem })}>
       <div className={cx("product-item__img", { userLayout })}>
         <img src={car.thumbnail} alt={car.name} />
-        {car.status === "sold" && (
-          <div className={cx("car-checked")}>Đã bán</div>
-        )}
+        {car.status === "sold" && <div className={cx("car-sold")}>Đã bán</div>}
         <div className={cx("info-img")}>
           <div className={cx("left", { userLayout })}>
             <div>

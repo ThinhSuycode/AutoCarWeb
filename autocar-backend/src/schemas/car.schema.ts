@@ -34,9 +34,9 @@ export const createCarSchema = z.object({
 
   mileage: z.coerce.number().min(0),
 
-  bodyType: z.array(z.string()).min(1),
-
   transmission: z.enum(TRANSMISSION),
+
+  bodyType: z.array(z.string()).min(1),
 
   fuel: z.enum(FUEL),
 
@@ -78,3 +78,5 @@ export type UpdateCarDto = z.infer<typeof updateCarSchema>;
 export type UpdateCarStatusDto = z.infer<typeof updateCarStatusSchema>;
 
 export type UpdateManagerStatusDto = z.infer<typeof updateManagerStatusSchema>;
+
+export type ManagerStatusType = (typeof MANAGER_STATUS)[number];

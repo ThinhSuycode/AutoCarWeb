@@ -1,3 +1,4 @@
+import type { TransmissionType } from "../../schemas/car.schema";
 import type { CarType } from "./car.type";
 
 export interface InfoSpecsType {

@@ -10,6 +10,16 @@ import { AppError } from "../utils/AppError";
 import { paymentQuerySchema } from "../schemas/payment.schema";
 import { Payment } from "../models/payment.model";
 
+const validateId = (id: unknown) => {
+  if (!id) {
+    throw new AppError("Thiếu ID giao dịch", 400);
+  }
+  if (id && typeof id !== "string") {
+    throw new AppError("Kiểu Id không hợp lệ String", 400);
+  }
+  return String(id);
+};
+
 export const createPaymentOrder = catchAsync(
   async (req: AuthRequest, res: Response) => {
     const validatedPayment = validatedCreatePayment(req.body);
@@ -30,14 +40,7 @@ export const createPaymentOrder = catchAsync(
 
 export const getPaymentDetail = catchAsync(
   async (req: AuthRequest, res: Response) => {
-    const { id } = req.params;
-
-    if (!id) {
-      throw new AppError("Thiếu ID giao dịch", 400);
-    }
-    if (id && typeof id !== "string") {
-      throw new AppError("Kiểu Id không hợp lệ String", 400);
-    }
+    const id = validateId(req.params.id);
 
     const payment = await paymentService.getPaymentById(id);
 

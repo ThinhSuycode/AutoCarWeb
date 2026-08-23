@@ -17,7 +17,7 @@ const populateOrder = (query: any) =>
   query
     .populate("buyerId", "username avatar email phone")
     .populate("staffId", "username")
-    .populate("carId", "name brand thumbnail year price")
+    .populate("carId", "name brand thumbnail year price managerStatus")
     .populate("appointmentId");
 
 export const orderService = {
@@ -109,7 +109,7 @@ export const orderService = {
   // GET ALL
   // ==========================
   async getAll(page = 1, limit = 10, status?: string) {
-    const filter: Record<string, unknown> = {};
+    const filter: Record<string, any> = {};
 
     if (status) {
       filter.status = status;
@@ -193,6 +193,14 @@ export const orderService = {
         },
       ),
     );
+    if (!order) {
+      throw new AppError("Không tìm thấy Order khi cập nhật!!", 404);
+    }
+
+    current.remainingAmount = totalAmount - current.paidAmount;
+
+    current.save();
+
     return order;
   },
 

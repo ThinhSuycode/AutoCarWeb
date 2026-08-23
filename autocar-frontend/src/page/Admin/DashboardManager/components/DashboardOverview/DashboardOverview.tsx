@@ -13,7 +13,7 @@ const DashboardOverview = ({
   stats: DashboardStatsType | undefined;
 }) => {
   if (!stats) return;
-  console.log(stats.recentAppointments);
+
   return (
     <div className={cx("main-grid")}>
       <div className={cx("section-card", "wide")}>

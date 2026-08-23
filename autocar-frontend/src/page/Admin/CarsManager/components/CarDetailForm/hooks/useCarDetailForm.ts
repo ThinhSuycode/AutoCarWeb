@@ -1,5 +1,8 @@
 import toast from "react-hot-toast";
-import { carDetailSchema } from "../../../../../../schemas/carDetail.schema";
+import {
+  carDetailSchema,
+  type CarDetailFormType,
+} from "../../../../../../schemas/carDetail.schema";
 import { useEffect, useRef, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import type z from "zod";
@@ -7,8 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { CarDetailsType } from "../../../../../../types/car/car-detail.type";
 
 interface Props {
+  defaultValues: CarDetailFormType;
   carDetail: CarDetailsType | null;
-  defaultValues?: CarDetailsType;
 }
 export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
   const [newFeature, setNewFeature] = useState("");
@@ -30,13 +33,19 @@ export const useCarDetail = ({ defaultValues, carDetail }: Props) => {
     z.output<typeof carDetailSchema>
   >({
     resolver: zodResolver(carDetailSchema),
-    defaultValues,
+    defaultValues: defaultValues ?? null,
   });
 
   useEffect(() => {
     if (carDetail) {
-      console.log("RESET");
-      reset(carDetail);
+      reset({
+        carId: carDetail?.carId._id ?? "",
+        location: carDetail?.location ?? "",
+        images: carDetail?.images ?? [],
+        description: carDetail?.description ?? "",
+        features: carDetail?.features ?? [],
+        specs: carDetail?.specs ?? [],
+      });
     }
   }, [carDetail, reset]);
 

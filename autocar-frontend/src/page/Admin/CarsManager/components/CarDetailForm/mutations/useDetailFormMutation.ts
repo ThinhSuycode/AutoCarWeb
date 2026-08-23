@@ -1,30 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { carDetailsService } from "../../../../../../services/carDetail.service";
 import toast from "react-hot-toast";
-import type { CarDetailsType } from "../../../../../../types/car/car-detail.type";
-import type { UpdateCarDetailDto } from "../../../../../../schemas/carDetail.schema";
+import type {
+  CarDetailFormType,
+  UpdateCarDetailDto,
+} from "../../../../../../schemas/carDetail.schema";
+import { queryKeys } from "../../../../../../queries/queryKeys";
 
-const useDetailFormMutation = (carId: string | undefined) => {
+const useDetailFormMutation = (carId: string) => {
   const queryClient = useQueryClient();
 
-  // ───────────────── GET DETAIL ─────────────────
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["car-detail", carId],
-
+    queryKey: queryKeys.carDetail.detail(carId),
     queryFn: () => carDetailsService.getDetail(carId!),
-
     enabled: !!carId,
   });
 
   const createMutation = useMutation({
-    mutationFn: async (data: CarDetailsType) =>
+    mutationFn: async (data: CarDetailFormType) =>
       await carDetailsService.create(data),
 
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       toast.success("Tạo thông tin thành công!");
-
       queryClient.invalidateQueries({
-        queryKey: ["car-detail", carId],
+        queryKey: queryKeys.carDetail.detail(variables.carId),
       });
     },
 
@@ -38,11 +37,10 @@ const useDetailFormMutation = (carId: string | undefined) => {
     mutationFn: ({ id, data }: { id: string; data: UpdateCarDetailDto }) =>
       carDetailsService.update(id, data),
 
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
       toast.success("Cập nhật thông tin thành công!");
-
       queryClient.invalidateQueries({
-        queryKey: ["car-detail", carId],
+        queryKey: queryKeys.carDetail.detail(variables.id),
       });
     },
 
@@ -55,11 +53,10 @@ const useDetailFormMutation = (carId: string | undefined) => {
     mutationFn: async (id: string) => {
       return await carDetailsService.delete(id);
     },
-    onSuccess: () => {
+    onSuccess: (_data, id) => {
       toast.success("Xoá thông tin chi tiết thành công!!");
-
       queryClient.invalidateQueries({
-        queryKey: ["car-detail", carId],
+        queryKey: queryKeys.carDetail.detail(id),
       });
     },
     onError: () => {

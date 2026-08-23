@@ -1,4 +1,7 @@
-import type { UpdateCarDetailDto } from "../schemas/carDetail.schema";
+import type {
+  CarDetailFormType,
+  UpdateCarDetailDto,
+} from "../schemas/carDetail.schema";
 import type { CarDetailsType } from "../types/car/car-detail.type";
 import { callApi, changeApi } from "./api";
 
@@ -11,7 +14,7 @@ export const carDetailsService = {
     return await callApi.getData<CarDetailsType>(`carDetail/${id}`);
   },
 
-  create: async (data: CarDetailsType) => {
+  create: async (data: CarDetailFormType) => {
     return await changeApi.request<CarDetailsType>("carDetail", "add", data);
   },
 

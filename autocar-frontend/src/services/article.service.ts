@@ -27,11 +27,11 @@ export const getArticles = async ({
 }: GetArticlesParams) => {
   const params = new URLSearchParams();
 
-  params.append("page", String(page));
-  params.append("limit", String(limit));
+  params.set("page", String(page));
+  params.set("limit", String(limit));
 
   if (search?.trim()) {
-    params.append("search", search.trim());
+    params.set("search", search.trim());
   }
 
   if (category) {

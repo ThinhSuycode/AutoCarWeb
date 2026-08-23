@@ -2,9 +2,10 @@ import classNames from "classnames/bind";
 import styles from "./CarForm.module.scss";
 import { Button } from "../../../../../components/Button/Button";
 import { useCarForm } from "./hooks/useCarForm";
-import { brands, colors } from "../../../../../constants/carDatax";
+import { brands, colors } from "../../../../../constants/carData";
 import type { CreateCarDto } from "../../../../../schemas/car.schema";
 import { BODY_TYPES, FUEL } from "../../../../../types/car/car.constant";
+import MoneyInput from "../../../../../components/MoneyInput/MoneyInput";
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +29,7 @@ const CarForm = ({
   const {
     handleSubmit,
     register,
+    control,
     errors,
     isUploading,
     fileInputRef,
@@ -97,17 +99,13 @@ const CarForm = ({
           </div>
           {/* PRICE */}
           <div className={cx("form-group")}>
-            <label>Giá</label>
-
-            <input
-              type="number"
-              {...register("price")}
+            <MoneyInput
+              label="Giá"
+              name="price"
               placeholder="Vui lòng nhập giá trị VNĐ"
+              control={control}
+              error={errors.price}
             />
-
-            {errors.price && (
-              <span className={cx("error")}>{errors.price.message}</span>
-            )}
           </div>
           {/* YEAR */}
           <div className={cx("form-group")}>

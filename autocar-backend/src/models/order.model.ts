@@ -7,21 +7,18 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      index: true,
     },
 
     buyerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      index: true,
     },
 
     staffId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      index: true,
     },
 
     appointmentId: {
@@ -65,21 +62,18 @@ const orderSchema = new mongoose.Schema(
       min: 1,
     },
 
-    // Giá niêm yết
     unitPrice: {
       type: Number,
       required: true,
       min: 0,
     },
 
-    // Giá bán sau thương lượng
     salePrice: {
       type: Number,
       required: true,
       min: 0,
     },
 
-    // %
     taxRate: {
       type: Number,
       required: true,
@@ -88,7 +82,6 @@ const orderSchema = new mongoose.Schema(
       default: 10,
     },
 
-    // Số tiền VAT
     tax: {
       type: Number,
       required: true,
@@ -132,6 +125,7 @@ const orderSchema = new mongoose.Schema(
       default: "pending",
       index: true,
     },
+
     confirmedAt: {
       type: Date,
       default: null,
@@ -146,5 +140,11 @@ const orderSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+orderSchema.index({ buyerId: 1, status: 1 });
+
+orderSchema.index({ staffId: 1, status: 1 });
+
+orderSchema.index({ createdAt: -1 });
 
 export const Order = mongoose.model("Order", orderSchema);

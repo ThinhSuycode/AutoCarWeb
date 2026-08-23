@@ -13,7 +13,7 @@ const useCarFormMutation = () => {
     mutationFn: async (formData: CreateCarDto) => {
       const newCar = await carService.create(formData);
       await carDetailsService.create({
-        carId: newCar,
+        carId: newCar._id,
         location: "",
         description: "",
         images: [],

@@ -1,6 +1,6 @@
-@use "../../../../styles/tokens" as *;
-@use "../../../../styles/mixins" as *;
-@use "../../../../styles/variables" as *;
+@use "@styles/mixins" as *;
+@use "@styles/tokens" as *;
+@use "@styles/variables" as *;
 
 .articleDetail-banner {
   width: 82%;

@@ -167,6 +167,9 @@
       button {
         opacity: 0.8;
         transition: 0.25s ease-in-out;
+        padding: 7px 10px;
+        border-radius: 7px;
+        font-size: 12px;
         &.completed {
           color: #fff;
           background: #10b981;

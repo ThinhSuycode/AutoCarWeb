@@ -1,11 +1,13 @@
-import { contactFormSchema } from "../schemas/contact.schema";
-import { AppError } from "../utils/AppError";
+import { validateWithSchema } from "../utils/validateWithSchema";
+import {
+  createContactSchema,
+  updateContactSchema,
+  type CreateContactData,
+  type UpdateContactData,
+} from "../schemas/contact.schema";
 
-export const validatedCreateContact = (data: unknown) => {
-  const result = contactFormSchema.safeParse(data);
-  if (!result.success) {
-    const message = result.error.issues.map((err) => err.message).join(", ");
-    throw new AppError(message, 400);
-  }
-  return result.data;
-};
+export const validatedCreateContact = (data: unknown): CreateContactData =>
+  validateWithSchema(createContactSchema, data);
+
+export const validatedUpdateContact = (data: unknown): UpdateContactData =>
+  validateWithSchema(updateContactSchema, data);

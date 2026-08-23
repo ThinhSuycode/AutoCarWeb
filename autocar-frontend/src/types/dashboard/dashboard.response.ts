@@ -1,4 +1,8 @@
 import type { ApiResponse } from "../common/response";
-import type { DashboardStats } from "./dashboard.type";
+import type {
+  AdminDashboardStats,
+  StaffDashboardStats,
+} from "./dashboard.type";
 
-export type DashboardResponse = ApiResponse<DashboardStats>;
+export type AdminDashboardResponse = ApiResponse<AdminDashboardStats>;
+export type StaffDashboardResponse = ApiResponse<StaffDashboardStats>;

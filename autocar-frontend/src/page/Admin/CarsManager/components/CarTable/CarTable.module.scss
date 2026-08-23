@@ -1,4 +1,4 @@
-@use "../../../../../styles/tokens" as *;
+@use "@styles/tokens" as *;
 
 // ─── Table ───────────────────────────────────────────────────────────────────
 .table-wrapper {
@@ -126,6 +126,35 @@
       font-size: 11.5px;
       color: #bbbbbb;
       font-weight: 550;
+    }
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid currentColor;
+
+    &.available {
+      color: #16a34a;
+      background: rgba(22, 163, 74, 0.1);
+    }
+
+    &.reserved {
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.1);
+    }
+
+    &.sold {
+      color: #64748b;
+      background: rgba(100, 116, 139, 0.1);
+    }
+
+    &.maintenance {
+      color: #dc2626;
+      background: rgba(220, 38, 38, 0.1);
     }
   }
 

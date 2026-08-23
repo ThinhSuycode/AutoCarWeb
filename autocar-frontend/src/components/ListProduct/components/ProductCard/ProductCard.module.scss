@@ -1,6 +1,6 @@
-@use "../../../../styles/variables" as *;
-@use "../../../../styles/mixins" as *;
-@use "../../../../styles/tokens" as *;
+@use "@styles/mixins" as *;
+@use "@styles/tokens" as *;
+@use "@styles/variables" as *;
 
 .product-item {
   position: relative;
@@ -73,23 +73,22 @@
       object-fit: cover;
       transition: 0.3s ease-in-out;
     }
-    .car-checked {
+    .car-sold {
       position: absolute;
       bottom: 10px;
-      right: 5px;
+      right: 7px;
       padding: 7px 28px;
-      background: #e0342f;
+      background: linear-gradient(45deg, #ff1313, #008cff);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
       color: #fff;
       text-transform: uppercase;
       text-align: center;
-      box-shadow: 0 3px 10px rgba(224, 52, 47, 0.35);
+      box-shadow: 7px 0px 16px rgb(0 255 245 / 35%);
       transform: rotate(-6deg);
-      z-index: 2;
-      border: 2px solid white;
-      border-radius: 10px 0px;
+      border: 1px solid white;
+      border-radius: 11px 0px;
     }
     .info-img {
       position: absolute;

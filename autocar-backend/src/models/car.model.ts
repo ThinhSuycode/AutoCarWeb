@@ -14,7 +14,6 @@ const carSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      index: true,
     },
 
     price: {
@@ -37,11 +36,13 @@ const carSchema = new mongoose.Schema(
     bodyType: {
       type: [String],
       required: true,
+      index: true,
     },
 
     transmission: {
       type: String,
       required: true,
+      index: true,
     },
 
     fuel: {
@@ -94,7 +95,6 @@ const carSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null,
-      index: true,
     },
 
     orderId: {
@@ -113,9 +113,10 @@ const carSchema = new mongoose.Schema(
   },
 );
 
-carSchema.index({
-  brand: 1,
-  status: 1,
-});
+carSchema.index({ brand: 1, status: 1 });
+
+carSchema.index({ managerId: 1, managerStatus: 1 });
+
+carSchema.index({ createdAt: -1 });
 
 export const Car = mongoose.model("Car", carSchema);
