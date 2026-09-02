@@ -1,14 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "./DashboardStats.module.scss";
 import { config } from "../../../../../config";
-import type { DashboardStats as DashboardStatsType } from "../../../../../types/dashboard/dashboard.type";
+import type { AdminDashboardStats } from "../../../../../types/dashboard/dashboard.type";
 
 const cx = classNames.bind(styles);
 
 const DashboardStats = ({
   stats,
 }: {
-  stats: DashboardStatsType | undefined;
+  stats: AdminDashboardStats | undefined;
 }) => {
   if (!stats) return;
   return (

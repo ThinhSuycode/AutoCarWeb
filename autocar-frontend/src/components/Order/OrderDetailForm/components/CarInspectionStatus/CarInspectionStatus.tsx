@@ -1,10 +1,7 @@
 import classNames from "classnames/bind";
 import style from "./CarInspectionStatus.module.scss";
 import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
-import {
-  CAR_STATUS,
-  MANAGER_STATUS,
-} from "../../../../../types/car/car.constant";
+import { MANAGER_STATUS } from "../../../../../types/car/car.constant";
 import { MANAGER_STATUS_MAP } from "../../../../../constants/managerStatus";
 
 const cx = classNames.bind(style);

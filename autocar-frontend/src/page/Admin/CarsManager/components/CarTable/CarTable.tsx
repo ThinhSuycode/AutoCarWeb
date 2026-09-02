@@ -5,7 +5,6 @@ import useCarTable from "./hooks/useCarTable";
 import LoadingData from "../../../../../components/LoadingData/LoadingData";
 import EmptyState from "../../../../../components/EmtyState/EmptyState";
 import type { ManagerCar } from "../../../../../types/user/manager-cars.type";
-import { MANAGER_STATUS_MAP } from "../../../../../constants/managerStatus";
 import { CAR_STATUS_LABEL } from "../../../../../types/car/car.constant";
 
 const cx = classNames.bind(styles);

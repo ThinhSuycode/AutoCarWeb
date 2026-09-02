@@ -4,13 +4,15 @@ import { STATUS_MAP } from "../../constants/dashboardData";
 import { config } from "../../../../../config";
 import { SERVICES_LABEL } from "../../../../../components/Appointment/AppointmentManager/constant/useAppointmentData";
 import { formatDateToString } from "../../../../../hooks/formatDate";
-import type { DashboardStats as DashboardStatsType } from "../../../../../types/dashboard/dashboard.type";
+import type { AdminDashboardStats } from "../../../../../types/dashboard/dashboard.type";
+import type { Appointment } from "../../../../../types/appointment/appointment.type";
+import type { UserType } from "../../../../../types/user/user.type";
 
 const cx = classNames.bind(styles);
 const DashboardOverview = ({
   stats,
 }: {
-  stats: DashboardStatsType | undefined;
+  stats: AdminDashboardStats | undefined;
 }) => {
   if (!stats) return;
 
@@ -37,7 +39,7 @@ const DashboardOverview = ({
             </thead>
             <tbody>
               {stats.recentAppointments.length > 0 ? (
-                stats.recentAppointments.map((appt) => {
+                stats.recentAppointments.map((appt: Appointment) => {
                   const status = STATUS_MAP[appt.status] ?? {
                     label: appt.status,
                     cls: "pending",
@@ -59,7 +61,6 @@ const DashboardOverview = ({
                       </td>
                       <td>{appt.contactId.carId?.name || "--Không có--"}</td>
                       <td>
-                        {/* {appt.createdAt} &nbsp; */}
                         <span className={cx("time")}>
                           {formatDateToString(appt.appointmentDate)}
                         </span>
@@ -96,7 +97,7 @@ const DashboardOverview = ({
 
         <div className={cx("user-list")}>
           {stats.recentUsers.length > 0 ? (
-            stats.recentUsers.map((user) => (
+            stats.recentUsers.map((user: UserType) => (
               <div key={user._id} className={cx("user-item")}>
                 <div className={cx("user-avatar", "small")}>
                   {user.avatar ? (
