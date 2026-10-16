@@ -4,9 +4,6 @@
 
 .home-page {
   width: 100%;
-
-  // scroll-margin-top áp cho các section được cuộn tới qua id/hash (#home-about, ...)
-  // để phần đầu section không bị thanh nav fixed che mất. Đổi số này nếu đổi chiều cao nav.
   #home-banner,
   #home-about,
   #home-products,

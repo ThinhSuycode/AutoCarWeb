@@ -47,29 +47,25 @@ const CarHeader = ({
       </div>
       <div className={cx("specs")}>
         <div>
-          <span>
-            <i className="fa-regular fa-calendar"></i>
-          </span>
+          <i className="fa-regular fa-calendar"></i>
+
           <span>{carDetails.carId.year || "2023"}</span>
         </div>
         <div>
-          <span>
-            <i className="fa-solid fa-gauge-high"></i>
-          </span>
+          <i className="fa-solid fa-gauge-high"></i>
+
           <span>
             {carDetails.carId.mileage?.toLocaleString("vi-VN") || "0"} km
           </span>
         </div>
         <div>
-          <span>
-            <i className="fa-solid fa-gears"></i>
-          </span>
+          <i className="fa-solid fa-gears"></i>
+
           <span>{carDetails.carId.transmission || "Số tự động"}</span>
         </div>
         <div>
-          <span>
-            <i className="fa-solid fa-location-dot"></i>
-          </span>
+          <i className="fa-solid fa-location-dot"></i>
+
           <span>{carDetails.location || "TP.HCM"}</span>
         </div>
       </div>

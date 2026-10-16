@@ -100,28 +100,34 @@
       padding: 10px 15px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 7px;
       background: $navy-soft;
       border-radius: $radius-md;
-
+      i {
+        color: $navy-ink;
+      }
       span {
-        font-size: 14px;
-        font-weight: 600;
-        color: $navy-mid;
+        font-size: 12px;
+        font-weight: 550;
+        color: $muted;
       }
     }
   }
 
   .commitments {
     padding: 8px 0px 4px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
 
     div {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 7px;
 
       span {
-        font-size: 14px;
+        font-size: 0.75rem;
+        font-weight: 550;
         color: $slate;
 
         &:first-child {

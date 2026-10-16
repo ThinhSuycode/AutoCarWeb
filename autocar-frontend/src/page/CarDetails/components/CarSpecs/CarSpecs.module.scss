@@ -50,6 +50,7 @@
           box-shadow:
             0 0 0 3px $green-soft,
             $shadow-md;
+          background: linear-gradient(to right, $green, $white);
           transform: translateY(-2px);
         }
 
@@ -123,8 +124,8 @@
           padding: 14px 22px 12px;
           font-size: 15px;
           font-weight: 700;
-          color: $navy;
-          background: linear-gradient(to bottom, $navy-soft, $paper);
+          color: #ffffff;
+          background: linear-gradient(to right, #000b39, #126f76);
           border-bottom: 1px solid $border;
           letter-spacing: 0.2px;
         }
